@@ -81,3 +81,30 @@
     font-weight: 900;
     font-style: italic;
 }
+
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    font-weight: 100 700;
+    src: url( './../resources/fonts/icons.woff2' ) format( 'woff2' );
+}
+
+.icon {
+    direction: ltr;
+    text-transform: none;
+    line-height: 1;
+    font-family: 'Material Symbols Outlined';
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    white-space: nowrap;
+    word-wrap: normal;
+    font-feature-settings: 'liga';
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+.icon:not(.nofill) {
+    font-variation-settings: 'FILL' 1;
+}
