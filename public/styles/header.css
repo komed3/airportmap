@@ -3,18 +3,17 @@
     flex-flow: row nowrap;
     align-items: stretch;
     gap: 20px;
-    height: 60px;
-    padding: 0 20px;
+    height: 80px;
     background: var( --gray-0 );
 }
 
 #header .logo {
-    flex: 0 0 60px;
+    flex: 0 0 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
 }
 
 #header .logo img {
@@ -27,7 +26,7 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: stretch;
-    height: 60px;
+    height: 80px;
 }
 
 #header nav a {
@@ -68,6 +67,7 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    padding: 0 20px;
 }
 
 #header .search input {

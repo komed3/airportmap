@@ -16,7 +16,7 @@
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
         <script src="/public/scripts/jquery.cookie.min.js"></script>
         <script src="/public/scripts/base.min.js"></script>
-        <title>Discover airports all over the world — Airportmap</title>
+        <title>Airportmap</title>
     </head>
     <body>
         <div id="wrapper">
@@ -25,10 +25,10 @@
                     <img src="./favicon-48x48.png" />
                 </a>
                 <nav>
-                    <a data-href=""><span data-i18n="Map"></span></a>
-                    <a data-href="airports"><span data-i18n="Airports"></span></a>
-                    <a data-href="navdata"><span data-i18n="Navdata"></span></a>
-                    <a data-href="stats"><span data-i18n="Stats"></span></a>
+                    <a data-href="" data-nav="map"><span data-i18n="Map"></span></a>
+                    <a data-href="airports" data-nav="airports"><span data-i18n="Airports"></span></a>
+                    <a data-href="navdata" data-nav="navdata"><span data-i18n="Navdata"></span></a>
+                    <a data-href="stats" data-nav="stats"><span data-i18n="Stats"></span></a>
                 </nav>
                 <div class="search">
                     <input type="text" data-placeholder="Search …" />

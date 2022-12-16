@@ -81,3 +81,12 @@ body {
     color: var( --gray-4 );
     background: var( --gray-1 );
 }
+
+.map {
+    width: 100%;
+    height: calc( 100vh - 80px );
+}
+
+.map .leaflet-tile-pane {
+    filter: grayscale( 1 ) invert( 1 );
+}
