@@ -1,5 +1,6 @@
 var baseurl = window.location.origin,
-    locale, path, page, maps = {};
+    locale, path, page,
+    mypos = {}, maps = {};
 
 ( function( $ ) {
 
@@ -52,47 +53,31 @@ var baseurl = window.location.origin,
 
     var loadMaps = function() {
 
-        let _maps = $( '[data-map]' );
+        $( '[data-map]' ).each( function() {
 
-        $.when(
+            let uuid = self.crypto.randomUUID(),
+                data = JSON.parse( window.atob( $( this ).attr( 'data-map' ) ) ),
+                lat = data.lat || ( mypos.lat || 0 ),
+                lon = data.lon || ( mypos.lon || 0 );
 
-            ( _maps.length > 0 && (
-                typeof L === 'function' || (
-                    $( 'head' ).append(
-                        '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />'
-                    ) && $.ajax( {
-                        url: 'https://unpkg.com/leaflet@1.9.3/dist/leaflet.js',
-                        dataType: "script",
-                        cache: true
-                    } )
-                )
-            ) ),
+            $( this ).attr( 'id', uuid ).removeAttr( 'data-map' );
 
-            $.Deferred( function( deferred ) {
-                $( deferred.resolve );
-            } )
-
-        ).then( function() {
-
-            _maps.each( function() {
-
-                let uuid = self.crypto.randomUUID();
-
-                $( this ).attr( 'id', uuid );
-
-                maps[ uuid ] = L.map( uuid, {
-                    center: [ 51.505, -0.09 ],
-                    zoom: 13,
-                    preferCanvas: true,
-                    scrollWheelZoom: false
-                } );
-
-                L.tileLayer( 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                    attribution: i18n( '© %YEAR% airportmap.de' )
-                } ).addTo( maps[ uuid ] );
-
+            maps[ uuid ] = L.map( uuid, {
+                center: [ lat, lon ],
+                zoom: data.zoom || 12,
+                preferCanvas: true,
+                scrollWheelZoom: data.wheelZoom || false
             } );
+
+            L.tileLayer( 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                minZoom: data.minZoom || 4,
+                maxZoom: data.maxZoom || 15,
+                attribution:
+                    i18n( 'Data by' ) +
+                    ' <a href="https://openstreetmap.org">openstreetmap.org</a> | ' +
+                    i18n( '© %YEAR%' ) +
+                    ' <a href="' + baseurl + '">airportmap.de</a>'
+            } ).addTo( maps[ uuid ] );
 
         } );
 
@@ -144,6 +129,13 @@ var baseurl = window.location.origin,
     };
 
     $( document ).ready( function() {
+
+        navigator.geolocation.getCurrentPosition( function( pos ) {
+            mypos = {
+                lat: pos.coords.latitude,
+                lon: pos.coords.longitude
+            };
+        } );
 
         setLocale();
 
