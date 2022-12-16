@@ -6,4 +6,25 @@
 
     $DB->set_charset( DB_CHARSET );
 
+    function airport_stats() {
+
+        global $DB;
+
+        $stats = [];
+
+        foreach( $DB->query( '
+            SELECT   type,
+                    COUNT( ICAO ) AS cnt
+            FROM     ' . DB_PREFIX . 'airport
+            GROUP BY type
+        ' )->fetch_all() as $type ) {
+
+            $stats[ $type[0] ] = $type[1];
+
+        }
+
+        return $stats;
+
+    }
+
 ?>

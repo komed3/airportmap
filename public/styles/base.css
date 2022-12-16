@@ -1,6 +1,7 @@
 @import url( './fonts.min.css' );
 @import url( './header.min.css' );
 @import url( './footer.min.css' );
+@import url( './content.min.css' );
 
 :root {
 
@@ -80,11 +81,6 @@ body {
     font-style: normal;
     color: var( --gray-4 );
     background: var( --gray-1 );
-}
-
-.map {
-    width: 100%;
-    height: calc( 100vh - 80px );
 }
 
 .map * {

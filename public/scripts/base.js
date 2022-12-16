@@ -40,7 +40,9 @@ var baseurl = window.location.origin,
 
                 document.title = i18n( res.title );
 
-                $( '#content' ).html( res.content );
+                $( '#content' )
+                    .addClass( page )
+                    .html( res.content );
 
                 dynContent();
 
@@ -91,6 +93,12 @@ var baseurl = window.location.origin,
 
     };
 
+    var numberFormat = function( number, options = {} ) {
+
+        return ( new Intl.NumberFormat( locale, options ) ).format( number );
+
+    };
+
     var dynContent = function() {
 
         $( '[data-i18n]' ).each( function() {
@@ -114,6 +122,14 @@ var baseurl = window.location.origin,
             $( this )
                 .attr( 'placeholder', i18n( $( this ).attr( 'data-placeholder' ) ) )
                 .removeAttr( 'data-placeholder' );
+
+        } );
+
+        $( '[data-number]' ).each( function() {
+
+            $( this )
+                .html( numberFormat( $( this ).attr( 'data-number' ) ) )
+                .removeAttr( 'data-number' );
 
         } );
 
