@@ -16,7 +16,7 @@
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
         <script src="/public/scripts/jquery.cookie.min.js"></script>
         <script src="/public/scripts/base.min.js"></script>
-        <title>Discover airports all over the world — airportmap</title>
+        <title>Discover airports all over the world — Airportmap</title>
     </head>
     <body>
         <div id="wrapper">
@@ -28,6 +28,7 @@
                     <a data-href=""><span data-i18n="Map"></span></a>
                     <a data-href="airports"><span data-i18n="Airports"></span></a>
                     <a data-href="navdata"><span data-i18n="Navdata"></span></a>
+                    <a data-href="stats"><span data-i18n="Stats"></span></a>
                 </nav>
                 <div class="search">
                     <input type="text" data-placeholder="Search …" />
@@ -37,7 +38,42 @@
                 </div>
             </div>
             <div id="content"></div>
-            <div id="footer"></div>
+            <div id="footer">
+                <div class="column">
+                    <a data-href="" data-title="Discover airports all over the world" class="logo">
+                        <img src="./favicon-48x48.png" />
+                    </a>
+                    <h3 data-i18n="Airportmap"></h3>
+                    <p class="about" data-i18n="Open source project with information and weather data on more than 70,000 airports and heliports worldwide."></p>
+                    <p class="credits" data-i18n="© %YEAR% Paul Köhler (komed3)"></p>
+                </div>
+                <div class="column">
+                    <h3 data-i18n="Discover"></h3>
+                    <nav>
+                        <a data-href="" data-i18n="World map"></a>
+                        <a data-href="airports" data-i18n="All airports"></a>
+                        <a data-href="navdata" data-i18n="Navdata"></a>
+                        <a data-href="stats" data-i18n="Airport stats"></a>
+                    </nav>
+                </div>
+                <div class="column">
+                    <h3 data-i18n="Developer"></h3>
+                    <nav>
+                        <a data-href="data" data-i18n="Airport data"></a>
+                        <a data-href="embed" data-i18n="Embed"></a>
+                        <a href="https://github.com/komed3/airportmap" target="_blank" data-i18n="GitHub project"></a>
+                    </nav>
+                </div>
+                <div class="column">
+                    <h3 data-i18n="Support"></h3>
+                    <nav>
+                        <a data-href="privacy" data-i18n="Privacy policy"></a>
+                        <a href="https://github.com/komed3/airportmap/issues" target="_blank" data-i18n="Report issue"></a>
+                        <a href="https://github.com/komed3/airportmap" target="_blank" data-i18n="Donate"></a>
+                    </nav>
+                    <h3 data-i18n="Language"></h3>
+                </div>
+            </div>
         </div>
     </body>
 </html>

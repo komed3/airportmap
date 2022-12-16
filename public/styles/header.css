@@ -2,8 +2,9 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: stretch;
-    gap: 40px;
+    gap: 20px;
     height: 60px;
+    padding: 0 20px;
     background: var( --gray-0 );
 }
 
@@ -37,13 +38,7 @@
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 800;
-    color: var( --gray-2 );
     transition: color 250ms;
-}
-
-#header nav a:hover,
-#header nav a.active {
-    color: var( --gray-4 );
 }
 
 #header nav a::after {
@@ -52,7 +47,7 @@
     bottom: 0;
     left: 2px;
     right: 2px;
-    height: 5px;
+    height: 4px;
     background: transparent;
     border-radius: 3px 3px 0 0;
     transform: scale( 0 );
@@ -67,4 +62,37 @@
 #header nav a.active::after {
     background: var( --primary );
     transform: scale( 1 );
+}
+
+#header .search {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+#header .search input {
+    flex: 0 0 auto;
+    width: 260px;
+    height: 36px;
+    padding: 0 14px;
+    font-size: 16px;
+    border: var( --border-1 );
+    border-right: 0;
+    border-radius: 18px 0 0 18px;
+}
+
+#header .search button {
+    flex: 0 0 auto;
+    width: 50px;
+    height: 36px;
+    padding: 0 14px 0 10px;
+    color: var( --gray-0 );
+    background: var( --primary );
+    border: 0;
+    border-radius: 0 18px 18px 0;
+    cursor: pointer;
+}
+
+#header .search button .icon {
+    font-size: 22px;
 }

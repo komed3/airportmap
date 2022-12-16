@@ -15,7 +15,7 @@ var baseurl = window.location.origin,
         text = ''
     ) {
 
-        return text;
+        return text.replaceAll( '%YEAR%', ( new Date() ).getFullYear() );
 
     };
 

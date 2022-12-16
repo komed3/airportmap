@@ -1,5 +1,6 @@
 @import url( './fonts.min.css' );
 @import url( './header.min.css' );
+@import url( './footer.min.css' );
 
 :root {
 
@@ -37,6 +38,14 @@
     --light-6: rgba( 255 255 255 / 0.75 );
     --light-7: rgba( 255 255 255 / 0.90 );
 
+    --border-1: 1px solid var( --gray-2 );
+
+}
+
+*,
+*:focus,
+*:active {
+    outline: 0 none;
 }
 
 *,
@@ -53,12 +62,22 @@ a:hover {
     outline: 0 none;
 }
 
+::placeholder {
+    color: var( --gray-3 );
+    opacity: 1;
+}
+
+:-ms-input-placeholder,
+::-ms-input-placeholder {
+    color: var( --gray-3 );
+}
+
 body {
     margin: 0;
     font-family: 'Roboto';
     font-size: 18px;
     font-weight: 400;
     font-style: normal;
-    color: var( --gray-5 );
+    color: var( --gray-4 );
     background: var( --gray-1 );
 }
