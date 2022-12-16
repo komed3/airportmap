@@ -24,7 +24,7 @@
         <div id="wrapper">
             <div id="header">
                 <a data-href="" data-title="Discover airports all over the world" class="logo">
-                    <img src="./favicon-48x48.png" />
+                    <img src="/favicon-48x48.png" />
                 </a>
                 <nav>
                     <a data-href="" data-nav="map"><span data-i18n="Map"></span></a>
@@ -32,9 +32,9 @@
                     <a data-href="navdata" data-nav="navdata"><span data-i18n="Navdata"></span></a>
                     <a data-href="stats" data-nav="stats"><span data-i18n="Stats"></span></a>
                 </nav>
-                <div class="search">
-                    <input type="text" data-placeholder="Search …" />
-                    <button data-action="search-all">
+                <form data-form="search" class="search" autocomplete="off">
+                    <input type="text" name="searchtext" data-placeholder="Search …" />
+                    <button type="submit" name="searchsubmit">
                         <i class="icon">travel_explore</i>
                     </button>
                 </div>
@@ -43,7 +43,7 @@
             <div id="footer">
                 <div class="column">
                     <a data-href="" data-title="Discover airports all over the world" class="logo">
-                        <img src="./favicon-48x48.png" />
+                        <img src="/favicon-48x48.png" />
                     </a>
                     <h3 data-i18n="Airportmap"></h3>
                     <p class="about" data-i18n="Open source project with information and weather data on more than 50,000 airports and heliports worldwide."></p>

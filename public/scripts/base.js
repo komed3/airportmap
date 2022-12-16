@@ -146,6 +146,25 @@ var baseurl = window.location.origin,
 
     };
 
+    $( document ).on( 'submit', '[data-form]', function( e ) {
+
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+
+        switch( $( this ).attr( 'data-form' ) ) {
+
+            case 'search':
+                location.href = baseurl + '/search/' +
+                    $( this ).find( '[name="searchtext"]' ).val();
+                break;
+
+        }
+
+        return false;
+
+    } );
+
     $( document ).ready( function() {
 
         navigator.geolocation.getCurrentPosition( function( pos ) {

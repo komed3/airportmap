@@ -24,6 +24,24 @@
     font-size: 22px;
 }
 
+.fullsearch {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 60px;
+}
+
+.fullsearch input {
+    width: 50vw;
+    height: 60px;
+    padding: 0 24px;
+    font-size: 20px;
+    background: var( --gray-0 );
+    border: 0;
+    border-radius: 30px;
+}
+
 .bigstats {
     display: flex;
     flex-flow: row nowrap;
