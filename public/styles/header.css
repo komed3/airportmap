@@ -67,29 +67,29 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    gap: 20px;
     padding: 0 20px;
 }
 
 #header .search input {
     flex: 0 0 auto;
     width: 260px;
-    height: 36px;
-    padding: 0 14px;
-    font-size: 16px;
-    border: var( --border-1 );
-    border-right: 0;
-    border-radius: 18px 0 0 18px;
+    height: 40px;
+    padding: 0 16px;
+    font-size: 18px;
+    background: var( --gray-1 );
+    border: 0;
+    border-radius: 20px;
 }
 
 #header .search button {
     flex: 0 0 auto;
-    width: 50px;
-    height: 36px;
-    padding: 0 14px 0 10px;
+    width: 40px;
+    height: 40px;
     color: var( --gray-0 );
     background: var( --primary );
     border: 0;
-    border-radius: 0 18px 18px 0;
+    border-radius: 20px;
     cursor: pointer;
 }
 

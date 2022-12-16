@@ -74,10 +74,12 @@ var baseurl = window.location.origin,
                 maxZoom: data.maxZoom || 15,
                 attribution:
                     i18n( 'Data by' ) +
-                    ' <a href="https://openstreetmap.org">openstreetmap.org</a> | ' +
+                    ' <a href="https://openstreetmap.org">OSM</a> | ' +
                     i18n( '© %YEAR%' ) +
                     ' <a href="' + baseurl + '">airportmap.de</a>'
             } ).addTo( maps[ uuid ] );
+
+            L.control.scale().addTo( maps[ uuid ] );
 
         } );
 
