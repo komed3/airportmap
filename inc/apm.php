@@ -1,5 +1,8 @@
 <?php
 
+    if( defined( 'NO_TOKEN' ) || !isset( $_POST['token'] ) )
+        die( 'Wrong entry point :(' );
+
     require_once __DIR__ . '/../config.php';
 
     $DB = new mysqli( DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT );

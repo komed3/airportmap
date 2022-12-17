@@ -26,12 +26,14 @@ var baseurl = window.location.origin,
 
     };
 
-    var loadPage = function( _page, data = {} ) {
+    var loadPage = function( _page, _data = {} ) {
+
+        _data.token = self.crypto.randomUUID();
 
         $.ajax( {
             url: baseurl + '/inc/api/' + _page + '.php',
             type: 'post',
-            data: data,
+            data: _data,
             success: function( response ) {
 
                 let res = JSON.parse( response );
