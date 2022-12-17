@@ -93,6 +93,8 @@ var baseurl = window.location.origin,
 
             L.control.scale().addTo( maps[ uuid ] );
 
+            loadMyPos( uuid );
+
             maps[ uuid ].on( 'moveend', function() {
 
                 loadMarker( uuid, maps[ uuid ] );
@@ -102,6 +104,26 @@ var baseurl = window.location.origin,
             loadMarker( uuid, maps[ uuid ] );
 
         } );
+
+    };
+
+    var loadMyPos = function( uuid ) {
+
+        if( 'lat' in mypos && 'lon' in mypos ) {
+
+            L.marker( L.latLng(
+                mypos.lat,
+                mypos.lon
+            ), {
+                icon: L.divIcon( {
+                    iconSize: '100px',
+                    iconAnchor: [ 10, 10 ],
+                    className: 'mypos',
+                    html: '<div class="icon">location_on</div>'
+                } )
+            } ).addTo( maps[ uuid ] );
+
+        }
 
     };
 
@@ -132,13 +154,36 @@ var baseurl = window.location.origin,
                         L.marker( L.latLng(
                             airport.lat,
                             airport.lon
-                        ) )
+                        ), {
+                            icon: L.divIcon( {
+                                iconSize: '100px',
+                                iconAnchor: [ 10, 10 ],
+                                className: 'airport-' + airport.type,
+                                html: '<div class="icon">' + {
+                                    large: 'location_searching',
+                                    medium: 'location_searching',
+                                    small: 'location_searching',
+                                    heliport: 'circle',
+                                    seaplane: 'circle',
+                                    balloonport: 'circle',
+                                    closed: 'block'
+                                }[ airport.type ] + '</div>' +
+                                    '<div class="code">' + airport.ICAO + '</div>' +
+                                    '<div class="alt">' + numberFormat( airport.alt ) + 'ft</div>'
+                            } )
+                        } ).on( 'click', function( e ) { airportInfo( e, uuid, map ); } )
                     );
 
                 } );
 
             }
         } );
+
+    };
+
+    var airportInfo = function( e, uuid, map ) {
+
+        map.setView( e.target.getLatLng() );
 
     };
 
