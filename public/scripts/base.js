@@ -87,8 +87,8 @@ var baseurl = window.location.origin,
                 scrollWheelZoom: data.wheelZoom || false
             } );
 
-            airport_marker[ uuid ] = L.layerGroup().addTo( maps[ uuid ] );
             navaid_marker[ uuid ] = L.layerGroup().addTo( maps[ uuid ] );
+            airport_marker[ uuid ] = L.layerGroup().addTo( maps[ uuid ] );
 
             L.tileLayer( 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 minZoom: data.minZoom || 4,
@@ -157,8 +157,30 @@ var baseurl = window.location.origin,
 
                 let res = JSON.parse( response );
 
-                airport_marker[ uuid ].clearLayers();
                 navaid_marker[ uuid ].clearLayers();
+                airport_marker[ uuid ].clearLayers();
+
+                Object.values( res.navaids ).forEach( function( navaid ) {
+
+                    navaid_marker[ uuid ].addLayer(
+                        L.marker( L.latLng(
+                            navaid.lat,
+                            navaid.lon
+                        ), {
+                            icon: L.divIcon( {
+                                iconSize: '100px',
+                                iconAnchor: [ 10, 10 ],
+                                className: 'navaid-' + navaid.type,
+                                html: '<div class="icon">rss_feed</div>' +
+                                    '<div class="frq">' + navaid.frequency + ' kHz</div>' +
+                                    '<div class="name">' + navaid.name + '</div>'
+                            } )
+                        } ).on( 'click', function( e ) {
+                            navaidInfo( e, uuid, map );
+                        } )
+                    );
+
+                } );
 
                 Object.values( res.airports ).forEach( function( airport ) {
 
@@ -185,28 +207,6 @@ var baseurl = window.location.origin,
                             } )
                         } ).on( 'click', function( e ) {
                             airportInfo( e, uuid, map );
-                        } )
-                    );
-
-                } );
-
-                Object.values( res.navaids ).forEach( function( navaid ) {
-
-                    navaid_marker[ uuid ].addLayer(
-                        L.marker( L.latLng(
-                            navaid.lat,
-                            navaid.lon
-                        ), {
-                            icon: L.divIcon( {
-                                iconSize: '100px',
-                                iconAnchor: [ 10, 10 ],
-                                className: 'navaid-' + navaid.type,
-                                html: '<div class="icon">rss_feed</div>' +
-                                    '<div class="frq">' + navaid.frequency + ' kHz</div>' +
-                                    '<div class="name">' + navaid.name + '</div>'
-                            } )
-                        } ).on( 'click', function( e ) {
-                            navaidInfo( e, uuid, map );
                         } )
                     );
 
