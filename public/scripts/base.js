@@ -4,6 +4,12 @@ var baseurl = window.location.origin,
 
 ( function( $ ) {
 
+    var getToken = () => {
+
+        return self.crypto.randomUUID();
+
+    };
+
     var setLocale = function() {
 
         locale = $.cookie( 'locale' ) || 'en-US';
@@ -28,7 +34,7 @@ var baseurl = window.location.origin,
 
     var loadPage = function( _page, _data = {} ) {
 
-        _data.token = self.crypto.randomUUID();
+        _data.token = getToken();
 
         $.ajax( {
             url: baseurl + '/inc/api/' + _page + '.php',
@@ -59,7 +65,7 @@ var baseurl = window.location.origin,
 
         $( '[data-map]' ).each( function() {
 
-            let uuid = self.crypto.randomUUID(),
+            let uuid = getToken(),
                 data = JSON.parse( window.atob( $( this ).attr( 'data-map' ) ) ),
                 lat = data.lat || ( mypos.lat || 0 ),
                 lon = data.lon || ( mypos.lon || 0 );
@@ -85,6 +91,38 @@ var baseurl = window.location.origin,
 
             L.control.scale().addTo( maps[ uuid ] );
 
+            maps[ uuid ].on( 'moveend', function() {
+
+                loadMarker( maps[ uuid ] );
+
+            } );
+
+            loadMarker( maps[ uuid ] );
+
+        } );
+
+    };
+
+    var loadMarker = function( map ) {
+
+        let bounds = map.getBounds();
+
+        $.ajax( {
+            url: baseurl + '/inc/api/_marker.php',
+            type: 'post',
+            data: {
+                token: getToken(),
+                zoom: map.getZoom(),
+                bounds: {
+                    lat: [ bounds.getNorth(), bounds.getSouth() ],
+                    lon: [ bounds.getEast(), bounds.getWest() ]
+                }
+            },
+            success: function( response ) {
+
+                //
+
+            }
         } );
 
     };
