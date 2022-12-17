@@ -35,7 +35,7 @@
 
     }
 
-    if( $zoom_lvl >= 14 ) {
+    if( $zoom_lvl >= 14 && isset( $_POST['closed'] ) ) {
 
         $airport_types[] = 'closed';
 
@@ -43,12 +43,14 @@
 
     echo json_encode( [
         'airports' => $DB->query( '
-            SELECT  ICAO, name, type, lat, lon, alt
-            FROM    ' . DB_PREFIX . 'airport
-            WHERE   ( lat BETWEEN ' . $lat_min . ' AND ' . $lat_max . ' )
-            AND     ( lon BETWEEN ' . $lon_min . ' AND ' . $lon_max . ' )
-            AND     type IN ( "' . implode( '", "', $airport_types ) . '" )
-        ' )->fetch_all( MYSQLI_ASSOC )
+            SELECT   ICAO, name, type, lat, lon, alt
+            FROM     ' . DB_PREFIX . 'airport
+            WHERE    ( lat BETWEEN ' . $lat_min . ' AND ' . $lat_max . ' )
+            AND      ( lon BETWEEN ' . $lon_min . ' AND ' . $lon_max . ' )
+            AND      type IN ( "' . implode( '", "', $airport_types ) . '" )
+            ORDER BY tier DESC
+            LIMIT    0, ' . ( (int) $_POST['limit'] ?? 500 )
+        )->fetch_all( MYSQLI_ASSOC )
     ], JSON_NUMERIC_CHECK );
 
 ?>

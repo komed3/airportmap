@@ -141,6 +141,8 @@ var baseurl = window.location.origin,
             type: 'post',
             data: {
                 token: getToken(),
+                closed: true,
+                limit: 500,
                 zoom: map.getZoom(),
                 bounds: {
                     lat: [ bounds.getNorth(), bounds.getSouth() ],
