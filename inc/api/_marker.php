@@ -51,7 +51,7 @@
             ORDER BY tier DESC
             LIMIT    0, ' . ( (int) $_POST['limit'] ?? 500 )
         )->fetch_all( MYSQLI_ASSOC ),
-        'navaids' => $zoom_lvl >= 12 ? $DB->query( '
+        'navaids' => $zoom_lvl >= 10 ? $DB->query( '
             SELECT  ident, type, name, frequency, lat, lon, alt
             FROM    ' . DB_PREFIX . 'navaid
             WHERE   ( lat BETWEEN ' . $lat_min . ' AND ' . $lat_max . ' )
