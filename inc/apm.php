@@ -32,7 +32,7 @@
 
     function airport_search(
         string $word,
-        int $limit = 100,
+        int $limit = -1,
         int $offset = 0
     ) {
 
@@ -43,12 +43,15 @@
         return $DB->query( '
             SELECT  *
             FROM    ' . DB_PREFIX . 'airport
-            WHERE   ICAO LIKE "%' . $word . '%"
-            OR      IATA LIKE "%' . $word . '%"
-            OR      GPS LIKE "%' . $word . '%"
-            OR      LOCAL LIKE "%' . $word . '%"
-            OR      name LIKE "%' . $word . '%"
-            LIMIT   ' . $offset . ', ' . $limit
+            WHERE   CONVERT( ICAO USING utf8 ) LIKE "%' . $word . '%"
+            OR      CONVERT( IATA USING utf8 ) LIKE "%' . $word . '%"
+            OR      CONVERT( GPS USING utf8 ) LIKE "%' . $word . '%"
+            OR      CONVERT( LOCAL USING utf8 ) LIKE "%' . $word . '%"
+            OR      CONVERT( name USING utf8 ) LIKE "%' . $word . '%"
+            ' . ( $limit >= 0
+                ? 'LIMIT ' . $offset . ', ' . $limit
+                : ''
+            )
         )->fetch_all( MYSQLI_ASSOC );
 
     }

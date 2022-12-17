@@ -27,6 +27,12 @@ var baseurl = window.location.origin,
 
         switch( path[0] ) {
 
+            case 'search':
+                loadPage( 'search', {
+                    searchtext: path[1]
+                } );
+                break;
+
             default:
                 loadPage( 'map' );
                 break;
@@ -54,6 +60,14 @@ var baseurl = window.location.origin,
                 $( '#content' )
                     .attr( 'page', page )
                     .html( res.content );
+
+                if( 'searchtext' in res ) {
+
+                    $( '[data-form="search"] input' ).val( res.searchtext );
+
+                    document.title += ': ' + res.searchtext;
+
+                }
 
                 dynContent();
 
@@ -293,7 +307,7 @@ var baseurl = window.location.origin,
 
             case 'search':
                 location.href = baseurl + '/search/' +
-                    $( this ).find( '[name="searchtext"]' ).val();
+                    $( this ).find( '[name="searchtext"]' ).val().trim();
                 break;
 
         }

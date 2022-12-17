@@ -38,9 +38,8 @@
 
     echo json_encode( [
         'title' => 'Discover airports all over the world',
-        'content' => $content,
         'page' => 'map',
-        'styles' => [ 'map' ]
+        'content' => $content
     ] );
 
 ?>
