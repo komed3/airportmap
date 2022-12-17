@@ -41,7 +41,7 @@ var baseurl = window.location.origin,
                 document.title = i18n( res.title );
 
                 $( '#content' )
-                    .addClass( page )
+                    .attr( 'page', page )
                     .html( res.content );
 
                 dynContent();

@@ -1,8 +1,3 @@
-#content.map .map {
-    width: 100%;
-    height: calc( 100vh - 80px );
-}
-
 .welcome {
     padding: 60px 25%;
     text-align: center;
@@ -26,20 +21,33 @@
 
 .fullsearch {
     display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
+    flex-flow: row nowrap;
     gap: 20px;
-    padding-bottom: 60px;
+    padding: 0 25% 60px 25%;
 }
 
 .fullsearch input {
-    width: 50vw;
+    flex: 1;
     height: 60px;
     padding: 0 24px;
     font-size: 20px;
     background: var( --gray-0 );
     border: 0;
     border-radius: 30px;
+}
+
+.fullsearch button {
+    flex: 0 0 60px;
+    height: 60px;
+    color: var( --gray-0 );
+    background: var( --primary );
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.fullsearch button .icon {
+    font-size: 26px;
 }
 
 .bigstats {
@@ -66,4 +74,9 @@
 .bigstats .column span {
     text-transform: uppercase;
     opacity: 0.7;
+}
+
+#content[page="map"] .map {
+    width: 100%;
+    height: calc( 100vh - 80px );
 }

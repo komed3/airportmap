@@ -27,4 +27,27 @@
 
     }
 
+    function airport_search(
+        string $word,
+        int $limit = 100,
+        int $offset = 0
+    ) {
+
+        global $DB;
+
+        $word = strtolower( trim( $word ) );
+
+        return $DB->query( '
+            SELECT  *
+            FROM    ' . DB_PREFIX . 'airport
+            WHERE   ICAO LIKE "%' . $word . '%"
+            OR      IATA LIKE "%' . $word . '%"
+            OR      GPS LIKE "%' . $word . '%"
+            OR      LOCAL LIKE "%' . $word . '%"
+            OR      name LIKE "%' . $word . '%"
+            LIMIT   ' . $offset . ', ' . $limit
+        )->fetch_all( MYSQLI_ASSOC );
+
+    }
+
 ?>

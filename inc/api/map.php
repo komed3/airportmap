@@ -11,9 +11,11 @@
         <h1 data-i18n="Welcome to <b>Airportmap</b>"></h1>
         <p data-i18n="Airportmap is an open source project with information and weather data on more than 50,000 airports and heliports worldwide."></p>
     </div>
-    <form class="fullsearch" data-form="full-search">
-        <input type="text" data-placeholder="ICAO, IATA or airport name …" />
-        <div class="list"></div>
+    <form data-form="search" class="fullsearch" autocomplete="off">
+        <input type="text" name="searchtext" data-placeholder="Search for ICAO, IATA or airport name …" />
+        <button type="submit" name="searchsubmit">
+            <i class="icon">travel_explore</i>
+        </button>
     </form>
     <div class="bigstats">
         <div class="column">
