@@ -1,6 +1,6 @@
 var baseurl = window.location.origin,
-    locale, path, page,
-    mypos = {}, maps = {};
+    locale, path, page, mypos = {},
+    maps = {}, markers = {};
 
 ( function( $ ) {
 
@@ -79,6 +79,8 @@ var baseurl = window.location.origin,
                 scrollWheelZoom: data.wheelZoom || false
             } );
 
+            markers[ uuid ] = L.layerGroup().addTo( maps[ uuid ] );
+
             L.tileLayer( 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 minZoom: data.minZoom || 4,
                 maxZoom: data.maxZoom || 15,
@@ -93,17 +95,17 @@ var baseurl = window.location.origin,
 
             maps[ uuid ].on( 'moveend', function() {
 
-                loadMarker( maps[ uuid ] );
+                loadMarker( uuid, maps[ uuid ] );
 
             } );
 
-            loadMarker( maps[ uuid ] );
+            loadMarker( uuid, maps[ uuid ] );
 
         } );
 
     };
 
-    var loadMarker = function( map ) {
+    var loadMarker = function( uuid, map ) {
 
         let bounds = map.getBounds();
 
@@ -120,7 +122,20 @@ var baseurl = window.location.origin,
             },
             success: function( response ) {
 
-                //
+                let res = JSON.parse( response );
+
+                markers[ uuid ].clearLayers();
+
+                Object.values( res.airports ).forEach( function( airport ) {
+
+                    markers[ uuid ].addLayer(
+                        L.marker( L.latLng(
+                            airport.lat,
+                            airport.lon
+                        ) )
+                    );
+
+                } );
 
             }
         } );

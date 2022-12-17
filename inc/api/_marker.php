@@ -15,27 +15,27 @@
 
     }
 
-    if( $zoom_lvl >= 6 ) {
+    if( $zoom_lvl >= 7 ) {
 
         $airport_types[] = 'medium';
 
     }
 
-    if( $zoom_lvl >= 9 ) {
+    if( $zoom_lvl >= 10 ) {
 
         $airport_types[] = 'small';
+        $airport_types[] = 'seaplane';
 
     }
 
-    if( $zoom_lvl >= 11 ) {
+    if( $zoom_lvl >= 12 ) {
 
         $airport_types[] = 'heliport';
-        $airport_types[] = 'seaplane';
         $airport_types[] = 'balloonport';
 
     }
 
-    if( $zoom_lvl >= 13 ) {
+    if( $zoom_lvl >= 14 ) {
 
         $airport_types[] = 'closed';
 
