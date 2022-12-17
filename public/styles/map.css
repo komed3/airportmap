@@ -104,8 +104,7 @@
     background-image: url( './../resources/pics/point.svg' );
 }
 
-.map .leaflet-marker-icon .code,
-.map .leaflet-marker-icon .frq {
+.map .leaflet-marker-icon .info {
     font-size: 12px;
     font-weight: 600;
 }

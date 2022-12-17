@@ -171,8 +171,13 @@ var baseurl = window.location.origin,
                                 iconSize: '100px',
                                 iconAnchor: [ 10, 10 ],
                                 className: 'navaid-' + navaid.type,
-                                html: '<div class="pic"></div>' +
-                                    '<div class="frq">' + numberFormat( navaid.frequency ) + ' kHz</div>'
+                                html: '<div class="pic"></div><div class="info">' + (
+                                    navaid.frequency > 1000
+                                        ? numberFormat( navaid.frequency / 1000, {
+                                            minimumFractionDigits: 1
+                                        } ) + ' MHz'
+                                        : numberFormat( navaid.frequency ) + ' kHz'
+                                ) + '</div>'
                             } )
                         } ).on( 'click', function( e ) {
                             navaidInfo( e, uuid, map );
@@ -192,8 +197,8 @@ var baseurl = window.location.origin,
                                 iconSize: '100px',
                                 iconAnchor: [ 10, 10 ],
                                 className: 'type-' + airport.type + ' use-' + airport.usage,
-                                html: '<div class="pic"></div>' +
-                                    '<div class="code">' + airport.ICAO + '</div>'
+                                html: '<div class="pic"></div><div class="info">' +
+                                    airport.ICAO + '</div>'
                             } )
                         } ).on( 'click', function( e ) {
                             airportInfo( e, uuid, map );
