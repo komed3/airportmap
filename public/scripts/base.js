@@ -75,6 +75,11 @@ var baseurl = window.location.origin,
             maps[ uuid ] = L.map( uuid, {
                 center: [ lat, lon ],
                 zoom: data.zoom || 12,
+                maxBounds: L.latLngBounds(
+                    L.latLng( -90, -180 ),
+                    L.latLng(  90,  180 )
+                ),
+                maxBoundsViscosity: 1,
                 preferCanvas: true,
                 scrollWheelZoom: data.wheelZoom || false
             } );
