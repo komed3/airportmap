@@ -1,4 +1,78 @@
-.map {
-    width: 100%;
-    height: calc( 100vh - 80px );
+.map *:not(.icon) {
+    font-family: 'Roboto';
+}
+
+.map .leaflet-tile-pane {
+    filter: grayscale( 1 ) invert( 1 );
+}
+
+.map .leaflet-control-scale-line,
+.map .leaflet-control-attribution {
+    color: var( --gray-0 );
+    text-shadow: none;
+    background: var( --shade-5 );
+    border-color: var( --gray-3 );
+}
+
+.map .leaflet-marker-icon {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    line-height: 1;
+    white-space: nowrap;
+    text-shadow: 0 0 5px var( --gray-7 );
+    color: var( --gray-0 );
+    background: transparent;
+    border: 0;
+    z-index: 1;
+}
+
+.map .leaflet-marker-icon:hover {
+    z-index: 99;
+}
+
+.map .leaflet-marker-icon .icon {
+    margin-bottom: 2px;
+    font-size: 18px;
+    font-variation-settings: 'FILL' 0, 'wght' 800, 'GRAD' 200;
+}
+
+.map .leaflet-marker-icon.airport-large .icon {
+    color: var( --airport-tier-1 );
+}
+
+.map .leaflet-marker-icon.airport-medium .icon {
+    color: var( --airport-tier-2 );
+}
+
+.map .leaflet-marker-icon.airport-small .icon {
+    color: var( --airport-tier-3 );
+}
+
+.map .leaflet-marker-icon.airport-closed .icon {
+    color: var( --bad );
+}
+
+.map .leaflet-marker-icon.mypos .icon {
+    font-size: 24px;
+    color: var( --info );
+}
+
+.map .leaflet-marker-icon .code,
+.map .leaflet-marker-icon .frq {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.map .leaflet-marker-icon .alt,
+.map .leaflet-marker-icon .name {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.map .leaflet-marker-icon:not(:hover) .code,
+.map .leaflet-marker-icon:not(:hover) .frq,
+.map .leaflet-marker-icon:not(:hover) .alt,
+.map .leaflet-marker-icon:not(:hover) .name {
+    visibility: hidden;
 }

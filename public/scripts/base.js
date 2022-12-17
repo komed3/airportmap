@@ -1,6 +1,9 @@
 var baseurl = window.location.origin,
-    locale, path, page, mypos = {},
-    maps = {}, markers = {};
+    locale, path, page,
+    mypos = {},
+    maps = {},
+    airport_marker = {},
+    navaid_marker = {};
 
 ( function( $ ) {
 
@@ -84,7 +87,8 @@ var baseurl = window.location.origin,
                 scrollWheelZoom: data.wheelZoom || false
             } );
 
-            markers[ uuid ] = L.layerGroup().addTo( maps[ uuid ] );
+            airport_marker[ uuid ] = L.layerGroup().addTo( maps[ uuid ] );
+            navaid_marker[ uuid ] = L.layerGroup().addTo( maps[ uuid ] );
 
             L.tileLayer( 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 minZoom: data.minZoom || 4,
@@ -153,11 +157,12 @@ var baseurl = window.location.origin,
 
                 let res = JSON.parse( response );
 
-                markers[ uuid ].clearLayers();
+                airport_marker[ uuid ].clearLayers();
+                navaid_marker[ uuid ].clearLayers();
 
                 Object.values( res.airports ).forEach( function( airport ) {
 
-                    markers[ uuid ].addLayer(
+                    airport_marker[ uuid ].addLayer(
                         L.marker( L.latLng(
                             airport.lat,
                             airport.lon
@@ -178,7 +183,31 @@ var baseurl = window.location.origin,
                                     '<div class="code">' + airport.ICAO + '</div>' +
                                     '<div class="alt">' + numberFormat( airport.alt ) + 'ft</div>'
                             } )
-                        } ).on( 'click', function( e ) { airportInfo( e, uuid, map ); } )
+                        } ).on( 'click', function( e ) {
+                            airportInfo( e, uuid, map );
+                        } )
+                    );
+
+                } );
+
+                Object.values( res.navaids ).forEach( function( navaid ) {
+
+                    navaid_marker[ uuid ].addLayer(
+                        L.marker( L.latLng(
+                            navaid.lat,
+                            navaid.lon
+                        ), {
+                            icon: L.divIcon( {
+                                iconSize: '100px',
+                                iconAnchor: [ 10, 10 ],
+                                className: 'navaid-' + navaid.type,
+                                html: '<div class="icon">rss_feed</div>' +
+                                    '<div class="frq">' + navaid.frequency + ' kHz</div>' +
+                                    '<div class="name">' + navaid.name + '</div>'
+                            } )
+                        } ).on( 'click', function( e ) {
+                            navaidInfo( e, uuid, map );
+                        } )
                     );
 
                 } );
@@ -189,6 +218,12 @@ var baseurl = window.location.origin,
     };
 
     var airportInfo = function( e, uuid, map ) {
+
+        map.setView( e.target.getLatLng() );
+
+    };
+
+    var navaidInfo = function( e, uuid, map ) {
 
         map.setView( e.target.getLatLng() );
 
