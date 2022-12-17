@@ -43,7 +43,7 @@
 
     echo json_encode( [
         'airports' => $DB->query( '
-            SELECT   ICAO, name, type, lat, lon, alt
+            SELECT   ICAO, name, type, restriction, lat, lon, alt
             FROM     ' . DB_PREFIX . 'airport
             WHERE    ( lat BETWEEN ' . $lat_min . ' AND ' . $lat_max . ' )
             AND      ( lon BETWEEN ' . $lon_min . ' AND ' . $lon_max . ' )

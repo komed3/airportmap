@@ -128,7 +128,7 @@ var baseurl = window.location.origin,
                     iconSize: '100px',
                     iconAnchor: [ 10, 10 ],
                     className: 'mypos',
-                    html: '<div class="icon">location_on</div>'
+                    html: '<div class="pic"></div>'
                 } )
             } ).addTo( maps[ uuid ] );
 
@@ -171,9 +171,8 @@ var baseurl = window.location.origin,
                                 iconSize: '100px',
                                 iconAnchor: [ 10, 10 ],
                                 className: 'navaid-' + navaid.type,
-                                html: '<div class="icon">rss_feed</div>' +
-                                    '<div class="frq">' + navaid.frequency + ' kHz</div>' +
-                                    '<div class="name">' + navaid.name + '</div>'
+                                html: '<div class="pic"></div>' +
+                                    '<div class="frq">' + numberFormat( navaid.frequency ) + ' kHz</div>'
                             } )
                         } ).on( 'click', function( e ) {
                             navaidInfo( e, uuid, map );
@@ -192,18 +191,9 @@ var baseurl = window.location.origin,
                             icon: L.divIcon( {
                                 iconSize: '100px',
                                 iconAnchor: [ 10, 10 ],
-                                className: 'airport-' + airport.type,
-                                html: '<div class="icon">' + {
-                                    large: 'location_searching',
-                                    medium: 'location_searching',
-                                    small: 'location_searching',
-                                    heliport: 'circle',
-                                    seaplane: 'circle',
-                                    balloonport: 'circle',
-                                    closed: 'block'
-                                }[ airport.type ] + '</div>' +
-                                    '<div class="code">' + airport.ICAO + '</div>' +
-                                    '<div class="alt">' + numberFormat( airport.alt ) + 'ft</div>'
+                                className: 'type-' + airport.type + ' use-' + airport.usage,
+                                html: '<div class="pic"></div>' +
+                                    '<div class="code">' + airport.ICAO + '</div>'
                             } )
                         } ).on( 'click', function( e ) {
                             airportInfo( e, uuid, map );
