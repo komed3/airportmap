@@ -124,6 +124,12 @@
                         <span data-i18n="' . $airport->municipality . '"></span>
                     </div>
                 </div>' : '' ) . '
+                ' . ( $airport->activation ? '<div class="row">
+                    <div class="label" data-i18n="Date"></div>
+                    <div class="value">
+                        <span data-i18n="' . $airport->activation . '"></span>
+                    </div>
+                </div>' : '' ) . '
             </div>
             <div class="map" data-map="' . base64_encode( json_encode( [
                 'lat' => $airport->lat,
