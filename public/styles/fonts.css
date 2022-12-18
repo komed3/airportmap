@@ -104,7 +104,3 @@
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
-
-.icon:not(.nofill) {
-    font-variation-settings: 'FILL' 1;
-}

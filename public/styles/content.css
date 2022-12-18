@@ -3,8 +3,6 @@
 }
 
 .primary-headline {
-    position: sticky;
-    top: 0;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -153,6 +151,53 @@
     font-weight: 800;
 }
 
+.breadcrumbs {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+    margin: 20px var( --padding-normal );
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.tablinks {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    gap: 12px;
+    margin: 0 var( --padding-normal ) 60px var( --padding-normal );
+    height: 40px;
+}
+
+.tablinks .tab {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 18px;
+    text-transform: uppercase;
+    background: var( --gray-0 );
+    border-radius: 20px;
+}
+
+.tablinks .tab:hover {
+    color: var( --primary );
+}
+
+.tablinks .tab.active {
+    color: var( --gray-0 );
+    background: var( --primary );
+}
+
+.tablinks .tab .icon {
+    font-size: 20px;
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 200;
+}
+
 .airportlist {
     margin: 40px var( --padding-normal );
 }
@@ -254,6 +299,7 @@
     flex-flow: row nowrap;
     align-items: center;
     gap: 6px;
+    margin: 0;
 }
 
 .airportlist .list .row .info .location,
@@ -264,10 +310,6 @@
 
 .airportlist .list .row .info .location {
     gap: 12px;
-}
-
-.airportlist .list .row .info .breadcrumbs a:hover {
-    text-decoration: underline;
 }
 
 .airportlist .list .row .info .tags {

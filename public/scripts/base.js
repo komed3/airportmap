@@ -1,5 +1,5 @@
 var baseurl = window.location.origin,
-    locale, path, page,
+    locale, path, page, __res,
     mypos = {},
     maps = {},
     airport_marker = {},
@@ -35,6 +35,13 @@ var baseurl = window.location.origin,
 
         switch( path[0] ) {
 
+            case 'airport':
+                loadPage( 'airport', {
+                    airport: path[1] || '',
+                    tab: path[2] || 'info'
+                } );
+                break;
+
             case 'search':
                 loadPage( 'search', {
                     searchtext: ( path[1] || '' ).replaceAll( '_', ' ' ),
@@ -61,27 +68,27 @@ var baseurl = window.location.origin,
             data: _data,
             success: function( response ) {
 
-                let res = JSON.parse( response );
+                __res = JSON.parse( response );
 
-                if( 'redirect_to' in res ) {
+                if( 'redirect_to' in __res ) {
 
-                    location.href = baseurl + '/' + res.redirect_to;
+                    location.href = baseurl + '/' + __res.redirect_to;
 
                 } else {
 
-                    page = res.page;
+                    page = __res.page;
 
-                    document.title = i18n( res.title );
+                    document.title = i18n( __res.title );
 
                     $( '#content' )
                         .attr( 'page', page )
-                        .html( res.content );
+                        .html( __res.content );
 
-                    if( 'searchtext' in res ) {
+                    if( 'searchtext' in __res ) {
 
-                        $( '[data-form="search"] input' ).val( res.searchtext );
+                        $( '[data-form="search"] input' ).val( __res.searchtext );
 
-                        document.title += ': ' + res.searchtext;
+                        document.title += ': ' + __res.searchtext;
 
                     }
 
@@ -450,6 +457,9 @@ var baseurl = window.location.origin,
 
         $( '[data-nav]' ).removeClass( 'active' );
         $( '[data-nav="' + page + '"]' ).addClass( 'active' );
+
+        $( '[data-tab]' ).removeClass( 'active' );
+        $( '[data-tab="' + ( __res.tab || '_' ) + '"]' ).addClass( 'active' );
 
         $( '[data-action="select-language"]' ).each( function() {
 
