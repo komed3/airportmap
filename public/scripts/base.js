@@ -519,6 +519,12 @@ var baseurl = window.location.origin,
             };
         } );
 
+        if( 'serviceWorker' in navigator ) {
+
+            navigator.serviceWorker.register( baseurl + '/service-worker.min.js', { scope: '/' } );
+
+        }
+
         setLocale();
 
         loadContent();
