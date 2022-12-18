@@ -6,6 +6,16 @@
 
     $results = airport_search( $searchtext );
 
+    if( count( $results ) == 1 && strpos( parse_url( $_POST['referrer'] )['path'], 'search' ) === false ) {
+
+        echo json_encode( [
+            'redirect_to' => 'airport/' . $results[0]['ICAO']
+        ] );
+
+        exit;
+
+    }
+
     $content = airport_search_form() . ( !empty( $searchtext ) ? '
     <h1 class="primary-headline">
         <i class="icon">near_me</i>

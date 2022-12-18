@@ -29,7 +29,8 @@ var baseurl = window.location.origin,
 
             case 'search':
                 loadPage( 'search', {
-                    searchtext: path[1] || null
+                    searchtext: ( path[1] || '' ).replaceAll( '_', ' ' ),
+                    page: parseInt( path[2] || 1 )
                 } );
                 break;
 
@@ -44,6 +45,7 @@ var baseurl = window.location.origin,
     var loadPage = function( _page, _data = {} ) {
 
         _data.token = getToken();
+        _data.referrer = document.referrer;
 
         $.ajax( {
             url: baseurl + '/inc/api/' + _page + '.php',
@@ -53,25 +55,33 @@ var baseurl = window.location.origin,
 
                 let res = JSON.parse( response );
 
-                page = res.page;
+                if( 'redirect_to' in res ) {
 
-                document.title = i18n( res.title );
+                    location.href = baseurl + '/' + res.redirect_to;
 
-                $( '#content' )
-                    .attr( 'page', page )
-                    .html( res.content );
+                } else {
 
-                if( 'searchtext' in res ) {
+                    page = res.page;
 
-                    $( '[data-form="search"] input' ).val( res.searchtext );
+                    document.title = i18n( res.title );
 
-                    document.title += ': ' + res.searchtext;
+                    $( '#content' )
+                        .attr( 'page', page )
+                        .html( res.content );
+
+                    if( 'searchtext' in res ) {
+
+                        $( '[data-form="search"] input' ).val( res.searchtext );
+
+                        document.title += ': ' + res.searchtext;
+
+                    }
+
+                    dynContent();
+
+                    loadMaps();
 
                 }
-
-                dynContent();
-
-                loadMaps();
 
             }
         } );
@@ -356,7 +366,7 @@ var baseurl = window.location.origin,
 
             case 'search':
                 location.href = baseurl + '/search/' +
-                    $( this ).find( '[name="searchtext"]' ).val().trim();
+                    $( this ).find( '[name="searchtext"]' ).val().trim().replaceAll( ' ', '_' );
                 break;
 
         }

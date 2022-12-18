@@ -89,6 +89,16 @@
                         <span class="divider">/</span>
                         <span class="alt" data-alt="' . $airport['alt'] . '"></span>
                     </div>
+                    <div class="breadcrumbs" data-bc="' .
+                        $airport['continent'] . '/' .
+                        $airport['country'] . '/' .
+                        $airport['region'] . '/' .
+                        $airport['municipality'] . '"></div>
+                    <div class="tags">
+                        <span class="tag type" data-i18n="' . ucfirst( $airport['type'] ) . '"></span>
+                        <span class="tag use" data-i18n="' . ucfirst( $airport['restriction'] ) . '"></span>
+                        ' . ( $airport['service'] ? '<span class="tag service" data-i18n="Airline Service"></span>' : '' ) . '
+                    </div>
                 </div>
             </div>';
 
