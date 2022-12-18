@@ -376,7 +376,7 @@ var baseurl = window.location.origin,
         $( '[data-href]' ).each( function() {
 
             $( this )
-                .attr( 'href', baseurl + '/' + $( this ).attr( 'data-href' ) )
+                .attr( 'href', baseurl + '/' + $( this ).attr( 'data-href' ).replaceAll( ' ', '_' ) )
                 .removeAttr( 'data-href' );
 
         } );
