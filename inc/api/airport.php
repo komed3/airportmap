@@ -53,6 +53,16 @@
             <i class="icon">database</i>
             <span data-i18n="History"></span>
         </a>
+        <span class="space"></span>
+        ' . ( $airport->home ? '<a class="tab" href="' . $airport->home . '" target="_blank">
+            <i class="icon">language</i>
+            <span data-i18n="Website"></span>
+        </a>' : '' ) . '
+        ' . ( $airport->wiki ? '<a class="tab" href="https://' .
+            str_replace( ':', '.wikipedia.org/wiki/', $airport->wiki ) . '" target="_blank">
+            <i class="icon">school</i>
+            <span data-i18n="Wiki"></span>
+        </a>' : '' ) . '
     </div>
     <div class="tabcontent tab-' . $tab . '">';
 
@@ -60,7 +70,7 @@
 
         case 'info':
 
-            $content .= '<div class="list">
+            $content .= '<div class="infolist">
                 ' . ( $airport->IATA ? '<div class="row">
                     <div class="label" data-i18n="IATA-Code"></div>
                     <div class="value">
@@ -71,6 +81,27 @@
                     <div class="label" data-i18n="GPS-Code"></div>
                     <div class="value">
                         <span>' . $airport->GPS . '</span>
+                    </div>
+                </div>' : '' ) . '
+                <div class="row">
+                    <div class="label" data-i18n="Facility type"></div>
+                    <div class="value">
+                        <a data-href="type/' . $airport->type . '" data-i18n="' . [
+                            'large' => 'International Airport',
+                            'medium' => 'Airport',
+                            'small' => 'Airfield',
+                            'heliport' => 'Heliport',
+                            'seaplane' => 'Seaplane Base',
+                            'balloonport' => 'Balloon Port',
+                            'closed' => 'Closed'
+                        ][ $airport->type ] . '"></a>
+                    </div>
+                </div>
+                ' . ( $airport->restriction ? '<div class="row">
+                    <div class="label" data-i18n="Restriction"></div>
+                    <div class="value">
+                        <a data-href="restriction/' . $airport->restriction . '" data-i18n="' .
+                            ucfirst( $airport->restriction ) . '"></a>
                     </div>
                 </div>' : '' ) . '
                 <div class="row">
