@@ -127,7 +127,7 @@
                 ' . ( $airport->activation ? '<div class="row">
                     <div class="label" data-i18n="Date"></div>
                     <div class="value">
-                        <span data-i18n="' . $airport->activation . '"></span>
+                        <span data-date="' . $airport->activation . '"></span>
                     </div>
                 </div>' : '' ) . '
             </div>

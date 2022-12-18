@@ -275,6 +275,15 @@ var baseurl = window.location.origin,
 
     };
 
+    var dateFormat = function( datestring, options = {} ) {
+
+        let dt = new Date();
+        dt.setTime( Date.parse( datestring ) );
+
+        return dt.toLocaleDateString( locale, options );
+
+    };
+
     var calcDMS = function( decimal, type = 'lat' ) {
 
         let dec = parseFloat( decimal ),
@@ -403,6 +412,14 @@ var baseurl = window.location.origin,
             $( this )
                 .html( numberFormat( $( this ).attr( 'data-number' ) ) )
                 .removeAttr( 'data-number' );
+
+        } );
+
+        $( '[data-date]' ).each( function() {
+
+            $( this )
+                .html( dateFormat( $( this ).attr( 'data-date' ) ) )
+                .removeAttr( 'data-date' );
 
         } );
 
