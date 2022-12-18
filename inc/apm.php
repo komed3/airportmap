@@ -41,13 +41,14 @@
         $word = strtolower( trim( $word ) );
 
         return $DB->query( '
-            SELECT  *
-            FROM    ' . DB_PREFIX . 'airport
-            WHERE   CONVERT( ICAO USING utf8 ) LIKE "%' . $word . '%"
-            OR      CONVERT( IATA USING utf8 ) LIKE "%' . $word . '%"
-            OR      CONVERT( GPS USING utf8 ) LIKE "%' . $word . '%"
-            OR      CONVERT( LOCAL USING utf8 ) LIKE "%' . $word . '%"
-            OR      CONVERT( name USING utf8 ) LIKE "%' . $word . '%"
+            SELECT   *
+            FROM     ' . DB_PREFIX . 'airport
+            WHERE    CONVERT( ICAO USING utf8 ) LIKE "%' . $word . '%"
+            OR       CONVERT( IATA USING utf8 ) LIKE "%' . $word . '%"
+            OR       CONVERT( GPS USING utf8 ) LIKE "%' . $word . '%"
+            OR       CONVERT( LOCAL USING utf8 ) LIKE "%' . $word . '%"
+            OR       CONVERT( name USING utf8 ) LIKE "%' . $word . '%"
+            ORDER BY tier DESC
             ' . ( $limit >= 0
                 ? 'LIMIT ' . $offset . ', ' . $limit
                 : ''
@@ -64,6 +65,38 @@
                 <i class="icon">travel_explore</i>
             </button>
         </form>';
+
+    }
+
+    function airport_list(
+        array $airports = []
+    ) {
+
+        $list = [];
+
+        foreach( $airports as $airport ) {
+
+            $list[] = '<div class="row ' . $airport['type'] . ' ' . $airport['restriction'] . ' service-' . $airport['service'] . '">
+                <div class="pic"></div>
+                <div class="info">
+                    <div class="headline">
+                        <span class="code">' . $airport['ICAO'] . '</span>
+                        <a data-href="airport/' . $airport['ICAO'] . '" class="name">' . $airport['name'] . '</a>
+                    </div>
+                    <div class="location">
+                        <span class="coord lat" data-lat="' . $airport['lat'] . '"></span>
+                        <span class="coord lon" data-lon="' . $airport['lon'] . '"></span>
+                        <span class="divider">/</span>
+                        <span class="alt" data-alt="' . $airport['alt'] . '"></span>
+                    </div>
+                </div>
+            </div>';
+
+        }
+
+        return '<div class="airportlist">
+            ' . implode( '', $list ) . '
+        </div>';
 
     }
 

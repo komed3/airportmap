@@ -250,6 +250,22 @@ var baseurl = window.location.origin,
 
     };
 
+    var calcDMS = function( decimal, type = 'lat' ) {
+
+        let dec = parseFloat( decimal ),
+            abs = Math.abs( dec ),
+            deg = Math.floor( abs ),
+            sub = ( abs - deg ) * 60,
+            min = Math.floor( sub ),
+            sec = Math.floor( ( sub - min ) * 60 );
+
+        return deg + '°&#8239;' + min + '′&#8239;' + sec + '″&#8239;' + {
+            lat: dec < 0 ? 'S' : 'N',
+            lon: dec < 0 ? 'W' : 'E'
+        }[ type ];
+
+    };
+
     var dynContent = function() {
 
         $( '[data-i18n]' ).each( function() {
@@ -281,6 +297,33 @@ var baseurl = window.location.origin,
             $( this )
                 .html( numberFormat( $( this ).attr( 'data-number' ) ) )
                 .removeAttr( 'data-number' );
+
+        } );
+
+        $( '[data-lat]' ).each( function() {
+
+            $( this )
+                .html( calcDMS( $( this ).attr( 'data-lat' ), 'lat' ) )
+                .removeAttr( 'data-lat' );
+
+        } );
+
+        $( '[data-lon]' ).each( function() {
+
+            $( this )
+                .html( calcDMS( $( this ).attr( 'data-lon' ), 'lon' ) )
+                .removeAttr( 'data-lon' );
+
+        } );
+
+        $( '[data-alt]' ).each( function() {
+
+            $( this )
+                .html( numberFormat( $( this ).attr( 'data-alt' ) ) +
+                       '&#8239;ft' + ' <msl>' +
+                       numberFormat( Math.ceil( $( this ).attr( 'data-alt' ) / 3.281 ) ) +
+                       '&#8239;m&nbsp;MSL</msl>' )
+                .removeAttr( 'data-alt' );
 
         } );
 

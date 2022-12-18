@@ -11,7 +11,8 @@
         <i class="icon">near_me</i>
         <span class="label" data-i18n="Search results for"></span>
         <b>' . $searchtext . '</b>
-    </h1>' : '' );
+    </h1>
+    ' . airport_list( $results ) : '' );
 
     echo json_encode( [
         'title' => 'Search results',
