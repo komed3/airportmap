@@ -3,7 +3,7 @@
     flex-flow: row nowrap;
     align-items: flex-start;
     gap: 60px;
-    padding: 60px 12% 120px 12%;
+    padding: 60px var( --padding-normal ) 120px var( --padding-normal );
     background: var( --gray-0 );
 }
 

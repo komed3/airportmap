@@ -11,12 +11,7 @@
         <h1 data-i18n="Welcome to <b>Airportmap</b>"></h1>
         <p data-i18n="Airportmap is an open source project with information and weather data on more than 60,000 airports, heliports and air bases worldwide."></p>
     </div>
-    <form data-form="search" class="fullsearch" autocomplete="off">
-        <input type="text" name="searchtext" data-placeholder="Search for ICAO, IATA or airport name …" />
-        <button type="submit" name="searchsubmit">
-            <i class="icon">travel_explore</i>
-        </button>
-    </form>
+    ' . airport_search_form() . '
     <div class="bigstats">
         <div class="column">
             <h2 data-number="' . $stats['large'] + $stats['medium'] . '"></h2>

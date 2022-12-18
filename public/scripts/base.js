@@ -29,7 +29,7 @@ var baseurl = window.location.origin,
 
             case 'search':
                 loadPage( 'search', {
-                    searchtext: path[1]
+                    searchtext: path[1] || null
                 } );
                 break;
 

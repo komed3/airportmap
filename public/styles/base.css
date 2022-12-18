@@ -6,6 +6,10 @@
 
 :root {
 
+    --padding-narrow: 50px;
+    --padding-normal: 12%;
+    --padding-wide: 25%;
+
     --primary: #7050aa;
     --primary-dark: #382855;
     --primary-light: #b7a7d4;

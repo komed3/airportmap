@@ -56,4 +56,15 @@
 
     }
 
+    function airport_search_form() {
+
+        return '<form data-form="search" class="fullsearch" autocomplete="off">
+            <input type="text" name="searchtext" data-placeholder="Search for ICAO, IATA or airport name …" />
+            <button type="submit" name="searchsubmit">
+                <i class="icon">travel_explore</i>
+            </button>
+        </form>';
+
+    }
+
 ?>
