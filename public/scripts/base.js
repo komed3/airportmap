@@ -295,6 +295,12 @@ var baseurl = window.location.origin,
         $( '[data-nav]' ).removeClass( 'active' );
         $( '[data-nav="' + page + '"]' ).addClass( 'active' );
 
+        $( '[data-action="select-language"]' ).each( function() {
+
+            $( this ).val( locale );
+
+        } );
+
     };
 
     $( document ).on( 'submit', '[data-form]', function( e ) {
@@ -316,7 +322,29 @@ var baseurl = window.location.origin,
 
     } );
 
+    $( document ).on( 'change', '[data-action]', function( e ) {
+
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+
+        switch( $( this ).attr( 'data-action' ) ) {
+
+            case 'select-language':
+                $.cookie( 'locale', $( this ).val() );
+                location.reload();
+                break;
+
+        }
+
+    } );
+
     $( document ).ready( function() {
+
+        $.cookie.defaults = {
+            path: '/',
+            expires: 365
+        };
 
         navigator.geolocation.getCurrentPosition( function( pos ) {
             mypos = {
