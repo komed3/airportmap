@@ -61,12 +61,6 @@
         case 'info':
 
             $content .= '<div class="list">
-                <div class="row">
-                    <div class="label" data-i18n="ICAO"></div>
-                    <div class="value">
-                        <span>' . $ICAO . '</span>
-                    </div>
-                </div>
                 ' . ( $airport->IATA ? '<div class="row">
                     <div class="label" data-i18n="IATA-Code"></div>
                     <div class="value">
@@ -80,13 +74,7 @@
                     </div>
                 </div>' : '' ) . '
                 <div class="row">
-                    <div class="label" data-i18n="Name"></div>
-                    <div class="value">
-                        <span>' . $airport->name . '</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="label" data-i18n="Location"></div>
+                    <div class="label" data-i18n="Coordinates"></div>
                     <div class="value">
                         <span class="coord lat" data-lat="' . $airport->lat . '"></span>
                         <span class="coord lon" data-lon="' . $airport->lon . '"></span>
