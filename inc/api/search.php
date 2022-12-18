@@ -25,7 +25,7 @@
         <span class="label" data-i18n="Search results for"></span>
         <b>' . $searchtext . '</b>
     </h1>
-    ' . airport_list( $results ) : '' );
+    ' . airport_list( $results, $_POST['page'] ?? 1 ) : '' );
 
     echo json_encode( [
         'title' => 'Search results',

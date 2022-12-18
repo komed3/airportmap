@@ -107,6 +107,52 @@
     opacity: 0.7;
 }
 
+.pagination {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.pagination .pagelinks {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.pagination .pagelinks > * {
+    padding: 3px 10px;
+    font-size: 14px;
+    font-weight: 800;
+    border-radius: 3px;
+}
+
+.pagination .pagelinks .dots {
+    color: var( --gray-3 );
+}
+
+.pagination .pagelinks .curr {
+    color: var( --gray-0 );
+    background: var( --primary );
+}
+
+.pagination .pagelinks .link:hover {
+    color: var( --gray-0 );
+    background: var( --primary-light );
+}
+
+.pagination .results {
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.pagination .results b {
+    font-weight: 800;
+}
+
 .airportlist {
     margin: 40px var( --padding-normal );
 }
@@ -131,7 +177,7 @@
     opacity: 0.3;
 }
 
-.airportlist .row {
+.airportlist .list .row {
     display: flex;
     flex-flow: row nowrap;
     align-items: flex-start;
@@ -139,25 +185,25 @@
     padding: 20px;
 }
 
-.airportlist .row:not(:last-of-type) {
+.airportlist .list .row:not(:last-of-type) {
     border-bottom: 1px solid var( --gray-2 );
 }
 
-.airportlist .row .info {
+.airportlist .list .row .info {
     display: flex;
     flex-flow: column nowrap;
     gap: 10px;
 }
 
-.airportlist .row .info .headline {
+.airportlist .list .row .info .headline {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     gap: 10px;
 }
 
-.airportlist .row .info .headline .code,
-.airportlist .row .info .tags .tag {
+.airportlist .list .row .info .headline .code,
+.airportlist .list .row .info .tags .tag {
     padding: 3px 5px;
     text-transform: uppercase;
     font-size: 12px;
@@ -166,64 +212,64 @@
     border-radius: 3px;
 }
 
-.airportlist .row.large .info .headline .code {
+.airportlist .list .row.large .info .headline .code {
     background: var( --airport-tier-1 );
 }
 
-.airportlist .row.medium .info .headline .code {
+.airportlist .list .row.medium .info .headline .code {
     background: var( --airport-tier-2 );
 }
 
-.airportlist .row.small .info .headline .code,
-.airportlist .row.seaplane .info .headline .code {
+.airportlist .list .row.small .info .headline .code,
+.airportlist .list .row.seaplane .info .headline .code {
     background: var( --airport-tier-3 );
 }
 
-.airportlist .row.heliport .info .headline .code {
+.airportlist .list .row.heliport .info .headline .code {
     background: var( --airport-special );
 }
 
-.airportlist .row.closed .info .headline .code {
+.airportlist .list .row.closed .info .headline .code {
     background: var( --airport-closed );
 }
 
-.airportlist .row .info .headline .name {
+.airportlist .list .row .info .headline .name {
     font-weight: 600;
     color: var( --primary-dark );
 }
 
-.airportlist .row .info .headline .name:hover {
+.airportlist .list .row .info .headline .name:hover {
     color: var( --primary );
 }
 
-.airportlist .row .info .location,
-.airportlist .row .info .breadcrumbs,
-.airportlist .row .info .tags {
+.airportlist .list .row .info .location,
+.airportlist .list .row .info .breadcrumbs,
+.airportlist .list .row .info .tags {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     gap: 6px;
 }
 
-.airportlist .row .info .location,
-.airportlist .row .info .breadcrumbs {
+.airportlist .list .row .info .location,
+.airportlist .list .row .info .breadcrumbs {
     font-size: 14px;
     color: var( --gray-4 );
 }
 
-.airportlist .row .info .location {
+.airportlist .list .row .info .location {
     gap: 12px;
 }
 
-.airportlist .row .info .breadcrumbs a:hover {
+.airportlist .list .row .info .breadcrumbs a:hover {
     text-decoration: underline;
 }
 
-.airportlist .row .info .tags {
+.airportlist .list .row .info .tags {
     margin-top: 10px;
 }
 
-.airportlist .row.service-1 .info .tags .tag.service {
+.airportlist .list .row.service-1 .info .tags .tag.service {
     background: var( --info );
 }
 

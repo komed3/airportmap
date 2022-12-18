@@ -69,7 +69,8 @@
     }
 
     function airport_list(
-        array $airports = []
+        array $airports = [],
+        int $page = 1
     ) {
 
         if( count( $airports ) == 0 ) {
@@ -81,9 +82,14 @@
 
         } else {
         
-            $content = '';
+            $pagination = '<div class="pagination" data-pagination="' . base64_encode( json_encode( [
+                'results' => count( $airports ),
+                'page' => $page
+            ], JSON_NUMERIC_CHECK ) ) . '"></div>';
 
-            foreach( $airports as $airport ) {
+            $content = $pagination . '<div class="list">';
+
+            foreach( array_slice( $airports, ( $page - 1 ) * 24, 24 ) as $airport ) {
 
                 $content .= '<div class="row ' . $airport['type'] . ' ' . $airport['restriction'] . ' service-' . $airport['service'] . '">
                     <div class="pic"></div>
@@ -113,6 +119,8 @@
                 </div>';
 
             }
+
+            $content .= '</div>' . $pagination;
 
         }
 

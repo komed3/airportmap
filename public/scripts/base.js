@@ -306,6 +306,52 @@ var baseurl = window.location.origin,
 
     };
 
+    var pagination = function( results = 0, page = 1 ) {
+
+        if( results <= 6 ) return '';
+
+        let maxpage = Math.ceil( results / 24 ),
+            pageurl = baseurl + '/' + path.slice( 0, 2 ).join( '/' ) + '/',
+            pagelinks = [],
+            latest = 0;
+
+        [
+            1,
+            Math.max( 1, page - 2 ),
+            Math.max( 1, page - 1 ),
+            page,
+            Math.min( maxpage, page + 1 ),
+            Math.min( maxpage, page + 2 ),
+            maxpage
+        ].filter( ( val, idx, self ) => {
+            return self.indexOf( val ) === idx;
+        } ).forEach( ( pageno ) => {
+
+            if( pageno > latest + 1 )
+                pagelinks.push( '<span class="dots"><span>…</span></span>' );
+
+            pagelinks.push(
+                pageno == page
+                    ? '<span class="curr"><span>' + numberFormat( pageno ) + '</span></span>'
+                    : '<a class="link" href="' + pageurl + pageno + '"><span>' + numberFormat( pageno ) + '</span></a>'
+            );
+
+            latest = pageno;
+
+        } );
+
+        if( pagelinks.length <= 1 )
+            pagelinks = [];
+
+        return '<div class="pagelinks">' +
+            pagelinks.join( '' ) +
+        '</div>' +
+        '<div class="results">' +
+            '<b>' + numberFormat( results ) + '</b>&nbsp;' + i18n( 'Results' ) +
+        '</div>';
+
+    }
+
     var dynContent = function() {
 
         $( '[data-i18n]' ).each( function() {
@@ -379,6 +425,16 @@ var baseurl = window.location.origin,
             $( this )
                 .html( getBreadcrumbs( $( this ).attr( 'data-bc' ) ) )
                 .removeAttr( 'data-bc' );
+
+        } );
+
+        $( '[data-pagination]' ).each( function() {
+
+            let _data = JSON.parse( window.atob( $( this ).attr( 'data-pagination' ) ) );
+
+            $( this )
+                .html( pagination( _data.results, _data.page ) )
+                .removeAttr( 'data-pagination' );
 
         } );
 
