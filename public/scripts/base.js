@@ -290,15 +290,17 @@ var baseurl = window.location.origin,
 
         raw.split( '/' ).forEach( function( part ) {
 
-            let label = part.substring(1);
+            if( ( label = part.substring(1) ).length > 0 ) {
 
-            breadcrumbs.push( '<a href="' + baseurl + '/' + {
-                T: 'continent',
-                C: 'country',
-                R: 'region',
-                M: 'municipality'
-            }[ part.charAt(0) ] + '/' + label.replaceAll( ' ', '_' ) + '">' +
-                i18n( label ) + '</a>' );
+                breadcrumbs.push( '<a href="' + baseurl + '/' + {
+                    T: 'continent',
+                    C: 'country',
+                    R: 'region',
+                    M: 'municipality'
+                }[ part.charAt(0) ] + '/' + label.replaceAll( ' ', '_' ) + '">' +
+                    i18n( label ) + '</a>' );
+
+            }
 
         } );
 
