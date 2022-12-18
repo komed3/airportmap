@@ -18,6 +18,7 @@
 
     }
 
+    $tab = $_POST['tab'] ?? 'info';
     $airport = $airport->fetch_object();
     $ICAO = $airport->ICAO;
 
@@ -52,13 +53,77 @@
             <i class="icon">database</i>
             <span data-i18n="History"></span>
         </a>
-    </div>';
+    </div>
+    <div class="tabcontent tab-' . $tab . '">';
+
+    switch( $tab ) {
+
+        case 'info':
+
+            $content .= '<div class="list">
+                <div class="row">
+                    <div class="label" data-i18n="ICAO"></div>
+                    <div class="value">
+                        <span>' . $ICAO . '</span>
+                    </div>
+                </div>
+                ' . ( $airport->IATA ? '<div class="row">
+                    <div class="label" data-i18n="IATA-Code"></div>
+                    <div class="value">
+                        <span>' . $airport->IATA . '</span>
+                    </div>
+                </div>' : '' ) . '
+                ' . ( $airport->GPS ? '<div class="row">
+                    <div class="label" data-i18n="GPS-Code"></div>
+                    <div class="value">
+                        <span>' . $airport->GPS . '</span>
+                    </div>
+                </div>' : '' ) . '
+                <div class="row">
+                    <div class="label" data-i18n="Name"></div>
+                    <div class="value">
+                        <span>' . $airport->name . '</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label" data-i18n="Location"></div>
+                    <div class="value">
+                        <span class="coord lat" data-lat="' . $airport->lat . '"></span>
+                        <span class="coord lon" data-lon="' . $airport->lon . '"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label" data-i18n="Elevation"></div>
+                    <div class="value">
+                        <span class="alt ft" data-alt="' . $airport->alt . '"></span>
+                        <span class="alt msl" data-msl="' . $airport->alt . '"></span>
+                    </div>
+                </div>
+                ' . ( $airport->municipality ? '<div class="row">
+                    <div class="label" data-i18n="Municipality"></div>
+                    <div class="value">
+                        <span data-i18n="' . $airport->municipality . '"></span>
+                    </div>
+                </div>' : '' ) . '
+            </div>
+            <div class="map" data-map="' . base64_encode( json_encode( [
+                'lat' => $airport->lat,
+                'lon' => $airport->lon,
+                'zoom' => 14,
+                'wheelZoom' => true
+            ], JSON_NUMERIC_CHECK ) ) . '"></div>';
+
+            break;
+
+    }
+
+    $content .= '</div>';
 
     echo json_encode( [
         'title' => $ICAO . ' — ' . $airport->name,
         'page' => 'airports',
         'content' => $content,
-        'tab' => $_POST['tab'] ?? 'info'
+        'tab' => $tab
     ] );
 
 ?>
