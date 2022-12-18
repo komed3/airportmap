@@ -288,7 +288,7 @@ var baseurl = window.location.origin,
 
         let breadcrumbs = [];
 
-        raw.split( '/' ).forEach( function( part ) {
+        raw.split( '::' ).forEach( function( part ) {
 
             if( ( label = part.substring(1) ).length > 0 ) {
 

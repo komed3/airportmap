@@ -106,9 +106,9 @@
                             <span class="alt msl" data-msl="' . $airport['alt'] . '"></span>
                         </div>
                         <div class="breadcrumbs" data-bc="T' .
-                            $airport['continent'] . '/C' .
-                            $airport['country'] . '/R' .
-                            $airport['region'] . '/M' .
+                            $airport['continent'] . '::C' .
+                            $airport['country'] . '::R' .
+                            $airport['region'] . '::M' .
                             $airport['municipality'] . '"></div>
                         <div class="tags">
                             <span class="tag type" data-i18n="' . ucfirst( $airport['type'] ?? 'Unknown' ) . '"></span>
