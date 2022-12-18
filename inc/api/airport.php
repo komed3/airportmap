@@ -140,6 +140,17 @@
 
             break;
 
+        case 'nearby':
+
+            $content .= '<div class="map" data-map="' . base64_encode( json_encode( [
+                'lat' => $airport->lat,
+                'lon' => $airport->lon,
+                'zoom' => 10,
+                'wheelZoom' => true
+            ], JSON_NUMERIC_CHECK ) ) . '"></div>';
+
+            break;
+
     }
 
     $content .= '</div>';
