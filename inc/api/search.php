@@ -6,7 +6,10 @@
 
     $results = airport_search( $searchtext );
 
-    if( count( $results ) == 1 && strpos( parse_url( $_POST['referrer'] )['path'], 'search' ) === false ) {
+    if( count( $results ) == 1 && strpos(
+        parse_url( $_POST['referrer'] )['path'],
+        '/search/'
+    ) === false ) {
 
         echo json_encode( [
             'redirect_to' => 'airport/' . $results[0]['ICAO']

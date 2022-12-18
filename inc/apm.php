@@ -87,16 +87,17 @@
                         <span class="coord lat" data-lat="' . $airport['lat'] . '"></span>
                         <span class="coord lon" data-lon="' . $airport['lon'] . '"></span>
                         <span class="divider">/</span>
-                        <span class="alt" data-alt="' . $airport['alt'] . '"></span>
+                        <span class="alt ft" data-alt="' . $airport['alt'] . '"></span>
+                        <span class="alt msl" data-msl="' . $airport['alt'] . '"></span>
                     </div>
-                    <div class="breadcrumbs" data-bc="' .
-                        $airport['continent'] . '/' .
-                        $airport['country'] . '/' .
-                        $airport['region'] . '/' .
+                    <div class="breadcrumbs" data-bc="T' .
+                        $airport['continent'] . '/C' .
+                        $airport['country'] . '/R' .
+                        $airport['region'] . '/M' .
                         $airport['municipality'] . '"></div>
                     <div class="tags">
-                        <span class="tag type" data-i18n="' . ucfirst( $airport['type'] ) . '"></span>
-                        <span class="tag use" data-i18n="' . ucfirst( $airport['restriction'] ) . '"></span>
+                        <span class="tag type" data-i18n="' . ucfirst( $airport['type'] ?? 'Unknown' ) . '"></span>
+                        <span class="tag use" data-i18n="' . ucfirst( $airport['restriction'] ?? 'Unknown' ) . '"></span>
                         ' . ( $airport['service'] ? '<span class="tag service" data-i18n="Airline Service"></span>' : '' ) . '
                     </div>
                 </div>

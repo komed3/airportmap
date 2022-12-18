@@ -276,6 +276,27 @@ var baseurl = window.location.origin,
 
     };
 
+    var getBreadcrumbs = function( raw ) {
+
+        let breadcrumbs = [];
+
+        raw.split( '/' ).forEach( function( part ) {
+
+            let label = part.substring(1);
+
+            breadcrumbs.push( '<a href="' + baseurl + '/' + {
+                T: 'continent',
+                C: 'country',
+                R: 'region',
+                M: 'municipality'
+            }[ part.charAt(0) ] + '/' + label + '">' + i18n( label ) + '</a>' );
+
+        } );
+
+        return breadcrumbs.join( '<span class="divider">/</span>' );
+
+    };
+
     var dynContent = function() {
 
         $( '[data-i18n]' ).each( function() {
@@ -330,10 +351,25 @@ var baseurl = window.location.origin,
 
             $( this )
                 .html( numberFormat( $( this ).attr( 'data-alt' ) ) +
-                       '&#8239;ft' + ' <msl>' +
-                       numberFormat( Math.ceil( $( this ).attr( 'data-alt' ) / 3.281 ) ) +
-                       '&#8239;m&nbsp;MSL</msl>' )
+                       '&#8239;' + i18n( 'ft' ) )
                 .removeAttr( 'data-alt' );
+
+        } );
+
+        $( '[data-msl]' ).each( function() {
+
+            $( this )
+                .html( numberFormat( Math.ceil( $( this ).attr( 'data-msl' ) / 3.281 ) ) +
+                       '&#8239;m&nbsp;' + i18n( 'MSL' ) )
+                .removeAttr( 'data-msl' );
+
+        } );
+
+        $( '[data-bc]' ).each( function() {
+
+            $( this )
+                .html( getBreadcrumbs( $( this ).attr( 'data-bc' ) ) )
+                .removeAttr( 'data-bc' );
 
         } );
 
