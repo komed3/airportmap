@@ -210,7 +210,7 @@ var baseurl = window.location.origin,
                             icon: L.divIcon( {
                                 iconSize: '100px',
                                 iconAnchor: [ 10, 10 ],
-                                className: 'type-' + airport.type + ' use-' + airport.usage,
+                                className: 'type-' + airport.type + ' restrict-' + airport.restriction,
                                 html: '<div class="pic"></div><div class="info">' +
                                     airport.ICAO + '</div>'
                             } )

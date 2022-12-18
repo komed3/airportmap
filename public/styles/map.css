@@ -60,11 +60,11 @@
     background-image: url( './../resources/pics/seaplane.svg' );
 }
 
-.map .leaflet-marker-icon.use-military .pic {
+.map .leaflet-marker-icon.restrict-military .pic {
     background-image: url( './../resources/pics/military.svg' );
 }
 
-.map .leaflet-marker-icon.use-private .pic {
+.map .leaflet-marker-icon.restrict-private .pic {
     background-image: url( './../resources/pics/private.svg' );
 }
 
