@@ -72,41 +72,52 @@
         array $airports = []
     ) {
 
-        $list = [];
+        if( count( $airports ) == 0 ) {
 
-        foreach( $airports as $airport ) {
-
-            $list[] = '<div class="row ' . $airport['type'] . ' ' . $airport['restriction'] . ' service-' . $airport['service'] . '">
-                <div class="pic"></div>
-                <div class="info">
-                    <div class="headline">
-                        <span class="code">' . $airport['ICAO'] . '</span>
-                        <a data-href="airport/' . $airport['ICAO'] . '" class="name">' . $airport['name'] . '</a>
-                    </div>
-                    <div class="location">
-                        <span class="coord lat" data-lat="' . $airport['lat'] . '"></span>
-                        <span class="coord lon" data-lon="' . $airport['lon'] . '"></span>
-                        <span class="divider">/</span>
-                        <span class="alt ft" data-alt="' . $airport['alt'] . '"></span>
-                        <span class="alt msl" data-msl="' . $airport['alt'] . '"></span>
-                    </div>
-                    <div class="breadcrumbs" data-bc="T' .
-                        $airport['continent'] . '/C' .
-                        $airport['country'] . '/R' .
-                        $airport['region'] . '/M' .
-                        $airport['municipality'] . '"></div>
-                    <div class="tags">
-                        <span class="tag type" data-i18n="' . ucfirst( $airport['type'] ?? 'Unknown' ) . '"></span>
-                        <span class="tag use" data-i18n="' . ucfirst( $airport['restriction'] ?? 'Unknown' ) . '"></span>
-                        ' . ( $airport['service'] ? '<span class="tag service" data-i18n="Airline Service"></span>' : '' ) . '
-                    </div>
-                </div>
+            $content = '<div class="empty">
+                <i class="icon">flight_takeoff</i>
+                <span class="label" data-i18n="Your request didn’t provide any results"></span>
             </div>';
+
+        } else {
+        
+            $content = '';
+
+            foreach( $airports as $airport ) {
+
+                $content .= '<div class="row ' . $airport['type'] . ' ' . $airport['restriction'] . ' service-' . $airport['service'] . '">
+                    <div class="pic"></div>
+                    <div class="info">
+                        <div class="headline">
+                            <span class="code">' . $airport['ICAO'] . '</span>
+                            <a data-href="airport/' . $airport['ICAO'] . '" class="name">' . $airport['name'] . '</a>
+                        </div>
+                        <div class="location">
+                            <span class="coord lat" data-lat="' . $airport['lat'] . '"></span>
+                            <span class="coord lon" data-lon="' . $airport['lon'] . '"></span>
+                            <span class="divider">/</span>
+                            <span class="alt ft" data-alt="' . $airport['alt'] . '"></span>
+                            <span class="alt msl" data-msl="' . $airport['alt'] . '"></span>
+                        </div>
+                        <div class="breadcrumbs" data-bc="T' .
+                            $airport['continent'] . '/C' .
+                            $airport['country'] . '/R' .
+                            $airport['region'] . '/M' .
+                            $airport['municipality'] . '"></div>
+                        <div class="tags">
+                            <span class="tag type" data-i18n="' . ucfirst( $airport['type'] ?? 'Unknown' ) . '"></span>
+                            <span class="tag use" data-i18n="' . ucfirst( $airport['restriction'] ?? 'Unknown' ) . '"></span>
+                            ' . ( $airport['service'] ? '<span class="tag service" data-i18n="Airline Service"></span>' : '' ) . '
+                        </div>
+                    </div>
+                </div>';
+
+            }
 
         }
 
         return '<div class="airportlist">
-            ' . implode( '', $list ) . '
+            ' . $content . '
         </div>';
 
     }

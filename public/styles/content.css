@@ -111,6 +111,26 @@
     margin: 40px var( --padding-normal );
 }
 
+.airportlist .empty {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.airportlist .empty .icon {
+    font-size: 60px;
+    color: var( --primary-light );
+}
+
+.airportlist .empty .label {
+    font-size: 26px;
+    font-weight: 800;
+    color: var( --gray-3 );
+    opacity: 0.3;
+}
+
 .airportlist .row {
     display: flex;
     flex-flow: row nowrap;
