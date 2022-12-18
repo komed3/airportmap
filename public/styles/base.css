@@ -14,6 +14,12 @@
     --primary-dark: #382855;
     --primary-light: #b7a7d4;
 
+    --airport-tier-1: #ff88ee;
+    --airport-tier-2: #77ff44;
+    --airport-tier-3: #77eeff;
+    --airport-special: #f5c100;
+    --airport-closed: #ffbcc5;
+
     --good: #00b67a;
     --warn: #ff903b;
     --info: #ffd400;

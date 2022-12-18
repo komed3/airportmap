@@ -107,6 +107,77 @@
     opacity: 0.7;
 }
 
+.airportlist {
+    margin: 40px var( --padding-normal );
+}
+
+.airportlist .row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.airportlist .row:not(:last-of-type) {
+    border-bottom: 1px solid var( --gray-2 );
+}
+
+.airportlist .row .info .headline {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.airportlist .row .info .headline .code {
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: 800;
+    background: var( --gray-2 );
+    border-radius: 3px;
+}
+
+.airportlist .row.large .info .headline .code {
+    background: var( --airport-tier-1 );
+}
+
+.airportlist .row.medium .info .headline .code {
+    background: var( --airport-tier-2 );
+}
+
+.airportlist .row.small .info .headline .code,
+.airportlist .row.seaplane .info .headline .code {
+    background: var( --airport-tier-3 );
+}
+
+.airportlist .row.heliport .info .headline .code {
+    background: var( --airport-special );
+}
+
+.airportlist .row.closed .info .headline .code {
+    background: var( --airport-closed );
+}
+
+.airportlist .row .info .headline .name {
+    font-weight: 600;
+    color: var( --primary-dark );
+}
+
+.airportlist .row .info .headline .name:hover {
+    color: var( --primary );
+}
+
+.airportlist .row .info .location {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var( --gray-4 );
+}
+
 #content[page="map"] .map {
     width: 100%;
     height: calc( 100vh - 80px );
