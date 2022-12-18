@@ -265,7 +265,7 @@ var baseurl = window.location.origin,
 
     var i18n = function( text = '' ) {
 
-        return text.replaceAll( '%YEAR%', ( new Date() ).getFullYear() );
+        return text.toString().replaceAll( '%YEAR%', ( new Date() ).getFullYear() );
 
     };
 
@@ -291,7 +291,7 @@ var baseurl = window.location.origin,
 
     };
 
-    var getBreadcrumbs = function( raw ) {
+    var getBreadcrumbs = function( raw, db = 0 ) {
 
         let breadcrumbs = [];
 
@@ -299,13 +299,24 @@ var baseurl = window.location.origin,
 
             if( ( label = part.substring(1) ).length > 0 ) {
 
+                let type = part.charAt(0);
+
                 breadcrumbs.push( '<a href="' + baseurl + '/' + {
                     T: 'continent',
                     C: 'country',
                     R: 'region',
                     M: 'municipality'
-                }[ part.charAt(0) ] + '/' + label.replaceAll( ' ', '_' ) + '">' +
-                    i18n( label ) + '</a>' );
+                }[ type ] + '/' + label.replaceAll( ' ', '_' ) + '">' +
+                    i18n( db && type != 'M' ? $.ajax( {
+                        url: baseurl + '/inc/api/_bc.php',
+                        type: 'post',
+                        data: {
+                            token: getToken(),
+                            type: type,
+                            ident: label
+                        },
+                        async: false
+                    } ).responseText : label ) + '</a>' );
 
             }
 
@@ -432,8 +443,8 @@ var baseurl = window.location.origin,
         $( '[data-bc]' ).each( function() {
 
             $( this )
-                .html( getBreadcrumbs( $( this ).attr( 'data-bc' ) ) )
-                .removeAttr( 'data-bc' );
+                .html( getBreadcrumbs( $( this ).attr( 'data-bc' ), $( this ).attr( 'data-bcdb' ) || 0 ) )
+                .removeAttr( 'data-bc' ).removeAttr( 'data-bcdb' );
 
         } );
 

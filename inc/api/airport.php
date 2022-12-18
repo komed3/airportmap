@@ -25,7 +25,7 @@
         $airport->continent . '::C' .
         $airport->country . '::R' .
         $airport->region . '::M' .
-        $airport->municipality . '"></div>
+        $airport->municipality . '" data-bcdb="1"></div>
     <h1 class="primary-headline">
         <i class="icon">location_searching</i>
         <b>' . $ICAO . '</b>
