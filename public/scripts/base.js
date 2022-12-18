@@ -13,6 +13,14 @@ var baseurl = window.location.origin,
 
     };
 
+    var prevent = ( e ) => {
+
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+
+    };
+
     var setLocale = function() {
 
         locale = $.cookie( 'locale' ) || 'en-US';
@@ -289,7 +297,8 @@ var baseurl = window.location.origin,
                 C: 'country',
                 R: 'region',
                 M: 'municipality'
-            }[ part.charAt(0) ] + '/' + label + '">' + i18n( label ) + '</a>' );
+            }[ part.charAt(0) ] + '/' + label.replaceAll( ' ', '_' ) + '">' +
+                i18n( label ) + '</a>' );
 
         } );
 
@@ -394,9 +403,7 @@ var baseurl = window.location.origin,
 
     $( document ).on( 'submit', '[data-form]', function( e ) {
 
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
+        prevent( e );
 
         switch( $( this ).attr( 'data-form' ) ) {
 
@@ -411,11 +418,23 @@ var baseurl = window.location.origin,
 
     } );
 
+    $( document ).on( 'click', '[data-action]', function( e ) {
+
+        prevent( e );
+
+        switch( $( this ).attr( 'data-action' ) ) {
+
+            case 'scroll-to-top':
+                $( 'html, body' ).animate( { scrollTop: 0 }, 'fast' );
+                break;
+
+        }
+
+    } );
+
     $( document ).on( 'change', '[data-action]', function( e ) {
 
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
+        prevent( e );
 
         switch( $( this ).attr( 'data-action' ) ) {
 
@@ -445,6 +464,20 @@ var baseurl = window.location.origin,
         setLocale();
 
         loadContent();
+
+    } );
+
+    $( document ).scroll( function() {
+
+        if( $( window ).scrollTop() > 200 ) {
+
+            $( 'body' ).addClass( 'scroll-to-top' );
+
+        } else {
+
+            $( 'body' ).removeClass( 'scroll-to-top' );
+
+        }
 
     } );
 
