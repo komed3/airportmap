@@ -189,6 +189,11 @@
     border-bottom: 1px solid var( --gray-2 );
 }
 
+.airportlist .list .row navicon {
+    width: 30px;
+    height: 30px;
+}
+
 .airportlist .list .row .info {
     display: flex;
     flex-flow: column nowrap;
@@ -212,24 +217,24 @@
     border-radius: 3px;
 }
 
-.airportlist .list .row.large .info .headline .code {
+.airportlist .list .row.type-large .info .headline .code {
     background: var( --airport-tier-1 );
 }
 
-.airportlist .list .row.medium .info .headline .code {
+.airportlist .list .row.type-medium .info .headline .code {
     background: var( --airport-tier-2 );
 }
 
-.airportlist .list .row.small .info .headline .code,
-.airportlist .list .row.seaplane .info .headline .code {
+.airportlist .list .row.type-small .info .headline .code,
+.airportlist .list .row.type-seaplane .info .headline .code {
     background: var( --airport-tier-3 );
 }
 
-.airportlist .list .row.heliport .info .headline .code {
+.airportlist .list .row.type-heliport .info .headline .code {
     background: var( --airport-special );
 }
 
-.airportlist .list .row.closed .info .headline .code {
+.airportlist .list .row.type-closed .info .headline .code {
     background: var( --airport-closed );
 }
 

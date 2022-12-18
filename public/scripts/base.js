@@ -160,7 +160,7 @@ var baseurl = window.location.origin,
                     iconSize: '100px',
                     iconAnchor: [ 10, 10 ],
                     className: 'mypos',
-                    html: '<div class="pic"></div>'
+                    html: '<navicon class="invert"></navicon>'
                 } )
             } ).addTo( maps[ uuid ] );
 
@@ -203,7 +203,7 @@ var baseurl = window.location.origin,
                                 iconSize: '100px',
                                 iconAnchor: [ 10, 10 ],
                                 className: 'navaid-' + navaid.type,
-                                html: '<div class="pic"></div><div class="info">' + (
+                                html: '<navicon class="invert"></navicon><div class="info">' + (
                                     navaid.frequency > 1000
                                         ? numberFormat( navaid.frequency / 1000, {
                                             minimumFractionDigits: 1
@@ -229,7 +229,7 @@ var baseurl = window.location.origin,
                                 iconSize: '100px',
                                 iconAnchor: [ 10, 10 ],
                                 className: 'type-' + airport.type + ' restrict-' + airport.restriction,
-                                html: '<div class="pic"></div><div class="info">' +
+                                html: '<navicon class="invert"></navicon><div class="info">' +
                                     airport.ICAO + '</div>'
                             } )
                         } ).on( 'click', function( e ) {

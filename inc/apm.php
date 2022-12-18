@@ -91,8 +91,8 @@
 
             foreach( array_slice( $airports, ( $page - 1 ) * 24, 24 ) as $airport ) {
 
-                $content .= '<div class="row ' . $airport['type'] . ' ' . $airport['restriction'] . ' service-' . $airport['service'] . '">
-                    <div class="pic"></div>
+                $content .= '<div class="row type-' . $airport['type'] . ' restrict-' . $airport['restriction'] . ' service-' . $airport['service'] . '">
+                    <navicon></navicon>
                     <div class="info">
                         <div class="headline">
                             <span class="code">' . $airport['ICAO'] . '</span>

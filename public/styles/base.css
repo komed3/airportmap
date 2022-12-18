@@ -93,3 +93,92 @@ body {
     color: var( --gray-4 );
     background: var( --gray-1 );
 }
+
+navicon {
+    width: 20px;
+    height: 20px;
+    background-image: url( './../resources/pics/circle.svg' );
+    background-size: contain;
+    background-position: center center;
+}
+
+navicon.invert {
+    background-image: url( './../resources/pics/circle-white.svg' );
+    filter: drop-shadow( 0 0 10px var( --gray-7 ) );
+}
+
+.type-large navicon {
+    background-image: url( './../resources/pics/civil-large.svg' );
+}
+
+.type-medium navicon {
+    background-image: url( './../resources/pics/civil-medium.svg' );
+}
+
+.type-small navicon {
+    background-image: url( './../resources/pics/civil-small.svg' );
+}
+
+.type-heliport navicon {
+    background-image: url( './../resources/pics/heliport.svg' );
+}
+
+.type-seaplane navicon {
+    background-image: url( './../resources/pics/seaplane.svg' );
+}
+
+.restrict-military navicon {
+    background-image: url( './../resources/pics/military.svg' );
+}
+
+.restrict-military navicon.invert {
+    background-image: url( './../resources/pics/military-white.svg' );
+}
+
+.restrict-private navicon {
+    background-image: url( './../resources/pics/private.svg' );
+}
+
+.restrict-private navicon.invert {
+    background-image: url( './../resources/pics/private-white.svg' );
+}
+
+.type-closed navicon {
+    background-image: url( './../resources/pics/closed.svg' );
+}
+
+.navaid-DME navicon {
+    background-image: url( './../resources/pics/dme.svg' );
+}
+
+.navaid-NDB navicon {
+    background-image: url( './../resources/pics/ndb.svg' );
+}
+
+.navaid-NDB navicon.invert {
+    background-image: url( './../resources/pics/ndb-white.svg' );
+}
+
+.navaid-VOR navicon {
+    background-image: url( './../resources/pics/vor.svg' );
+}
+
+.navaid-TACAN navicon {
+    background-image: url( './../resources/pics/tacan.svg' );
+}
+
+.navaid-VORTAC navicon {
+    background-image: url( './../resources/pics/vortac.svg' );
+}
+
+.navaid-VOR-DME navicon {
+    background-image: url( './../resources/pics/vordme.svg' );
+}
+
+.navaid-NDB-DME navicon {
+    background-image: url( './../resources/pics/ndbdme.svg' );
+}
+
+.mypos navicon {
+    background-image: url( './../resources/pics/point.svg' );
+}
