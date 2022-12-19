@@ -201,7 +201,7 @@
 
         case 'radio':
 
-            $content .= '<h2 data-i18n="Airport Frequencies"></h2>';
+            $content .= '<h2 class="secondary-headline" data-i18n="Airport Frequencies"></h2>';
             
             if( count( $navaids = $DB->query( '
                 SELECT  *
@@ -209,7 +209,7 @@
                 WHERE   airport = "' . $ICAO . '"
             ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) {
 
-                $content .= '<h2 data-i18n="Navaids"></h2>
+                $content .= '<h2 class="secondary-headline" data-i18n="Navaids"></h2>
                 ' . navaid_list( $navaids );
 
             }

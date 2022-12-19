@@ -27,6 +27,12 @@
     font-weight: 800;
 }
 
+.secondary-headline {
+    margin: 40px 0;
+    font-size: 22px;
+    font-weight: 600;
+}
+
 .welcome {
     padding: 60px var( --padding-wide ) 0 var( --padding-wide );
     text-align: center;
@@ -360,6 +366,57 @@
     line-height: 30px;
     font-size: 20px;
     font-weight: 600;
+}
+
+.navaidlist {
+    display: grid;
+    grid-template-columns: repeat( 3, 1fr );
+    gap: 40px;
+}
+
+.navaidlist .navaid {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.navaidlist .navaid navicon {
+    margin: 0 20px 0 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.navaidlist .navaid .info {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
+}
+
+.navaidlist .navaid .info .headline {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 20px;
+    height: 30px;
+}
+
+.navaidlist .navaid .info .headline .ident {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.navaidlist .navaid .info {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
+}
+
+.navaidlist .navaid .info .line {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 4px 12px;
+    font-size: 14px;
+    color: var( --gray-4 );
 }
 
 .tablinks {

@@ -39,7 +39,7 @@ var baseurl = window.location.origin,
             ).toUpperCase()
         ).join( '' ) : input.split( '' ).map(
             letter => alphabet[ letter.toLowerCase() ]
-        ).join( ' ' );
+        ).join( ' ' ).replaceAll( '.', '·' );
 
     };
 
@@ -249,13 +249,8 @@ var baseurl = window.location.origin,
                                 iconSize: '100px',
                                 iconAnchor: [ 10, 10 ],
                                 className: 'navaid-' + navaid.type,
-                                html: '<navicon class="invert"></navicon><div class="info">' + (
-                                    navaid.frequency > 1000
-                                        ? numberFormat( navaid.frequency / 1000, {
-                                            minimumFractionDigits: 1
-                                        } ) + ' MHz'
-                                        : numberFormat( navaid.frequency ) + ' kHz'
-                                ) + '</div>'
+                                html: '<navicon class="invert"></navicon><div class="info">' +
+                                    freqFormat( navaid.frequency ) + '</div>'
                             } )
                         } ).on( 'click', function( e ) {
                             navaidInfo( e, uuid, map );
@@ -321,6 +316,18 @@ var baseurl = window.location.origin,
         dt.setTime( Date.parse( datestring ) );
 
         return dt.toLocaleDateString( locale, options );
+
+    };
+
+    var freqFormat = ( frequency ) => {
+
+        frequency = parseInt( frequency );
+
+        return frequency > 1000
+            ? numberFormat( frequency / 1000, {
+                minimumFractionDigits: 1
+            } ) + '&#8239;MHz'
+            : numberFormat( frequency ) + '&#8239;kHz';
 
     };
 
@@ -525,6 +532,14 @@ var baseurl = window.location.origin,
                 .html( numberFormat( Math.ceil( $( this ).attr( 'data-msl' ) / 3.281 ) ) +
                        '&#8239;m&nbsp;' + i18n( 'MSL' ) )
                 .removeAttr( 'data-msl' );
+
+        } );
+
+        $( '[data-freq]' ).each( function() {
+
+            $( this )
+                .html( freqFormat( $( this ).attr( 'data-freq' ) ) )
+                .removeAttr( 'data-freq' );
 
         } );
 

@@ -192,8 +192,25 @@
         foreach( $navaids as $navaid ) {
 
             $content .= '<div class="navaid navaid-' . $navaid['type'] . '">
-                <div class="header">
-                    <navicon></navicon>
+                <navicon></navicon>
+                <div class="info">
+                    <div class="headline">
+                        <span class="ident">' . $navaid['ident'] . '</span>
+                        <span class="morse" data-morse="' . $navaid['ident'] . '"></span>
+                    </div>
+                    <div class="freq" data-freq="' . $navaid['frequency'] . '"></div>
+                    <div class="line">
+                        <span class="type" data-i18n="' . $navaid['type'] . '"></span>
+                        <span class="name" data-i18n="' . $navaid['name'] . '"></span>
+                    </div>
+                    <div class="line">
+                        <span class="coord lat" data-lat="' . $navaid['lat'] . '"></span>
+                        <span class="coord lon" data-lon="' . $navaid['lon'] . '"></span>
+                    </div>
+                    <div class="line">
+                        <span class="alt ft" data-alt="' . $navaid['alt'] . '"></span>
+                        <span class="alt msl" data-msl="' . $navaid['alt'] . '"></span>
+                    </div>
                 </div>
             </div>';
 

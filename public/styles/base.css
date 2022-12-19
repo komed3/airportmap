@@ -182,3 +182,8 @@ navicon.invert {
 .mypos navicon {
     background-image: url( './../resources/pics/point.svg' );
 }
+
+.morse {
+    font-family: 'SourceCodePro';
+    font-weight: 900;
+}
