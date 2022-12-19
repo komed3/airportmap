@@ -209,7 +209,7 @@
                 WHERE   airport = "' . $ICAO . '"
             ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) {
 
-                $content .= radio_list( $radios, $airport->name );
+                $content .= radio_list( $radios );
 
             } else {
 

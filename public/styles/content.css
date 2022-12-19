@@ -368,6 +368,24 @@
     font-weight: 600;
 }
 
+.radiolist .radio {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 20px;
+}
+
+.radiolist .radio .type {
+    flex: 0 0 140px;
+    line-height: 18px;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.radiolist .radio .info .label {
+    margin-top: 6px;
+    font-size: 14px;
+}
+
 .navaidlist {
     display: grid;
     grid-template-columns: repeat( 3, 1fr );
