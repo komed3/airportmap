@@ -317,10 +317,10 @@ var baseurl = window.location.origin,
         p2_lat, p2_lon
     ) => {
 
-        p1_lat = Math.toRad( p1_lat );
-        p1_lon = Math.toRad( p1_lon );
-        p2_lat = Math.toRad( p2_lat );
-        p2_lon = Math.toRad( p2_lon );
+        p1_lat = Math.toRad( parseFloat( p1_lat ) );
+        p1_lon = Math.toRad( parseFloat( p1_lon ) );
+        p2_lat = Math.toRad( parseFloat( p2_lat ) );
+        p2_lon = Math.toRad( parseFloat( p2_lon ) );
 
         let delta_lon = p2_lon - p1_lon;
 
