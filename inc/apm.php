@@ -61,8 +61,9 @@
         float $lat,
         float $lon,
         string $ident = '',
-        int $limit = 24,
-        array $exclude_types = [ 'closed' ]
+        array $exclude_types = [ 'closed' ],
+        bool $service = false,
+        int $limit = 24
     ) {
 
         global $DB;
@@ -83,6 +84,7 @@
             AND      lat BETWEEN ' . ( $lat - 5 ) . ' AND ' . ( $lat + 5 ) . '
             AND      lon BETWEEN ' . ( $lon - 5 ) . ' AND ' . ( $lon + 5 ) . '
             AND      type NOT IN ( "' . implode( '", "', $exclude_types ) . '" )
+            ' . ( $service ? 'AND service = 1' : '' ) . '
             ORDER BY distance ASC
             LIMIT    0, ' . $limit
         )->fetch_all( MYSQLI_ASSOC );

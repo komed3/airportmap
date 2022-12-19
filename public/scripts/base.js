@@ -50,7 +50,8 @@ var baseurl = window.location.origin,
             case 'airport':
                 loadPage( 'airport', {
                     airport: path[1] || '',
-                    tab: path[2] || 'info'
+                    tab: path[2] || 'info',
+                    subtab: path[3] || ''
                 } );
                 break;
 
@@ -72,6 +73,7 @@ var baseurl = window.location.origin,
     var loadPage = function( _page, _data = {} ) {
 
         _data.token = getToken();
+        _data.path = path;
         _data.referrer = document.referrer;
 
         $.ajax( {
@@ -545,6 +547,9 @@ var baseurl = window.location.origin,
 
         $( '[data-tab]' ).removeClass( 'active' );
         $( '[data-tab="' + ( __res.tab || '_' ) + '"]' ).addClass( 'active' );
+
+        $( '[data-subtab]' ).removeClass( 'active' );
+        $( '[data-subtab="' + ( __res.subtab || '_' ) + '"]' ).addClass( 'active' );
 
         $( '[data-action="select-language"]' ).each( function() {
 

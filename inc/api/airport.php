@@ -19,6 +19,7 @@
     }
 
     $tab = $_POST['tab'] ?? 'info';
+    $subtab = $_POST['subtab'] ?? '';
     $airport = $airport->fetch_object();
     $ICAO = $airport->ICAO;
 
@@ -146,16 +147,41 @@
 
         case 'nearby':
 
+            if( empty( $subtab ) ) $subtab = 'nearest';
+
             $content .= '<div class="map" data-map="' . base64_encode( json_encode( [
                 'lat' => $airport->lat,
                 'lon' => $airport->lon,
                 'zoom' => 10,
                 'wheelZoom' => true
             ], JSON_NUMERIC_CHECK ) ) . '"></div>
+            <div class="tablinks">
+                <span class="space"></span>
+                <a class="tab" data-subtab="nearest" data-href="airport/' . $ICAO . '/nearby/nearest">
+                    <span data-i18n="Nearest"></span>
+                </a>
+                <a class="tab" data-subtab="biggest" data-href="airport/' . $ICAO . '/nearby/biggest">
+                    <span data-i18n="Biggest"></span>
+                </a>
+                <a class="tab" data-subtab="service" data-href="airport/' . $ICAO . '/nearby/service">
+                    <span data-i18n="Airline Service"></span>
+                </a>
+                <a class="tab" data-subtab="all" data-href="airport/' . $ICAO . '/nearby/all">
+                    <span data-i18n="All"></span>
+                </a>
+                <span class="space"></span>
+            </div>
             ' . airport_list( airport_nearest(
                 $airport->lat,
                 $airport->lon,
-                $ICAO
+                $ICAO,
+                [
+                    'nearest' => [ 'closed' ],
+                    'biggest' => [ 'closed', 'balloonport', 'heliport', 'seaplane', 'small', 'medium' ],
+                    'service' => [ 'closed', 'balloonport', 'heliport', 'seaplane' ],
+                    'all' => []
+                ][ $subtab ],
+                $subtab == 'service'
             ), -1, [
                 $airport->lat,
                 $airport->lon
@@ -171,7 +197,8 @@
         'title' => $ICAO . ' — ' . $airport->name,
         'page' => 'airports',
         'content' => $content,
-        'tab' => $tab
+        'tab' => $tab,
+        'subtab' => $subtab
     ] );
 
 ?>
