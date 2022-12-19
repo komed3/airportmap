@@ -185,6 +185,68 @@
 
     }
 
+    function radio_list(
+        array $radios = [],
+        string $name = ''
+    ) {
+
+        foreach( $radios as $radio ) {
+
+            $content .= '<div class="radio radio-' . $radio['type'] . '">
+                <div class="type">' . $radio['type'] . '</div>
+                <div class="info">
+                    <div class="freq" data-freq="' . $radio['frequency'] . '"></div>
+                    <div class="meta">
+                        <span class="label" data-i18n="' . [
+                            'A/A' => 'Air-To-Air',
+                            'A/D' => 'Analog/Digital',
+                            'A/G' => 'Air-To-Ground',
+                            'AAS' => 'Airport Advisory Service',
+                            'ACC' => 'Area Control Center',
+                            'ACP' => 'ACP',
+                            'AFIS' => 'Aerodrome Flight Information Service',
+                            'APP' => 'Approach',
+                            'APRON' => 'Apron',
+                            'ARCAL' => 'Aircraft Radio Control of Aerodrome Lighting',
+                            'ARTC' => 'Air Route Traffic Control (USA)',
+                            'ASOS' => 'Automated Surface Observing System',
+                            'ASOW' => 'ASOW',
+                            'ATF' => 'Aerodrome Traffic Frequency',
+                            'ATIS' => 'Automatic Terminal Information Service',
+                            'CLD' => 'CLD',
+                            'CTAF' => 'Common Traffic Advisory Frequency',
+                            'DEP' => 'Departure',
+                            'DIR' => 'Director',
+                            'FCC' => 'Federal Communications Commission',
+                            'FSS' => 'Flight Service Station',
+                            'GCA' => 'Ground Controlled Approach',
+                            'GROUND' => 'Ground',
+                            'INFO' => 'Info',
+                            'MISC' => 'Misc',
+                            'OPS' => 'Operations',
+                            'PAL' => 'Pilot Activated Lighting',
+                            'RADAR' => 'Radar',
+                            'RADIO' => 'Radio',
+                            'RCO' => 'Remote Communications Outlet',
+                            'TIBA' => 'Traffic Information Broadcast by Aircraft',
+                            'TMA' => 'Terminal Control Area',
+                            'TOWER' => 'Tower',
+                            'TRAFFIC' => 'Traffic',
+                            'UNICOM' => 'Aeronautical Advisory Service'
+                        ][ $radio['type'] ] . '"></span>
+                        <span class="name">' . $name . '</span>
+                    </div>
+                </div>
+            </div>';
+
+        }
+
+        return '<div class="radiolist">
+            ' . $content . '
+        </div>';
+
+    }
+
     function navaid_list(
         array $navaids = []
     ) {

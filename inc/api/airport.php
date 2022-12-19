@@ -202,6 +202,20 @@
         case 'radio':
 
             $content .= '<h2 class="secondary-headline" data-i18n="Airport Frequencies"></h2>';
+
+            if( count( $radios = $DB->query( '
+                SELECT  *
+                FROM    ' . DB_PREFIX . 'frequency
+                WHERE   airport = "' . $ICAO . '"
+            ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) {
+
+                $content .= radio_list( $radios, $airport->name );
+
+            } else {
+
+                $content .= '<p data-i18n="No frequencies matched for this record."></p>';
+
+            }
             
             if( count( $navaids = $DB->query( '
                 SELECT  *
