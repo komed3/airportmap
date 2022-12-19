@@ -208,7 +208,8 @@ var baseurl = window.location.origin,
             },
             success: function( response ) {
 
-                let res = JSON.parse( response );
+                let res = JSON.parse( response ),
+                    max = 150;
 
                 navaid_marker[ uuid ].clearLayers();
                 airport_marker[ uuid ].clearLayers();
@@ -249,7 +250,8 @@ var baseurl = window.location.origin,
                             icon: L.divIcon( {
                                 iconSize: '100px',
                                 iconAnchor: [ 10, 10 ],
-                                className: 'type-' + airport.type + ' restrict-' + airport.restriction,
+                                className: 'type-' + airport.type + ' restrict-' + airport.restriction +
+                                    ( --max < 0 ? ' no-label' : '' ),
                                 html: '<navicon class="invert"></navicon><div class="info">' +
                                     airport.ICAO + '</div>'
                             } )

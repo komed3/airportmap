@@ -46,3 +46,7 @@
     font-size: 12px;
     font-weight: 600;
 }
+
+.map .leaflet-marker-icon.no-label:not(:hover) .info {
+    visibility: hidden;
+}
