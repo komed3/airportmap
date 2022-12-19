@@ -83,6 +83,20 @@
 }
 
 @font-face {
+    font-family: 'SourceCodePro';
+    src: url( './../resources/fonts/SourceCodePro-Regular.ttf' ) format( 'truetype' );
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SourceCodePro';
+    src: url( './../resources/fonts/SourceCodePro-Black.ttf' ) format( 'truetype' );
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'Material Symbols Outlined';
     font-style: normal;
     font-weight: 100 700;
