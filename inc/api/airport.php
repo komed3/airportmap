@@ -123,6 +123,12 @@
                         <span class="alt msl" data-msl="' . $airport->alt . '"></span>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="label" data-i18n="Airline Service"></div>
+                    <div class="value">
+                        <span data-i18n="' . ( $airport->service ? 'Yes' : 'No' ) . '"></span>
+                    </div>
+                </div>
                 ' . ( $airport->municipality ? '<div class="row">
                     <div class="label" data-i18n="Municipality"></div>
                     <div class="value">
@@ -163,6 +169,9 @@
                 <a class="tab" data-subtab="biggest" data-href="airport/' . $ICAO . '/nearby/biggest">
                     <span data-i18n="Biggest"></span>
                 </a>
+                <a class="tab" data-subtab="airports" data-href="airport/' . $ICAO . '/nearby/airports">
+                    <span data-i18n="Airports"></span>
+                </a>
                 <a class="tab" data-subtab="service" data-href="airport/' . $ICAO . '/nearby/service">
                     <span data-i18n="Airline Service"></span>
                 </a>
@@ -178,6 +187,7 @@
                 [
                     'nearest' => [ 'closed' ],
                     'biggest' => [ 'closed', 'balloonport', 'heliport', 'seaplane', 'small', 'medium' ],
+                    'airports' => [ 'closed', 'balloonport', 'heliport', 'seaplane' ],
                     'service' => [ 'closed', 'balloonport', 'heliport', 'seaplane' ],
                     'all' => []
                 ][ $subtab ],

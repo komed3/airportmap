@@ -81,8 +81,8 @@
             ) ) AS distance
             FROM     airport
             WHERE    ICAO != "' . $ident . '"
-            AND      lat BETWEEN ' . ( $lat - 5 ) . ' AND ' . ( $lat + 5 ) . '
-            AND      lon BETWEEN ' . ( $lon - 5 ) . ' AND ' . ( $lon + 5 ) . '
+            AND      lat BETWEEN ' . ( $lat - 10 ) . ' AND ' . ( $lat + 10 ) . '
+            AND      lon BETWEEN ' . ( $lon - 10 ) . ' AND ' . ( $lon + 10 ) . '
             AND      type NOT IN ( "' . implode( '", "', $exclude_types ) . '" )
             ' . ( $service ? 'AND service = 1' : '' ) . '
             ORDER BY distance ASC
