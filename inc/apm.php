@@ -200,9 +200,19 @@
                     </div>
                     <div class="freq" data-freq="' . $navaid['frequency'] . '"></div>
                     <div class="line">
-                        <span class="type" data-i18n="' . $navaid['type'] . '"></span>
-                        <span class="name" data-i18n="' . $navaid['name'] . '"></span>
+                        <span class="type">' . $navaid['type'] . '</span>
+                        <span class="name">' . $navaid['name'] . '</span>
                     </div>
+                    ' . ( empty( $navaid['level'] ) ? '' : '<div class="line">
+                        <span class="usage" data-i18n="' . [
+                            'BOTH' => 'High- and low-level enroute',
+                            'HI' => 'High-level enroute',
+                            'LO' => 'Low-level enroute',
+                            'RNAV' => 'RNAV',
+                            'TERMINAL' => 'Terminal-area navigation'
+                        ][ $navaid['level'] ] . '"></span>
+                        <span class="power" data-i18n="(' . $navaid['power'] . ')"></span>
+                    </div>' ) . '
                     <div class="line">
                         <span class="coord lat" data-lat="' . $navaid['lat'] . '"></span>
                         <span class="coord lon" data-lon="' . $navaid['lon'] . '"></span>
