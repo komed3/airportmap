@@ -9,33 +9,29 @@
 
     $zoom_lvl = $_POST['zoom'] ?? 4;
 
-    if( $zoom_lvl >= 2 ) {
+    $airport_types[] = 'large';
 
-        $airport_types[] = 'large';
-
-    }
-
-    if( $zoom_lvl >= 7 ) {
+    if( $zoom_lvl >= 6 ) {
 
         $airport_types[] = 'medium';
 
     }
 
-    if( $zoom_lvl >= 10 ) {
+    if( $zoom_lvl >= 8 ) {
 
         $airport_types[] = 'small';
         $airport_types[] = 'seaplane';
 
     }
 
-    if( $zoom_lvl >= 12 ) {
+    if( $zoom_lvl >= 10 ) {
 
         $airport_types[] = 'heliport';
         $airport_types[] = 'balloonport';
 
     }
 
-    if( $zoom_lvl >= 14 && isset( $_POST['closed'] ) ) {
+    if( $zoom_lvl >= 12 && isset( $_POST['closed'] ) ) {
 
         $airport_types[] = 'closed';
 
@@ -49,14 +45,14 @@
             AND      ( lon BETWEEN ' . $lon_min . ' AND ' . $lon_max . ' )
             AND      type IN ( "' . implode( '", "', $airport_types ) . '" )
             ORDER BY tier DESC
-            LIMIT    0, ' . ( (int) $_POST['limit'] ?? 500 )
+            LIMIT    0, ' . ( (int) $_POST['limit'] ?? 250 )
         )->fetch_all( MYSQLI_ASSOC ),
         'navaids' => $zoom_lvl >= 10 ? $DB->query( '
             SELECT  ident, type, name, frequency, lat, lon, alt
             FROM    ' . DB_PREFIX . 'navaid
             WHERE   ( lat BETWEEN ' . $lat_min . ' AND ' . $lat_max . ' )
             AND     ( lon BETWEEN ' . $lon_min . ' AND ' . $lon_max . ' )
-            LIMIT   0, ' . ( (int) $_POST['limit'] ?? 500 )
+            LIMIT   0, ' . ( (int) $_POST['limit'] ?? 250 )
         )->fetch_all( MYSQLI_ASSOC ) : []
     ], JSON_NUMERIC_CHECK );
 
