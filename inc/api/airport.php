@@ -209,7 +209,8 @@
                 WHERE   airport = "' . $ICAO . '"
             ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) {
 
-                $content .= '<h2 data-i18n="Navaids"></h2>';
+                $content .= '<h2 data-i18n="Navaids"></h2>
+                ' . navaid_list( $navaids );
 
             }
 

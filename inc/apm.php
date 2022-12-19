@@ -185,4 +185,24 @@
 
     }
 
+    function navaid_list(
+        array $navaids = []
+    ) {
+
+        foreach( $navaids as $navaid ) {
+
+            $content .= '<div class="navaid navaid-' . $navaid['type'] . '">
+                <div class="header">
+                    <navicon></navicon>
+                </div>
+            </div>';
+
+        }
+
+        return '<div class="navaidlist">
+            ' . $content . '
+        </div>';
+
+    }
+
 ?>
