@@ -19,6 +19,30 @@ var baseurl = window.location.origin,
 
     };
 
+    var morse = ( input = '', decode = false ) => {
+
+        let alphabet = {
+            a: '.-', b: '-...', c: '-.-.', d: '-..',
+            e: '.', f: '..-.', g: '--.', h: '....',
+            i: '..', j: '.---', k: '-.-', l: '.-..',
+            m: '--', n: '-.', o: '---', p: '.--.',
+            q: '--.-', r: '.-.', s: '...', t: '-',
+            u: '..-', v: '...-', w: '.--', x: '-..-',
+            y: '-.--', z: '--..', 1: '.----', 2: '..---',
+            3: '...--', 4: '....-', 5: '.....', 6: '-....',
+            7: '--...', 8: '---..', 9: '----.', 0: '-----'
+        };
+
+        return decode ? input.split( ' ' ).map(
+            code => Object.keys( alphabet ).find(
+                letter => alphabet[ letter ] === code
+            ).toUpperCase()
+        ).join( '' ) : input.split( '' ).map(
+            letter => alphabet[ letter.toLowerCase() ]
+        ).join( ' ' );
+
+    };
+
     var getToken = () => {
 
         return self.crypto.randomUUID();
@@ -523,6 +547,14 @@ var baseurl = window.location.origin,
             $( this )
                 .html( getBreadcrumbs( $( this ).attr( 'data-bc' ), $( this ).attr( 'data-bcdb' ) || 0 ) )
                 .removeAttr( 'data-bc data-bcdb' );
+
+        } );
+
+        $( '[data-morse]' ).each( function() {
+
+            $( this )
+                .html( morse( $( this ).attr( 'data-morse' ), !!( $( this ).attr( 'data-decode' ) || 0 ) ) )
+                .removeAttr( 'data-morse data-decode' );
 
         } );
 
