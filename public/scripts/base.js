@@ -500,14 +500,17 @@ var baseurl = window.location.origin,
 
         } );
 
-        $( '[data-hdg-p1][data-hdg-p2]' ).each( function() {
+        $( '[data-nearby]' ).each( function() {
 
-            $( this )
-                .html( getHeading(
-                    $( this ).attr( 'data-hdg-p1' ).split( ',' ),
-                    $( this ).attr( 'data-hdg-p2' ).split( ',' )
-                ).label )
-                .removeAttr( 'data-hdg-p1 data-hdg-p2' );
+            let data = JSON.parse( window.atob( $( this ).attr( 'data-nearby' ) ) ),
+                heading = getHeading( data.p1.lat, data.p1.lon, data.p2.lat, data.p2.lon );
+
+            $( this ).find( '.heading .bug' ).css( 'transform', 'rotate( ' + heading.heading + 'deg )' );
+            $( this ).find( '.heading .deg' ).html( Math.round( heading.heading ) + '°' );
+            $( this ).find( '.meta .label' ).html( heading.label );
+            $( this ).find( '.meta .dist' ).html( Math.ceil( data.dist ) + '&#8239;nm' );
+
+            $( this ).removeAttr( 'data-nearby' );
 
         } );
 

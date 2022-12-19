@@ -57,6 +57,38 @@
 
     }
 
+    function airport_nearest(
+        float $lat,
+        float $lon,
+        string $ident = '',
+        int $limit = 24,
+        array $exclude_types = [ 'closed' ]
+    ) {
+
+        global $DB;
+
+        return $DB->query( '
+            SELECT   *, ( 3440.29182 * acos(
+                cos( radians( ' . $lat . ' ) ) *
+                cos( radians( lat ) ) *
+                cos(
+                    radians( lon ) -
+                    radians( ' . $lon . ' )
+                ) +
+                sin( radians( ' . $lat . ' ) ) *
+                sin( radians( lat ) )
+            ) ) AS distance
+            FROM     airport
+            WHERE    ICAO != "' . $ident . '"
+            AND      lat BETWEEN ' . ( $lat - 5 ) . ' AND ' . ( $lat + 5 ) . '
+            AND      lon BETWEEN ' . ( $lon - 5 ) . ' AND ' . ( $lon + 5 ) . '
+            AND      type NOT IN ( "' . implode( '", "', $exclude_types ) . '" )
+            ORDER BY distance ASC
+            LIMIT    0, ' . $limit
+        )->fetch_all( MYSQLI_ASSOC );
+
+    }
+
     function airport_search_form() {
 
         return '<form data-form="search" class="fullsearch" autocomplete="off">
@@ -70,7 +102,8 @@
 
     function airport_list(
         array $airports = [],
-        int $page = 1
+        int $page = 1,
+        array $point = []
     ) {
 
         if( count( $airports ) == 0 ) {
@@ -82,7 +115,7 @@
 
         } else {
         
-            $pagination = '<div class="pagination" data-pagination="' . base64_encode( json_encode( [
+            $pagination = $page == -1 ? '' : '<div class="pagination" data-pagination="' . base64_encode( json_encode( [
                 'results' => count( $airports ),
                 'page' => $page
             ], JSON_NUMERIC_CHECK ) ) . '"></div>';
@@ -116,6 +149,26 @@
                             ' . ( $airport['service'] ? '<span class="tag service" data-i18n="Airline Service"></span>' : '' ) . '
                         </div>
                     </div>
+                    ' . ( empty( $point ) ? '' : '<div class="nearby" data-nearby="' . base64_encode( json_encode( [
+                        'p1' => [
+                            'lat' => $point[0],
+                            'lon' => $point[1]
+                        ],
+                        'p2' => [
+                            'lat' => $airport['lat'],
+                            'lon' => $airport['lon']
+                        ],
+                        'dist' => $airport['distance'] ?? -1
+                    ], JSON_NUMERIC_CHECK ) ) . '">
+                        <div class="heading">
+                            <div class="bug"><i class="icon">navigation</i></div>
+                            <div class="deg"></div>
+                        </div>
+                        <div class="meta">
+                            <div class="label"></div>
+                            <div class="dist"></div>
+                        </div>
+                    </div>' ) . '
                 </div>';
 
             }

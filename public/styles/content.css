@@ -193,61 +193,6 @@
     text-decoration: underline;
 }
 
-.tablinks {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: stretch;
-    gap: 12px;
-    margin: 0 var( --padding-normal ) 60px var( --padding-normal );
-    height: 40px;
-}
-
-.tablinks .tab {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    gap: 8px;
-    height: 40px;
-    padding: 0 18px 0 16px;
-    text-transform: uppercase;
-    background: var( --gray-0 );
-    border-radius: 20px;
-}
-
-.tablinks .space {
-    flex: 1;
-}
-
-.tablinks .tab:hover {
-    color: var( --primary );
-}
-
-.tablinks .tab.active {
-    color: var( --gray-0 );
-    background: var( --primary );
-}
-
-.tablinks .tab .icon {
-    font-size: 20px;
-    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 200;
-}
-
-.tabcontent {
-    margin: 0 var( --padding-normal ) 60px var( --padding-normal );
-}
-
-.tabcontent.tab-info {
-    display: grid;
-    grid-template-columns: 460px auto;
-    gap: 60px;
-}
-
-.tabcontent.tab-info .map,
-.tabcontent.tab-nearby .map {
-    width: 100%;
-    height: 460px;
-}
-
 .airportlist {
     margin: 40px var( --padding-normal );
 }
@@ -290,6 +235,7 @@
 }
 
 .airportlist .list .row .info {
+    flex: 1;
     display: flex;
     flex-flow: column nowrap;
     gap: 10px;
@@ -368,6 +314,111 @@
 
 .airportlist .list .row.service-1 .info .tags .tag.service {
     background: var( --info );
+}
+
+.airportlist .list .row .nearby {
+    flex: 0 0 120px;
+    align-self: center;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.airportlist .list .row .nearby .heading,
+.airportlist .list .row .nearby .meta {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
+}
+
+.airportlist .list .row .nearby .heading {
+    align-items: center;
+}
+
+.airportlist .list .row .nearby .heading .bug {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    transform-origin: center;
+}
+
+.airportlist .list .row .nearby .heading .bug .icon {
+    font-size: 24px;
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 200;
+}
+
+.airportlist .list .row .nearby .heading .deg,
+.airportlist .list .row .nearby .meta .dist {
+    font-size: 14px;
+}
+
+.airportlist .list .row .nearby .meta .label {
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.tablinks {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    gap: 12px;
+    margin: 0 var( --padding-normal ) 60px var( --padding-normal );
+    height: 40px;
+}
+
+.tablinks .tab {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 18px 0 16px;
+    text-transform: uppercase;
+    background: var( --gray-0 );
+    border-radius: 20px;
+}
+
+.tablinks .space {
+    flex: 1;
+}
+
+.tablinks .tab:hover {
+    color: var( --primary );
+}
+
+.tablinks .tab.active {
+    color: var( --gray-0 );
+    background: var( --primary );
+}
+
+.tablinks .tab .icon {
+    font-size: 20px;
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 200;
+}
+
+.tabcontent {
+    margin: 0 var( --padding-normal ) 60px var( --padding-normal );
+}
+
+.tabcontent.tab-info {
+    display: grid;
+    grid-template-columns: 460px auto;
+    gap: 60px;
+}
+
+.tabcontent.tab-info .map,
+.tabcontent.tab-nearby .map {
+    width: 100%;
+    height: 460px;
+}
+
+.tabcontent.tab-nearby .airportlist {
+    margin: 40px 0;
 }
 
 #content[page="map"] .map {

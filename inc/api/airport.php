@@ -151,7 +151,15 @@
                 'lon' => $airport->lon,
                 'zoom' => 10,
                 'wheelZoom' => true
-            ], JSON_NUMERIC_CHECK ) ) . '"></div>';
+            ], JSON_NUMERIC_CHECK ) ) . '"></div>
+            ' . airport_list( airport_nearest(
+                $airport->lat,
+                $airport->lon,
+                $ICAO
+            ), -1, [
+                $airport->lat,
+                $airport->lon
+            ] );
 
             break;
 
