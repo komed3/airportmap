@@ -201,13 +201,17 @@
 
         case 'radio':
 
-            $navaids = $DB->query( '
+            $content .= '<h2 data-i18n="Airport Frequencies"></h2>';
+            
+            if( count( $navaids = $DB->query( '
                 SELECT  *
                 FROM    ' . DB_PREFIX . 'navaid
                 WHERE   airport = "' . $ICAO . '"
-            ' )->fetch_all( MYSQLI_ASSOC );
+            ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) {
 
-            $content .= '';
+                $content .= '<h2 data-i18n="Navaids"></h2>';
+
+            }
 
             break;
 
