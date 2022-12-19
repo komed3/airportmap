@@ -39,19 +39,23 @@
         </a>
         <a class="tab" data-tab="metar" data-href="airport/' . $ICAO . '/metar">
             <i class="icon">storm</i>
-            <span data-i18n="Metar"></span>
+            <span data-i18n="METAR"></span>
         </a>
-        <a class="tab" data-tab="forecast" data-href="airport/' . $ICAO . '/forecast">
+        <a class="tab" data-tab="taf" data-href="airport/' . $ICAO . '/taf">
             <i class="icon">grid_view</i>
-            <span data-i18n="Forecast"></span>
+            <span data-i18n="TAF"></span>
         </a>
         <a class="tab" data-tab="nearby" data-href="airport/' . $ICAO . '/nearby">
             <i class="icon">near_me</i>
             <span data-i18n="Nearby"></span>
         </a>
-        <a class="tab" data-tab="history" data-href="airport/' . $ICAO . '/history">
-            <i class="icon">database</i>
-            <span data-i18n="History"></span>
+        <a class="tab" data-tab="radio" data-href="airport/' . $ICAO . '/radio">
+            <i class="icon">radar</i>
+            <span data-i18n="Radio"></span>
+        </a>
+        <a class="tab" data-tab="runway" data-href="airport/' . $ICAO . '/runway">
+            <i class="icon">flight_takeoff</i>
+            <span data-i18n="Runways"></span>
         </a>
         <span class="space"></span>
         ' . ( $airport->home ? '<a class="tab" href="' . $airport->home . '" target="_blank">
