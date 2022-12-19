@@ -198,8 +198,8 @@ var baseurl = window.location.origin,
         if( 'lat' in mypos && 'lon' in mypos ) {
 
             L.marker( L.latLng(
-                mypos.lat,
-                mypos.lon
+                parseFloat( mypos.lat ),
+                parseFloat( mypos.lon )
             ), {
                 icon: L.divIcon( {
                     iconSize: '100px',
@@ -242,8 +242,8 @@ var baseurl = window.location.origin,
 
                     navaid_marker[ uuid ].addLayer(
                         L.marker( L.latLng(
-                            navaid.lat,
-                            navaid.lon
+                            parseFloat( navaid.lat ),
+                            parseFloat( navaid.lon )
                         ), {
                             icon: L.divIcon( {
                                 iconSize: '100px',
@@ -263,8 +263,8 @@ var baseurl = window.location.origin,
 
                     airport_marker[ uuid ].addLayer(
                         L.marker( L.latLng(
-                            airport.lat,
-                            airport.lon
+                            parseFloat( airport.lat ),
+                            parseFloat( airport.lon )
                         ), {
                             icon: L.divIcon( {
                                 iconSize: '100px',

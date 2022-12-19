@@ -99,6 +99,7 @@ navicon {
     height: 20px;
     background-image: url( './../resources/pics/circle.svg' );
     background-size: contain;
+    background-repeat: no-repeat;
     background-position: center center;
 }
 
