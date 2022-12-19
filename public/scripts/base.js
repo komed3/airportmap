@@ -7,6 +7,18 @@ var baseurl = window.location.origin,
 
 ( function( $ ) {
 
+    Math.toRad = ( deg ) => {
+
+        return deg * Math.PI / 180;
+
+    };
+    
+    Math.toDeg = ( rad ) => {
+
+        return rad * 180 / Math.PI;
+
+    };
+
     var getToken = () => {
 
         return self.crypto.randomUUID();
@@ -263,19 +275,19 @@ var baseurl = window.location.origin,
 
     };
 
-    var i18n = function( text = '' ) {
+    var i18n = ( text = '' ) => {
 
         return text.toString().replaceAll( '%YEAR%', ( new Date() ).getFullYear() );
 
     };
 
-    var numberFormat = function( number, options = {} ) {
+    var numberFormat = ( number, options = {} ) => {
 
         return ( new Intl.NumberFormat( locale, options ) ).format( number );
 
     };
 
-    var dateFormat = function( datestring, options = {} ) {
+    var dateFormat = ( datestring, options = {} ) => {
 
         let dt = new Date();
         dt.setTime( Date.parse( datestring ) );
@@ -284,7 +296,7 @@ var baseurl = window.location.origin,
 
     };
 
-    var calcDMS = function( decimal, type = 'lat' ) {
+    var calcDMS = ( decimal, type = 'lat' ) => {
 
         let dec = parseFloat( decimal ),
             abs = Math.abs( dec ),
@@ -300,7 +312,38 @@ var baseurl = window.location.origin,
 
     };
 
-    var getBreadcrumbs = function( raw, db = 0 ) {
+    var getHeading = (
+        p1_lat, p1_lon,
+        p2_lat, p2_lon
+    ) => {
+
+        p1_lat = Math.toRad( p1_lat );
+        p1_lon = Math.toRad( p1_lon );
+        p2_lat = Math.toRad( p2_lat );
+        p2_lon = Math.toRad( p2_lon );
+
+        let delta_lon = p2_lon - p1_lon;
+
+        let X = Math.cos( p2_lat ) * Math.sin( delta_lon );
+        let Y = Math.cos( p1_lat ) * Math.sin( p2_lat ) - Math.sin( p1_lat ) *
+                Math.cos( p2_lat ) * Math.cos( delta_lon );
+
+        let heading = ( Math.toDeg( Math.atan2( X, Y ) ) + 360 ) % 360;
+
+        return {
+            heading: heading,
+            label: i18n( [
+                'N', 'NNE', 'NE', 'ENE',
+                'E', 'ESE', 'SE', 'SSE',
+                'S', 'SSW', 'SW', 'WSW',
+                'W', 'WNW', 'NW', 'NNW',
+                'N'
+            ][ Math.round( heading / 22.5 ) ] )
+        };
+
+    }
+
+    var getBreadcrumbs = ( raw, db = 0 ) => {
 
         let breadcrumbs = [];
 
@@ -335,7 +378,7 @@ var baseurl = window.location.origin,
 
     };
 
-    var pagination = function( results = 0, page = 1 ) {
+    var pagination = ( results = 0, page = 1 ) => {
 
         if( results <= 6 ) return '';
 
@@ -457,11 +500,22 @@ var baseurl = window.location.origin,
 
         } );
 
+        $( '[data-hdg-p1][data-hdg-p2]' ).each( function() {
+
+            $( this )
+                .html( getHeading(
+                    $( this ).attr( 'data-hdg-p1' ).split( ',' ),
+                    $( this ).attr( 'data-hdg-p2' ).split( ',' )
+                ).label )
+                .removeAttr( 'data-hdg-p1 data-hdg-p2' );
+
+        } );
+
         $( '[data-bc]' ).each( function() {
 
             $( this )
                 .html( getBreadcrumbs( $( this ).attr( 'data-bc' ), $( this ).attr( 'data-bcdb' ) || 0 ) )
-                .removeAttr( 'data-bc' ).removeAttr( 'data-bcdb' );
+                .removeAttr( 'data-bc data-bcdb' );
 
         } );
 
