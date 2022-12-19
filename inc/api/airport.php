@@ -199,6 +199,18 @@
 
             break;
 
+        case 'radio':
+
+            $navaids = $DB->query( '
+                SELECT  *
+                FROM    ' . DB_PREFIX . 'navaid
+                WHERE   airport = "' . $ICAO . '"
+            ' )->fetch_all( MYSQLI_ASSOC );
+
+            $content .= '';
+
+            break;
+
     }
 
     $content .= '</div>';
