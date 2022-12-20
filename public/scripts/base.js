@@ -3,7 +3,8 @@ var baseurl = window.location.origin,
     mypos = {},
     maps = {},
     airport_marker = {},
-    navaid_marker = {};
+    navaid_marker = {},
+    _config = {};
 
 ( function( $ ) {
 
@@ -56,6 +57,30 @@ var baseurl = window.location.origin,
         e.stopImmediatePropagation();
 
     };
+
+    var checkHardware = () => {
+
+        let cores = navigator.hardwareConcurrency || 4,
+            memory = navigator.deviceMemory || 2;
+
+        if( cores < 2 || memory < 1 ) {
+
+            _config.max_marker = 100;
+            _config.max_label = 50;
+
+        } else if( cores < 4 || memory < 2 ) {
+
+            _config.max_marker = 150;
+            _config.max_label = 75;
+
+        } else {
+
+            _config.max_marker = 250;
+            _config.max_label = 100;
+
+        }
+
+    }
 
     var setLocale = function() {
 
@@ -222,8 +247,7 @@ var baseurl = window.location.origin,
             type: 'post',
             data: {
                 token: getToken(),
-                closed: true,
-                limit: 500,
+                limit: _config.max_marker,
                 zoom: map.getZoom(),
                 bounds: {
                     lat: [ bounds.getNorth(), bounds.getSouth() ],
@@ -233,7 +257,7 @@ var baseurl = window.location.origin,
             success: function( response ) {
 
                 let res = JSON.parse( response ),
-                    max = 150;
+                    max = _config.max_label;
 
                 navaid_marker[ uuid ].clearLayers();
                 airport_marker[ uuid ].clearLayers();
@@ -673,6 +697,8 @@ var baseurl = window.location.origin,
             navigator.serviceWorker.register( baseurl + '/service-worker.min.js', { scope: '/' } );
 
         }
+
+        checkHardware();
 
         setLocale();
 

@@ -9,33 +9,11 @@
 
     $zoom_lvl = $_POST['zoom'] ?? 4;
 
-    $airport_types[] = 'large';
-
-    if( $zoom_lvl >= 6 ) {
-
-        $airport_types[] = 'medium';
-
-    }
-
-    if( $zoom_lvl >= 8 ) {
-
-        $airport_types[] = 'small';
-        $airport_types[] = 'seaplane';
-
-    }
-
-    if( $zoom_lvl >= 10 ) {
-
-        $airport_types[] = 'heliport';
-        $airport_types[] = 'balloonport';
-
-    }
-
-    if( $zoom_lvl >= 12 && isset( $_POST['closed'] ) ) {
-
-        $airport_types[] = 'closed';
-
-    }
+    $airport_types = $_POST['types'] ?? [
+        'large', 'medium', 'small',
+        'heliport', 'altiport', 'seaplane',
+        'balloonport', 'closed'
+    ];
 
     echo json_encode( [
         'airports' => $DB->query( '
