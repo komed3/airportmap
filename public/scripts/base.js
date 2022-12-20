@@ -60,23 +60,32 @@
 
     var checkHardware = () => {
 
-        let cores = navigator.hardwareConcurrency || 4,
-            memory = navigator.deviceMemory || 2;
+        if( navigator.userAgentData.mobile ) {
 
-        if( cores < 2 || memory < 1 ) {
-
-            _config.max_marker = 100;
-            _config.max_label = 50;
-
-        } else if( cores < 4 || memory < 2 ) {
-
-            _config.max_marker = 150;
-            _config.max_label = 75;
+            _config.max_marker = 50;
+            _config.max_label = 25;
 
         } else {
 
-            _config.max_marker = 250;
-            _config.max_label = 100;
+            let cores = navigator.hardwareConcurrency || 4,
+                memory = navigator.deviceMemory || 2;
+
+            if( cores < 2 || memory < 1 ) {
+
+                _config.max_marker = 100;
+                _config.max_label = 50;
+
+            } else if( cores < 4 || memory < 2 ) {
+
+                _config.max_marker = 150;
+                _config.max_label = 75;
+
+            } else {
+
+                _config.max_marker = 250;
+                _config.max_label = 100;
+
+            }
 
         }
 
