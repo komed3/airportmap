@@ -303,7 +303,7 @@
                 </div>
                 <div class="info">
                     <div class="headline">
-                        <div class="inuse inuse-' . $runway['inuse'] . '">
+                        <div class="state ' . ( $runway['inuse'] ? 'inuse' : 'inop' ) . '">
                             <i class="icon">circle</i>
                             <span data-i18n="' . ( $runway['inuse'] ? 'IN USE' : 'INOP' ) . '"></span>
                         </div>
@@ -313,6 +313,9 @@
                         <span class="alt ft" data-alt="' . $runway['length'] . '"></span>
                         ' . ( $runway['width'] ? '<span class="divider">×</span>
                         <span class="alt ft" data-alt="' . $runway['width'] . '"></span>' : '' ) . '
+                        ' . ( $runway['l_alt'] ? '<span class="divider">/</span>
+                        <span class="alt ft" data-alt="' . $runway['l_alt'] . '"></span>
+                        <span class="alt msl" data-msl="' . $runway['l_alt'] . '"></span>' : '' ) . '
                     </div>' : '' ) . '
                     <div class="condition">
                         <div class="surface surface-' . $runway['surface'] . '">
@@ -356,6 +359,22 @@
                             ], JSON_NUMERIC_CHECK ) ) . '"></span>
                         </div>
                     </div>
+                    ' . ( $runway['l_dthr'] ? '<div class="dthr">
+                        <span>
+                            <span data-i18n="Displaced threshold"></span>
+                            <b>' . $runway[ 'l_ident' ] . '</b>
+                            —
+                            <b data-alt="' . $runway['l_dthr'] . '"></b>
+                        </span>
+                    </div>' : '' ) . '
+                    ' . ( $runway['r_dthr'] ? '<div class="dthr">
+                        <span>
+                            <span data-i18n="Displaced threshold"></span>
+                            <b>' . $runway[ 'r_ident' ] . '</b>
+                            —
+                            <b data-alt="' . $runway['r_dthr'] . '"></b>
+                        </span>
+                    </div>' : '' ) . '
                 </div>
             </div>';
 

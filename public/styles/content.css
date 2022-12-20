@@ -443,6 +443,113 @@
     color: var( --gray-4 );
 }
 
+.runwaylist .runway {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.runwaylist .runway .heading {
+    flex: 0 0 120px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.runwaylist .runway .heading .bug {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    transform-origin: center;
+}
+
+.runwaylist .runway .heading .bug .icon {
+    font-size: 24px;
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 200;
+}
+
+.runwaylist .runway .heading .deg {
+    font-size: 14px;
+}
+
+.runwaylist .runway .info {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}
+
+.runwaylist .runway .info .icon {
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 200;
+}
+
+.runwaylist .runway .info .headline {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.runwaylist .runway .info .headline .state {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 5px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 800;
+    color: var( --gray-0 );
+    border-radius: 3px;
+}
+
+.runwaylist .runway .info .headline .state.inuse {
+    background: var( --good );
+}
+
+.runwaylist .runway .info .headline .state.inop {
+    background: var( --bad );
+}
+
+.runwaylist .runway .info .headline .state .icon {
+    font-size: 10px;
+}
+
+.runwaylist .runway .info .headline .ident {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.runwaylist .runway .info .size,
+.runwaylist .runway .info .condition,
+.runwaylist .runway .info .dthr {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var( --gray-4 );
+}
+
+.runwaylist .runway .info .condition > div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.runwaylist .runway .info .condition .lighting:not(.lighted) .icon {
+    font-variation-settings: 'FILL' 0;
+}
+
+.runwaylist .runway .info .dthr {
+    color: var( --bad );
+}
+
 .tablinks {
     display: flex;
     flex-flow: row nowrap;

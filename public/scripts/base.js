@@ -569,9 +569,17 @@
 
             let hdg = parseInt( $( this ).attr( 'data-hdg' ) );
 
-            $( this ).removeAttr( 'data-hdg' );
-            $( this ).find( '.bug' ).css( 'transform', 'rotate( ' + hdg + 'deg )' );
-            $( this ).find( '.deg' ).html( hdg + '°' );
+            if( isNaN( hdg ) ) {
+
+                $( this ).empty();
+
+            } else {
+
+                $( this ).removeAttr( 'data-hdg' );
+                $( this ).find( '.bug' ).css( 'transform', 'rotate( ' + hdg + 'deg )' );
+                $( this ).find( '.deg' ).html( hdg + '°' );
+
+            }
 
         } );
 
