@@ -28,8 +28,8 @@
         $airport->country . '::R' .
         $airport->region . '::M' .
         $airport->municipality . '" data-bcdb="1"></div>
-    <h1 class="primary-headline">
-        <i class="icon">location_searching</i>
+    <h1 class="primary-headline type-' . $airport->type . ' restrict-' . $airport->restriction . '">
+        <navicon class="invert"></navicon>
         <b>' . $ICAO . '</b>
         <span class="label">' . $airport->name . '</span>
     </h1>
@@ -96,6 +96,7 @@
                             'medium' => 'Airport',
                             'small' => 'Airfield',
                             'heliport' => 'Heliport',
+                            'altiport' => 'Altiport',
                             'seaplane' => 'Seaplane Base',
                             'balloonport' => 'Balloon Port',
                             'closed' => 'Closed'

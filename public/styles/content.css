@@ -18,6 +18,11 @@
     font-size: 26px;
 }
 
+.primary-headline navicon {
+    width: 30px;
+    height: 30px;
+}
+
 .primary-headline .label {
     text-transform: uppercase;
     font-weight: 300;

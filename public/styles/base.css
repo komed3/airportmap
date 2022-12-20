@@ -128,6 +128,10 @@ navicon.invert {
     background-image: url( './../resources/pics/seaplane.svg' );
 }
 
+.type-altiport navicon {
+    background-image: url( './../resources/pics/altiport.svg' );
+}
+
 .restrict-military navicon {
     background-image: url( './../resources/pics/military.svg' );
 }
