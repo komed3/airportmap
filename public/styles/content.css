@@ -282,7 +282,8 @@
     background: var( --airport-tier-3 );
 }
 
-.airportlist .list .row.type-heliport .info .headline .code {
+.airportlist .list .row.type-heliport .info .headline .code,
+.airportlist .list .row.type-altiport .info .headline .code {
     background: var( --airport-special );
 }
 
