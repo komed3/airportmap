@@ -231,6 +231,25 @@
 
             break;
 
+        case 'runway':
+
+            if( count( $runways = $DB->query( '
+                SELECT  *
+                FROM    ' . DB_PREFIX . 'runway
+                WHERE   airport = "' . $ICAO . '"
+            ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) {
+
+                $content .= runway_list( $runways );
+
+            } else {
+
+                $content .= '<p data-i18n="No runways matched for this record."></p>';
+
+            }
+
+            break;
+
+
     }
 
     $content .= '</div>';

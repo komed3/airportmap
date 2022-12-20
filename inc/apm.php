@@ -290,4 +290,53 @@
 
     }
 
+    function runway_list(
+        array $runways = []
+    ) {
+
+        foreach( $runways as $runway ) {
+
+            $content .= '<div class="runway">
+                <div class="heading" data-hdg="' . $runway['l_hdg'] . '">
+                    <div class="bug"><i class="icon">navigation</i></div>
+                    <div class="deg"></div>
+                </div>
+                <div class="info">
+                    <div class="headline">
+                        <div class="inuse inuse-' . $runway['inuse'] . '">
+                            <i class="icon">circle</i>
+                            <span data-i18n="' . ( $runway['inuse'] ? 'IN USE' : 'INOP' ) . '"></span>
+                        </div>
+                        <div class="ident">' . $runway['ident'] . '</div>
+                    </div>
+                    ' . ( $runway['length'] ? '<div class="size">
+                        <span class="alt ft" data-alt="' . $runway['length'] . '"></span>
+                        ' . ( $runway['width'] ? '<span class="divider">×</span>
+                        <span class="alt ft" data-alt="' . $runway['width'] . '"></span>' : '' ) . '
+                    </div>' : '' ) . '
+                    <div class="condition">
+                        <div class="surface surface-' . $runway['surface'] . '">
+                            <i class="icon">flight_takeoff</i>
+                            <span></span>
+                        </div>
+                        <div class="lighting ' . ( $runway['lighted'] ? 'lighted' : '' ) . '">
+                            <i class="icon">lightbulb</i>
+                            <span data-i18n="' . ( $runway['lighted'] ? 'Lighted' : 'Not lighted' ) . '"></span>
+                        </div>
+                        <div class="slope">
+                            <i class="icon">signal_cellular_3_bar</i>
+                            <span data-slope=""></span>
+                        </div>
+                    </div>
+                </div>
+            </div>';
+
+        }
+
+        return '<div class="runwaylist">
+            ' . $content . '
+        </div>';
+
+    }
+
 ?>
