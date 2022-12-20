@@ -1,12 +1,12 @@
-var baseurl = window.location.origin,
-    locale, path, page, __res,
-    mypos = {},
-    maps = {},
-    airport_marker = {},
-    navaid_marker = {},
-    _config = {};
-
 ( function( $ ) {
+
+    var baseurl = window.location.origin,
+        locale, path, page, __res,
+        mypos = {},
+        maps = {},
+        airport_marker = {},
+        navaid_marker = {},
+        _config = {};
 
     Math.toRad = ( deg ) => {
 
