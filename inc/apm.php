@@ -303,9 +303,9 @@
                 </div>
                 <div class="info">
                     <div class="headline">
-                        <div class="state ' . ( $runway['inuse'] ? 'inuse' : 'inop' ) . '">
-                            <i class="icon">circle</i>
-                            <span data-i18n="' . ( $runway['inuse'] ? 'IN USE' : 'INOP' ) . '"></span>
+                        <div class="state ' .
+                            ( $runway['inuse'] ? 'inuse' : 'inop' ) . '" data-i18n="' .
+                            ( $runway['inuse'] ? 'IN USE' : 'INOP' ) . '"></span>
                         </div>
                         <div class="ident">' . $runway['ident'] . '</div>
                     </div>

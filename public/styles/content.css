@@ -495,10 +495,6 @@
 }
 
 .runwaylist .runway .info .headline .state {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    gap: 4px;
     padding: 3px 5px;
     text-transform: uppercase;
     font-size: 12px;
@@ -513,10 +509,6 @@
 
 .runwaylist .runway .info .headline .state.inop {
     background: var( --bad );
-}
-
-.runwaylist .runway .info .headline .state .icon {
-    font-size: 10px;
 }
 
 .runwaylist .runway .info .headline .ident {
