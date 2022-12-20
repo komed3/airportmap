@@ -350,14 +350,14 @@
                             <i class="icon">lightbulb</i>
                             <span data-i18n="' . ( $runway['lighted'] ? 'Lighted' : 'Not lighted' ) . '"></span>
                         </div>
-                        <div class="slope">
-                            <i class="icon">signal_cellular_3_bar</i>
+                        <!--<div class="slope">
+                            <i class="icon">north_east</i>
                             <span data-slope="' . base64_encode( json_encode( [
                                 'from' => $runway['l_alt'],
                                 'to' => $runway['r_alt'],
                                 'length' => $runway['length']
                             ], JSON_NUMERIC_CHECK ) ) . '"></span>
-                        </div>
+                        </div>-->
                     </div>
                     ' . ( $runway['l_dthr'] ? '<div class="dthr">
                         <span>
