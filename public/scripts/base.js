@@ -400,7 +400,13 @@
             ][ Math.round( heading / 22.5 ) ] )
         };
 
-    }
+    };
+
+    var getSlope = ( from, to, length ) => {
+
+        return Math.ceil( Math.abs( ( to - from ) / length * 100 ) ) + '&#8239;%';
+
+    };
 
     var getBreadcrumbs = ( raw, db = 0 ) => {
 
@@ -559,6 +565,24 @@
 
         } );
 
+        $( '[data-hdg]' ).each( function() {
+
+            let hdg = parseInt( $( this ).attr( 'data-hdg' ) );
+
+            $( this ).removeAttr( 'data-hdg' );
+            $( this ).find( '.bug' ).css( 'transform', 'rotate( ' + hdg + 'deg )' );
+            $( this ).find( '.deg' ).html( hdg + '°' );
+
+        } );
+
+        $( '[data-slope]' ).each( function() {
+
+            let data = JSON.parse( window.atob( $( this ).attr( 'data-slope' ) ) );
+
+            $( this ).html( getSlope( data.from, data.to, data.length ) ).removeAttr( 'data-slope' );
+
+        } );
+
         $( '[data-freq]' ).each( function() {
 
             $( this )
@@ -570,11 +594,11 @@
         $( '[data-nearby]' ).each( function() {
 
             let data = JSON.parse( window.atob( $( this ).attr( 'data-nearby' ) ) ),
-                heading = getHeading( data.p1.lat, data.p1.lon, data.p2.lat, data.p2.lon );
+                hdg = getHeading( data.p1.lat, data.p1.lon, data.p2.lat, data.p2.lon );
 
-            $( this ).find( '.heading .bug' ).css( 'transform', 'rotate( ' + heading.heading + 'deg )' );
-            $( this ).find( '.heading .deg' ).html( Math.round( heading.heading ) + '°' );
-            $( this ).find( '.meta .label' ).html( heading.label );
+            $( this ).find( '.heading .bug' ).css( 'transform', 'rotate( ' + hdg.heading + 'deg )' );
+            $( this ).find( '.heading .deg' ).html( Math.round( hdg.heading ) + '°' );
+            $( this ).find( '.meta .label' ).html( hdg.label );
             $( this ).find( '.meta .dist' ).html( Math.ceil( data.dist ) + '&#8239;nm' );
 
             $( this ).removeAttr( 'data-nearby' );

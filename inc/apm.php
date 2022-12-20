@@ -317,7 +317,31 @@
                     <div class="condition">
                         <div class="surface surface-' . $runway['surface'] . '">
                             <i class="icon">flight_takeoff</i>
-                            <span></span>
+                            <span data-i18n="' . [
+                                'ASP' => 'Asphalt',
+                                'BIT' => 'Bituminous asphalt or tarmac',
+                                'BRI' => 'Bricks (no longer in use, covered with asphalt or concrete now)',
+                                'CLA' => 'Clay',
+                                'COM' => 'Composite',
+                                'CON' => 'Concrete',
+                                'COP' => 'Composite',
+                                'COR' => 'Coral (fine crushed coral reef structures)',
+                                'GRE' => 'Graded or rolled earth, grass on graded earth',
+                                'GRS' => 'Grass or earth not graded or rolled',
+                                'GVL' => 'Gravel',
+                                'ICE' => 'Ice',
+                                'LAT' => 'Laterite',
+                                'MAC' => 'Macadam',
+                                'PEM' => 'Partially concrete, asphalt or bitumen-bound macadam',
+                                'PER' => 'Permanent surface, details unknown',
+                                'PSP' => 'Marston Matting (derived from pierced/perforated steel planking)',
+                                'SAN' => 'Sand',
+                                'SMT' => 'Sommerfeld Tracking',
+                                'SNO' => 'Snow',
+                                'U' => 'Unknown surface',
+                                'WAT' => 'Water',
+                                'ROOF' => 'Rooftop (Heliport)'
+                            ][ $runway['surface'] ] . '"></span>
                         </div>
                         <div class="lighting ' . ( $runway['lighted'] ? 'lighted' : '' ) . '">
                             <i class="icon">lightbulb</i>
@@ -325,7 +349,11 @@
                         </div>
                         <div class="slope">
                             <i class="icon">signal_cellular_3_bar</i>
-                            <span data-slope=""></span>
+                            <span data-slope="' . base64_encode( json_encode( [
+                                'from' => $runway['l_alt'],
+                                'to' => $runway['r_alt'],
+                                'length' => $runway['length']
+                            ], JSON_NUMERIC_CHECK ) ) . '"></span>
                         </div>
                     </div>
                 </div>
