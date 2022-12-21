@@ -144,6 +144,21 @@
                 } );
                 break;
 
+            case 'country':
+                loadPage( 'airports', {
+                    type: 'country',
+                    code: path[1] || ''
+                } );
+                break;
+
+            case 'region':
+                loadPage( 'airports', {
+                    type: 'region',
+                    code: path[1] || '',
+                    page: parseInt( path[2] || 1 )
+                } );
+                break;
+
             default:
                 loadPage( 'map' );
                 break;
@@ -472,7 +487,9 @@
 
     var getBreadcrumbs = ( raw, db = 0 ) => {
 
-        let breadcrumbs = [];
+        let breadcrumbs = [
+            '<a href="' + baseurl + '/world">' + i18n( 'World' ) + '</a>'
+        ];
 
         raw.split( '::' ).forEach( function( part ) {
 

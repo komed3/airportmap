@@ -23,7 +23,7 @@
     $airport = $airport->fetch_object();
     $ICAO = $airport->ICAO;
 
-    $content = '<div class="breadcrumbs" data-bc="T' .
+    $content = '<div class="breadcrumbs no-world" data-bc="T' .
         $airport->continent . '::C' .
         $airport->country . '::R' .
         $airport->region . '::M' .
