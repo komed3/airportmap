@@ -165,16 +165,15 @@
                 ORDER BY tier DESC
             ' )->fetch_all( MYSQLI_ASSOC );
 
-            $title = $region->name ?? 'Unknown region';
-
             $map = [
                 'zoom' => $country->zoom,
                 'lat' => $country->lat,
                 'lon' => $country->lon
             ];
 
-            $headline_label = $title;
+            $headline_label = $region->name ?? 'Unknown region';
             $headline_count = count( $airports );
+            $title = $headline_label . ' — ' . $country->name;
 
             $content = '<div class="breadcrumbs" data-bc="T' .
                 $region->continent . '::C' .
