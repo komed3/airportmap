@@ -355,13 +355,19 @@
 
     var airportInfo = function( e, uuid, map ) {
 
-        map.setView( e.target.getLatLng() );
+        map.setView(
+            e.target.getLatLng(),
+            Math.max( map.getZoom(), 8 )
+        );
 
     };
 
     var navaidInfo = function( e, uuid, map ) {
 
-        map.setView( e.target.getLatLng() );
+        map.setView(
+            e.target.getLatLng(),
+            Math.max( map.getZoom(), 8 )
+        );
 
     };
 
