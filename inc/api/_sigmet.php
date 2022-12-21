@@ -4,8 +4,7 @@
 
     require_once __DIR__ . '/../apm.php';
 
-    if( API_KEY != $_GET['api_key'] ?? null )
-        die( 'Authentication required. Access denied.' );
+    api_auth();
 
     $sigmets = [];
 

@@ -30,6 +30,13 @@
 
     }
 
+    function api_auth() {
+
+        if( API_KEY != $_GET['api_key'] ?? null )
+            die( '{"error":"Authentication required. Access denied."}' );
+
+    }
+
     function airport_search(
         string $word,
         int $limit = -1,
