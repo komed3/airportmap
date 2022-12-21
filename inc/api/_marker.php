@@ -31,7 +31,13 @@
             WHERE   ( lat BETWEEN ' . $lat_min . ' AND ' . $lat_max . ' )
             AND     ( lon BETWEEN ' . $lon_min . ' AND ' . $lon_max . ' )
             LIMIT   0, ' . ( (int) $_POST['limit'] ?? 250 )
-        )->fetch_all( MYSQLI_ASSOC ) : []
+        )->fetch_all( MYSQLI_ASSOC ) : [],
+        'sigmets' => boolval( $_POST['config']['sigmets'] ?? false ) ? $DB->query( '
+            SELECT  _id, hazard, polygon
+            FROM    ' . DB_PREFIX . 'sigmet
+            WHERE   valid_from <= NOW()
+            AND     valid_to >= NOW()
+    ' )->fetch_all( MYSQLI_ASSOC ) : []
     ], JSON_NUMERIC_CHECK );
 
 ?>

@@ -3,9 +3,17 @@
     var baseurl = window.location.origin,
         locale, path, page, __res,
         mypos = {},
-        maps = {},
+        maps = {}, maps_config = {},
         airport_marker = {},
         navaid_marker = {},
+        sigmet_marker = {},
+        sigmet_colors = {
+            ICE: '#4488dd',
+            TC: '#dd66ee',
+            TS: '#ff2200',
+            TURB: '#eebb55',
+            VA: '#bbbbbb'
+        },
         _config = {};
 
     Math.toRad = ( deg ) => {
@@ -186,6 +194,8 @@
 
             $( this ).attr( 'id', uuid ).removeAttr( 'data-map' );
 
+            maps_config[ uuid ] = data;
+
             maps[ uuid ] = L.map( uuid, {
                 center: [ lat, lon ],
                 zoom: data.zoom || 12,
@@ -198,6 +208,7 @@
                 scrollWheelZoom: data.wheelZoom || false
             } );
 
+            sigmet_marker[ uuid ] = L.layerGroup().addTo( maps[ uuid ] );
             navaid_marker[ uuid ] = L.layerGroup().addTo( maps[ uuid ] );
             airport_marker[ uuid ] = L.layerGroup().addTo( maps[ uuid ] );
 
@@ -258,6 +269,7 @@
                 token: getToken(),
                 limit: _config.max_marker,
                 zoom: map.getZoom(),
+                config: maps_config[ uuid ],
                 bounds: {
                     lat: [ bounds.getNorth(), bounds.getSouth() ],
                     lon: [ bounds.getEast(), bounds.getWest() ]
@@ -268,8 +280,26 @@
                 let res = JSON.parse( response ),
                     max = _config.max_label;
 
+                sigmet_marker[ uuid ].clearLayers();
                 navaid_marker[ uuid ].clearLayers();
                 airport_marker[ uuid ].clearLayers();
+
+                Object.values( res.sigmets ).forEach( function( sigmet ) {
+
+                    JSON.parse( sigmet.polygon ).forEach( function( polygon ) {
+
+                        sigmet_marker[ uuid ].addLayer(
+                            L.polygon( polygon.filter( p => p.reverse() ), {
+                                color: sigmet_colors[ sigmet.hazard ] || '#88ee88',
+                                weight: 1,
+                                fillOpacity: 0.4,
+                                dashArray: '4 4'
+                            } )
+                        );
+
+                    } );
+
+                } );
 
                 Object.values( res.navaids ).forEach( function( navaid ) {
 

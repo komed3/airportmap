@@ -13,6 +13,16 @@
         'https://www.aviationweather.gov/cgi-bin/json/IsigmetJSON.php?bbox=-90,-180,90,180'
     ), true )['features'], 1 ) as $sigmet ) {
 
+        $lat = $lon = [];
+        $both = array( &$lat, &$lon );
+
+        array_walk(
+            explode( ',', $sigmet['properties']['coords'] ?? [] ),
+            function( $v, $k ) use ( $both ) {
+                $both[ $k % 2 ][] = $v;
+            }
+        );
+
         $sigmets[ $sigmet['id'] ] = str_replace( '"NULL"', 'NULL',
             $sigmet['id'] . ',
             "' . ( $sigmet['properties']['icaoId'] ?? 'NULL' ) . '",
@@ -38,7 +48,11 @@
             "' . json_encode(
                 $sigmet['geometry']['coordinates'] ?? [],
                 JSON_NUMERIC_CHECK
-            ) . '"'
+            ) . '",
+            ' . min( $lat ) . ',
+            ' . max( $lat ) . ',
+            ' . min( $lon ) . ',
+            ' . max( $lon )
         );
 
     }
@@ -52,7 +66,7 @@
         INSERT INTO ' . DB_PREFIX . 'sigmet (
             _id, airport, fir, name, series, hazard, qualifier,
             valid_from, valid_to, base, top, dir, spd, chng,
-            raw, polygon
+            raw, polygon, lat_min, lat_max, lon_min, lon_max
         ) VALUES (
             ' . implode( ' ), ( ', array_values( $sigmets ) ) . '
         );

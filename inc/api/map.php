@@ -5,7 +5,8 @@
     $stats = airport_stats();
 
     $content = '<div class="map" data-map="' . base64_encode( json_encode( [
-        'zoom' => 8
+        'zoom' => 8,
+        'sigmets' => true
     ], JSON_NUMERIC_CHECK ) ) . '"></div>
     <div class="welcome">
         <h1 data-i18n="Welcome to <b>Airportmap</b>"></h1>
