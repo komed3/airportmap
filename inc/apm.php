@@ -394,7 +394,7 @@
         foreach( $regions as $region ) {
 
             $content .= '<a data-href="' . $page . '/' . $region['code'] . '">
-                <span data-i18n="' . $region['name'] . '"></span>
+                <span data-i18n="' . ( $region['name'] ?? 'Unknown' ) . '"></span>
                 <b>(<x data-number="' . $region['cnt'] . '"></x>)</b>
             </a>';
 
