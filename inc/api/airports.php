@@ -70,7 +70,10 @@
             $title = $continent->name;
 
             $map = [
-                'zoom' => 4
+                'zoom' => 3,
+                'minZoom' => 3,
+                'lat' => $continent->lat,
+                'lon' => $continent->lon
             ];
 
             $headline_label = $title;
@@ -118,6 +121,7 @@
 
             $map = [
                 'zoom' => $country->zoom,
+                'minZoom' => $country->zoom,
                 'lat' => $country->lat,
                 'lon' => $country->lon
             ];
