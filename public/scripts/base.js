@@ -8,10 +8,13 @@
         navaid_marker = {},
         sigmet_marker = {},
         sigmet_colors = {
+            DS: '#eebb55',
             ICE: '#4488dd',
+            SS: '#eebb55',
             TC: '#dd66ee',
             TS: '#ff2200',
-            TURB: '#eebb55',
+            TSGR: '#ff2200',
+            TURB: '#ee8844',
             VA: '#bbbbbb'
         },
         _config = {};
