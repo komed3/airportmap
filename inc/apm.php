@@ -386,4 +386,24 @@
 
     }
 
+    function regions_list(
+        string $page,
+        array $regions = []
+    ) {
+
+        foreach( $regions as $region ) {
+
+            $content .= '<a data-href="' . $page . '/' . $region['code'] . '">
+                <span data-i18n="' . $region['name'] . '"></span>
+                <b>(<x data-number="' . $region['cnt'] . '"></x>)</b>
+            </a>';
+
+        }
+
+        return '<div class="regionslist">
+            ' . $content . '
+        </div>';
+
+    }
+
 ?>

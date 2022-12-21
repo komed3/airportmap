@@ -374,6 +374,17 @@
     font-weight: 600;
 }
 
+.regionslist {
+    display: grid;
+    grid-template-columns: repeat( 3, 1fr );
+    gap: 10px 30px;
+    margin: 60px var( --padding-normal );
+}
+
+.regionslist a:hover span {
+    text-decoration: underline;
+}
+
 .radiolist .radio {
     display: flex;
     flex-flow: row nowrap;
