@@ -50,3 +50,13 @@
 .map .leaflet-marker-icon.no-label:not(:hover) .info {
     visibility: hidden;
 }
+
+.map.fullsize {
+    width: 100%;
+    height: calc( 100vh - 80px );
+}
+
+.map.halfsize {
+    width: 100%;
+    height: 40vh;
+}

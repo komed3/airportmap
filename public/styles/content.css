@@ -604,8 +604,3 @@
 .tabcontent.tab-nearby .airportlist {
     margin: 40px 0;
 }
-
-#content[page="map"] .map {
-    width: 100%;
-    height: calc( 100vh - 80px );
-}

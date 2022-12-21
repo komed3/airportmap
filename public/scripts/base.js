@@ -115,7 +115,7 @@
 
         path = window.location.pathname.split( '/' ).filter( n => n );
 
-        switch( path[0] ) {
+        switch( ( path[0] || '' ).toString().trim().toLowerCase() ) {
 
             case 'airport':
                 loadPage( 'airport', {
@@ -129,6 +129,18 @@
                 loadPage( 'search', {
                     searchtext: ( path[1] || '' ).replaceAll( '_', ' ' ),
                     page: parseInt( path[2] || 1 )
+                } );
+                break;
+
+            case 'airports':
+            case 'world':
+                loadPage( 'airports' );
+                break;
+
+            case 'continent':
+                loadPage( 'airports', {
+                    type: 'continent',
+                    code: path[1] || ''
                 } );
                 break;
 
@@ -228,7 +240,7 @@
 
             L.control.scale().addTo( maps[ uuid ] );
 
-            loadMyPos( uuid );
+            if( data.my || false ) loadMyPos( uuid );
 
             maps[ uuid ].on( 'moveend', function() {
 
