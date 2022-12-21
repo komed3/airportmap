@@ -10,6 +10,7 @@
         sigmet_colors = {
             DS: '#eebb55',
             ICE: '#4488dd',
+            MTW: '#88ee88',
             SS: '#eebb55',
             TC: '#dd66ee',
             TS: '#ff2200',
@@ -294,7 +295,7 @@
 
                         sigmet_marker[ uuid ].addLayer(
                             L.polygon( polygon.filter( p => p.reverse() ), {
-                                color: sigmet_colors[ sigmet.hazard ] || '#88ee88',
+                                color: sigmet_colors[ sigmet.hazard ] || '#eeeeee',
                                 weight: 1,
                                 fillOpacity: 0.3,
                                 dashArray: '4 4'
