@@ -9,7 +9,7 @@
     $sigmets = [];
 
     foreach( array_slice( json_decode( file_get_contents(
-        'https://www.aviationweather.gov/cgi-bin/json/IsigmetJSON.php?bbox=-90,-180,90,180'
+        'https://www.aviationweather.gov/cgi-bin/json/IsigmetJSON.php?bbox=-180,-90,180,90'
     ), true )['features'], 1 ) as $sigmet ) {
 
         $sigmets[ $sigmet['id'] ] = str_replace( '"NULL"', 'NULL',
