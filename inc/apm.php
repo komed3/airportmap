@@ -1,6 +1,6 @@
 <?php
 
-    if( defined( 'NO_TOKEN' ) || !isset( $_POST['token'] ) )
+    if( !defined( 'NO_TOKEN' ) && !isset( $_POST['token'] ) )
         die( 'Wrong entry point :(' );
 
     require_once __DIR__ . '/../config.php';
