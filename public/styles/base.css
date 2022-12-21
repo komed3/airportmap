@@ -95,6 +95,7 @@ body {
 }
 
 navicon {
+    position: relative;
     width: 20px;
     height: 20px;
     background-image: url( './../resources/pics/circle.svg' );
@@ -186,6 +187,25 @@ navicon.invert {
 
 .mypos navicon {
     background-image: url( './../resources/pics/point.svg' );
+    z-index: 1;
+}
+
+.mypos navicon::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    background: #ffff00;
+    border-radius: 50%;
+    animation: mypos 2.5s infinite;
+    z-index: -1;
+}
+
+@keyframes mypos {
+      0% { opacity: 1; transform: scale( 0 ); }
+    100% { opacity: 0; transform: scale( 1 ); }
 }
 
 .morse {

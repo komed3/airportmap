@@ -147,7 +147,8 @@
                 'lat' => $airport->lat,
                 'lon' => $airport->lon,
                 'zoom' => 14,
-                'wheelZoom' => true
+                'wheelZoom' => true,
+                'divider' => 2
             ], JSON_NUMERIC_CHECK ) ) . '"></div>';
 
             break;
@@ -160,7 +161,8 @@
                 'lat' => $airport->lat,
                 'lon' => $airport->lon,
                 'zoom' => 10,
-                'wheelZoom' => true
+                'wheelZoom' => true,
+                'divider' => 2
             ], JSON_NUMERIC_CHECK ) ) . '"></div>
             <div class="tablinks">
                 <span class="space"></span>

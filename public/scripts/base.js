@@ -263,14 +263,15 @@
 
     var loadMarker = function( uuid, map ) {
 
-        let bounds = map.getBounds();
+        let bounds = map.getBounds(),
+            divider = maps_config[ uuid ].divider || 1;
 
         $.ajax( {
             url: baseurl + '/inc/api/_marker.php',
             type: 'post',
             data: {
                 token: getToken(),
-                limit: _config.max_marker,
+                limit: Math.floor( _config.max_marker / divider ),
                 zoom: map.getZoom(),
                 config: maps_config[ uuid ],
                 bounds: {
@@ -281,7 +282,7 @@
             success: function( response ) {
 
                 let res = JSON.parse( response ),
-                    max = _config.max_label;
+                    max = Math.floor( _config.max_label / divider );
 
                 sigmet_marker[ uuid ].clearLayers();
                 navaid_marker[ uuid ].clearLayers();
@@ -295,7 +296,7 @@
                             L.polygon( polygon.filter( p => p.reverse() ), {
                                 color: sigmet_colors[ sigmet.hazard ] || '#88ee88',
                                 weight: 1,
-                                fillOpacity: 0.4,
+                                fillOpacity: 0.3,
                                 dashArray: '4 4'
                             } )
                         );
