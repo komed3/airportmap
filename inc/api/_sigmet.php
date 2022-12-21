@@ -58,4 +58,6 @@
         );
     ' );
 
+    echo json_encode( $sigmets, JSON_NUMERIC_CHECK );
+
 ?>
