@@ -649,6 +649,14 @@
 
         } );
 
+        $( '[data-mi]' ).each( function() {
+
+            $( this )
+                .html( numberFormat( Math.floor( $( this ).attr( 'data-mi' ) * 1.609344 ) ) + '&#8239;km' )
+                .removeAttr( 'data-mi' );
+
+        } );
+
         $( '[data-hdg]' ).each( function() {
 
             let hdg = parseInt( $( this ).attr( 'data-hdg' ) );

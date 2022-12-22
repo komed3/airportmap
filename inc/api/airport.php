@@ -149,6 +149,21 @@
 
             break;
 
+        case 'metar':
+
+            $metars = airport_weather( 'metar', $airport->lat, $airport->lon );
+
+            $metar = $metars[0];
+
+            $content .= '<div class="metarcheck">
+                <div class="metarbox flight-cat cat-' . $metar['flight_cat'] . '">
+                    <div class="top"><span data-i18n="' . $metar['flight_cat'] . '"></span></div>
+                    <div class="bot"><span data-mi="' . $metar['vis_horiz'] . '"></span></div>
+                </div>
+            </div>';
+
+            break;
+
         case 'nearby':
 
             if( empty( $subtab ) ) $subtab = 'nearest';

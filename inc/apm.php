@@ -104,6 +104,37 @@
 
     }
 
+    function airport_weather(
+        string $type = 'metar',
+        float $lat,
+        float $lon,
+        int $limit = 8
+    ) {
+
+        global $DB;
+
+        return $DB->query( '
+            SELECT   *, ( 3440.29182 * acos(
+                cos( radians( ' . $lat . ' ) ) *
+                cos( radians( lat ) ) *
+                cos(
+                    radians( lon ) -
+                    radians( ' . $lon . ' )
+                ) +
+                sin( radians( ' . $lat . ' ) ) *
+                sin( radians( lat ) )
+            ) ) AS distance
+            FROM     ' . DB_PREFIX . $type . ',
+                     ' . DB_PREFIX . 'airport
+            WHERE    station = ICAO
+            AND      lat BETWEEN ' . ( $lat - 10 ) . ' AND ' . ( $lat + 10 ) . '
+            AND      lon BETWEEN ' . ( $lon - 10 ) . ' AND ' . ( $lon + 10 ) . '
+            ORDER BY distance ASC
+            LIMIT    0, ' . $limit
+        )->fetch_all( MYSQLI_ASSOC );
+
+    }
+
     function airport_search_form() {
 
         return '<form data-form="search" class="fullsearch" autocomplete="off">
