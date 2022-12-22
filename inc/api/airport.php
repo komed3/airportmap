@@ -56,7 +56,7 @@
         </a>
         <a class="tab" data-tab="runway" data-href="airport/' . $ICAO . '/runway">
             <i class="icon">flight_takeoff</i>
-            <span data-i18n="Runways"></span>
+            <span data-i18n="Runway"></span>
         </a>
         <span class="space"></span>
         ' . ( $airport->home ? '<a class="tab" href="' . $airport->home . '" target="_blank">
@@ -130,16 +130,12 @@
                         <span data-i18n="' . ( $airport->service ? 'Yes' : 'No' ) . '"></span>
                     </div>
                 </div>
-                ' . ( $airport->municipality ? '<div class="row">
-                    <div class="label" data-i18n="Municipality"></div>
+                ' . ( $airport->timezone ? '<div class="row">
+                    <div class="label" data-i18n="Timezone"></div>
                     <div class="value">
-                        <span data-i18n="' . $airport->municipality . '"></span>
-                    </div>
-                </div>' : '' ) . '
-                ' . ( $airport->activation ? '<div class="row">
-                    <div class="label" data-i18n="Date"></div>
-                    <div class="value">
-                        <span data-date="' . $airport->activation . '"></span>
+                        <span data-i18n="' . $airport->timezone . '"></span>
+                        <span>(GMT' . str_replace( '+-', '-', '+' .
+                            round( $airport->offset / 60, 1 ) ) . ')</span>
                     </div>
                 </div>' : '' ) . '
             </div>
