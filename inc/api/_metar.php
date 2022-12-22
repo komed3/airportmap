@@ -6,6 +6,7 @@
 
     api_auth( '_metar' );
 
+    $ceiling = [ 'SKC', 'SCT', 'BKN', 'OVC', 'OVX' ];
     $delete = $insert = [];
 
     foreach( explode( PHP_EOL, file_get_contents(
@@ -23,6 +24,16 @@
         $station = strtoupper( $data[1] );
 
         $delete[ $station ] = $station;
+
+        $vis_vert = strlen( $data[41] ) ? (int) $data[41] : (
+            in_array( $data[22], $ceiling ) ? (int) $data[23] : (
+                in_array( $data[24], $ceiling ) ? (int) $data[25] : (
+                    in_array( $data[26], $ceiling ) ? (int) $data[27] : (
+                        in_array( $data[28], $ceiling ) ? (int) $data[29] : null
+                    )
+                )
+            )
+        );
 
         $insert[ $station ] = implode( ', ', array_map( function( $f ) {
             return $f == null ? 'NULL' : '"' . trim( $f ) . '"';
@@ -47,7 +58,7 @@
                 (float) $data[40], // SNOW (IN)
             // SKY CONT
                 strlen( $data[10] ) ? (float) $data[10] : null, // VISIBILITY (MI)
-                strlen( $data[41] ) ? (float) $data[41] : null, // VERTICAL VIS. (MI)
+                $vis_vert, // VERTICAL VIS. (FT)
                 $data[30] ?? null, // FLIGHT CAT
             // CLOUD LAYERS
                 // LAYER 1
