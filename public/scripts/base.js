@@ -656,11 +656,13 @@
         } );
 
         $( '[data-mi]' ).each( function() {
+            
+            let km = $( this ).attr( 'data-mi' ) * 1.609344;
 
             $( this )
-                .html( numberFormat( $( this ).attr( 'data-mi' ) * 1.609344, {
-                    maximumFractionDigits: 1
-                } ) + '&#8239;km' )
+                .html( km > 1
+                    ? numberFormat( Math.floor( km ) ) + '&#8239;km'
+                    : numberFormat( Math.floor( km * 10 ) * 100 ) + '&#8239;m' )
                 .removeAttr( 'data-mi' );
 
         } );

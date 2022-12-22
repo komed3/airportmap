@@ -161,15 +161,16 @@
                         <span data-i18n="' . $metar['flight_cat'] . '"></span>
                     </div>
                     <div class="bot">
-                        <span class="label" data-i18n="Visibility"></span>
-                        <b data-mi="' . $metar['vis_horiz'] . '"></b>
+                        <span class="label" data-i18n="Flight cat"></span>
                     </div>
                 </div>
-                <div class="metarbox weather">
+                <div class="metarbox weather" data-wx="' . $metar['wx'] . '">
                     <div class="top">
                         <i class="icon"></i>
                         <span data-temp="' . $metar['temp'] . '"></span></div>
-                    <div class="bot"></div>
+                    <div class="bot">
+                        <span class="label"></span>
+                    </div>
                 </div>
                 <div class="metarbox wind str-' . min( 3, floor( $metar['wind_spd'] / 10 ) ) . '" data-hdg="' . $metar['wind_dir'] . '">
                     <div class="top">
@@ -179,15 +180,36 @@
                         <span data-kt="' . $metar['wind_spd'] . '"></span>
                     </div>
                     <div class="bot">
-                        <span class="label" data-i18n="Wind dir"></span>
+                        <span class="label" data-i18n="Wind"></span>
                         <b class="cardinal"></b>
+                        <span class="deg"></span>
+                    </div>
+                </div>
+                <div class="metarbox visibility vis-' . min( 3, floor( $metar['vis_horiz'] / 2 ) ) . '">
+                    <div class="top">
+                        <b data-mi="' . $metar['vis_horiz'] . '"></b>
+                    </div>
+                    <div class="bot">
+                        <span class="label" data-i18n="Visibility"></span>
+                    </div>
+                </div>
+                <div class="metarbox ceiling vis-' . min( 3, floor( (int) $metar['vis_vert'] / 1000 ) ) . '">
+                    <div class="top">
+                        ' . ( $metar['vis_vert'] == null
+                            ? '<span data-i18n="Clear"></span>'
+                            : '<b data-alt="' . $metar['vis_vert'] . '"></b>' ) . '
+                    </div>
+                    <div class="bot">
+                        <span class="label" data-i18n="Ceiling"></span>
                     </div>
                 </div>
                 <div class="metarbox altim">
                     <div class="top">
                         <span data-altim-hpa="' . ( $metar['altim'] * 33.864 ) . '"></span>
                     </div>
-                    <div class="bot"></div>
+                    <div class="bot">
+                        <span class="label" data-i18n="Altimeter"></span>
+                    </div>
                 </div>
             </div>
             <div class="raw-metar">' . $metar['raw'] . '</div>';

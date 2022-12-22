@@ -583,9 +583,9 @@
 
 .metarcheck .metarbox .top {
     height: 58px;
-    line-height: 58px;
     font-size: 26px;
     font-weight: 800;
+    background: var( --gray-2 );
 }
 
 .metarcheck .metarbox .top .bug .icon {
@@ -604,23 +604,31 @@
 }
 
 .metarcheck .metarbox.cat.cat-VFR .top,
-.metarcheck .metarbox.wind.str-0 .top {
+.metarcheck .metarbox.wind.str-0 .top,
+.metarcheck .metarbox.visibility.vis-3 .top,
+.metarcheck .metarbox.ceiling.vis-3 .top {
     color: var( --gray-0 );
     background: var( --good );
 }
 
 .metarcheck .metarbox.cat.cat-MVFR .top,
-.metarcheck .metarbox.wind.str-1 .top {
+.metarcheck .metarbox.wind.str-1 .top,
+.metarcheck .metarbox.visibility.vis-2 .top,
+.metarcheck .metarbox.ceiling.vis-2 .top {
     background: var( --info );
 }
 
 .metarcheck .metarbox.cat.cat-IFR .top,
-.metarcheck .metarbox.wind.str-2 .top {
+.metarcheck .metarbox.wind.str-2 .top,
+.metarcheck .metarbox.visibility.vis-1 .top,
+.metarcheck .metarbox.ceiling.vis-1 .top {
     background: var( --warn );
 }
 
 .metarcheck .metarbox.cat.cat-LIFR .top,
-.metarcheck .metarbox.wind.str-3 .top {
+.metarcheck .metarbox.wind.str-3 .top,
+.metarcheck .metarbox.visibility.vis-0 .top,
+.metarcheck .metarbox.ceiling.vis-0 .top {
     color: var( --gray-0 );
     background: var( --bad );
 }
