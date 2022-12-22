@@ -39,11 +39,11 @@
             <span data-i18n="Info"></span>
         </a>
         <a class="tab" data-tab="metar" data-href="airport/' . $ICAO . '/metar">
-            <i class="icon">storm</i>
+            <i class="icon">cloud</i>
             <span data-i18n="METAR"></span>
         </a>
         <a class="tab" data-tab="taf" data-href="airport/' . $ICAO . '/taf">
-            <i class="icon">grid_view</i>
+            <i class="icon">storm</i>
             <span data-i18n="TAF"></span>
         </a>
         <a class="tab" data-tab="nearby" data-href="airport/' . $ICAO . '/nearby">
