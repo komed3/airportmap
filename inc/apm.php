@@ -30,10 +30,16 @@
 
     }
 
-    function api_auth() {
+    function api_auth(
+        string $request = ''
+    ) {
 
         if( API_KEY != $_GET['api_key'] ?? null )
-            die( '{"error":"Authentication required. Access denied."}' );
+            die( json_encode( [
+                'request' => $request,
+                'status' => 'error',
+                'msg' => 'Authentication required. Access denied.'
+            ] ) );
 
     }
 
