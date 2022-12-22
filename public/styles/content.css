@@ -578,22 +578,22 @@
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 .metarcheck .metarbox .top {
-    gap: 20px;
     height: 58px;
+    line-height: 58px;
     font-size: 26px;
     font-weight: 800;
 }
 
 .metarcheck .metarbox .top .bug .icon {
-    font-size: 24px;
+    font-size: 26px;
     font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 200;
 }
 
 .metarcheck .metarbox .bot {
-    gap: 10px;
     height: 36px;
     font-size: 15px;
 }

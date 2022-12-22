@@ -658,7 +658,9 @@
         $( '[data-mi]' ).each( function() {
 
             $( this )
-                .html( numberFormat( Math.floor( $( this ).attr( 'data-mi' ) * 1.609344 ) ) + '&#8239;km' )
+                .html( numberFormat( $( this ).attr( 'data-mi' ) * 1.609344, {
+                    maximumFractionDigits: 1
+                } ) + '&#8239;km' )
                 .removeAttr( 'data-mi' );
 
         } );
@@ -679,14 +681,11 @@
 
         } );
 
-        $( '[data-altim]' ).each( function() {
+        $( '[data-altim-hpa]' ).each( function() {
 
             $( this )
-                .html( numberFormat( $( this ).attr( 'data-altim' ), {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                } ) + '&#8239;inHQ' )
-                .removeAttr( 'data-altim' );
+                .html( numberFormat( Math.round( $( this ).attr( 'data-altim-hpa' ) ) ) + '&#8239;hPa' )
+                .removeAttr( 'data-altim-hpa' );
 
         } );
 

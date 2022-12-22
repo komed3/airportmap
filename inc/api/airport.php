@@ -179,17 +179,15 @@
                         <span data-kt="' . $metar['wind_spd'] . '"></span>
                     </div>
                     <div class="bot">
-                        <span class="deg"></span>
-                        <span class="cardinal"></span>
+                        <span class="label" data-i18n="Wind dir"></span>
+                        <b class="cardinal"></b>
                     </div>
                 </div>
                 <div class="metarbox altim">
                     <div class="top">
-                        <span data-altim="' . $metar['altim'] . '"></span>
+                        <span data-altim-hpa="' . ( $metar['altim'] * 33.864 ) . '"></span>
                     </div>
-                    <div class="bot">
-                        ...
-                    </div>
+                    <div class="bot"></div>
                 </div>
             </div>
             <div class="raw-metar">' . $metar['raw'] . '</div>';
