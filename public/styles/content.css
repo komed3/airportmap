@@ -568,7 +568,7 @@
     display: flex;
     flex-flow: column nowrap;
     background: var( --gray-0 );
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
 }
 
@@ -623,6 +623,16 @@
 .metarcheck .metarbox.wind.str-3 .top {
     color: var( --gray-0 );
     background: var( --bad );
+}
+
+.raw-metar {
+    margin: 40px 0;
+    font-family: 'SourceCodePro';
+    font-size: 20px;
+    font-weight: 800;
+    padding: 12px 18px;
+    background: var( --gray-2 );
+    border-radius: 12px;
 }
 
 .tablinks {

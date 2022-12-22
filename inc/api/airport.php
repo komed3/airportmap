@@ -191,7 +191,8 @@
                         ...
                     </div>
                 </div>
-            </div>';
+            </div>
+            <div class="raw-metar">' . $metar['raw'] . '</div>';
 
             break;
 
