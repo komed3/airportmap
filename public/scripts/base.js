@@ -320,14 +320,19 @@
 
                     JSON.parse( sigmet.polygon ).forEach( function( polygon ) {
 
-                        sigmet_marker[ uuid ].addLayer(
-                            L.polygon( polygon.filter( p => p.reverse() ), {
-                                color: sigmet_colors[ sigmet.hazard ] || '#eeeeee',
-                                weight: 1,
-                                fillOpacity: 0.3,
-                                dashArray: '4 4'
-                            } )
-                        );
+                        if( typeof polygon === 'object' && polygon.length > 1 &&
+                            polygon.length == polygon.filter( p => typeof p === 'object' ).length ) {
+
+                            sigmet_marker[ uuid ].addLayer(
+                                L.polygon( polygon.filter( p => p.reverse() ), {
+                                    color: sigmet_colors[ sigmet.hazard ] || '#eeeeee',
+                                    weight: 1,
+                                    fillOpacity: 0.3,
+                                    dashArray: '4 4'
+                                } )
+                            );
+
+                        }
 
                     } );
 
