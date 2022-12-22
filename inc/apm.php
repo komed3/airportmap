@@ -153,7 +153,7 @@
                             <span class="alt ft" data-alt="' . $airport['alt'] . '"></span>
                             <span class="alt msl" data-msl="' . $airport['alt'] . '"></span>
                         </div>
-                        <div class="breadcrumbs" data-bc="T' .
+                        <div class="breadcrumbs no-world" data-bc="T' .
                             $airport['continent'] . '::C' .
                             $airport['country'] . '::R' .
                             $airport['region'] . '::M' .
