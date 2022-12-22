@@ -156,9 +156,40 @@
             $metar = $metars[0];
 
             $content .= '<div class="metarcheck">
-                <div class="metarbox flight-cat cat-' . $metar['flight_cat'] . '">
-                    <div class="top"><span data-i18n="' . $metar['flight_cat'] . '"></span></div>
-                    <div class="bot"><span data-mi="' . $metar['vis_horiz'] . '"></span></div>
+                <div class="metarbox cat cat-' . $metar['flight_cat'] . '">
+                    <div class="top">
+                        <span data-i18n="' . $metar['flight_cat'] . '"></span>
+                    </div>
+                    <div class="bot">
+                        <span class="label" data-i18n="Visibility"></span>
+                        <b data-mi="' . $metar['vis_horiz'] . '"></b>
+                    </div>
+                </div>
+                <div class="metarbox weather">
+                    <div class="top">
+                        <i class="icon"></i>
+                        <span data-temp="' . $metar['temp'] . '"></span></div>
+                    <div class="bot"></div>
+                </div>
+                <div class="metarbox wind str-' . min( 3, floor( $metar['wind_spd'] / 10 ) ) . '" data-hdg="' . $metar['wind_dir'] . '">
+                    <div class="top">
+                        <div class="bug">
+                            <i class="icon">navigation</i>
+                        </div>
+                        <span data-kt="' . $metar['wind_spd'] . '"></span>
+                    </div>
+                    <div class="bot">
+                        <span class="deg"></span>
+                        <span class="cardinal"></span>
+                    </div>
+                </div>
+                <div class="metarbox altim">
+                    <div class="top">
+                        <span data-altim="' . $metar['altim'] . '"></span>
+                    </div>
+                    <div class="bot">
+                        ...
+                    </div>
                 </div>
             </div>';
 

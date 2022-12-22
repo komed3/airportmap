@@ -453,6 +453,18 @@
 
     };
 
+    var getCardinalDir = ( hdg = 0 ) => {
+
+        return i18n( [
+            'N', 'NNE', 'NE', 'ENE',
+            'E', 'ESE', 'SE', 'SSE',
+            'S', 'SSW', 'SW', 'WSW',
+            'W', 'WNW', 'NW', 'NNW',
+            'N'
+        ][ Math.round( hdg / 22.5 ) ] )
+
+    }
+
     var getHeading = (
         p1_lat, p1_lon,
         p2_lat, p2_lon
@@ -473,13 +485,7 @@
 
         return {
             heading: heading,
-            label: i18n( [
-                'N', 'NNE', 'NE', 'ENE',
-                'E', 'ESE', 'SE', 'SSE',
-                'S', 'SSW', 'SW', 'WSW',
-                'W', 'WNW', 'NW', 'NNW',
-                'N'
-            ][ Math.round( heading / 22.5 ) ] )
+            label: getCardinalDir( heading )
         };
 
     };
@@ -657,6 +663,33 @@
 
         } );
 
+        $( '[data-temp]' ).each( function() {
+
+            $( this )
+                .html( numberFormat( $( this ).attr( 'data-temp' ) ) + '&#8239;°C' )
+                .removeAttr( 'data-temp' );
+
+        } );
+
+        $( '[data-kt]' ).each( function() {
+
+            $( this )
+                .html( numberFormat( $( this ).attr( 'data-kt' ) ) + '&#8239;kt' )
+                .removeAttr( 'data-kt' );
+
+        } );
+
+        $( '[data-altim]' ).each( function() {
+
+            $( this )
+                .html( numberFormat( $( this ).attr( 'data-altim' ), {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                } ) + '&#8239;inHQ' )
+                .removeAttr( 'data-altim' );
+
+        } );
+
         $( '[data-hdg]' ).each( function() {
 
             let hdg = parseInt( $( this ).attr( 'data-hdg' ) );
@@ -670,6 +703,7 @@
                 $( this ).removeAttr( 'data-hdg' );
                 $( this ).find( '.bug' ).css( 'transform', 'rotate( ' + hdg + 'deg )' );
                 $( this ).find( '.deg' ).html( hdg + '°' );
+                $( this ).find( '.cardinal' ).html( getCardinalDir( hdg ) );
 
             }
 

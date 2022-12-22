@@ -557,6 +557,74 @@
     color: var( --bad );
 }
 
+.metarcheck {
+    display: grid;
+    grid-template-columns: repeat( 6, 1fr );
+    gap: 15px;
+    margin: 40px 0;
+}
+
+.metarcheck .metarbox {
+    display: flex;
+    flex-flow: column nowrap;
+    background: var( --gray-0 );
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.metarcheck .metarbox .top,
+.metarcheck .metarbox .bot {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.metarcheck .metarbox .top {
+    gap: 20px;
+    height: 58px;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.metarcheck .metarbox .top .bug .icon {
+    font-size: 24px;
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 200;
+}
+
+.metarcheck .metarbox .bot {
+    gap: 10px;
+    height: 36px;
+    font-size: 15px;
+}
+
+.metarcheck .metarbox .bot .label {
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.metarcheck .metarbox.cat.cat-VFR .top,
+.metarcheck .metarbox.wind.str-0 .top {
+    color: var( --gray-0 );
+    background: var( --good );
+}
+
+.metarcheck .metarbox.cat.cat-MVFR .top,
+.metarcheck .metarbox.wind.str-1 .top {
+    background: var( --info );
+}
+
+.metarcheck .metarbox.cat.cat-IFR .top,
+.metarcheck .metarbox.wind.str-2 .top {
+    background: var( --warn );
+}
+
+.metarcheck .metarbox.cat.cat-LIFR .top,
+.metarcheck .metarbox.wind.str-3 .top {
+    color: var( --gray-0 );
+    background: var( --bad );
+}
+
 .tablinks {
     display: flex;
     flex-flow: row nowrap;
