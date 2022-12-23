@@ -22,6 +22,7 @@
     $subtab = $_POST['subtab'] ?? '';
     $airport = $airport->fetch_object();
     $ICAO = $airport->ICAO;
+    $base = 'airport/' . $ICAO;
 
     $content = '<div class="breadcrumbs no-world" data-bc="T' .
         $airport->continent . '::C' .
@@ -34,27 +35,27 @@
         <span class="label">' . $airport->name . '</span>
     </h1>
     <div class="tablinks">
-        <a class="tab" data-tab="info" data-href="airport/' . $ICAO . '/info">
+        <a class="tab" data-tab="info" data-href="' . $base . '/info">
             <i class="icon">location_on</i>
             <span data-i18n="Info"></span>
         </a>
-        <a class="tab" data-tab="metar" data-href="airport/' . $ICAO . '/metar">
+        <a class="tab" data-tab="metar" data-href="' . $base . '/metar">
             <i class="icon">cloud</i>
             <span data-i18n="METAR"></span>
         </a>
-        <a class="tab" data-tab="taf" data-href="airport/' . $ICAO . '/taf">
+        <a class="tab" data-tab="taf" data-href="' . $base . '/taf">
             <i class="icon">storm</i>
             <span data-i18n="TAF"></span>
         </a>
-        <a class="tab" data-tab="nearby" data-href="airport/' . $ICAO . '/nearby">
+        <a class="tab" data-tab="nearby" data-href="' . $base . '/nearby">
             <i class="icon">near_me</i>
             <span data-i18n="Nearby"></span>
         </a>
-        <a class="tab" data-tab="radio" data-href="airport/' . $ICAO . '/radio">
+        <a class="tab" data-tab="radio" data-href="' . $base . '/radio">
             <i class="icon">radar</i>
             <span data-i18n="Radio"></span>
         </a>
-        <a class="tab" data-tab="runway" data-href="airport/' . $ICAO . '/runway">
+        <a class="tab" data-tab="runway" data-href="' . $base . '/runway">
             <i class="icon">flight_takeoff</i>
             <span data-i18n="Runway"></span>
         </a>
@@ -151,72 +152,110 @@
 
         case 'metar':
 
-            $metars = airport_weather( 'metar', $airport->lat, $airport->lon );
+            if( empty( $reports = airport_weather(
+                'metar',
+                $airport->lat,
+                $airport->lon
+            ) ) ) {
 
-            $metar = $metars[0];
+                $content .= '<p data-i18n="No metar data matched for this record."></p>';
 
-            $content .= '<div class="metarselect">
-            </div>
-            <div class="metarcheck">
-                <div class="metarbox cat cat-' . $metar['flight_cat'] . '">
-                    <div class="top">
-                        <span data-i18n="' . $metar['flight_cat'] . '"></span>
+            } else {
+
+                $station = (int) array_search(
+                    $subtab = strtoupper( $subtab ),
+                    $stations = array_column( $reports, 'station' )
+                );
+
+                $stationID = $stations[ $station ];
+
+                $metar = $reports[ $station ];
+
+                $content .= '<div class="metarselect">
+                    <select data-action="select-station" data-base="' . $base . '/metar/">
+                        ' . implode( '', array_map( function( $s ) use ( $stationID ) {
+                            return '<option value="' . $s . '" ' . (
+                                $s == $stationID ? 'selected' : ''
+                            ) . '>' . $s . '</option>';
+                        }, $stations ) ) . '
+                    </select>
+                    <div class="station">
+                        <span>' . $metar['name'] . '</span>
                     </div>
-                    <div class="bot">
-                        <span class="label" data-i18n="Flight cat"></span>
+                    <div class="datetime">
+                        <span data-localtime="' . $metar['reported'] . '" data-offset="' . $metar['offset'] . '"></span>
+                    </div>
+                    <div class="distance">
+                        <i class="icon">near_me</i>
+                        <span data-nm="' . $metar['distance'] . '"></span>
+                    </div>
+                    <div class="ago">
+                        <i class="icon">schedule</i>
+                        <span data-ago="' . $metar['reported'] . '"></span>
                     </div>
                 </div>
-                <div class="metarbox weather" data-wx="' . $metar['wx'] . '" data-vert="' .
-                        $metar['vis_vert'] . '" data-cover="' . $metar['cloud_1_cover'] . '">
-                    <div class="top">
-                        <i class="icon"></i>
-                        <span data-temp="' . $metar['temp'] . '"></span></div>
-                    <div class="bot">
-                        <span class="label"></span>
-                    </div>
-                </div>
-                <div class="metarbox wind str-' . min( 3, floor( $metar['wind_spd'] / 10 ) ) . '" data-hdg="' .
-                        $metar['wind_dir'] . '">
-                    <div class="top">
-                        <div class="bug">
-                            <i class="icon">navigation</i>
+                <div class="metarcheck">
+                    <div class="metarbox cat cat-' . $metar['flight_cat'] . '">
+                        <div class="top">
+                            <span data-i18n="' . $metar['flight_cat'] . '"></span>
                         </div>
-                        <span data-kt="' . $metar['wind_spd'] . '"></span>
+                        <div class="bot">
+                            <span class="label" data-i18n="Flight cat"></span>
+                        </div>
                     </div>
-                    <div class="bot">
-                        <span class="label" data-i18n="Wind"></span>
-                        <b class="cardinal"></b>
-                        <span class="deg"></span>
+                    <div class="metarbox weather" data-wx="' . $metar['wx'] . '" data-vert="' .
+                            $metar['vis_vert'] . '" data-cover="' . $metar['cloud_1_cover'] . '">
+                        <div class="top">
+                            <i class="icon"></i>
+                            <span data-temp="' . $metar['temp'] . '"></span></div>
+                        <div class="bot">
+                            <span class="label"></span>
+                        </div>
+                    </div>
+                    <div class="metarbox wind str-' . min( 3, floor( $metar['wind_spd'] / 10 ) ) . '" data-hdg="' .
+                            $metar['wind_dir'] . '">
+                        <div class="top">
+                            <div class="bug">
+                                <i class="icon">navigation</i>
+                            </div>
+                            <span data-kt="' . $metar['wind_spd'] . '"></span>
+                        </div>
+                        <div class="bot">
+                            <span class="label" data-i18n="Wind"></span>
+                            <b class="cardinal"></b>
+                            <span class="deg"></span>
+                        </div>
+                    </div>
+                    <div class="metarbox visibility vis-' . min( 3, floor( $metar['vis_horiz'] / 2 ) ) . '">
+                        <div class="top">
+                            <b data-mi="' . $metar['vis_horiz'] . '"></b>
+                        </div>
+                        <div class="bot">
+                            <span class="label" data-i18n="Visibility"></span>
+                        </div>
+                    </div>
+                    <div class="metarbox ceiling vis-' . min( 3, floor( ( $metar['vis_vert'] ?? 12000 ) / 1000 ) ) . '">
+                        <div class="top">
+                            ' . ( $metar['vis_vert'] == null
+                                ? '<span data-i18n="Clear"></span>'
+                                : '<b data-alt="' . $metar['vis_vert'] . '"></b>' ) . '
+                        </div>
+                        <div class="bot">
+                            <span class="label" data-i18n="Ceiling"></span>
+                        </div>
+                    </div>
+                    <div class="metarbox altim">
+                        <div class="top">
+                            <span data-altim-hpa="' . ( $metar['altim'] * 33.864 ) . '"></span>
+                        </div>
+                        <div class="bot">
+                            <span class="label" data-i18n="Altimeter"></span>
+                        </div>
                     </div>
                 </div>
-                <div class="metarbox visibility vis-' . min( 3, floor( $metar['vis_horiz'] / 2 ) ) . '">
-                    <div class="top">
-                        <b data-mi="' . $metar['vis_horiz'] . '"></b>
-                    </div>
-                    <div class="bot">
-                        <span class="label" data-i18n="Visibility"></span>
-                    </div>
-                </div>
-                <div class="metarbox ceiling vis-' . min( 3, floor( ( $metar['vis_vert'] ?? 12000 ) / 1000 ) ) . '">
-                    <div class="top">
-                        ' . ( $metar['vis_vert'] == null
-                            ? '<span data-i18n="Clear"></span>'
-                            : '<b data-alt="' . $metar['vis_vert'] . '"></b>' ) . '
-                    </div>
-                    <div class="bot">
-                        <span class="label" data-i18n="Ceiling"></span>
-                    </div>
-                </div>
-                <div class="metarbox altim">
-                    <div class="top">
-                        <span data-altim-hpa="' . ( $metar['altim'] * 33.864 ) . '"></span>
-                    </div>
-                    <div class="bot">
-                        <span class="label" data-i18n="Altimeter"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="rawtext">' . $metar['raw'] . '</div>';
+                <div class="rawtext">' . $metar['raw'] . '</div>';
+
+            }
 
             break;
 
@@ -233,19 +272,19 @@
             ], JSON_NUMERIC_CHECK ) ) . '"></div>
             <div class="tablinks">
                 <span class="space"></span>
-                <a class="tab" data-subtab="nearest" data-href="airport/' . $ICAO . '/nearby/nearest">
+                <a class="tab" data-subtab="nearest" data-href="' . $base . '/nearby/nearest">
                     <span data-i18n="Nearest"></span>
                 </a>
-                <a class="tab" data-subtab="biggest" data-href="airport/' . $ICAO . '/nearby/biggest">
+                <a class="tab" data-subtab="biggest" data-href="' . $base . '/nearby/biggest">
                     <span data-i18n="Biggest"></span>
                 </a>
-                <a class="tab" data-subtab="airports" data-href="airport/' . $ICAO . '/nearby/airports">
+                <a class="tab" data-subtab="airports" data-href="' . $base . '/nearby/airports">
                     <span data-i18n="Airports"></span>
                 </a>
-                <a class="tab" data-subtab="service" data-href="airport/' . $ICAO . '/nearby/service">
+                <a class="tab" data-subtab="service" data-href="' . $base . '/nearby/service">
                     <span data-i18n="Airline Service"></span>
                 </a>
-                <a class="tab" data-subtab="all" data-href="airport/' . $ICAO . '/nearby/all">
+                <a class="tab" data-subtab="all" data-href="' . $base . '/nearby/all">
                     <span data-i18n="All"></span>
                 </a>
                 <span class="space"></span>

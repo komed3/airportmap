@@ -108,7 +108,8 @@
         string $type = 'metar',
         float $lat,
         float $lon,
-        int $limit = 8
+        int $limit = 8,
+        int $max_age = 1
     ) {
 
         global $DB;
@@ -127,8 +128,9 @@
             FROM     ' . DB_PREFIX . $type . ',
                      ' . DB_PREFIX . 'airport
             WHERE    station = ICAO
-            AND      lat BETWEEN ' . ( $lat - 10 ) . ' AND ' . ( $lat + 10 ) . '
-            AND      lon BETWEEN ' . ( $lon - 10 ) . ' AND ' . ( $lon + 10 ) . '
+            AND      lat BETWEEN ' . ( $lat - 15 ) . ' AND ' . ( $lat + 15 ) . '
+            AND      lon BETWEEN ' . ( $lon - 15 ) . ' AND ' . ( $lon + 15 ) . '
+            AND      reported >= DATE_SUB( NOW(), INTERVAL ' . $max_age . ' DAY )
             ORDER BY distance ASC
             LIMIT    0, ' . $limit
         )->fetch_all( MYSQLI_ASSOC );

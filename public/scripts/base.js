@@ -8,6 +8,7 @@
         navaid_marker = {},
         sigmet_marker = {},
         sigmet_colors = {
+            CONV: '#aa66ff',
             DS: '#eebb55',
             ICE: '#4488dd',
             MTW: '#88ee88',
@@ -785,6 +786,14 @@
 
         } );
 
+        $( '[data-nm]' ).each( function() {
+
+            $( this )
+                .html( numberFormat( Math.ceil( $( this ).attr( 'data-nm' ) ) ) + '&#8239;nm' )
+                .removeAttr( 'data-nm' );
+
+        } );
+
         $( '[data-mi]' ).each( function() {
             
             let km = $( this ).attr( 'data-mi' ) * 1.609344;
@@ -861,6 +870,37 @@
             $( this )
                 .html( freqFormat( $( this ).attr( 'data-freq' ) ) )
                 .removeAttr( 'data-freq' );
+
+        } );
+
+        $( '[data-localtime]' ).each( function() {
+
+            let date = new Date( Date.parse( $( this ).attr( 'data-localtime' ) ) + (
+                ( $( this ).attr( 'data-offset' ) || 0 ) * 60000
+            ) );
+
+            $( this )
+                .html(
+                    date.getDate() + '&nbsp;' + i18n( [
+                        'January', 'February', 'March', 'April', 'May', 'June', 'July',
+                        'August', 'September', 'October', 'November', 'December'
+                    ][ date.getMonth() ] ) + '&nbsp;' +
+                    date.getHours().toString().padStart( 2, '0' ) + ':' +
+                    date.getMinutes().toString().padStart( 2, '0' )
+                )
+                .removeAttr( 'data-localtime' );
+
+        } );
+
+        $( '[data-ago]' ).each( function() {
+
+            let diff = Date.now() - Date.parse( $( this ).attr( 'data-ago' ) );
+
+            $( this )
+                .html( diff > 3600000
+                    ? Math.floor( diff / 3600000 ) + '&#8239;' + i18n( 'hrs' )
+                    : Math.floor( diff / 60000 ) + '&#8239;' + i18n( 'min' ) )
+                .removeAttr( 'data-ago' );
 
         } );
 
@@ -969,6 +1009,12 @@
             case 'select-language':
                 $.cookie( 'locale', $( this ).val() );
                 location.reload();
+                break;
+
+            case 'select-station':
+                location.href = baseurl + '/' + (
+                    $( this ).attr( 'data-base' ) || ''
+                ) + $( this ).val();
                 break;
 
         }

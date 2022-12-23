@@ -61,7 +61,7 @@
                 raw, polygon
             ) VALUES (
                 ' . $_id . ', "' . $airport . '", "' . $fir . '", "' . $name . '", "' . $series . '",
-                "' . $hazard . '", "' . $qualifier . '", ' . $severity . ',
+                "' . substr( $hazard, 0, 4 ) . '", "' . $qualifier . '", ' . $severity . ',
                 "' . $valide_from . '", "' . $valide_to . '",
                 ' . $low_1 . ', ' . $low_2 . ', ' . $hi_1 . ', ' . $hi_2 . ',
                 "' . $dir . '", ' . $spd . ', "' . $cng . '",
