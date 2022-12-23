@@ -788,8 +788,8 @@
             let km = $( this ).attr( 'data-mi' ) * 1.609344;
 
             $( this )
-                .html( km > 10
-                    ? numberFormat( 10 ) + '+&#8239;km'
+                .html( km > 9.9
+                    ? numberFormat( 10 ) + '&#8239;km+'
                     : km > 1
                         ? numberFormat( Math.floor( km ) ) + '&#8239;km'
                         : numberFormat( Math.floor( km * 10 ) * 100 ) + '&#8239;m' )
