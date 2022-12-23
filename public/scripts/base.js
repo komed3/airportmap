@@ -18,6 +18,66 @@
             TURB: '#ee8844',
             VA: '#bbbbbb'
         },
+        wx_table = {
+            '+': 'heavy',
+            '-': 'light',
+            RE: 'recent',
+            VC: 'in the vicinity',
+            BC: 'patches of',
+            DR: 'low drifting',
+            MI: 'shallow',
+            PR: 'partial',
+            BL: 'blowing',
+            FZ: 'freezing',
+            SH: 'showers',
+            TS: 'thunderstorms',
+            BR: 'mist',
+            DS: 'dust storm',
+            DU: 'widespread dust',
+            DZ: 'drizzle',
+            FC: 'funnel cloud',
+            FG: 'fog',
+            FU: 'smoke',
+            GR: 'hail',
+            GS: 'small hail',
+            HZ: 'haze',
+            IC: 'ice crystals',
+            PE: 'ice pellets',
+            PO: 'sand whirls',
+            PY: 'spray',
+            RA: 'rain',
+            SA: 'sand',
+            SG: 'snow grains',
+            SN: 'snow',
+            SQ: 'squalls',
+            SS: 'sand storm',
+            UP: 'unknown',
+            VA: 'volcanic ash'
+        },
+        wx_icons = {
+            BR: 'waves',
+            DS: '',
+            DU: '',
+            DZ: '',
+            FC: '',
+            FG: 'foggy',
+            FU: '',
+            GR: '',
+            GS: '',
+            HZ: '',
+            IC: 'ac_unit',
+            PE: 'ac_unit',
+            PO: '',
+            PY: '',
+            RA: 'rainy',
+            SA: '',
+            SG: 'weather_snowy',
+            SN: 'weather_snowy',
+            SQ: '',
+            SS: '',
+            UP: '',
+            VA: ''
+        },
         _config = {};
 
     Math.toRad = ( deg ) => {
@@ -707,6 +767,30 @@
                 $( this ).find( '.cardinal' ).html( getCardinalDir( hdg ) );
 
             }
+
+        } );
+
+        $( '[data-wx]' ).each( function() {
+
+            let text = [ 'clear' ],
+                icon = null;
+
+            $( this ).attr( 'data-wx' ).split( ' ' ).forEach( ( wx ) => {
+
+                let type = wx_table[ wx.slice( -2 ) ] || '',
+                    intensity = wx_table[ wx.match( /[\+|\-]/gmi ) ] || '';
+
+                text.push( ( intensity + ' ' + type ).trim() );
+
+                if( icon === null ) icon = wx_icons[ wx.slice( -2 ) ];
+
+            } );
+
+            $( this ).removeAttr( 'data-wx' );
+            $( this ).find( '.icon' ).html( icon || 'sunny' );
+            $( this ).find( '.label' ).html( text[1].length > 0
+                ? text.slice( 1 ).join( ', ' )
+                : text[0] );
 
         } );
 

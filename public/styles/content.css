@@ -588,7 +588,7 @@
     background: var( --gray-2 );
 }
 
-.metarcheck .metarbox .top .bug .icon {
+.metarcheck .metarbox .top .icon {
     font-size: 26px;
     font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 200;
 }
