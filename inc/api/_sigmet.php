@@ -31,7 +31,7 @@
         $name = $sigmet['properties']['firName'] ?? 'NULL';
         $series = $sigmet['properties']['seriesId'] ?? 'NULL';
 
-        $hazard = strtoupper( $sigmet['properties']['hazard'] ?? 'UNK' );
+        $hazard = substr( strtoupper( $sigmet['properties']['hazard'] ?? 'UNK' ), 0, 4 );
         $qualifier = $sigmet['properties']['qualifier'] ?? 'NULL';
         $severity = $sigmet['properties']['severity'] ?? 'NULL';
 
@@ -61,7 +61,7 @@
                 raw, polygon
             ) VALUES (
                 ' . $_id . ', "' . $airport . '", "' . $fir . '", "' . $name . '", "' . $series . '",
-                "' . substr( $hazard, 0, 4 ) . '", "' . $qualifier . '", ' . $severity . ',
+                "' . $hazard . '", "' . $qualifier . '", ' . $severity . ',
                 "' . $valide_from . '", "' . $valide_to . '",
                 ' . $low_1 . ', ' . $low_2 . ', ' . $hi_1 . ', ' . $hi_2 . ',
                 "' . $dir . '", ' . $spd . ', "' . $cng . '",
