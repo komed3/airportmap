@@ -61,14 +61,15 @@
             'thunderstorm': 'thunderstorm',
             'heavy storm': 'cyclone',
             'squalls': 'cyclone',
-            'sand': 'storm',
             'storm': 'storm',
+            'sand': 'storm',
             'ice': 'ac_unit',
             'ash': 'lens_blur',
             'fog': 'foggy',
-            'smoke': 'foggy',
-            'dust': 'foggy',
             'haze': 'foggy',
+            'dust': 'waves',
+            'smoke': 'waves',
+            'mist': 'waves',
             'snow': 'weather_snowy',
             'hail': 'grain',
             'grain': 'grain',
@@ -605,15 +606,16 @@
             let raw = symbol.match( /^(\+|-|VC|RE)?([A-Z]{2})([A-Z]{2})?$/ ).slice( 1 ),
                 parts = raw.map( p => p in wx_table ? wx_table[ p ] : null ).filter( n => n );
 
+            if( parts.includes( 'thunderstorms' ) ||
+                parts.includes( 'showers' ) ) {
+
+                parts.pop();
+
+            }
+
             text.push( parts.join( ' ' ).trim() );
 
         } );
-
-        if( text.includes( 'thunderstorms' ) || text.includes( 'showers' ) ) {
-
-            text.length = 2;
-
-        }
 
         text = text.join( ', ' );
 

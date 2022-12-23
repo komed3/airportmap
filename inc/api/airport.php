@@ -155,7 +155,9 @@
 
             $metar = $metars[0];
 
-            $content .= '<div class="metarcheck">
+            $content .= '<div class="metarselect">
+            </div>
+            <div class="metarcheck">
                 <div class="metarbox cat cat-' . $metar['flight_cat'] . '">
                     <div class="top">
                         <span data-i18n="' . $metar['flight_cat'] . '"></span>
@@ -173,7 +175,8 @@
                         <span class="label"></span>
                     </div>
                 </div>
-                <div class="metarbox wind str-' . min( 3, floor( $metar['wind_spd'] / 10 ) ) . '" data-hdg="' . $metar['wind_dir'] . '">
+                <div class="metarbox wind str-' . min( 3, floor( $metar['wind_spd'] / 10 ) ) . '" data-hdg="' .
+                        $metar['wind_dir'] . '">
                     <div class="top">
                         <div class="bug">
                             <i class="icon">navigation</i>
@@ -213,7 +216,7 @@
                     </div>
                 </div>
             </div>
-            <div class="raw-metar">' . $metar['raw'] . '</div>';
+            <div class="rawtext">' . $metar['raw'] . '</div>';
 
             break;
 

@@ -637,7 +637,7 @@
     background: var( --bad );
 }
 
-.raw-metar {
+.rawtext {
     margin: 40px 0;
     font-family: 'SourceCodePro';
     font-size: 20px;
