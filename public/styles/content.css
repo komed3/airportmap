@@ -557,6 +557,81 @@
     color: var( --bad );
 }
 
+.metarselect {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    gap: 4px;
+    margin: 40px 0;
+    height: 50px;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.metarselect > * {
+    padding: 0 20px;
+    background: var( --gray-0 );
+}
+
+.metarselect > div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.metarselect .icon {
+    font-size: 18px;
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 200;
+}
+
+.metarselect select {
+    appearance: none;
+    padding-left: 28px;
+    font-family: 'Roboto';
+    font-size: 18px;
+    font-weight: 800;
+    color: var( --gray-0 );
+    background-color: var( --primary );
+    border: 0;
+    cursor: pointer;
+}
+
+.metarselect .station {
+    flex: 1;
+}
+
+.metarselect .distance,
+.metarselect .ago {
+    font-weight: 600;
+}
+
+.metarselect .ago {
+    padding-right: 28px;
+}
+
+.metarselect .distance.dist-0,
+.metarselect .ago.ago-0 {
+    color: var( --gray-0 );
+    background: var( --good );
+}
+
+.metarselect .distance.dist-1,
+.metarselect .ago.ago-1 {
+    background: var( --info );
+}
+
+.metarselect .distance.dist-2,
+.metarselect .ago.ago-2 {
+    background: var( --warn );
+}
+
+.metarselect .distance.dist-3,
+.metarselect .ago.ago-3 {
+    color: var( --gray-0 );
+    background: var( --bad );
+}
+
 .metarcheck {
     display: grid;
     grid-template-columns: repeat( 6, 1fr );

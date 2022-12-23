@@ -180,18 +180,18 @@
                         }, $stations ) ) . '
                     </select>
                     <div class="station">
-                        <span>' . $metar['name'] . '</span>
+                        <a data-href="airport/' . $metar['ICAO'] . '">' . $metar['name'] . '</a>
                     </div>
                     <div class="datetime">
                         <span data-localtime="' . $metar['reported'] . '" data-offset="' . $metar['offset'] . '"></span>
                     </div>
-                    <div class="distance">
+                    <div class="distance dist-' . min( 3, floor( $metar['distance'] / 25 ) ) . '">
                         <i class="icon">near_me</i>
                         <span data-nm="' . $metar['distance'] . '"></span>
                     </div>
-                    <div class="ago">
+                    <div class="ago" data-ago="' . $metar['reported'] . '">
                         <i class="icon">schedule</i>
-                        <span data-ago="' . $metar['reported'] . '"></span>
+                        <span class="ago-echo"></span>
                     </div>
                 </div>
                 <div class="metarcheck">

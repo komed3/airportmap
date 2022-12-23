@@ -897,10 +897,12 @@
             let diff = Date.now() - Date.parse( $( this ).attr( 'data-ago' ) + 'Z' );
 
             $( this )
-                .html( diff > 3600000
+                .addClass( 'ago-' + Math.min( 3, Math.floor( diff / 3600000 ) ) )
+                .removeAttr( 'data-ago' )
+                .find( '.ago-echo' ).html( diff > 3600000
                     ? Math.floor( diff / 3600000 ) + '&#8239;' + i18n( 'hrs' )
-                    : Math.floor( diff / 60000 ) + '&#8239;' + i18n( 'min' ) )
-                .removeAttr( 'data-ago' );
+                    : Math.floor( diff / 60000 ) + '&#8239;' + i18n( 'min' )
+                );
 
         } );
 
