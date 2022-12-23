@@ -834,15 +834,22 @@
 
         $( '[data-hdg]' ).each( function() {
 
-            let hdg = parseInt( $( this ).attr( 'data-hdg' ) );
+            let hdg = parseInt( $( this ).attr( 'data-hdg' ) || -1 );
+
+            $( this ).removeAttr( 'data-hdg' );
 
             if( isNaN( hdg ) ) {
 
                 $( this ).empty();
 
+            } else if( hdg == -1 ) {
+
+                $( this ).find( '.bug' ).css( 'transform', 'rotate( 45deg )' );
+                $( this ).find( '.deg' ).html( '0-360°' );
+                $( this ).find( '.cardinal' ).html( i18n( 'UNK' ) );
+
             } else {
 
-                $( this ).removeAttr( 'data-hdg' );
                 $( this ).find( '.bug' ).css( 'transform', 'rotate( ' + hdg + 'deg )' );
                 $( this ).find( '.deg' ).html( hdg + '°' );
                 $( this ).find( '.cardinal' ).html( getCardinalDir( hdg ) );
