@@ -134,9 +134,11 @@
                 ' . ( $airport->timezone ? '<div class="row">
                     <div class="label" data-i18n="Timezone"></div>
                     <div class="value">
-                        <span data-i18n="' . timezone_name_from_abbr( $airport->timezone ) . '"></span>
-                        <span>(GMT' . str_replace( '+-', '-', '+' .
-                            round( $airport->offset / 60, 1 ) ) . ')</span>
+                        <a data-href="tz/' . $airport->timezone . '">
+                            <span data-i18n="' . $airport->timezone . '"></span>
+                            <span>(GMT' . str_replace( '+-', '-', '+' .
+                                round( $airport->offset / 60, 1 ) ) . ')</span>
+                        </a>
                     </div>
                 </div>' : '' ) . '
             </div>

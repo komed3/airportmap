@@ -587,7 +587,7 @@
 
 .metarselect select {
     appearance: none;
-    padding-left: 28px;
+    padding-left: 24px;
     text-align: center;
     text-align-last: center;
     font-family: 'Roboto';
@@ -618,7 +618,7 @@
 }
 
 .metarselect .ago {
-    padding-right: 28px;
+    padding-right: 24px;
 }
 
 .metarselect .distance.dist-0,
