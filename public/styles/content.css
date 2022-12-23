@@ -595,7 +595,11 @@
 
 .metarcheck .metarbox .bot {
     height: 36px;
+    padding: 0 12px;
     font-size: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .metarcheck .metarbox .bot .label {
