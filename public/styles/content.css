@@ -588,12 +588,23 @@
 .metarselect select {
     appearance: none;
     padding-left: 28px;
+    text-align: center;
+    text-align-last: center;
     font-family: 'Roboto';
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 800;
     color: var( --gray-0 );
     background-color: var( --primary );
     border: 0;
+    cursor: pointer;
+}
+
+.metarselect select option {
+    padding: 0 10px;
+    padding-left: 20px;
+    text-align: left;
+    text-align-last: left;
+    font-size: 18px;
     cursor: pointer;
 }
 
