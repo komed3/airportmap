@@ -894,7 +894,7 @@
 
         $( '[data-ago]' ).each( function() {
 
-            let diff = Date.now() - Date.parse( $( this ).attr( 'data-ago' ) );
+            let diff = Date.now() - Date.parse( $( this ).attr( 'data-ago' ) + 'Z' );
 
             $( this )
                 .html( diff > 3600000
