@@ -185,10 +185,10 @@
                     <div class="datetime">
                         <span data-localtime="' . $metar['reported'] . '" data-offset="' . $metar['offset'] . '"></span>
                     </div>
-                    <div class="distance dist-' . min( 3, floor( $metar['distance'] / 25 ) ) . '">
+                    ' . ( $metar['distance'] > 0 ? '<div class="distance dist-' . min( 3, floor( $metar['distance'] / 25 ) ) . '">
                         <i class="icon">near_me</i>
                         <span data-nm="' . $metar['distance'] . '"></span>
-                    </div>
+                    </div>' : '' ) . '
                     <div class="ago" data-ago="' . $metar['reported'] . '">
                         <i class="icon">schedule</i>
                         <span class="ago-echo"></span>
