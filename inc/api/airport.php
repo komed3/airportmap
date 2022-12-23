@@ -164,7 +164,8 @@
                         <span class="label" data-i18n="Flight cat"></span>
                     </div>
                 </div>
-                <div class="metarbox weather" data-wx="' . $metar['wx'] . '">
+                <div class="metarbox weather" data-wx="' . $metar['wx'] . '" data-vert="' .
+                        $metar['vis_vert'] . '" data-cover="' . $metar['cloud_1_cover'] . '">
                     <div class="top">
                         <i class="icon"></i>
                         <span data-temp="' . $metar['temp'] . '"></span></div>
@@ -193,7 +194,7 @@
                         <span class="label" data-i18n="Visibility"></span>
                     </div>
                 </div>
-                <div class="metarbox ceiling vis-' . min( 3, floor( (int) $metar['vis_vert'] / 1000 ) ) . '">
+                <div class="metarbox ceiling vis-' . min( 3, floor( ( $metar['vis_vert'] ?? 12000 ) / 1000 ) ) . '">
                     <div class="top">
                         ' . ( $metar['vis_vert'] == null
                             ? '<span data-i18n="Clear"></span>'

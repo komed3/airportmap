@@ -19,10 +19,12 @@
             VA: '#bbbbbb'
         },
         wx_table = {
+            // intensity
             '+': 'heavy',
             '-': 'light',
             RE: 'recent',
             VC: 'in the vicinity',
+            // characteristic
             BC: 'patches of',
             DR: 'low drifting',
             MI: 'shallow',
@@ -31,6 +33,7 @@
             FZ: 'freezing',
             SH: 'showers',
             TS: 'thunderstorms',
+            // types
             BR: 'mist',
             DS: 'dust storm',
             DU: 'widespread dust',
@@ -55,28 +58,38 @@
             VA: 'volcanic ash'
         },
         wx_icons = {
-            BR: 'waves',
-            DS: '',
-            DU: '',
-            DZ: '',
-            FC: '',
-            FG: 'foggy',
-            FU: '',
-            GR: '',
-            GS: '',
-            HZ: '',
-            IC: 'ac_unit',
-            PE: 'ac_unit',
-            PO: '',
-            PY: '',
-            RA: 'rainy',
-            SA: '',
-            SG: 'weather_snowy',
-            SN: 'weather_snowy',
-            SQ: '',
-            SS: '',
-            UP: '',
-            VA: ''
+            'thunderstorm': 'thunderstorm',
+            'heavy storm': 'cyclone',
+            'squalls': 'cyclone',
+            'sand': 'storm',
+            'storm': 'storm',
+            'ice': 'ac_unit',
+            'ash': 'lens_blur',
+            'fog': 'foggy',
+            'smoke': 'foggy',
+            'dust': 'foggy',
+            'haze': 'foggy',
+            'snow': 'weather_snowy',
+            'hail': 'grain',
+            'grain': 'grain',
+            'drizzle': 'rainy',
+            'spray': 'rainy',
+            'rain': 'rainy',
+            'overcast': 'cloud',
+            'broken': 'partly_cloudy_day',
+            'few': 'partly_cloudy_day',
+            'cloud': 'cloud',
+            'clear': 'sunny'
+        },
+        wx_clouds = {
+            SKC: 'clear',
+            CLR: 'clear',
+            CAVOK: 'cavok',
+            FEW: 'few clouds',
+            SCT: 'scattered clouds',
+            BKN: 'broken clouds',
+            OVC: 'overcast',
+            OVX: 'overcast'
         },
         _config = {};
 
@@ -550,9 +563,64 @@
 
     };
 
-    var getSlope = ( from, to, length ) => {
+    var wxCloud = ( cloud ) => {
 
-        return Math.ceil( Math.abs( ( to - from ) / length * 100 ) ) + '&#8239;%';
+        return cloud in wx_clouds ? wx_clouds[ cloud ] : 'clear';
+
+    };
+
+    var wxIcon = ( text, def = 'sunny' ) => {
+
+        for( const [ search, icon ] of Object.entries( wx_icons ) ) {
+
+            if( text.indexOf( search ) != -1 ) {
+
+                return icon;
+
+            }
+
+        }
+
+        return def;
+
+    };
+
+    var wxConverter = ( wx, vert = 9999, cover = 'CLR' ) => {
+
+        let text = [];
+
+        if( wx.trim().length == 0 ) {
+
+            let def = wxCloud( cover );
+
+            return {
+                text: def,
+                icon: wxIcon( def )
+            }
+
+        }
+
+        wx.trim().split( ' ' ).forEach( symbol => {
+
+            let raw = symbol.match( /^(\+|-|VC|RE)?([A-Z]{2})([A-Z]{2})?$/ ).slice( 1 ),
+                parts = raw.map( p => p in wx_table ? wx_table[ p ] : null ).filter( n => n );
+
+            text.push( parts.join( ' ' ).trim() );
+
+        } );
+
+        if( text.includes( 'thunderstorms' ) || text.includes( 'showers' ) ) {
+
+            text.length = 2;
+
+        }
+
+        text = text.join( ', ' );
+
+        return {
+            text: text,
+            icon: wxIcon( text )
+        }
 
     };
 
@@ -720,9 +788,11 @@
             let km = $( this ).attr( 'data-mi' ) * 1.609344;
 
             $( this )
-                .html( km > 1
-                    ? numberFormat( Math.floor( km ) ) + '&#8239;km'
-                    : numberFormat( Math.floor( km * 10 ) * 100 ) + '&#8239;m' )
+                .html( km > 10
+                    ? numberFormat( 10 ) + '+&#8239;km'
+                    : km > 1
+                        ? numberFormat( Math.floor( km ) ) + '&#8239;km'
+                        : numberFormat( Math.floor( km * 10 ) * 100 ) + '&#8239;m' )
                 .removeAttr( 'data-mi' );
 
         } );
@@ -772,33 +842,15 @@
 
         $( '[data-wx]' ).each( function() {
 
-            let text = [ 'clear' ],
-                icon = null;
-
-            $( this ).attr( 'data-wx' ).split( ' ' ).forEach( ( wx ) => {
-
-                let type = wx_table[ wx.slice( -2 ) ] || '',
-                    intensity = wx_table[ wx.match( /[\+|\-]/gmi ) ] || '';
-
-                text.push( ( intensity + ' ' + type ).trim() );
-
-                if( icon === null ) icon = wx_icons[ wx.slice( -2 ) ];
-
-            } );
+            let wx = wxConverter(
+                $( this ).attr( 'data-wx' ),
+                $( this ).attr( 'data-vert' ) || 9999,
+                $( this ).attr( 'data-cover' ) || 'CLR'
+            );
 
             $( this ).removeAttr( 'data-wx' );
-            $( this ).find( '.icon' ).html( icon || 'sunny' );
-            $( this ).find( '.label' ).html( text[1].length > 0
-                ? text.slice( 1 ).join( ', ' )
-                : text[0] );
-
-        } );
-
-        $( '[data-slope]' ).each( function() {
-
-            let data = JSON.parse( window.atob( $( this ).attr( 'data-slope' ) ) );
-
-            $( this ).html( getSlope( data.from, data.to, data.length ) ).removeAttr( 'data-slope' );
+            $( this ).find( '.icon' ).html( wx.icon );
+            $( this ).find( '.label' ).html( wx.text );
 
         } );
 
