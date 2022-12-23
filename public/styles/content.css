@@ -657,6 +657,7 @@
 }
 
 .metarcheck .metarbox .top {
+    gap: 12px;
     height: 58px;
     font-size: 26px;
     font-weight: 800;
