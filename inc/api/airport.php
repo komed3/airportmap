@@ -172,6 +172,8 @@
 
                 $metar = $reports[ $station ];
 
+                $metar['vis_horiz'] = $metar['vis_horiz'] ?? 10000; 
+
                 $content .= '<div class="metarselect" data-title="Select weather station">
                     <select data-action="select-station" data-base="' . $base . '/metar/">
                         ' . implode( '', array_map( function( $s ) use ( $stationID ) {

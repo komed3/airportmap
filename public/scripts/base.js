@@ -879,7 +879,8 @@
 
             $( this ).removeAttr( 'data-wx' );
             $( this ).find( '.icon' ).html( wx.icon );
-            $( this ).find( '.label' ).html( wx.text );
+            $( this ).find( '.label' ).html( wx.text.length > 24 ? wx.text.substring( 0, 20 ) + '…' : wx.text )
+                .attr( 'title', wx.text );
 
         } );
 
