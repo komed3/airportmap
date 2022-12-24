@@ -240,6 +240,14 @@
                             ) . '
                         </div>
                     </div>
+                    <div class="metarbox altim">
+                        <div class="top">
+                            <span data-altim-hpa="' . ( $metar['altim'] * 33.864 ) . '"></span>
+                        </div>
+                        <div class="bot">
+                            <span class="label" data-i18n="Altimeter"></span>
+                        </div>
+                    </div>
                     <div class="metarbox visibility vis-' . min( 3, floor( $metar['vis_horiz'] / 2 ) ) . '">
                         <div class="top">
                             <b data-mi="' . $metar['vis_horiz'] . '"></b>
@@ -256,14 +264,6 @@
                         </div>
                         <div class="bot">
                             <span class="label" data-i18n="Ceiling"></span>
-                        </div>
-                    </div>
-                    <div class="metarbox altim">
-                        <div class="top">
-                            <span data-altim-hpa="' . ( $metar['altim'] * 33.864 ) . '"></span>
-                        </div>
-                        <div class="bot">
-                            <span class="label" data-i18n="Altimeter"></span>
                         </div>
                     </div>
                 </div>
