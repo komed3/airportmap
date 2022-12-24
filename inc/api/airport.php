@@ -222,9 +222,15 @@
                             <span data-kt="' . $metar['wind_spd'] . '"></span>
                         </div>
                         <div class="bot">
-                            <span class="label" data-i18n="Wind"></span>
-                            <b class="cardinal"></b>
-                            <span class="deg"></span>
+                            ' . ( $metar['wind_gust'] ? '
+                                <b class="cardinal"></b>
+                                <span class="label" data-i18n="Gust"></span>
+                                <b data-kt="' . $metar['wind_gust'] . '"></b>
+                            ' : '
+                                <span class="label" data-i18n="Wind"></span>
+                                <b class="cardinal"></b>
+                                <span class="deg"></span>
+                            ' ) . '
                         </div>
                     </div>
                     <div class="metarbox visibility vis-' . min( 3, floor( $metar['vis_horiz'] / 2 ) ) . '">
