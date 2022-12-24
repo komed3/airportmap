@@ -204,8 +204,9 @@
                             <span class="label" data-i18n="Flight cat"></span>
                         </div>
                     </div>
-                    <div class="metarbox weather" data-wx="' . $metar['wx'] . '" data-vert="' .
-                            $metar['vis_vert'] . '" data-cover="' . $metar['cloud_1_cover'] . '">
+                    <div class="metarbox weather temp-' . max( 0, min( 5, floor( ( $metar['temp'] + 10 ) / 10 ) ) ) . '" data-wx="' .
+                            $metar['wx'] . '" data-vert="' . $metar['vis_vert'] . '" data-cover="' .
+                            $metar['cloud_1_cover'] . '">
                         <div class="top">
                             <i class="icon"></i>
                             <span data-temp="' . $metar['temp'] . '"></span></div>

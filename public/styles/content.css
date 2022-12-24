@@ -702,6 +702,10 @@
     font-weight: 300;
 }
 
+.metarcheck .metarbox.temp-0 .top {
+    background: var( --airport-tier-3 );
+}
+
 .metarcheck .metarbox.cat.cat-VFR .top,
 .metarcheck .metarbox.wind.str-0 .top,
 .metarcheck .metarbox.visibility.vis-3 .top,
@@ -713,21 +717,24 @@
 .metarcheck .metarbox.cat.cat-MVFR .top,
 .metarcheck .metarbox.wind.str-1 .top,
 .metarcheck .metarbox.visibility.vis-2 .top,
-.metarcheck .metarbox.ceiling.vis-2 .top {
+.metarcheck .metarbox.ceiling.vis-2 .top,
+.metarcheck .metarbox.temp-3 .top {
     background: var( --info );
 }
 
 .metarcheck .metarbox.cat.cat-IFR .top,
 .metarcheck .metarbox.wind.str-2 .top,
 .metarcheck .metarbox.visibility.vis-1 .top,
-.metarcheck .metarbox.ceiling.vis-1 .top {
+.metarcheck .metarbox.ceiling.vis-1 .top,
+.metarcheck .metarbox.temp-4 .top {
     background: var( --warn );
 }
 
 .metarcheck .metarbox.cat.cat-LIFR .top,
 .metarcheck .metarbox.wind.str-3 .top,
 .metarcheck .metarbox.visibility.vis-0 .top,
-.metarcheck .metarbox.ceiling.vis-0 .top {
+.metarcheck .metarbox.ceiling.vis-0 .top,
+.metarcheck .metarbox.temp-5 .top {
     color: var( --gray-0 );
     background: var( --bad );
 }
