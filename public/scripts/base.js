@@ -8,8 +8,10 @@
         navaid_marker = {},
         sigmet_marker = {},
         tz_names = {
-            GTM: 'Greenwich',
-            CET: 'Central Europe',
+            GTM: 'Mean Time',
+            CET: 'Central European',
+            EET: 'Eastern European',
+            EAT: 'Eastern African',
             EST: 'Eastern',
             CST: 'Central',
             MST: 'Mountain',
