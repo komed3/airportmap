@@ -353,6 +353,10 @@
     align-items: center;
 }
 
+.airportlist .list .row .nearby .heading.no-hdg {
+    visibility: hidden;
+}
+
 .airportlist .list .row .nearby .heading .bug {
     display: flex;
     justify-content: center;
@@ -471,6 +475,10 @@
     flex-flow: column nowrap;
     align-items: center;
     gap: 6px;
+}
+
+.runwaylist .runway .heading.no-hdg {
+    visibility: hidden;
 }
 
 .runwaylist .runway .heading .bug {

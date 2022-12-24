@@ -372,7 +372,7 @@
         foreach( $runways as $runway ) {
 
             $content .= '<div class="runway">
-                <div class="heading" data-hdg="' . $runway['l_hdg'] . '">
+                <div class="heading ' . ( $runway['l_hdg'] == null ? 'no-hdg' : '" data-hdg="' . $runway['l_hdg'] . '"' ) . '">
                     <div class="bug"><i class="icon">navigation</i></div>
                     <div class="deg"></div>
                 </div>
