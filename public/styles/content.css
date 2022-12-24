@@ -739,6 +739,18 @@
     background: var( --bad );
 }
 
+.metarcheck .metarbox .top .bug {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 58px;
+}
+
+.metarcheck .metarbox.wind.calm .top .bug,
+.metarcheck .metarbox.wind.vrd .top .bug {
+    display: none;
+}
+
 .rawtext {
     margin: 40px 0;
     font-family: 'SourceCodePro';

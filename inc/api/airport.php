@@ -172,7 +172,7 @@
 
                 $metar = $reports[ $station ];
 
-                $content .= '<div class="metarselect">
+                $content .= '<div class="metarselect" data-title="Select weather station">
                     <select data-action="select-station" data-base="' . $base . '/metar/">
                         ' . implode( '', array_map( function( $s ) use ( $stationID ) {
                             return '<option value="' . $s . '" ' . (
@@ -198,7 +198,7 @@
                 <div class="metarcheck">
                     <div class="metarbox cat cat-' . $metar['flight_cat'] . '">
                         <div class="top">
-                            <span data-i18n="' . $metar['flight_cat'] . '"></span>
+                            <span data-i18n="' . ( $metar['flight_cat'] ?? 'UNK' ) . '"></span>
                         </div>
                         <div class="bot">
                             <span class="label" data-i18n="Flight cat"></span>
@@ -214,7 +214,8 @@
                             <span class="label"></span>
                         </div>
                     </div>
-                    <div class="metarbox wind str-' . min( 3, floor( $metar['wind_spd'] / 10 ) ) . '" data-hdg="' .
+                    <div class="metarbox wind str-' . min( 3, floor( $metar['wind_spd'] / 10 ) ) . ' ' .
+                            ( $metar['wind_spd'] == 0 ? 'calm' : '' ) . '" data-hdg="' .
                             $metar['wind_dir'] . '">
                         <div class="top">
                             <div class="bug">
@@ -223,15 +224,18 @@
                             <span data-kt="' . $metar['wind_spd'] . '"></span>
                         </div>
                         <div class="bot">
-                            ' . ( $metar['wind_gust'] ? '
-                                <b class="cardinal"></b>
-                                <span class="label" data-i18n="Gust"></span>
-                                <b data-kt="' . $metar['wind_gust'] . '"></b>
-                            ' : '
-                                <span class="label" data-i18n="Wind"></span>
-                                <b class="cardinal"></b>
-                                <span class="deg"></span>
-                            ' ) . '
+                            ' . ( $metar['wind_spd'] == 0 ? '
+                                <span class="label" data-i18n="Calm wind"></span>
+                            ' : ( $metar['wind_gust'] ? '
+                                    <b class="cardinal"></b>
+                                    <span class="label" data-i18n="Gust"></span>
+                                    <b data-kt="' . $metar['wind_gust'] . '"></b>
+                                ' : '
+                                    <span class="label" data-i18n="Wind"></span>
+                                    <b class="cardinal"></b>
+                                    <span class="deg"></span>
+                                ' )
+                            ) . '
                         </div>
                     </div>
                     <div class="metarbox visibility vis-' . min( 3, floor( $metar['vis_horiz'] / 2 ) ) . '">

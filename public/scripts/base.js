@@ -75,6 +75,7 @@
             'hail': 'grain',
             'grain': 'grain',
             'drizzle': 'rainy',
+            'shower': 'rainy',
             'spray': 'rainy',
             'rain': 'rainy',
             'overcast': 'cloud',
