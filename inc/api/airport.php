@@ -134,8 +134,10 @@
                 ' . ( $airport->timezone ? '<div class="row">
                     <div class="label" data-i18n="Timezone"></div>
                     <div class="value">
-                        <a data-href="tz/' . $airport->timezone . '" data-tz="' .
-                            $airport->timezone . '"></a>
+                        <a data-href="tz/' . $airport->timezone . '" data-i18n="' . tz_name(
+                            $airport->timezone,
+                            $airport->offset
+                        ) . '"></a>
                     </div>
                 </div>' : '' ) . '
             </div>

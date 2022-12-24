@@ -148,6 +148,35 @@
 
     }
 
+    function tz_name(
+        string $timezone,
+        int $offset
+    ) {
+
+        global $DB;
+
+        $utc = ( $offset < 0 ? '–' : '+' ) .
+            str_pad( floor( abs( $offset ) / 60 ), 2, '0', STR_PAD_LEFT ) . ':' .
+            str_pad( abs( $offset ) % 60, 2, '0', STR_PAD_LEFT );
+
+        $name = $DB->query( '
+            SELECT  name
+            FROM    ' . DB_PREFIX . 'timezone
+            WHERE   tz = "' . $timezone . '"
+        ' );
+
+        if( $name->num_rows == 1 ) {
+
+            return $name->fetch_object()->name . ' (' . $utc . ')';
+
+        } else {
+
+            return 'UTC' . $utc;
+
+        }
+
+    }
+
     function airport_list(
         array $airports = [],
         int $page = 1,

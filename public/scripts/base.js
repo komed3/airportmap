@@ -7,16 +7,6 @@
         airport_marker = {},
         navaid_marker = {},
         sigmet_marker = {},
-        tz_names = {
-            GTM: 'Mean Time',
-            CET: 'Central European',
-            EET: 'Eastern European',
-            EAT: 'Eastern African',
-            EST: 'Eastern',
-            CST: 'Central',
-            MST: 'Mountain',
-            PST: 'Pacific'
-        },
         sigmet_colors = {
             CONV: '#aa66ff',
             DS: '#eebb55',
@@ -887,16 +877,6 @@
             $( this )
                 .html( freqFormat( $( this ).attr( 'data-freq' ) ) )
                 .removeAttr( 'data-freq' );
-
-        } );
-
-        $( '[data-tz]' ).each( function() {
-
-            let tz = $( this ).attr( 'data-tz' );
-
-            $( this )
-                .html( i18n( tz in tz_names ? tz_names[ tz ] + ' (' + tz + ')' : tz ) )
-                .removeAttr( 'data-tz' );
 
         } );
 
