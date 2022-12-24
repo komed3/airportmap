@@ -187,6 +187,61 @@
 
             break;
 
+        case 'municipality':
+
+            $municipality = $_POST['municipality'];
+
+            $airports = $DB->query( '
+                SELECT   *
+                FROM     ' . DB_PREFIX . 'airport
+                WHERE    region = "' . $_POST['region'] . '"
+                AND      municipality = "' . $municipality . '"
+                ORDER BY tier DESC
+            ' )->fetch_all( MYSQLI_ASSOC );
+
+            $region = $DB->query( '
+                SELECT  *
+                FROM    ' . DB_PREFIX . 'region
+                WHERE   code = "' . $_POST['region'] . '"
+            ' );
+
+            if( $region->num_rows != 1 || count( $airports ) == 0 ) {
+
+                echo json_encode( [
+                    'redirect_to' => 'airports'
+                ] );
+
+                exit;
+
+            }
+
+            $region = $region->fetch_object();
+
+            $country = $DB->query( '
+                SELECT  *
+                FROM    ' . DB_PREFIX . 'country
+                WHERE   code = "' . $region->country . '"
+            ' )->fetch_object();
+
+            $map = [
+                'zoom' => $country->zoom,
+                'lat' => $country->lat,
+                'lon' => $country->lon
+            ];
+
+            $headline_label = $municipality;
+            $headline_count = count( $airports );
+            $title = $municipality . ' — ' . $country->name . ', ' . $region->name;
+
+            $content = '<div class="breadcrumbs" data-bc="T' .
+                $country->continent . '::C' .
+                $country->code . '::R' .
+                $region->code . '::M' .
+                $municipality . '" data-bcdb="1"></div>
+            ' . airport_list( $airports, $_POST['page'] ?? 1 );
+
+            break;
+
     }
 
     echo json_encode( [

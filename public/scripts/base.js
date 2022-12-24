@@ -190,7 +190,9 @@
 
         path = window.location.pathname.split( '/' ).filter( n => n );
 
-        switch( ( path[0] || '' ).toString().trim().toLowerCase() ) {
+        let test = ( path[0] || '' ).toString().trim().toLowerCase();
+
+        switch( test ) {
 
             case 'airport':
                 loadPage( 'airport', {
@@ -213,24 +215,27 @@
                 break;
 
             case 'continent':
-                loadPage( 'airports', {
-                    type: 'continent',
-                    code: path[1] || ''
-                } );
-                break;
-
             case 'country':
                 loadPage( 'airports', {
-                    type: 'country',
-                    code: path[1] || ''
+                    type: test,
+                    code: ( path[1] || '' ).replaceAll( '_', ' ' )
                 } );
                 break;
 
             case 'region':
                 loadPage( 'airports', {
                     type: 'region',
-                    code: path[1] || '',
+                    code: ( path[1] || '' ).replaceAll( '_', ' ' ),
                     page: parseInt( path[2] || 1 )
+                } );
+                break;
+
+            case 'municipality':
+                loadPage( 'airports', {
+                    type: 'municipality',
+                    region: ( path[1] || '' ).replaceAll( '_', ' ' ),
+                    municipality: ( path[2] || '' ).replaceAll( '_', ' ' ),
+                    page: parseInt( path[3] || 1 )
                 } );
                 break;
 
@@ -629,6 +634,7 @@
 
     var getBreadcrumbs = ( raw, db = 0 ) => {
 
+        let prev = null;
         let breadcrumbs = [
             '<a href="' + baseurl + '/world">' + i18n( 'World' ) + '</a>'
         ];
@@ -644,7 +650,9 @@
                     C: 'country',
                     R: 'region',
                     M: 'municipality'
-                }[ type ] + '/' + label.replaceAll( ' ', '_' ) + '">' +
+                }[ type ] + '/' + (
+                    type == 'M' ? prev + '/' : ''
+                ) + label.replaceAll( ' ', '_' ) + '">' +
                     i18n( db && type != 'M' ? $.ajax( {
                         url: baseurl + '/inc/api/_bc.php',
                         type: 'post',
@@ -655,6 +663,8 @@
                         },
                         async: false
                     } ).responseText : label ) + '</a>' );
+
+                prev = label;
 
             }
 
