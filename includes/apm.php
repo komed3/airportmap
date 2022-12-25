@@ -3,7 +3,7 @@
     /* set defaults */
 
     date_default_timezone_set( 'UTC' );
-    error_reporting( -1 );
+    error_reporting( 0 );
 
     /* load config */
 
@@ -13,6 +13,7 @@
 
     require_once PATH . 'language.php';
     require_once PATH . 'content.php';
+    require_once PATH . 'map.php';
 
     /* open DB connection */
 
@@ -44,7 +45,7 @@
 
     /* load template */
 
-    if( is_readable( TEMPLATE . ( $tpl = $path[0] ?? '' ) . '.php' ) ) {
+    if( is_readable( TEMPLATE . ( $tpl = $path[0] ?? 'map' ) . '.php' ) ) {
 
         require_once TEMPLATE . $tpl . '.php';
 

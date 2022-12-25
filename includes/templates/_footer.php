@@ -5,5 +5,6 @@
                 <i class="icon">arrow_upward</i>
             </div>
         </div>
+        <?php _site_end(); ?>
     </body>
 </html>

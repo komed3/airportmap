@@ -39,15 +39,21 @@
 
     function _site_header() {
 
-        global $__static_files, $__site_canonical, $__site_title, $__site_desc;
+        global $__site_canonical, $__site_title, $__site_desc;
 
-        echo implode( PHP_EOL, $__static_files );
+        _resources();
 
         ?>
             <link rel="canonical" href="<?php echo SITE . $__site_canonical; ?>" />
             <title><?php _i18n( $__site_title ?? 'site-title-default' ); ?> — Airportmap</title>
             <meta name="description" content="<?php _i18n( $__site_desc ?? 'site-desc-default' ); ?>" />
         <?php
+
+    }
+
+    function _site_end() {
+
+        _resources();
 
     }
 
@@ -121,6 +127,24 @@
                 'css' => '<link rel="stylesheet" href="' . $file . '" id="' . $res_id . '" />',
                 'js' => '<script type="text/javascript" src="' . $file . '" id="' . $res_id . '"></script>'
             ][ $type ];
+
+        }
+
+    }
+
+    function _resources() {
+
+        global $__static_files;
+
+        foreach( $__static_files as $res_id => $content ) {
+
+            if( !empty( $content ) ) {
+
+                echo $content;
+
+                $__static_files[ $res_id ] = null;
+
+            }
 
         }
 

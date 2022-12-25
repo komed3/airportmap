@@ -1,16 +1,22 @@
-var baseurl = window.location.origin,
-    mypos = {};
+var baseurl = window.location.origin;
+
+var get_token = () => {
+
+    return self.crypto.randomUUID();
+
+};
+
+var prevent = ( e ) => {
+
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+
+};
 
 ( function( $ ) {
 
     $( document ).ready( function() {
-
-        navigator.geolocation.getCurrentPosition( function( pos ) {
-            mypos = {
-                lat: pos.coords.latitude,
-                lon: pos.coords.longitude
-            };
-        } );
 
         if( 'serviceWorker' in navigator ) {
 
