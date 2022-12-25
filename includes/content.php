@@ -43,7 +43,7 @@
 
         global $__site_class;
 
-        ?>class="<?php echo implode( ' ', $__site_class ); ?>"<?php
+        echo 'class="' . implode( ' ', $__site_class ) . '"';
 
     }
 
