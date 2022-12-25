@@ -12,12 +12,25 @@
         <link rel="apple-touch-icon" sizes="180x180" href="<?php _base_url( 'apple-touch-icon.png' ); ?>" />
         <link rel="mask-icon" href="<?php _base_url( 'safari-pinned-tab.svg' ); ?>" color="#7050aa" />
         <link rel="manifest" href="<?php _base_url( 'site.webmanifest' ); ?>" />
-        <?php site_header(); ?>
+        <?php _site_header(); ?>
     </head>
-    <body <?php site_class(); ?>>
+    <body <?php _site_classes(); ?>>
         <div id="wrapper">
             <div id="header">
                 <a href="<?php _base_url(); ?>" title="<?php _i18n( 'site-title-default' ); ?>" class="site-logo">
                     <img src="<?php _base_url( 'favicon-48x48.png' ); ?>" alt="" />
                 </a>
+                <?php _site_nav( [ [
+                    'i18n' => 'site-nav-map',
+                    'url' => '',
+                    'check' => ''
+                ], [
+                    'i18n' => 'site-nav-airports',
+                    'url' => 'airports',
+                    'check' => 'airports'
+                ], [
+                    'i18n' => 'site-nav-weather',
+                    'url' => 'weather',
+                    'check' => 'weather'
+                ] ], 'site-nav' ); ?>
             </div>

@@ -30,7 +30,7 @@
 
     /* fetch path */
 
-    $path = array_filter( explode( '/', $_SERVER['REQUEST_URI'] ) );
+    $path = array_values( array_filter( explode( '/', $_SERVER['REQUEST_URI'] ) ) );
 
     /* load template */
 
