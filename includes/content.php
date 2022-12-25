@@ -1,6 +1,8 @@
 <?php
 
+    $__site_canonical;
     $__site_title;
+    $__site_desc;
 
     function _base_url(
         string $url = ''
@@ -24,7 +26,11 @@
 
     function site_header() {
 
-        ?><title><?php _i18n( $__site_title ?? 'site-title-default' ); ?> — Airportmap</title><?php
+        ?>
+            <link rel="canonical" href="<?php echo SITE . $__site_canonical; ?>" />
+            <title><?php _i18n( $__site_title ?? 'site-title-default' ); ?> — Airportmap</title>
+            <meta name="description" content="<?php _i18n( $__site_desc ?? 'site-desc-default' ); ?>" />
+        <?php
 
     }
 
