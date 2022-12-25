@@ -12,6 +12,7 @@
     /* load required files */
 
     require_once PATH . 'language.php';
+    require_once PATH . 'content.php';
 
     /* open DB connection */
 
@@ -35,11 +36,11 @@
 
     if( is_readable( TEMPLATE . ( $tpl = $path[0] ?? '' ) . '.php' ) ) {
 
-        include_once TEMPLATE . $tpl . '.php';
+        require_once TEMPLATE . $tpl . '.php';
 
     } else {
 
-        include_once TEMPLATE . '404.php';
+        require_once TEMPLATE . '404.php';
 
     }
 
