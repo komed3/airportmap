@@ -1,0 +1,101 @@
+@import url( './fonts.css' );
+
+:root {
+
+    --padding-narrow: 50px;
+    --padding-normal: 12%;
+    --padding-wide: 25%;
+
+    --primary: #7050aa;
+    --primary-dark: #382855;
+    --primary-light: #b7a7d4;
+
+    --airport-tier-1: #ff88ee;
+    --airport-tier-2: #77ff44;
+    --airport-tier-3: #77eeff;
+    --airport-special: #f5c100;
+    --airport-closed: #ffbcc5;
+
+    --indicator-good: #00b67a;
+    --indicator-warn: #ff903b;
+    --indicator-info: #ffd400;
+    --indicator-bad: #fa6464;
+
+    --gray-0: #ffffff;
+    --gray-1: #ecedf1;
+    --gray-2: #b8bac0;
+    --gray-3: #878991;
+    --gray-4: #595b64;
+    --gray-5: #2e313b;
+    --gray-6: #1b1d23;
+    --gray-7: #000000;
+
+    --shade-1: rgba( 46 49 59 / 0.10 );
+    --shade-2: rgba( 46 49 59 / 0.25 );
+    --shade-3: rgba( 46 49 59 / 0.33 );
+    --shade-4: rgba( 46 49 59 / 0.50 );
+    --shade-5: rgba( 46 49 59 / 0.66 );
+    --shade-6: rgba( 46 49 59 / 0.75 );
+    --shade-7: rgba( 46 49 59 / 0.90 );
+
+    --light-1: rgba( 255 255 255 / 0.10 );
+    --light-2: rgba( 255 255 255 / 0.25 );
+    --light-3: rgba( 255 255 255 / 0.33 );
+    --light-4: rgba( 255 255 255 / 0.50 );
+    --light-5: rgba( 255 255 255 / 0.66 );
+    --light-6: rgba( 255 255 255 / 0.75 );
+    --light-7: rgba( 255 255 255 / 0.90 );
+
+}
+
+*,
+*:focus,
+*:active {
+    outline: 0 none;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+a:link,
+a:visited,
+a:hover {
+    text-decoration: none;
+    color: inherit;
+    outline: 0 none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+::placeholder {
+    color: var( --gray-3 );
+    opacity: 1;
+}
+
+:-ms-input-placeholder,
+::-ms-input-placeholder {
+    color: var( --gray-3 );
+}
+
+body {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    color: var( --gray-5 );
+    background: var( --gray-1 );
+}

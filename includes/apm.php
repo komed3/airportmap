@@ -28,6 +28,15 @@
 
     i18n_load();
 
+    /* load basic resources */
+
+    add_resource( 'leaflet', 'css', 'https://unpkg.com/leaflet@1.9.3/dist/leaflet.css' );
+    add_resource( 'base', 'css', 'base.css' );
+
+    add_resource( 'jquery', 'js', 'https://code.jquery.com/jquery-3.6.1.min.js' );
+    add_resource( 'jquery-ui', 'js', 'https://code.jquery.com/ui/1.13.2/jquery-ui.min.js' );
+    add_resource( 'leaflet', 'js', 'https://unpkg.com/leaflet@1.9.3/dist/leaflet.js' );
+
     /* fetch path */
 
     $path = array_values( array_filter( explode( '/', $_SERVER['REQUEST_URI'] ) ) );

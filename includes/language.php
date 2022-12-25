@@ -61,4 +61,18 @@
 
     }
 
+    function i18n_locale() {
+
+        global $__i18n_locale;
+
+        return $__i18n_locale;
+
+    }
+
+    function _i18n_locale() {
+
+        echo i18n_locale();
+
+    }
+
 ?>

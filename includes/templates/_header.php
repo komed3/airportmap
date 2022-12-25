@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<?php _i18n_locale(); ?>">
     <head>
         <meta charset="UTF-8" />
         <meta name="author" content="Paul Köhler (komed3)" />

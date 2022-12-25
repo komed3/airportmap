@@ -5,13 +5,15 @@
     define( 'SITE', 'http' . ( $_SERVER['HTTPS'] == 'on' ? 's' : '' ) . '://' .
         $_SERVER['SERVER_NAME'] . '/' );
 
+    define( 'RESOURCE', SITE . 'static/' );
+
     /* paths */
 
     define( 'BASE', __DIR__ . '/' );
     define( 'PATH', BASE . 'includes/' );
     define( 'TEMPLATE', PATH . 'templates/' );
     define( 'LANG', BASE . 'languages/' );
-    define( 'STATIC', BASE . 'static/' );
+    define( 'FILES', BASE . 'static/' );
 
     /* Database connection */
 

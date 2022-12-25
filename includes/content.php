@@ -1,5 +1,7 @@
 <?php
 
+    $__static_files = [];
+
     $__site_canonical;
 
     $__site_title;
@@ -37,7 +39,9 @@
 
     function _site_header() {
 
-        global $__site_canonical, $__site_title, $__site_desc;
+        global $__static_files, $__site_canonical, $__site_title, $__site_desc;
+
+        echo implode( PHP_EOL, $__static_files );
 
         ?>
             <link rel="canonical" href="<?php echo SITE . $__site_canonical; ?>" />
@@ -69,7 +73,7 @@
 
             return '<a href="' . (
                 $link['external'] ?? base_url( $link['url'] ?? '' )
-            ) . '" class="' . (
+            ) . '" class="' . $link['classes'] . ' ' . (
                 ( $link['check'] ?? '' ) == $equal ? 'current' : ''
             ) . '">
                 <span>' . ( $link['text'] ?? i18n( $link['i18n'] ?? '' ) ) . '</span>
@@ -86,6 +90,39 @@
     ) {
 
         echo site_nav( $links, $classes, $check_path );
+
+    }
+
+    function add_resource(
+        string $resource,
+        string $type,
+        string $url
+    ) {
+
+        global $__static_files;
+
+        $res_id = $type . '-' . $resource;
+
+        if( !empty( $dir = [
+                'css' => 'styles/',
+                'js' => 'scripts/'
+            ][ strtolower( trim( $type ) ) ] ?? null ) &&
+            !array_key_exists(
+                $res_id,
+                $__static_files
+            )
+        ) {
+
+            $file = stripos( $url, 'http' ) === false
+                ? RESOURCE . $dir . $url
+                : $url;
+
+            $__static_files[ $res_id ] = [
+                'css' => '<link rel="stylesheet" href="' . $file . '" id="' . $res_id . '" />',
+                'js' => '<script type="text/javascript" src="' . $file . '" id="' . $res_id . '"></script>'
+            ][ $type ];
+
+        }
 
     }
 
