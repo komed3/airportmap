@@ -36,6 +36,7 @@
     add_resource( 'jquery', 'js', 'https://code.jquery.com/jquery-3.6.1.min.js' );
     add_resource( 'jquery-ui', 'js', 'https://code.jquery.com/ui/1.13.2/jquery-ui.min.js' );
     add_resource( 'leaflet', 'js', 'https://unpkg.com/leaflet@1.9.3/dist/leaflet.js' );
+    add_resource( 'base', 'js', 'base.js' );
 
     /* fetch path */
 
