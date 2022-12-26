@@ -4,6 +4,7 @@
     align-items: stretch;
     gap: 20px;
     height: 80px;
+    width: 100%;
     background: var( --gray-0 );
 }
 
@@ -53,4 +54,30 @@
     height: 4px;
     background: var( --primary );
     border-radius: 3px 3px 0 0;
+}
+
+#header .searchform {
+    gap: 10px;
+    margin: 0;
+    padding: 0 20px;
+}
+
+#header .searchform .searchtext {
+    flex: 0 0 auto;
+    width: 240px;
+    height: 40px;
+    padding: 0 16px;
+    font-size: 18px;
+    background: var( --gray-1 );
+    border-radius: 20px;
+}
+
+#header .searchform button {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+#header .searchform button .icon {
+    font-size: 22px;
 }

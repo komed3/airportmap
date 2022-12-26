@@ -101,3 +101,40 @@ body {
     color: var( --gray-5 );
     background: var( --gray-1 );
 }
+
+button {
+    color: var( --gray-0 );
+    background: var( --primary );
+    border: 0;
+    cursor: pointer;
+}
+
+.searchform {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 40px var( --padding-wide );
+}
+
+.searchform .searchtext {
+    flex: 1;
+    height: 60px;
+    padding: 0 30px;
+    font-size: 20px;
+    background: var( --gray-0 );
+    border: 0;
+    border-radius: 30px;
+}
+
+.searchform button {
+    flex: 0 0 auto;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+}
+
+.searchform button .icon {
+    font-size: 30px;
+}

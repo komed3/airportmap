@@ -5,5 +5,7 @@
     "site-nav-airports": "Airports",
     "site-nav-weather": "Weather",
     "site-warning": "Information on this website is for private use only. Do not use for real life flight.",
-    "scroll-to-top": "Scroll to top"
+    "scroll-to-top": "Scroll to top",
+    "searchform-placeholder": "Search for ICAO, IATA or airport name …",
+    "searchform-submit-title": "Search airports all over the world"
 }

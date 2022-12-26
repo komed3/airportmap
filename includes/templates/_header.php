@@ -33,4 +33,5 @@
                     'url' => 'weather',
                     'check' => 'weather'
                 ] ], 'site-nav' ); ?>
+                <?php load_tpl_part( '_searchform' ); ?>
             </div>
