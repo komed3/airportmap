@@ -117,7 +117,7 @@ var maps_config = {},
                 zoomControl: false
             } );
 
-            L.tileLayer( 'https://{s}.basemaps.cartocdn.com/' + ( data.mapStyle || 'light_all' ) + '/{z}/{x}/{y}@2x.png', {
+            L.tileLayer( 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png', {
                 minZoom: data.minZoom || 4,
                 maxZoom: data.maxZoom || 15,
                 attribution: 'Data by <a href="https://osm.org">OSM</a> | © <a href="' + baseurl + '">airportmap.de</a>'

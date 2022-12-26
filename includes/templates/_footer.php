@@ -10,7 +10,7 @@
                 <div class="column">
                     <h3><?php _i18n( 'footer-headline-discover' ); ?></h3>
                     <?php _site_nav( [ [
-                        'i18n' => 'site-nav-map',
+                        'i18n' => 'footer-nav-map',
                         'url' => ''
                     ], [
                         'i18n' => 'footer-nav-search-airports',
