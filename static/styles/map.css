@@ -28,6 +28,11 @@
     background: var( --gray-6 );
 }
 
+.map .map-overlay button:disabled {
+    pointer-events: none;
+    background: var( --primary-light );
+}
+
 .map .map-overlay button .icon {
     font-size: 26px;
 }

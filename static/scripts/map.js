@@ -104,6 +104,27 @@ var maps_config = {},
                 maxWidth: 140
             } ).addTo( maps[ uuid ] );
 
+            maps[ uuid ].on( 'zoomend', function() {
+
+                let zoom = maps[ uuid ].getZoom();
+
+                $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', false );
+                $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', false );
+
+                if( zoom == ( maps_config[ uuid ].minZoom || 4 ) ) {
+
+                    $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', true );
+
+                }
+
+                if( zoom == ( maps_config[ uuid ].maxZoom || 15 ) ) {
+
+                    $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', true );
+
+                }
+
+            } );
+
             if( data.save_position || false ) {
 
                 map_set_position( uuid );
