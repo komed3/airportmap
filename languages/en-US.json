@@ -26,5 +26,12 @@
     "site-language-de-de": "German (DE)",
     "site-warning": "Information on this website is for private use only. Do not use for real life flight.",
     "scroll-to-top": "Scroll to top",
+    "map-overlay-type-airport": "Airports",
+    "map-overlay-type-weather": "Significant weather",
+    "map-overlay-day-night": "Show day-night boundary",
+    "map-overlay-sigmet": "Show significant meteorological phenomena (Sigmets)",
+    "map-overlay-mypos": "Show my current position",
+    "map-overlay-zoom-in": "Zoom in",
+    "map-overlay-zoom-out": "Zoom out",
     "map-overlay-scroll": "Scroll below map"
 }

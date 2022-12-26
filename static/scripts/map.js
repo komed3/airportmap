@@ -33,7 +33,9 @@ var maps_config = {},
                 attribution: 'Data by <a href="https://osm.org">OSM</a> | © <a href="' + baseurl + '">airportmap.de</a>'
             } ).addTo( maps[ uuid ] );
 
-            L.control.scale().addTo( maps[ uuid ] );
+            L.control.scale( {
+                maxWidth: 140
+            } ).addTo( maps[ uuid ] );
 
         } );
 
