@@ -22,6 +22,27 @@ var maps_config = {},
 
     };
 
+    var map_check_zoom = ( uuid ) => {
+
+        let zoom = maps[ uuid ].getZoom();
+
+        $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', false );
+        $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', false );
+
+        if( zoom == ( maps_config[ uuid ].minZoom || 4 ) ) {
+
+            $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', true );
+
+        }
+
+        if( zoom == ( maps_config[ uuid ].maxZoom || 15 ) ) {
+
+            $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', true );
+
+        }
+
+    };
+
     var map_day_night_border = ( uuid ) => {
 
         if( 'terminator' in maps_layer[ uuid ] ) {
@@ -41,7 +62,9 @@ var maps_config = {},
             maps_layer[ uuid ].terminator.addTo( maps[ uuid ] );
 
             setInterval( () => {
-                map_day_night_update( maps_layer[ uuid ].terminator );
+                map_day_night_update(
+                    maps_layer[ uuid ].terminator
+                );
             }, 250 );
 
         }
@@ -106,22 +129,7 @@ var maps_config = {},
 
             maps[ uuid ].on( 'zoomend', function() {
 
-                let zoom = maps[ uuid ].getZoom();
-
-                $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', false );
-                $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', false );
-
-                if( zoom == ( maps_config[ uuid ].minZoom || 4 ) ) {
-
-                    $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', true );
-
-                }
-
-                if( zoom == ( maps_config[ uuid ].maxZoom || 15 ) ) {
-
-                    $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', true );
-
-                }
+                map_check_zoom( uuid );
 
             } );
 
@@ -136,6 +144,8 @@ var maps_config = {},
                 } );
 
             }
+
+            map_check_zoom( uuid );
 
             if( ( $.cookie( 'apm_day_night' ) || 0 ) == 1 ) {
 
