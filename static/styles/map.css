@@ -25,6 +25,7 @@
 }
 
 .map .map-overlay button.active {
+    color: var( --indicator-info );
     background: var( --gray-6 );
 }
 
