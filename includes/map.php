@@ -31,7 +31,7 @@
                             <button class="map-sigmet" map-action="sigmet" title="<?php _i18n( 'map-overlay-sigmet' ); ?>">
                                 <i class="icon">cyclone</i>
                             </button>
-                            <button class="map-day-night active" map-action="day-night" title="<?php _i18n( 'map-overlay-day-night' ); ?>">
+                            <button class="map-day-night" map-action="day-night" title="<?php _i18n( 'map-overlay-day-night' ); ?>">
                                 <i class="icon">nights_stay</i>
                             </button>
                             <button class="map-mypos" map-action="mypos" title="<?php _i18n( 'map-overlay-mypos' ); ?>">

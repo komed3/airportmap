@@ -24,19 +24,37 @@ var maps_config = {},
 
     var map_day_night_border = ( uuid ) => {
 
-        maps_layer[ uuid ].terminator = L.terminator();
+        if( 'terminator' in maps_layer[ uuid ] ) {
 
-        maps_layer[ uuid ].terminator.addTo( maps[ uuid ] );
+            $.cookie( 'apm_day_night', 0 );
 
-        setInterval( () => {
-            map_day_night_update( maps_layer[ uuid ].terminator );
-        }, 250 );
+            maps[ uuid ].removeLayer( maps_layer[ uuid ].terminator );
+
+            delete maps_layer[ uuid ].terminator;
+
+        } else {
+
+            $.cookie( 'apm_day_night', 1 );
+
+            maps_layer[ uuid ].terminator = L.terminator();
+
+            maps_layer[ uuid ].terminator.addTo( maps[ uuid ] );
+
+            setInterval( () => {
+                map_day_night_update( maps_layer[ uuid ].terminator );
+            }, 250 );
+
+        }
 
     };
 
     var map_day_night_update = ( t ) => {
 
-        t.setTime();
+        if( t ) {
+
+            t.setTime();
+
+        }
 
     };
 
@@ -86,14 +104,23 @@ var maps_config = {},
                 maxWidth: 140
             } ).addTo( maps[ uuid ] );
 
-            map_set_position( uuid );
-            map_day_night_border( uuid );
-
-            maps[ uuid ].on( 'moveend', function() {
+            if( data.save_position || false ) {
 
                 map_set_position( uuid );
 
-            } );
+                maps[ uuid ].on( 'moveend', function() {
+
+                    map_set_position( uuid );
+
+                } );
+
+            }
+
+            if( ( $.cookie( 'apm_day_night' ) || 0 ) == 1 ) {
+
+                $( '[map-action="day-night"]' ).click();
+
+            }
 
         } );
 
@@ -114,6 +141,11 @@ var maps_config = {},
 
             case 'zoom-out':
                 map.zoomOut();
+                break;
+
+            case 'day-night':
+                $( this ).toggleClass( 'active' );
+                map_day_night_border( uuid );
                 break;
 
             case 'mypos':
