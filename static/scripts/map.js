@@ -1,7 +1,26 @@
 var maps_config = {},
-    maps = {};
+    maps = {},
+    maps_layer = {};
 
 ( function( $ ) {
+
+    var day_night_border = ( uuid ) => {
+
+        maps_layer[ uuid ].terminator = L.terminator();
+
+        maps_layer[ uuid ].terminator.addTo( maps[ uuid ] );
+
+        setInterval( () => {
+            day_night_update( maps_layer[ uuid ].terminator );
+        }, 250 );
+
+    };
+
+    var day_night_update = ( t ) => {
+
+        t.setTime();
+
+    };
 
     $( document ).ready( function() {
 
@@ -13,6 +32,8 @@ var maps_config = {},
             $( this ).attr( 'id', uuid ).removeAttr( 'map-data' );
 
             maps_config[ uuid ] = data;
+
+            maps_layer[ uuid ] = {};
 
             maps[ uuid ] = L.map( uuid, {
                 center: [ 40, -75 ],
@@ -37,7 +58,41 @@ var maps_config = {},
                 maxWidth: 140
             } ).addTo( maps[ uuid ] );
 
+            day_night_border( uuid );
+
         } );
+
+    } );
+
+    $( document ).on( 'click', '[map-action]', function( e ) {
+
+        prevent( e );
+
+        let uuid = $( this ).closest( '.map' ).attr( 'id' ),
+            map = maps[ uuid ];
+
+        switch( ( $( this ).attr( 'map-action' ) || '' ).trim().toLowerCase() ) {
+
+            case 'zoom-in':
+                map.zoomIn();
+                break;
+
+            case 'zoom-out':
+                map.zoomOut();
+                break;
+
+            case 'mypos':
+                navigator.geolocation.getCurrentPosition( ( position ) => {
+
+                    map.setView( new L.LatLng(
+                        position.coords.latitude,
+                        position.coords.longitude
+                    ), 8 );
+
+                } );
+                break;
+
+        }
 
     } );
 

@@ -24,6 +24,10 @@
     background: var( --primary-dark );
 }
 
+.map .map-overlay button.active {
+    background: var( --gray-6 );
+}
+
 .map .map-overlay button .icon {
     font-size: 26px;
 }
