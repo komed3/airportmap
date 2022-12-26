@@ -26,6 +26,22 @@ var prevent = ( e ) => {
 
     } );
 
+    $( document ).on( 'click', '[data-action]', function( e ) {
+
+        prevent( e );
+
+        switch( $( this ).attr( 'data-action' ) ) {
+
+            case 'scroll-to-top':
+                $( 'html, body' ).animate( {
+                    scrollTop: 0
+                }, 'fast' );
+                break;
+
+        }
+
+    } );
+
     $( document ).scroll( function() {
 
         if( $( window ).scrollTop() > 200 ) {

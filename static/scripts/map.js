@@ -36,8 +36,8 @@ var maps_config = {},
             maps_layer[ uuid ] = {};
 
             maps[ uuid ] = L.map( uuid, {
-                center: [ 40, -75 ],
-                zoom: data.zoom || 8,
+                center: [ 40.7, -74 ],
+                zoom: data.zoom || 6,
                 maxBounds: L.latLngBounds(
                     L.latLng( -90, -180 ),
                     L.latLng(  90,  180 )
@@ -90,6 +90,12 @@ var maps_config = {},
                     ), 8 );
 
                 } );
+                break;
+
+            case 'scroll-below':
+                $( 'html, body' ).animate( {
+                    scrollTop: map._size.y
+                }, 'fast' );
                 break;
 
         }
