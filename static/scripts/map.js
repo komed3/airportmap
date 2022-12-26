@@ -4,19 +4,37 @@ var maps_config = {},
 
 ( function( $ ) {
 
-    var day_night_border = ( uuid ) => {
+    var map_set_position = ( uuid ) => {
+
+        let pos = maps[ uuid ].getCenter(),
+            zoom = maps[ uuid ].getZoom();
+
+        $.cookie( 'apm_lastpos', JSON.stringify( {
+            lat: pos.lat,
+            lon: pos.lng,
+            zoom: zoom
+        } ) );
+
+        location.hash =
+            zoom + '/' +
+            pos.lat.toFixed(4) + '/' +
+            pos.lng.toFixed(4)
+
+    };
+
+    var map_day_night_border = ( uuid ) => {
 
         maps_layer[ uuid ].terminator = L.terminator();
 
         maps_layer[ uuid ].terminator.addTo( maps[ uuid ] );
 
         setInterval( () => {
-            day_night_update( maps_layer[ uuid ].terminator );
+            map_day_night_update( maps_layer[ uuid ].terminator );
         }, 250 );
 
     };
 
-    var day_night_update = ( t ) => {
+    var map_day_night_update = ( t ) => {
 
         t.setTime();
 
@@ -31,13 +49,23 @@ var maps_config = {},
 
             $( this ).attr( 'id', uuid ).removeAttr( 'map-data' );
 
+            let position = ( pos = $.cookie( 'apm_lastpos' ) || false )
+                ? JSON.parse( pos ) : {
+                    lat: 40.7,
+                    lon: -74,
+                    zoom: 6
+                };
+
             maps_config[ uuid ] = data;
 
             maps_layer[ uuid ] = {};
 
             maps[ uuid ] = L.map( uuid, {
-                center: [ 40.7, -74 ],
-                zoom: data.zoom || 6,
+                center: [
+                    position.lat,
+                    position.lon
+                ],
+                zoom: position.zoom,
                 maxBounds: L.latLngBounds(
                     L.latLng( -90, -180 ),
                     L.latLng(  90,  180 )
@@ -58,7 +86,14 @@ var maps_config = {},
                 maxWidth: 140
             } ).addTo( maps[ uuid ] );
 
-            day_night_border( uuid );
+            map_set_position( uuid );
+            map_day_night_border( uuid );
+
+            maps[ uuid ].on( 'moveend', function() {
+
+                map_set_position( uuid );
+
+            } );
 
         } );
 
