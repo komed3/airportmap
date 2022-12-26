@@ -18,6 +18,11 @@ var prevent = ( e ) => {
 
     $( document ).ready( function() {
 
+        $.cookie.defaults = {
+            path: '/',
+            expires: 365
+        };
+
         if( 'serviceWorker' in navigator ) {
 
             navigator.serviceWorker.register( baseurl + '/service-worker.js', { scope: '/' } );
