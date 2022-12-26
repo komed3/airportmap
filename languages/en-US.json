@@ -25,5 +25,6 @@
     "site-language-en-us": "English (US)",
     "site-language-de-de": "German (DE)",
     "site-warning": "Information on this website is for private use only. Do not use for real life flight.",
-    "scroll-to-top": "Scroll to top"
+    "scroll-to-top": "Scroll to top",
+    "map-overlay-scroll": "Scroll below map"
 }

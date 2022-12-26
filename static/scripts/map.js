@@ -15,18 +15,19 @@ var maps_config = {},
             maps_config[ uuid ] = data;
 
             maps[ uuid ] = L.map( uuid, {
-                center: [ 50, 20 ],
-                zoom: data.zoom || 12,
+                center: [ 40, -75 ],
+                zoom: data.zoom || 8,
                 maxBounds: L.latLngBounds(
                     L.latLng( -90, -180 ),
                     L.latLng(  90,  180 )
                 ),
                 maxBoundsViscosity: 1,
-                preferCanvas: true,
-                scrollWheelZoom: data.wheelZoom || true
+                preferCanvas: data.preferCanvas || true,
+                scrollWheelZoom: data.wheelZoom || true,
+                zoomControl: false
             } );
 
-            L.tileLayer( 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png', {
+            L.tileLayer( 'https://{s}.basemaps.cartocdn.com/' + ( data.mapStyle || 'light_all' ) + '/{z}/{x}/{y}@2x.png', {
                 minZoom: data.minZoom || 4,
                 maxZoom: data.maxZoom || 15,
                 attribution: 'Data by <a href="https://osm.org">OSM</a> | © <a href="' + baseurl + '">airportmap.de</a>'

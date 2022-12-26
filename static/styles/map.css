@@ -2,3 +2,31 @@
     width: 100%;
     height: calc( 100vh - 80px );
 }
+
+.map .map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+}
+
+.map .map-overlay .icon {
+    font-size: 26px;
+}
+
+.map .map-overlay .map-scroll-below {
+    position: absolute;
+    left: calc( 50% - 20px );
+    bottom: 20px;
+    width: 40px;
+    height: 70px;
+    border-radius: 20px;
+    transform: scale( 1 );
+    transition: transform 100ms ease-out;
+}
+
+.map .map-overlay .map-scroll-below:hover {
+    transform: scale( 1.1 );
+}

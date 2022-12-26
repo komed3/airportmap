@@ -2,7 +2,7 @@
 
     _header();
 
-    _map( [], 'full-screen' );
+    _map( [], 'full-screen full-overlay' );
 
     _footer();
 
