@@ -33,5 +33,6 @@
     "map-overlay-mypos": "Show my current position",
     "map-overlay-zoom-in": "Zoom in",
     "map-overlay-zoom-out": "Zoom out",
+    "map-overlay-settings": "Map settings",
     "map-overlay-scroll": "Scroll below map"
 }
