@@ -71,6 +71,43 @@ var maps_config = {},
 
     };
 
+    var map_load_marker = ( uuid ) => {
+
+        let bounds = maps[ uuid ].getBounds(),
+            layer = maps_layer[ uuid ].marker;
+
+        $.ajax( {
+            url: apiurl + 'airport_layer.php',
+            type: 'post',
+            data: {
+                token: get_token(),
+                bounds: {
+                    lat: [ bounds.getNorth(), bounds.getSouth() ],
+                    lon: [ bounds.getEast(), bounds.getWest() ]
+                }
+            },
+            success: ( raw ) => {
+
+                let res = JSON.parse( raw );
+
+                layer.clearLayers();
+
+                Object.values( res.response.airports ).forEach( ( airport ) => {
+
+                    layer.addLayer(
+                        L.marker( L.latLng(
+                            parseFloat( airport.lat ),
+                            parseFloat( airport.lon )
+                        ) )
+                    );
+
+                } );
+
+            }
+        } );
+
+    };
+
     var map_sigmets = ( uuid ) => {
 
         if( 'sigmet' in maps_layer[ uuid ] ) {
@@ -103,7 +140,7 @@ var maps_config = {},
                 data: {
                     token: get_token()
                 },
-                success: function( raw ) {
+                success: ( raw ) => {
 
                     let res = JSON.parse( raw );
 
@@ -229,25 +266,25 @@ var maps_config = {},
                 maxWidth: 140
             } ).addTo( maps[ uuid ] );
 
-            maps[ uuid ].on( 'zoomend', function() {
+            maps[ uuid ].on( 'zoomend', () => {
 
                 map_check_zoom( uuid );
 
             } );
 
+            map_check_zoom( uuid );
+
             if( data.save_position || false ) {
 
                 map_set_position( uuid );
 
-                maps[ uuid ].on( 'moveend', function() {
+                maps[ uuid ].on( 'moveend', () => {
 
                     map_set_position( uuid );
 
                 } );
 
             }
-
-            map_check_zoom( uuid );
 
             if( ( $.cookie( 'apm_day_night' ) || 0 ) == 1 ) {
 
@@ -260,6 +297,16 @@ var maps_config = {},
                 $( '[map-action="sigmet"]' ).click();
 
             }
+
+            maps_layer[ uuid ].marker = L.layerGroup().addTo( maps[ uuid ] );
+
+            maps[ uuid ].on( 'moveend', () => {
+
+                map_load_marker( uuid );
+
+            } );
+
+            map_load_marker( uuid );
 
         } );
 
