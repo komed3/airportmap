@@ -2,6 +2,12 @@
     display: none !important;
 }
 
+.map .leaflet-control-scale-line {
+    text-shadow: none;
+    background: var( --light-2 );
+    border-color: var( --gray-3 );
+}
+
 .map.full-screen {
     width: 100%;
     height: calc( 100vh - 80px );

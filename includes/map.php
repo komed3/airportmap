@@ -20,7 +20,7 @@
                 <div class="map-overlay">
                     <div class="map-control">
                         <div class="map-control-group">
-                            <button class="map-type-airport" map-action="type" data-type="airport" title="<?php _i18n( 'map-overlay-type-airport' ); ?>">
+                            <button class="map-type-airport active" map-action="type" data-type="airport" title="<?php _i18n( 'map-overlay-type-airport' ); ?>">
                                 <i class="icon">location_searching</i>
                             </button>
                             <button class="map-type-weather" map-action="type" data-type="weather" title="<?php _i18n( 'map-overlay-type-weather' ); ?>">
@@ -30,6 +30,9 @@
                         <div class="map-control-group">
                             <button class="map-sigmet" map-action="sigmet" title="<?php _i18n( 'map-overlay-sigmet' ); ?>">
                                 <i class="icon">cyclone</i>
+                            </button>
+                            <button class="map-navaids" map-action="navaids" title="<?php _i18n( 'map-overlay-navaids' ); ?>">
+                                <i class="icon">cell_tower</i>
                             </button>
                             <button class="map-day-night" map-action="day-night" title="<?php _i18n( 'map-overlay-day-night' ); ?>">
                                 <i class="icon">nights_stay</i>

@@ -41,14 +41,17 @@ var maps_config = {},
 
         $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', false );
         $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', false );
+        $( '#' + uuid + ' [map-action="navaids"]' ).hide();
 
-        if( zoom == ( maps_config[ uuid ].minZoom || 4 ) ) {
+        if( zoom <= ( maps_config[ uuid ].minZoom || 4 ) ) {
 
             $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', true );
 
-        }
+        } else if( zoom >= 10 ) {
 
-        if( zoom == ( maps_config[ uuid ].maxZoom || 15 ) ) {
+            $( '#' + uuid + ' [map-action="navaids"]' ).show();
+
+        } else if( zoom >= ( maps_config[ uuid ].maxZoom || 15 ) ) {
 
             $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', true );
 
