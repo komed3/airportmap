@@ -13,7 +13,8 @@
 
     /* auth api access */
 
-    if( API_KEY != strtolower( trim( $_GET['api_key'] ?? '' ) ) ) {
+    if( !array_key_exists( 'token', $_POST ) &&
+        API_KEY != strtolower( trim( $_GET['api_key'] ?? '' ) ) ) {
 
         api_exit( [
             'error' => 'auth',

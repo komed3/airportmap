@@ -1,6 +1,19 @@
 var maps_config = {},
     maps = {},
-    maps_layer = {};
+    maps_layer = {},
+    maps_timeout = {},
+    map_sigmet_colors = {
+        CONV: '#aa66ff',
+        DS: '#eebb55',
+        ICE: '#4488dd',
+        MTW: '#88ee88',
+        SS: '#eebb55',
+        TC: '#dd66ee',
+        TS: '#ff2200',
+        TSGR: '#ff2200',
+        TURB: '#ee8844',
+        VA: '#bbbbbb'
+    };
 
 ( function( $ ) {
 
@@ -43,15 +56,99 @@ var maps_config = {},
 
     };
 
+    var map_remove_layer = ( uuid, layer, clear = false ) => {
+
+        maps[ uuid ].removeLayer( maps_layer[ uuid ][ layer ] );
+
+        delete maps_layer[ uuid ][ layer ];
+
+        if( clear ) {
+
+            clearTimeout( maps_timeout[ uuid ][ layer ] );
+            clearInterval( maps_timeout[ uuid ][ layer ] );
+
+        }
+
+    };
+
+    var map_sigmets = ( uuid ) => {
+
+        if( 'sigmet' in maps_layer[ uuid ] ) {
+
+            $.cookie( 'apm_sigmet', 0 );
+
+            map_remove_layer( uuid, 'sigmet', true );
+
+        } else {
+
+            $.cookie( 'apm_sigmet', 1 );
+
+            maps_layer[ uuid ].sigmet = L.layerGroup().addTo( maps[ uuid ] );
+
+            map_sigmets_update( uuid );
+
+        }
+
+    };
+
+    var map_sigmets_update = ( uuid ) => {
+
+        if( 'sigmet' in maps_layer[ uuid ] ) {
+
+            let layer = maps_layer[ uuid ].sigmet;
+
+            $.ajax( {
+                url: apiurl + 'sigmet_layer.php',
+                type: 'post',
+                data: {
+                    token: get_token()
+                },
+                success: function( raw ) {
+
+                    let res = JSON.parse( raw );
+
+                    layer.clearLayers();
+
+                    Object.values( res.response.sigmets ).forEach( function( sigmet ) {
+
+                        JSON.parse( sigmet.polygon ).forEach( function( polygon ) {
+
+                            if( typeof polygon === 'object' && polygon.length > 1 &&
+                                polygon.length == polygon.filter( p => typeof p === 'object' ).length ) {
+
+                                layer.addLayer(
+                                    L.polygon( polygon.filter( p => p.reverse() ), {
+                                        color: map_sigmet_colors[ sigmet.hazard ] || '#eeeeee',
+                                        weight: 1,
+                                        fillOpacity: 0.25,
+                                        dashArray: '4 4'
+                                    } )
+                                );
+
+                            }
+
+                        } );
+
+                    } );
+
+                    maps_timeout[ uuid ].sigmet = setTimeout( () => {
+                        map_sigmets_update( uuid );
+                    }, 60000 );
+
+                }
+            } );
+
+        }
+
+    };
+
     var map_day_night_border = ( uuid ) => {
 
         if( 'terminator' in maps_layer[ uuid ] ) {
 
             $.cookie( 'apm_day_night', 0 );
 
-            maps[ uuid ].removeLayer( maps_layer[ uuid ].terminator );
-
-            delete maps_layer[ uuid ].terminator;
+            map_remove_layer( uuid, 'terminator', true );
 
         } else {
 
@@ -61,21 +158,23 @@ var maps_config = {},
 
             maps_layer[ uuid ].terminator.addTo( maps[ uuid ] );
 
-            setInterval( () => {
-                map_day_night_update(
-                    maps_layer[ uuid ].terminator
-                );
-            }, 250 );
+            maps_layer[ uuid ].terminator.bringToBack();
+
+            map_day_night_update( uuid );
 
         }
 
     };
 
-    var map_day_night_update = ( t ) => {
+    var map_day_night_update = ( uuid ) => {
 
-        if( t ) {
+        if( 'terminator' in maps_layer[ uuid ] ) {
 
-            t.setTime();
+            maps_layer[ uuid ].terminator.setTime();
+
+            maps_timeout[ uuid ].terminator = setTimeout( () => {
+                map_day_night_update( uuid );
+            }, 250 );
 
         }
 
@@ -100,6 +199,7 @@ var maps_config = {},
             maps_config[ uuid ] = data;
 
             maps_layer[ uuid ] = {};
+            maps_timeout[ uuid ] = {};
 
             maps[ uuid ] = L.map( uuid, {
                 center: [
@@ -153,6 +253,12 @@ var maps_config = {},
 
             }
 
+            if( ( $.cookie( 'apm_sigmet' ) || 0 ) == 1 ) {
+
+                $( '[map-action="sigmet"]' ).click();
+
+            }
+
         } );
 
     } );
@@ -172,6 +278,11 @@ var maps_config = {},
 
             case 'zoom-out':
                 map.zoomOut();
+                break;
+
+            case 'sigmet':
+                $( this ).toggleClass( 'active' );
+                map_sigmets( uuid );
                 break;
 
             case 'day-night':
