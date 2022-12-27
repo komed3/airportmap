@@ -135,12 +135,28 @@ mapicon {
     background-image: url( './../resources/heliport.svg' );
 }
 
+.airport-altiport mapicon {
+    background-image: url( './../resources/altiport.svg' );
+}
+
 .airport-seaplane mapicon {
     background-image: url( './../resources/seaplane-base.svg' );
 }
 
+.airport-balloonport mapicon {
+    background-image: url( './../resources/balloonport.svg' );
+}
+
+.airport-closed mapicon {
+    background-image: url( './../resources/closed-airfield.svg' );
+}
+
 .restriction-private mapicon {
     background-image: url( './../resources/private-airfield.svg' );
+}
+
+.restriction-military mapicon {
+    background-image: url( './../resources/air-base.svg' );
 }
 
 .searchform {
