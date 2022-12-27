@@ -56,6 +56,8 @@
         array $content = []
     ) {
 
+        global $DB;
+
         api_output( $content );
 
         $DB->close();

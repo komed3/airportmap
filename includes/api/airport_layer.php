@@ -46,7 +46,7 @@
             FROM     ' . DB_PREFIX . 'airport
             WHERE    ' . $query . '
             ORDER BY ' . ( $_POST['orderby'] ?? 'tier DESC' ) . '
-            LIMIT    0, ' . ( $_POST['limit'] ?? 50 )
+            LIMIT    0, ' . ( $_POST['limit'] ?? 40 )
         )->fetch_all( MYSQLI_ASSOC )
     ] );
 
