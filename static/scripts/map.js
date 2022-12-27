@@ -6,7 +6,7 @@ var maps_config = {},
         CONV: '#aa66ff',
         DS: '#eebb55',
         ICE: '#4488dd',
-        MTW: '#88ee88',
+        MTW: '#44aa44',
         SS: '#eebb55',
         TC: '#dd66ee',
         TS: '#ff2200',
@@ -220,7 +220,9 @@ var maps_config = {},
             L.tileLayer( 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png', {
                 minZoom: data.minZoom || 4,
                 maxZoom: data.maxZoom || 15,
-                attribution: 'Data by <a href="https://osm.org">OSM</a> | © <a href="' + baseurl + '">airportmap.de</a>'
+                attribution: '© <a href="https://osm.org">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a> | ' +
+                    'Data by <a href="' + baseurl + '">airportmap.de</a>',
+                subdomains: 'abcd'
             } ).addTo( maps[ uuid ] );
 
             L.control.scale( {
