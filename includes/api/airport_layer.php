@@ -42,7 +42,7 @@
 
     api_exit( [
         'airports' => $DB->query( '
-            SELECT   ICAO, name, lat, lon, alt, type
+            SELECT   ICAO, name, lat, lon, alt, type, restriction
             FROM     ' . DB_PREFIX . 'airport
             WHERE    ' . $query . '
             ORDER BY ' . ( $_POST['orderby'] ?? 'tier DESC' ) . '

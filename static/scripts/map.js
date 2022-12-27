@@ -102,7 +102,7 @@ var maps_config = {},
                             icon: L.divIcon( {
                                 iconSize: [ 20, 20 ],
                                 iconAnchor: [ 10, 10 ],
-                                className: 'airport-' + airport.type,
+                                className: 'airport-' + airport.type + ' restriction-' + airport.restriction,
                                 html: '<mapicon></mapicon>'
                             } )
                         } )

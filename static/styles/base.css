@@ -131,6 +131,18 @@ mapicon {
     background-image: url( './../resources/civil-small.svg' );
 }
 
+.airport-heliport mapicon {
+    background-image: url( './../resources/heliport.svg' );
+}
+
+.airport-seaplane mapicon {
+    background-image: url( './../resources/seaplane-base.svg' );
+}
+
+.restriction-private mapicon {
+    background-image: url( './../resources/private-airfield.svg' );
+}
+
 .searchform {
     display: flex;
     flex-flow: row nowrap;
