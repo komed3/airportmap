@@ -1,4 +1,5 @@
 var baseurl = window.location.origin,
+    resurl = baseurl + '/static/resources/',
     apiurl = baseurl + '/includes/api/';
 
 var get_token = () => {

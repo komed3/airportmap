@@ -98,7 +98,14 @@ var maps_config = {},
                         L.marker( L.latLng(
                             parseFloat( airport.lat ),
                             parseFloat( airport.lon )
-                        ) )
+                        ), {
+                            icon: L.divIcon( {
+                                iconSize: [ 20, 20 ],
+                                iconAnchor: [ 10, 10 ],
+                                className: 'airport-' + airport.type,
+                                html: '<mapicon></mapicon>'
+                            } )
+                        } )
                     );
 
                 } );

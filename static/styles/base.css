@@ -12,7 +12,7 @@
     --primary-dark: #382855;
     --primary-light: #b7a7d4;
 
-    --airport-tier-1: #ff88ee;
+    --airport-tier-1: #ee22cc;
     --airport-tier-2: #77ff44;
     --airport-tier-3: #77eeff;
     --airport-special: #f5c100;
@@ -107,6 +107,28 @@ button {
     background: var( --primary );
     border: 0;
     cursor: pointer;
+}
+
+mapicon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.airport-large mapicon {
+    background-image: url( './../resources/civil-large.svg' );
+}
+
+.airport-medium mapicon {
+    background-image: url( './../resources/civil-medium.svg' );
+}
+
+.airport-small mapicon {
+    background-image: url( './../resources/civil-small.svg' );
 }
 
 .searchform {
