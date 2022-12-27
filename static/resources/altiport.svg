@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg">
-<g stroke-linejoin="bevel">
-<path d="m13.229 3.3073a9.9219 9.9219 0 0 0-9.9219 9.9219 9.9219 9.9219 0 0 0 9.9219 9.9219 9.9219 9.9219 0 0 0 9.9219-9.9219 9.9219 9.9219 0 0 0-9.9219-9.9219zm0 3.3073a6.6146 6.6146 0 0 1 6.6146 6.6146 6.6146 6.6146 0 0 1-6.6146 6.6146 6.6146 6.6146 0 0 1-6.6146-6.6146 6.6146 6.6146 0 0 1 6.6146-6.6146zm0 1.3033-4.0137 9.0501h8.0274l-4.0137-9.0501z" fill="#2e313b" stroke-width=".18461" style="paint-order:fill markers stroke"/>
-<path d="m-26.735 15.575h16.801" fill="#f00" stroke-width=".15875" style="paint-order:fill markers stroke"/>
+<g fill="#2e313b" stroke-linejoin="bevel">
+<path d="m13.229 3.3073c-5.4797-2e-7 -9.9219 4.4422-9.9219 9.9219 0 5.4797 4.4422 9.9219 9.9219 9.9219 5.4797 0 9.9219-4.4422 9.9219-9.9219 0-5.4797-4.4422-9.9219-9.9219-9.9219zm0 1.4552c4.676 1e-7 8.4667 3.7907 8.4667 8.4667 0 4.676-3.7907 8.4667-8.4667 8.4667-4.676 0-8.4667-3.7907-8.4667-8.4667-4e-7 -4.676 3.7907-8.4667 8.4667-8.4667z" stroke-width=".2018" style="paint-order:fill markers stroke"/>
+<path d="m12.013 7.1287-4.553 10.266h9.1061z" stroke-width=".20942" style="paint-order:fill markers stroke"/>
+<path d="m15.669 10.122-0.93586 2.1094 2.2903 5.1635h1.8707z" stroke-width=".14836" style="paint-order:fill markers stroke"/>
 </g>
 </svg>
