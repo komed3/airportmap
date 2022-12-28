@@ -117,6 +117,12 @@ var maps_config = {},
                                 className: 'navaid-' + navaid.type,
                                 html: '<navicon></navicon>'
                             } )
+                        } ).bindTooltip(
+                            '<div class="IDENT">' + navaid.ident + '</div>' +
+                            '<div class="freq">' + navaid.type + ' ' + freq_format( navaid.frequency ) + '</div>', {
+                            className: 'tooltip-navaid',
+                            direction: 'center',
+                            opacity: 1
                         } )
                     );
 
@@ -135,6 +141,12 @@ var maps_config = {},
                                 className: 'airport-' + airport.type + ' restriction-' + airport.restriction,
                                 html: '<mapicon></mapicon>'
                             } )
+                        } ).bindTooltip(
+                            '<div class="ICAO">' + airport.ICAO + '</div>' +
+                            '<div class="name">' + airport.name + '</div>', {
+                            className: 'tooltip-airport',
+                            direction: 'center',
+                            opacity: 1
                         } )
                     );
 

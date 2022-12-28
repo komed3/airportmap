@@ -16,6 +16,28 @@ var prevent = ( e ) => {
 
 };
 
+var number_format = ( number, options = {} ) => {
+
+    return ( new Intl.NumberFormat(
+        $.cookie( 'locale' ) || 'en-US',
+        options
+    ) ).format( number );
+
+}
+
+var freq_format = ( frequency ) => {
+
+    frequency = parseInt( frequency );
+
+    return frequency > 1000
+        ? number_format( frequency / 1000, {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 3
+        } ) + '&#8239;MHz'
+        : number_format( frequency ) + '&#8239;kHz';
+
+};
+
 ( function( $ ) {
 
     $( document ).ready( function() {

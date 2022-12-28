@@ -1,13 +1,3 @@
-.map .leaflet-attribution-flag {
-    display: none !important;
-}
-
-.map .leaflet-control-scale-line {
-    text-shadow: none;
-    background: var( --light-2 );
-    border-color: var( --gray-3 );
-}
-
 .map.full-screen {
     width: 100%;
     height: calc( 100vh - 80px );
@@ -87,4 +77,42 @@
 
 .map .map-overlay .map-scroll-below:hover {
     transform: scale( 1.1 );
+}
+
+.map .leaflet-attribution-flag {
+    display: none !important;
+}
+
+.map .leaflet-control-scale-line {
+    text-shadow: none;
+    background: var( --light-2 );
+    border-color: var( --gray-3 );
+}
+
+.map .leaflet-tooltip.tooltip-airport,
+.map .leaflet-tooltip.tooltip-navaid {
+    padding: 0 0 54px 0;
+    text-align: center;
+    text-shadow: 0 0 2px var( --gray-0 );
+    line-height: 1.1;
+    color: var( --gray-6 );
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+.map .leaflet-tooltip.tooltip-navaid {
+    padding-bottom: 62px;
+}
+
+.map .leaflet-tooltip.tooltip-airport .ICAO,
+.map .leaflet-tooltip.tooltip-navaid .IDENT {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.map .leaflet-tooltip.tooltip-airport .name,
+.map .leaflet-tooltip.tooltip-navaid .freq {
+    font-size: 13px;
+    font-weight: 600;
 }
