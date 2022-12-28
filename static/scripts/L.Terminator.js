@@ -28,7 +28,8 @@
 			weight: 0,
 			fillColor: '#000000',
 			fillOpacity: 0.25,
-			resolution: 5
+			resolution: 5,
+			interactive: false
 		},
 
 		initialize: function (options) {
