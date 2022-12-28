@@ -20,10 +20,10 @@
                 <div class="map-overlay">
                     <div class="map-control">
                         <div class="map-control-group">
-                            <button class="map-type-airport active" map-action="type" data-type="airport" title="<?php _i18n( 'map-overlay-type-airport' ); ?>">
+                            <button class="map-type-airport" map-action="type" map-type="airport" title="<?php _i18n( 'map-overlay-type-airport' ); ?>">
                                 <i class="icon">location_searching</i>
                             </button>
-                            <button class="map-type-weather" map-action="type" data-type="weather" title="<?php _i18n( 'map-overlay-type-weather' ); ?>">
+                            <button class="map-type-weather" map-action="type" map-type="weather" title="<?php _i18n( 'map-overlay-type-weather' ); ?>">
                                 <i class="icon">rainy</i>
                             </button>
                         </div>

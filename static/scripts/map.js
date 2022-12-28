@@ -1,5 +1,6 @@
 var maps_config = {},
     maps = {},
+    maps_type = {},
     maps_layer = {},
     maps_timeout = {},
     map_sigmet_colors = {
@@ -286,6 +287,8 @@ var maps_config = {},
             maps_layer[ uuid ] = {};
             maps_timeout[ uuid ] = {};
 
+            maps_type[ uuid ] = $.cookie( 'apm_map_type' ) || 'airport';
+
             maps[ uuid ] = L.map( uuid, {
                 center: [
                     position.lat,
@@ -352,7 +355,7 @@ var maps_config = {},
 
             } );
 
-            map_load_marker( uuid );
+            $( '#' + uuid + ' [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' ).click();
 
             maps[ uuid ].on( 'zoomend', () => {
 
@@ -381,6 +384,13 @@ var maps_config = {},
 
             case 'zoom-out':
                 map.zoomOut();
+                break;
+
+            case 'type':
+                $( '[map-action="type"]' ).removeClass( 'active' );
+                $( this ).addClass( 'active' );
+                $.cookie( 'apm_map_type', $( this ).attr( 'map-type' ) );
+                map_load_marker( uuid );
                 break;
 
             case 'navaids':
