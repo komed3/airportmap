@@ -76,7 +76,8 @@ var maps_config = {},
 
     var map_load_marker = ( uuid ) => {
 
-        let bounds = maps[ uuid ].getBounds(),
+        let map = maps[ uuid ],
+            bounds = map.getBounds(),
             layer = maps_layer[ uuid ].marker;
 
         $.ajax( {
@@ -87,13 +88,35 @@ var maps_config = {},
                 bounds: {
                     lat: [ bounds.getNorth(), bounds.getSouth() ],
                     lon: [ bounds.getEast(), bounds.getWest() ]
-                }
+                },
+                navaids: +!!(
+                    map.getZoom() >= 10 &&
+                    ( $.cookie( 'apm_navaids' ) || 0 ) == 1
+                )
             },
             success: ( raw ) => {
 
                 let res = JSON.parse( raw );
 
                 layer.clearLayers();
+
+                Object.values( res.response.navaids ).forEach( ( navaid ) => {
+
+                    layer.addLayer(
+                        L.marker( L.latLng(
+                            parseFloat( navaid.lat ),
+                            parseFloat( navaid.lon )
+                        ), {
+                            icon: L.divIcon( {
+                                iconSize: [ 24, 24 ],
+                                iconAnchor: [ 12, 12 ],
+                                className: 'navaid-' + navaid.type,
+                                html: '<navicon></navicon>'
+                            } )
+                        } )
+                    );
+
+                } );
 
                 Object.values( res.response.airports ).forEach( ( airport ) => {
 
@@ -308,6 +331,12 @@ var maps_config = {},
 
             }
 
+            if( ( $.cookie( 'apm_navaids' ) || 0 ) == 1 ) {
+
+                $( '[map-action="navaids"]' ).click();
+
+            }
+
             maps_layer[ uuid ].marker = L.layerGroup().addTo( maps[ uuid ] );
 
             maps[ uuid ].on( 'moveend', () => {
@@ -337,6 +366,12 @@ var maps_config = {},
 
             case 'zoom-out':
                 map.zoomOut();
+                break;
+
+            case 'navaids':
+                $( this ).toggleClass( 'active' );
+                $.cookie( 'apm_navaids', +!!$( this ).hasClass( 'active' ) );
+                map_load_marker( uuid );
                 break;
 
             case 'sigmet':

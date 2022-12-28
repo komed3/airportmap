@@ -12,12 +12,6 @@
     --primary-dark: #382855;
     --primary-light: #b7a7d4;
 
-    --airport-tier-1: #ee22cc;
-    --airport-tier-2: #77ff44;
-    --airport-tier-3: #77eeff;
-    --airport-special: #f5c100;
-    --airport-closed: #ffbcc5;
-
     --indicator-good: #00b67a;
     --indicator-warn: #ff903b;
     --indicator-info: #ffd400;
@@ -109,7 +103,7 @@ button {
     cursor: pointer;
 }
 
-mapicon {
+mapicon, navicon {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -117,6 +111,11 @@ mapicon {
     background-position: center center;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+navicon {
+    width: 24px;
+    height: 24px;
 }
 
 .airport-large mapicon {
@@ -157,6 +156,22 @@ mapicon {
 
 .airport-closed mapicon {
     background-image: url( './../resources/closed-airfield.svg' );
+}
+
+.navaid-NDB navicon {
+    background-image: url( './../resources/navaid-ndb.svg' );
+}
+
+.navaid-VOR navicon {
+    background-image: url( './../resources/navaid-vor.svg' );
+}
+
+.navaid-TACAN navicon {
+    background-image: url( './../resources/navaid-tacan.svg' );
+}
+
+.navaid-VORTAC navicon {
+    background-image: url( './../resources/navaid-vortac.svg' );
 }
 
 .searchform {
