@@ -49,7 +49,7 @@
             FROM     ' . DB_PREFIX . 'airport
             WHERE    ' . $query . '
             ORDER BY ' . ( $_POST['orderby'] ?? 'tier DESC' ) . '
-            LIMIT    0, ' . ( $_POST['limit'] ?? 100 )
+            LIMIT    0, ' . ( $_POST['limit'] ?? 75 )
         )->fetch_all( MYSQLI_ASSOC ),
         'navaids' => ( $_POST['navaids'] ?? 0 ) == 1 ? $DB->query( '
             SELECT  ident, type, name, frequency, lat, lon, alt

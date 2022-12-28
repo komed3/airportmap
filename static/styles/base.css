@@ -166,6 +166,18 @@ navicon {
     background-image: url( './../resources/navaid-vor.svg' );
 }
 
+.navaid-DME navicon {
+    background-image: url( './../resources/navaid-dme.svg' );
+}
+
+.navaid-VOR-DME navicon {
+    background-image: url( './../resources/navaid-vor-dme.svg' );
+}
+
+.navaid-NDB-DME navicon {
+    background-image: url( './../resources/navaid-ndb-dme.svg' );
+}
+
 .navaid-TACAN navicon {
     background-image: url( './../resources/navaid-tacan.svg' );
 }
