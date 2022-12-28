@@ -47,13 +47,17 @@ var maps_config = {},
 
             $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', true );
 
-        } else if( zoom >= 10 ) {
+        }
 
-            $( '#' + uuid + ' [map-action="navaids"]' ).show();
-
-        } else if( zoom >= ( maps_config[ uuid ].maxZoom || 15 ) ) {
+        if( zoom >= ( maps_config[ uuid ].maxZoom || 15 ) ) {
 
             $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', true );
+
+        }
+
+        if( zoom >= 10 ) {
+
+            $( '#' + uuid + ' [map-action="navaids"]' ).show();
 
         }
 

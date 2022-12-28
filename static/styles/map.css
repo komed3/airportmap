@@ -28,21 +28,24 @@
 }
 
 .map .map-overlay button {
+    background: var( --gray-4 );
+    opacity: 0.7;
     transition: all 100ms ease-out;
 }
 
 .map .map-overlay button:hover {
-    background: var( --primary-dark );
+    opacity: 1;
 }
 
 .map .map-overlay button.active {
-    color: var( --indicator-info );
     background: var( --gray-6 );
+    opacity: 1;
 }
 
 .map .map-overlay button:disabled {
     pointer-events: none;
-    background: var( --primary-light );
+    opacity: 0.25;
+    cursor: not-allowed;
 }
 
 .map .map-overlay button .icon {
