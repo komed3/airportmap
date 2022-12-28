@@ -259,16 +259,15 @@ var maps_config = {},
         $( '[map-data]' ).each( function() {
 
             let data = JSON.parse( window.atob( $( this ).attr( 'map-data' ) ) || '{}' ),
-                uuid = get_token();
-
-            $( this ).attr( 'id', uuid ).removeAttr( 'map-data' );
-
-            let position = ( pos = $.cookie( 'apm_lastpos' ) || false )
+                uuid = get_token(),
+                position = ( pos = $.cookie( 'apm_lastpos' ) || false )
                 ? JSON.parse( pos ) : {
                     lat: 40.7,
                     lon: -74,
                     zoom: 6
                 };
+
+            $( this ).attr( 'id', uuid ).removeAttr( 'map-data' );
 
             maps_config[ uuid ] = data;
 
@@ -303,25 +302,7 @@ var maps_config = {},
                 maxWidth: 140
             } ).addTo( maps[ uuid ] );
 
-            maps[ uuid ].on( 'zoomend', () => {
-
-                map_check_zoom( uuid );
-
-            } );
-
-            map_check_zoom( uuid );
-
-            if( data.save_position || false ) {
-
-                map_set_position( uuid );
-
-                maps[ uuid ].on( 'moveend', () => {
-
-                    map_set_position( uuid );
-
-                } );
-
-            }
+            maps_layer[ uuid ].marker = L.layerGroup().addTo( maps[ uuid ] );
 
             if( ( $.cookie( 'apm_day_night' ) || 0 ) == 1 ) {
 
@@ -341,7 +322,17 @@ var maps_config = {},
 
             }
 
-            maps_layer[ uuid ].marker = L.layerGroup().addTo( maps[ uuid ] );
+            if( data.save_position || false ) {
+
+                map_set_position( uuid );
+
+                maps[ uuid ].on( 'moveend', () => {
+
+                    map_set_position( uuid );
+
+                } );
+
+            }
 
             maps[ uuid ].on( 'moveend', () => {
 
@@ -350,6 +341,14 @@ var maps_config = {},
             } );
 
             map_load_marker( uuid );
+
+            maps[ uuid ].on( 'zoomend', () => {
+
+                map_check_zoom( uuid );
+
+            } );
+
+            map_check_zoom( uuid );
 
         } );
 
