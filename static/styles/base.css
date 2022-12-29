@@ -209,8 +209,8 @@ wxicon {
 windflag {
     pointer-events: none;
     position: absolute;
-    top: calc( 50% - 33px );
-    left: calc( 50% - 33px );
+    top: calc( 50% - 35px );
+    left: calc( 50% - 35px );
     width: 70px;
     height: 70px;
     background-color: transparent;
