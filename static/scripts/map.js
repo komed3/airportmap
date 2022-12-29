@@ -83,6 +83,12 @@ var maps_config = {},
 
     var map_load_marker = ( uuid ) => {
 
+        if( 'marker' in maps_timeout[ uuid ] ) {
+
+            clearTimeout( maps_timeout[ uuid ].marker );
+
+        }
+
         let map = maps[ uuid ],
             bounds = map.getBounds(),
             layer = maps_layer[ uuid ].marker;
@@ -176,12 +182,22 @@ var maps_config = {},
                                     iconSize: [ 20, 20 ],
                                     iconAnchor: [ 10, 10 ],
                                     className: 'cat-' + station.cat,
-                                    html: '<wxicon></wxicon>'
+                                    html: '<wxicon></wxicon><windflag class="wind-' +
+                                        Math.floor( station.wind_spd / 5 ).toString().padStart( 2, '0' ) + '" style="transform: rotate( ' +
+                                        station.wind_dir + 'deg );"></windflag>'
                                 } )
                             } )
                         );
 
                     } );
+
+                }
+
+                if( maps_type[ uuid ] == 'weather' ) {
+
+                    maps_timeout[ uuid ].marker = setTimeout( function() {
+                        map_load_marker( uuid );
+                    }, 300000 );
 
                 }
 

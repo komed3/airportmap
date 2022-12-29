@@ -113,7 +113,7 @@ mapicon, navicon, wxicon {
     background-repeat: no-repeat;
 }
 
-navicon, wxicon {
+navicon {
     width: 24px;
     height: 24px;
 }
@@ -186,6 +186,10 @@ navicon, wxicon {
     background-image: url( './../resources/navaid-vortac.svg' );
 }
 
+wxicon {
+    background-image: url( './../resources/cat-UNK.svg' );
+}
+
 .cat-VFR wxicon {
     background-image: url( './../resources/cat-VFR.svg' );
 }
@@ -202,8 +206,78 @@ navicon, wxicon {
     background-image: url( './../resources/cat-LIFR.svg' );
 }
 
-.cat-UNK wxicon {
-    background-image: url( './../resources/cat-UNK.svg' );
+windflag {
+    pointer-events: none;
+    position: absolute;
+    top: calc( 50% - 33px );
+    left: calc( 50% - 33px );
+    width: 70px;
+    height: 70px;
+    background-color: transparent;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+windflag.wind-01 {
+    background-image: url( './../resources/wind-01.svg' );
+}
+
+windflag.wind-02 {
+    background-image: url( './../resources/wind-02.svg' );
+}
+
+windflag.wind-03 {
+    background-image: url( './../resources/wind-03.svg' );
+}
+
+windflag.wind-04 {
+    background-image: url( './../resources/wind-04.svg' );
+}
+
+windflag.wind-05 {
+    background-image: url( './../resources/wind-05.svg' );
+}
+
+windflag.wind-06 {
+    background-image: url( './../resources/wind-06.svg' );
+}
+
+windflag.wind-07 {
+    background-image: url( './../resources/wind-07.svg' );
+}
+
+windflag.wind-08 {
+    background-image: url( './../resources/wind-08.svg' );
+}
+
+windflag.wind-09 {
+    background-image: url( './../resources/wind-09.svg' );
+}
+
+windflag.wind-10 {
+    background-image: url( './../resources/wind-10.svg' );
+}
+
+windflag.wind-11 {
+    background-image: url( './../resources/wind-11.svg' );
+}
+
+windflag.wind-12 {
+    background-image: url( './../resources/wind-12.svg' );
+}
+
+windflag.wind-13 {
+    background-image: url( './../resources/wind-13.svg' );
+}
+
+windflag.wind-14 {
+    background-image: url( './../resources/wind-14.svg' );
+}
+
+windflag.wind-15 {
+    background-image: url( './../resources/wind-15.svg' );
 }
 
 .searchform {
