@@ -27,7 +27,7 @@
 		options: {
 			weight: 0,
 			fillColor: '#000000',
-			fillOpacity: 0.25,
+			fillOpacity: 0.15,
 			resolution: 5,
 			interactive: false
 		},
