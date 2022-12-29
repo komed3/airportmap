@@ -89,9 +89,8 @@
     border-color: var( --gray-3 );
 }
 
-.map .leaflet-tooltip.tooltip-airport,
-.map .leaflet-tooltip.tooltip-navaid {
-    padding: 0 0 54px 0;
+.map .leaflet-tooltip {
+    padding: 0;
     text-align: center;
     text-shadow: 0 0 2px var( --gray-0 );
     line-height: 1.1;
@@ -99,6 +98,10 @@
     background: transparent;
     border: 0;
     box-shadow: none;
+}
+
+.map .leaflet-tooltip.tooltip-airport {
+    padding-bottom: 54px;
 }
 
 .map .leaflet-tooltip.tooltip-navaid {
@@ -114,5 +117,20 @@
 .map .leaflet-tooltip.tooltip-airport .name,
 .map .leaflet-tooltip.tooltip-navaid .freq {
     font-size: 13px;
+    font-weight: 600;
+}
+
+.map[zoom="0"] .leaflet-tooltip.tooltip-sigmet,
+.map[zoom="1"] .leaflet-tooltip.tooltip-sigmet,
+.map[zoom="2"] .leaflet-tooltip.tooltip-sigmet,
+.map[zoom="3"] .leaflet-tooltip.tooltip-sigmet,
+.map[zoom="4"] .leaflet-tooltip.tooltip-sigmet,
+.map[zoom="5"] .leaflet-tooltip.tooltip-sigmet,
+.map[zoom="6"] .leaflet-tooltip.tooltip-sigmet {
+    visibility: hidden;
+}
+
+.map .leaflet-tooltip.tooltip-sigmet .hazard {
+    font-size: 12px;
     font-weight: 600;
 }

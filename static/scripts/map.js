@@ -40,6 +40,8 @@ var maps_config = {},
 
         let zoom = maps[ uuid ].getZoom();
 
+        $( '#' + uuid ).attr( 'zoom', zoom );
+
         $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', false );
         $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', false );
         $( '#' + uuid + ' [map-action="navaids"]' ).hide();
@@ -86,7 +88,7 @@ var maps_config = {},
             layer = maps_layer[ uuid ].marker;
 
         $.ajax( {
-            url: apiurl + 'airport_layer.php',
+            url: apiurl + maps_type[ uuid ] + '_layer.php',
             type: 'post',
             data: {
                 token: get_token(),
@@ -105,53 +107,83 @@ var maps_config = {},
 
                 layer.clearLayers();
 
-                Object.values( res.response.navaids ).forEach( ( navaid ) => {
+                if( 'navaids' in res.response ) {
 
-                    layer.addLayer(
-                        L.marker( L.latLng(
-                            parseFloat( navaid.lat ),
-                            parseFloat( navaid.lon )
-                        ), {
-                            icon: L.divIcon( {
-                                iconSize: [ 24, 24 ],
-                                iconAnchor: [ 12, 12 ],
-                                className: 'navaid-' + navaid.type,
-                                html: '<navicon></navicon>'
+                    Object.values( res.response.navaids ).forEach( ( navaid ) => {
+
+                        layer.addLayer(
+                            L.marker( L.latLng(
+                                parseFloat( navaid.lat ),
+                                parseFloat( navaid.lon )
+                            ), {
+                                icon: L.divIcon( {
+                                    iconSize: [ 24, 24 ],
+                                    iconAnchor: [ 12, 12 ],
+                                    className: 'navaid-' + navaid.type,
+                                    html: '<navicon></navicon>'
+                                } )
+                            } ).bindTooltip(
+                                '<div class="IDENT">' + navaid.ident + '</div>' +
+                                '<div class="freq">' + navaid.type + ' ' + freq_format( navaid.frequency ) + '</div>', {
+                                className: 'tooltip-navaid',
+                                direction: 'center',
+                                opacity: 1
                             } )
-                        } ).bindTooltip(
-                            '<div class="IDENT">' + navaid.ident + '</div>' +
-                            '<div class="freq">' + navaid.type + ' ' + freq_format( navaid.frequency ) + '</div>', {
-                            className: 'tooltip-navaid',
-                            direction: 'center',
-                            opacity: 1
-                        } )
-                    );
+                        );
 
-                } );
+                    } );
 
-                Object.values( res.response.airports ).forEach( ( airport ) => {
+                }
 
-                    layer.addLayer(
-                        L.marker( L.latLng(
-                            parseFloat( airport.lat ),
-                            parseFloat( airport.lon )
-                        ), {
-                            icon: L.divIcon( {
-                                iconSize: [ 20, 20 ],
-                                iconAnchor: [ 10, 10 ],
-                                className: 'airport-' + airport.type + ' restriction-' + airport.restriction,
-                                html: '<mapicon></mapicon>'
+                if( 'airports' in res.response ) {
+
+                    Object.values( res.response.airports ).forEach( ( airport ) => {
+
+                        layer.addLayer(
+                            L.marker( L.latLng(
+                                parseFloat( airport.lat ),
+                                parseFloat( airport.lon )
+                            ), {
+                                icon: L.divIcon( {
+                                    iconSize: [ 20, 20 ],
+                                    iconAnchor: [ 10, 10 ],
+                                    className: 'airport-' + airport.type + ' restriction-' + airport.restriction,
+                                    html: '<mapicon></mapicon>'
+                                } )
+                            } ).bindTooltip(
+                                '<div class="ICAO">' + airport.ICAO + '</div>' +
+                                '<div class="name">' + airport.name + '</div>', {
+                                className: 'tooltip-airport',
+                                direction: 'center',
+                                opacity: 1
                             } )
-                        } ).bindTooltip(
-                            '<div class="ICAO">' + airport.ICAO + '</div>' +
-                            '<div class="name">' + airport.name + '</div>', {
-                            className: 'tooltip-airport',
-                            direction: 'center',
-                            opacity: 1
-                        } )
-                    );
+                        );
 
-                } );
+                    } );
+
+                }
+
+                if( 'stations' in res.response ) {
+
+                    Object.values( res.response.stations ).forEach( ( station ) => {
+
+                        layer.addLayer(
+                            L.marker( L.latLng(
+                                parseFloat( station.lat ),
+                                parseFloat( station.lon )
+                            ), {
+                                icon: L.divIcon( {
+                                    iconSize: [ 20, 20 ],
+                                    iconAnchor: [ 10, 10 ],
+                                    className: 'cat-' + station.cat,
+                                    html: '<wxicon></wxicon>'
+                                } )
+                            } )
+                        );
+
+                    } );
+
+                }
 
             }
         } );
@@ -203,12 +235,20 @@ var maps_config = {},
                             if( typeof polygon === 'object' && polygon.length > 1 &&
                                 polygon.length == polygon.filter( p => typeof p === 'object' ).length ) {
 
+                                let hazard_color = map_sigmet_colors[ sigmet.hazard ] || '#eeeeee';
+
                                 layer.addLayer(
                                     L.polygon( polygon.filter( p => p.reverse() ), {
-                                        color: map_sigmet_colors[ sigmet.hazard ] || '#eeeeee',
+                                        color: hazard_color,
                                         weight: 1,
-                                        fillOpacity: 0.25,
+                                        fillOpacity: 0.15,
                                         dashArray: '4 4'
+                                    } ).bindTooltip(
+                                        '<div class="hazard" style="color: ' + hazard_color + ';">' + sigmet.hazard + '</div>', {
+                                        className: 'tooltip-sigmet',
+                                        direction: 'center',
+                                        opacity: 1,
+                                        permanent: true
                                     } )
                                 );
 
@@ -289,6 +329,9 @@ var maps_config = {},
 
             maps_type[ uuid ] = $.cookie( 'apm_map_type' ) || 'airport';
 
+            $( '#' + uuid + ' [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' )
+                .addClass( 'active' );
+
             maps[ uuid ] = L.map( uuid, {
                 center: [
                     position.lat,
@@ -355,8 +398,6 @@ var maps_config = {},
 
             } );
 
-            $( '#' + uuid + ' [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' ).click();
-
             maps[ uuid ].on( 'zoomend', () => {
 
                 map_check_zoom( uuid );
@@ -379,37 +420,57 @@ var maps_config = {},
         switch( ( $( this ).attr( 'map-action' ) || '' ).trim().toLowerCase() ) {
 
             case 'zoom-in':
+
                 map.zoomIn();
+
                 break;
 
             case 'zoom-out':
+
                 map.zoomOut();
+
                 break;
 
             case 'type':
+
                 $( '[map-action="type"]' ).removeClass( 'active' );
                 $( this ).addClass( 'active' );
+
                 $.cookie( 'apm_map_type', $( this ).attr( 'map-type' ) );
+                maps_type[ uuid ] = $.cookie( 'apm_map_type' );
+
                 map_load_marker( uuid );
+
                 break;
 
             case 'navaids':
+
                 $( this ).toggleClass( 'active' );
+
                 $.cookie( 'apm_navaids', +!!$( this ).hasClass( 'active' ) );
+
                 map_load_marker( uuid );
+
                 break;
 
             case 'sigmet':
+
                 $( this ).toggleClass( 'active' );
+
                 map_sigmets( uuid );
+
                 break;
 
             case 'day-night':
+
                 $( this ).toggleClass( 'active' );
+
                 map_day_night_border( uuid );
+
                 break;
 
             case 'mypos':
+
                 navigator.geolocation.getCurrentPosition( ( position ) => {
 
                     map.setView( new L.LatLng(
@@ -418,12 +479,15 @@ var maps_config = {},
                     ), 8 );
 
                 } );
+
                 break;
 
             case 'scroll-below':
+
                 $( 'html, body' ).animate( {
                     scrollTop: map._size.y
                 }, 'fast' );
+
                 break;
 
         }

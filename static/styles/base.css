@@ -13,8 +13,8 @@
     --primary-light: #b7a7d4;
 
     --indicator-good: #00b67a;
-    --indicator-warn: #ff903b;
     --indicator-info: #ffd400;
+    --indicator-warn: #ff903b;
     --indicator-bad: #fa6464;
 
     --gray-0: #ffffff;
@@ -103,7 +103,7 @@ button {
     cursor: pointer;
 }
 
-mapicon, navicon {
+mapicon, navicon, wxicon {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -184,6 +184,26 @@ navicon {
 
 .navaid-VORTAC navicon {
     background-image: url( './../resources/navaid-vortac.svg' );
+}
+
+.cat-VFR wxicon {
+    background-image: url( './../resources/cat-VFR.svg' );
+}
+
+.cat-MVFR wxicon {
+    background-image: url( './../resources/cat-MVFR.svg' );
+}
+
+.cat-IFR wxicon {
+    background-image: url( './../resources/cat-IFR.svg' );
+}
+
+.cat-LIFR wxicon {
+    background-image: url( './../resources/cat-LIFR.svg' );
+}
+
+.cat-UNK wxicon {
+    background-image: url( './../resources/cat-UNK.svg' );
 }
 
 .searchform {
