@@ -182,9 +182,9 @@ var maps_config = {},
                                     iconSize: [ 20, 20 ],
                                     iconAnchor: [ 10, 10 ],
                                     className: 'cat-' + station.cat,
-                                    html: '<wxicon></wxicon><windflag class="wind-' +
-                                        Math.floor( station.wind_spd / 5 ).toString().padStart( 2, '0' ) + '" style="transform: rotate( ' +
-                                        station.wind_dir + 'deg );"></windflag>'
+                                    html: '<wxicon></wxicon><windflag class="wind-' + (
+                                        station.wind_spd == null ? '' : Math.floor( station.wind_spd / 5 ).toString().padStart( 2, '0' )
+                                    ) + '" style="transform: rotate( ' + station.wind_dir + 'deg );"></windflag>'
                                 } )
                             } ).bindTooltip(
                                 '<div class="ICAO">' + station.ICAO + '</div>' +

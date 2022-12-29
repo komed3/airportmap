@@ -220,6 +220,10 @@ windflag {
     z-index: -1;
 }
 
+windflag.wind-00 {
+    background-image: url( './../resources/wind-00.svg' );
+}
+
 windflag.wind-01 {
     background-image: url( './../resources/wind-01.svg' );
 }
