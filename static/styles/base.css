@@ -113,7 +113,7 @@ mapicon, navicon, wxicon {
     background-repeat: no-repeat;
 }
 
-navicon {
+navicon, wxicon {
     width: 24px;
     height: 24px;
 }
