@@ -259,20 +259,26 @@ var maps_config = {},
 
                                 let hazard_color = map_sigmet_colors[ sigmet.hazard ] || '#eeeeee';
 
-                                layer.addLayer(
-                                    L.polygon( polygon.filter( p => p.reverse() ), {
-                                        color: hazard_color,
-                                        weight: 1,
-                                        fillOpacity: 0.15,
-                                        dashArray: '4 4'
-                                    } ).bindTooltip(
-                                        '<div class="hazard" style="color: ' + hazard_color + ';">' + sigmet.hazard + '</div>', {
-                                        className: 'tooltip-sigmet',
-                                        direction: 'center',
-                                        opacity: 1,
-                                        permanent: true
-                                    } )
-                                );
+                                let poly = L.polygon( polygon.filter( p => p.reverse() ), {
+                                    color: hazard_color,
+                                    weight: 1,
+                                    fillOpacity: 0.15,
+                                    dashArray: '4 4'
+                                } );
+
+                                poly.bindTooltip(
+                                    '<div class="hazard" style="color: ' + hazard_color + ';">' + sigmet.hazard + '</div>', {
+                                    className: 'tooltip-sigmet',
+                                    direction: 'center',
+                                    opacity: 1,
+                                    permanent: true
+                                } );
+
+                                poly.on( 'click', ( e ) => {
+                                    map_sigmet_info( poly, e, uuid, sigmet );
+                                } );
+
+                                layer.addLayer( poly );
 
                             }
 
@@ -288,6 +294,23 @@ var maps_config = {},
             } );
 
         }
+
+    };
+
+    var map_info = ( uuid, content ) => {
+
+        $( '#' + uuid + ' .map-infobox' ).show();
+
+    };
+
+    var map_sigmet_info = ( poly, e, uuid, sigmet ) => {
+
+        maps[ uuid ].fitBounds( poly.getBounds(), {
+            maxZoom: maps_config[ uuid ].maxZoom || 15,
+            padding: [ 50, 50 ]
+        } );
+
+        map_info( uuid, '' );
 
     };
 

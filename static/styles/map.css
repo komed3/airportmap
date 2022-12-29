@@ -79,6 +79,17 @@
     transform: scale( 1.1 );
 }
 
+.map .map-overlay .map-infobox {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    width: 380px;
+    background: var( --gray-0 );
+    box-shadow: 0 0 40px var( --shade-3 );
+}
+
 .map .leaflet-attribution-flag {
     display: none !important;
 }
