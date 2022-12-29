@@ -125,8 +125,7 @@
 .map[zoom="2"] .leaflet-tooltip.tooltip-sigmet,
 .map[zoom="3"] .leaflet-tooltip.tooltip-sigmet,
 .map[zoom="4"] .leaflet-tooltip.tooltip-sigmet,
-.map[zoom="5"] .leaflet-tooltip.tooltip-sigmet,
-.map[zoom="6"] .leaflet-tooltip.tooltip-sigmet {
+.map[zoom="5"] .leaflet-tooltip.tooltip-sigmet {
     visibility: hidden;
 }
 

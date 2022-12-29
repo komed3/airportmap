@@ -345,9 +345,6 @@ var maps_config = {},
 
             maps_type[ uuid ] = $.cookie( 'apm_map_type' ) || 'airport';
 
-            $( '#' + uuid + ' [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' )
-                .addClass( 'active' );
-
             maps[ uuid ] = L.map( uuid, {
                 center: [
                     position.lat,
@@ -419,6 +416,8 @@ var maps_config = {},
                 map_check_zoom( uuid );
 
             } );
+
+            $( '#' + uuid + ' [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' ).click();
 
             map_check_zoom( uuid );
 
