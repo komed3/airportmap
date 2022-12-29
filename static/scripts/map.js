@@ -186,6 +186,12 @@ var maps_config = {},
                                         Math.floor( station.wind_spd / 5 ).toString().padStart( 2, '0' ) + '" style="transform: rotate( ' +
                                         station.wind_dir + 'deg );"></windflag>'
                                 } )
+                            } ).bindTooltip(
+                                '<div class="ICAO">' + station.ICAO + '</div>' +
+                                '<div class="name">' + station.name + '</div>', {
+                                className: 'tooltip-airport',
+                                direction: 'center',
+                                opacity: 1
                             } )
                         );
 
