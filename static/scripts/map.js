@@ -58,7 +58,7 @@ var maps_config = {},
 
         }
 
-        if( zoom >= 10 ) {
+        if( zoom >= 10 && maps_type[ uuid ] == 'airport' ) {
 
             $( '#' + uuid + ' [map-action="navaids"]' ).show();
 
@@ -460,6 +460,7 @@ var maps_config = {},
                 $.cookie( 'apm_map_type', $( this ).attr( 'map-type' ) );
                 maps_type[ uuid ] = $.cookie( 'apm_map_type' );
 
+                map_check_zoom( uuid );
                 map_load_marker( uuid );
 
                 break;
