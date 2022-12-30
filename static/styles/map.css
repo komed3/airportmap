@@ -126,14 +126,29 @@
     margin: 30px 0;
 }
 
-.map .map-overlay .map-infobox .infobox-content h5 {
+.map .map-overlay .map-infobox .infobox-content hr {
     margin: 20px 0;
-    font-size: 18px;
+    border: 0;
+    border-top: 1px solid var( --light-3 );
+}
+
+.map .map-overlay .map-infobox .infobox-content h5 {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 5px;
+    font-size: 16px;
     font-weight: 300;
 }
 
+.map .map-overlay .map-infobox .infobox-content h5 .icon {
+    font-size: 20px;
+}
+
 .map .map-overlay .map-infobox .infobox-content .rawtxt {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .map .map-overlay .map-infobox .infobox-link {
