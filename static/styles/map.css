@@ -126,6 +126,12 @@
     margin: 30px 0;
 }
 
+.map .map-overlay .map-infobox .infobox-content h5 {
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 300;
+}
+
 .map .map-overlay .map-infobox .infobox-content .rawtxt {
     font-size: 16px;
 }

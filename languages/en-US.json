@@ -37,6 +37,7 @@
     "map-overlay-zoom-out": "Zoom out",
     "map-overlay-scroll": "Scroll below map",
     "map-overlay-close": "Close",
+    "valid-from-to": "Valid from <b>$1</b> to <b>$2</b> UTC",
     "view-sigmets": "View active SIGMETs",
     "hazard-cld": "Cloud",
     "hazard-conv": "Connvective",
