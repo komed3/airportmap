@@ -49,7 +49,7 @@
     "dir-se": "southeast",
     "dir-sw": "southwest",
     "dir-nw": "northwest",
-    "dir-wwn": "west-northwest",
+    "dir-wnw": "west-northwest",
     "dir-nnw": "north-northwest",
     "dir-nne": "north-northeast",
     "dir-ene": "east-northeast",
