@@ -31,7 +31,7 @@
 
         return strpos(
             $msg = i18n( $msgkey, ...$replaces ), '›'
-        ) == 1 ? null : $msg;
+        ) === 0 ? null : $msg;
 
     }
 
