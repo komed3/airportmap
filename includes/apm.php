@@ -12,6 +12,7 @@
     /* load required files */
 
     require_once PATH . 'language.php';
+    require_once PATH . 'weather.php';
     require_once PATH . 'content.php';
     require_once PATH . 'map.php';
 
@@ -45,7 +46,11 @@
 
     /* load template */
 
-    if( is_readable( TEMPLATE . ( $tpl = $path[0] ?? 'map' ) . '.php' ) ) {
+    if( is_readable( TEMPLATE . ( $tpl = ( $path[0] . '_' . $path[1] ) ?? '' ) . '.php' ) ) {
+
+        require_once TEMPLATE . $tpl . '.php';
+
+    } else if( is_readable( TEMPLATE . ( $tpl = $path[0] ?? 'map' ) . '.php' ) ) {
 
         require_once TEMPLATE . $tpl . '.php';
 

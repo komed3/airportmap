@@ -45,7 +45,7 @@
 
         ?>
             <link rel="canonical" href="<?php echo SITE . $__site_canonical; ?>" />
-            <title><?php _i18n( $__site_title ?? 'site-title-default' ); ?> — Airportmap</title>
+            <title><?php echo $__site_title ?? i18n( 'site-title-default' ); ?> — Airportmap</title>
             <meta name="description" content="<?php _i18n( $__site_desc ?? 'site-desc-default' ); ?>" />
         <?php
 

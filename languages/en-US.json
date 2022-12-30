@@ -88,5 +88,7 @@
     "qualifier-sql": "squall line",
     "change-nc": "no change",
     "change-intsf": "intensifying",
-    "change-wkn": "weakening"
+    "change-wkn": "weakening",
+    "sigmets-title": "View $1 active SIGMETs",
+    "sigmets-desc": "List of active reported significant weather conditions (SIGMET)"
 }
