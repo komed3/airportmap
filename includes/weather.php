@@ -15,6 +15,9 @@
         array $sigmet
     ) {
 
+        $valid_from = strtotime( $sigmet['valid_from'] );
+        $valid_to = strtotime( $sigmet['valid_to'] );
+
         return i18n( $valid_to >= strtotime( 'tomorrow' )
                 ? 'valid-until' : 'valid-from-to',
             date( 'm/d', $valid_from ),

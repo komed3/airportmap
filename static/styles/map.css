@@ -134,7 +134,12 @@
     border-top: 1px solid var( --light-3 );
 }
 
-.map .map-overlay .map-infobox .infobox-content h5 {
+.map .map-overlay .map-infobox .infobox-content .infobox-list {
+    margin: 0;
+    padding: 0;
+}
+
+.map .map-overlay .map-infobox .infobox-content .infobox-list li {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -145,7 +150,7 @@
     font-weight: 300;
 }
 
-.map .map-overlay .map-infobox .infobox-content h5 .icon {
+.map .map-overlay .map-infobox .infobox-content h5 .infobox-list li .icon {
     font-size: 20px;
 }
 
