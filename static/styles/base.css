@@ -290,6 +290,7 @@ h1 {
     margin: 30px 0;
     text-transform: capitalize;
     font-size: 32px;
+    font-weight: 800;
 }
 
 .content-normal {
