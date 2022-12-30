@@ -39,32 +39,20 @@
             <hr />
             <h5>
                 <i class="icon">schedule</i>
-                <span>' . i18n( $valid_to >= strtotime( 'tomorrow' )
-                    ? 'valid-until' : 'valid-from-to',
-                date( 'm/d', $valid_from ),
-                date( 'H:i', $valid_from ),
-                date( 'm/d', $valid_to ),
-                date( 'H:i', $valid_to )
-                ) . '</span>
+                <span>' . sigmet_valid( $sigmet ) . '</span>
             </h5>
             <h5>
                 <i class="icon">near_me</i>
-                <span>' . ( $sigmet['dir'] ? i18n( 'movement',
-                    i18n( 'dir-' . $sigmet['dir'] ),
-                    (int) $sigmet['spd'] . '&#8239;kt'
-                ) : i18n( 'stationary' ) ) . '</span>
+                <span>' . sigmet_move( $sigmet ) . '</span>
             </h5>
             <h5>
                 <i class="icon">warning</i>
-                <span>' . ucfirst( i18n( 'change-' . ( $sigmet['cng'] ?? 'NC' ) ) ) . '</span>
-            </h5>' . ( $fl_base || $fl_top ? '
-            <h5>
+                <span>' . sigmet_cng( $sigmet ) . '</span>
+            </h5>
+            ' . ( empty( $fl = sigmet_fl( $sigmet ) ) ? '' : '<h5>
                 <i class="icon">flight_takeoff</i>
-                <span>' . ucfirst( i18n( $fl_msgkey,
-                    str_pad( (int) $fl_base / 100, 3, '0', STR_PAD_LEFT ),
-                    str_pad( (int) $fl_top / 100, 3, '0', STR_PAD_LEFT )
-                ) ) . '</span>
-            </h5>' : '' ),
+                <span>' . $fl . '</span>
+            </h5>' ),
             'link' => SITE . 'weather/sigmets',
             'linktext' => i18n( 'view-sigmets' )
         ];

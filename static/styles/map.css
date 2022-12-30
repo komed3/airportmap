@@ -86,7 +86,7 @@
     bottom: 0;
     display: none;
     width: 380px;
-    padding: 20px;
+    padding: 20px 20px 40px 20px;
     color: var( --gray-0 );
     background: var( --gray-3 );
     box-shadow: 0 0 40px var( --shade-3 );
