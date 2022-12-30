@@ -50,6 +50,10 @@
                         <i class="icon">flight_takeoff</i>
                         <span><?php echo $fl; ?></span>
                     </li><?php } ?>
+                    <?php if( !empty( $airport = airport_by( 'ICAO', $sigmet['airport'] ) ) ) { ?><li>
+                        <i class="icon">location_on</i>
+                        <span><?php echo airport_link( $airport ); ?></span>
+                    </li><?php } ?>
                 </ul>
             </div>
         <?php } ?>
