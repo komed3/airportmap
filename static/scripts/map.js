@@ -303,7 +303,7 @@ var maps_config = {},
 
         box.find( '.infobox-title' ).html( infobox.title );
         box.find( '.infobox-subtitle' ).html( infobox.subtitle );
-        box.find( '.infobox-content' ).html( infobox.title );
+        box.find( '.infobox-content' ).html( infobox.content );
         box.find( '.infobox-link' ).attr( 'href', infobox.link );
         box.find( '.infobox-linktext' ).html( infobox.linktext );
 

@@ -24,6 +24,17 @@
 
     }
 
+    function i18n_save(
+        string $msgkey,
+        string ...$replaces
+    ) {
+
+        return strpos(
+            $msg = i18n( $msgkey, ...$replaces ), '›'
+        ) == 1 ? null : $msg;
+
+    }
+
     function _i18n(
         string $msgkey,
         string ...$replaces

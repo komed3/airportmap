@@ -2,7 +2,7 @@
 
     require_once __DIR__ . '/api.php';
 
-    if( !load_requirements( 'language', 'content' ) ) {
+    if( !load_requirements( 'language', 'content', 'weather' ) ) {
 
         api_exit( [
             'raw' => null,
@@ -19,11 +19,11 @@
         WHERE   _id = ' . $_POST['sigmet']
     );
 
-    if( $res->num_rows == 1 && $sigmet = $res->fetch_object() ) {
+    if( $res->num_rows == 1 && $sigmet = $res->fetch_assoc() ) {
 
         $infobox = [
-            'title' => '',
-            'subtitle' => '',
+            'title' => sigmet_hazard( $sigmet ),
+            'subtitle' => $sigmet['name'],
             'content' => '',
             'link' => SITE . 'weather/sigmets',
             'linktext' => i18n( 'view-sigmets' )
