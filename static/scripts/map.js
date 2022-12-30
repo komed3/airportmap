@@ -297,20 +297,47 @@ var maps_config = {},
 
     };
 
-    var map_info = ( uuid, content ) => {
+    var map_info = ( uuid, infobox ) => {
 
-        $( '#' + uuid + ' .map-infobox' ).show();
+        let box = $( '#' + uuid + ' .map-infobox' );
+
+        box.find( '.infobox-title' ).html( infobox.title );
+        box.find( '.infobox-subtitle' ).html( infobox.subtitle );
+        box.find( '.infobox-content' ).html( infobox.title );
+        box.find( '.infobox-link' ).attr( 'href', infobox.link );
+        box.find( '.infobox-linktext' ).html( infobox.linktext );
+
+        box.show();
 
     };
 
     var map_sigmet_info = ( poly, e, uuid, sigmet ) => {
 
-        maps[ uuid ].fitBounds( poly.getBounds(), {
-            maxZoom: maps_config[ uuid ].maxZoom || 15,
-            padding: [ 50, 50 ]
-        } );
+        $.ajax( {
+            url: apiurl + 'sigmet_info.php',
+            type: 'post',
+            data: {
+                token: get_token(),
+                locale: $.cookie( 'locale' ),
+                sigmet: sigmet._id
+            },
+            success: ( raw ) => {
 
-        map_info( uuid, '' );
+                let res = JSON.parse( raw );
+
+                if( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
+
+                    maps[ uuid ].fitBounds( poly.getBounds(), {
+                        maxZoom: maps_config[ uuid ].maxZoom || 15,
+                        padding: [ 50, 50 ]
+                    } );
+
+                    map_info( uuid, res.response.infobox );
+
+                }
+
+            }
+        } );
 
     };
 

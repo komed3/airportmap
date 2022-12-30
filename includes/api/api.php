@@ -37,6 +37,26 @@
 
     $DB->set_charset( DB_CHARSET );
 
+    /* load requirements */
+
+    function load_requirements(
+        string ...$files
+    ) {
+
+        foreach( $files as $file ) {
+
+            if( is_readable( $path = PATH . $file . '.php' ) ) {
+
+                require_once $path;
+
+            } else return false;
+
+        }
+
+        return true;
+
+    }
+
     /* api output */
 
     function api_output(

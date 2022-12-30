@@ -50,8 +50,22 @@
                             </button>
                         </div>
                     </div>
-                    <div class="map-infobox"></div>
-                    <div class="map-legend"></div>
+                    <div class="map-infobox">
+                        <div class="infobox-header">
+                            <div class="infobox-close" map-action="close-infobox" title="<?php _i18n( 'map-overlay-close' ); ?>">
+                                <i class="icon">close</i>
+                            </div>
+                            <h3 class="infobox-title"></h3>
+                            <h4 class="infobox-subtitle"></h4>
+                        </div>
+                        <div class="infobox-content"></div>
+                        <div class="infobox-footer">
+                            <a href="" class="infobox-link">
+                                <span class="infobox-linktext"></span>
+                                <i class="icon">chevron_right</i>
+                            </a>
+                        </div>
+                    </div>
                     <button class="map-scroll-below" map-action="scroll-below" title="<?php _i18n( 'map-overlay-scroll' ); ?>">
                         <i class="icon">arrow_downward</i>
                     </button>

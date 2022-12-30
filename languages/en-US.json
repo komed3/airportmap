@@ -35,5 +35,7 @@
     "map-overlay-mypos": "Show my current position",
     "map-overlay-zoom-in": "Zoom in",
     "map-overlay-zoom-out": "Zoom out",
-    "map-overlay-scroll": "Scroll below map"
+    "map-overlay-scroll": "Scroll below map",
+    "map-overlay-close": "Close",
+    "view-sigmets": "View all SIGMETs"
 }
