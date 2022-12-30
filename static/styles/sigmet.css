@@ -1,0 +1,88 @@
+.sigmets {
+    column-count: 2;
+    column-gap: 40px;
+}
+
+.sigmets .sigmet {
+    break-inside: avoid;
+    margin-bottom: 40px;
+    background: var( --gray-0 );
+}
+
+.sigmets .sigmet .sigmet-header {
+    padding: 15px 30px;
+    color: var( --gray-0 );
+}
+
+.sigmets .sigmet.sigmet-CLD .sigmet-header,
+.sigmets .sigmet.sigmet-VA .sigmet-header {
+    color: var( --gray-5 );
+    background: var( --gray-2 );
+}
+
+.sigmets .sigmet.sigmet-CONV .sigmet-header,
+.sigmets .sigmet.sigmet-FC .sigmet-header {
+    background: var( --indicator-pink );
+}
+
+.sigmets .sigmet.sigmet-DS .sigmet-header,
+.sigmets .sigmet.sigmet-SS .sigmet-header {
+    color: var( --gray-5 );
+    background: var( --indicator-yellow );
+}
+
+.sigmets .sigmet.sigmet-GR .sigmet-header,
+.sigmets .sigmet.sigmet-TDO .sigmet-header,
+.sigmets .sigmet.sigmet-TS .sigmet-header,
+.sigmets .sigmet.sigmet-TSGR .sigmet-header {
+    background: var( --indicator-red );
+}
+
+.sigmets .sigmet.sigmet-ICE .sigmet-header,
+.sigmets .sigmet.sigmet-WTSPT .sigmet-header {
+    background: var( --indicator-blue );
+}
+
+.sigmets .sigmet.sigmet-MTW .sigmet-header {
+    background: var( --indicator-green );
+}
+
+.sigmets .sigmet.sigmet-TURB .sigmet-header {
+    background: var( --indicator-orange );
+}
+
+.sigmets .sigmet .sigmet-header .sigmet-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.sigmets .sigmet .sigmet-header .sigmet-subtitle {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.sigmets .sigmet .sigmet-raw {
+    padding: 20px 30px;
+    font-size: 14px;
+    border-bottom: 2px solid var( --gray-1 );
+}
+
+.sigmets .sigmet .sigmet-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 15px 30px;
+}
+
+.sigmets .sigmet .sigmet-list li {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 300;
+}

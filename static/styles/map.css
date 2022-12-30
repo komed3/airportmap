@@ -135,6 +135,7 @@
 }
 
 .map .map-overlay .map-infobox .infobox-content .infobox-list {
+    list-style-type: none;
     margin: 0;
     padding: 0;
 }

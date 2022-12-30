@@ -286,6 +286,16 @@ windflag.wind-15 {
     background-image: url( './../resources/wind-15.svg' );
 }
 
+h1 {
+    margin: 30px 0;
+    text-transform: capitalize;
+    font-size: 32px;
+}
+
+.content-normal {
+    margin: 50px var( --padding-normal );
+}
+
 .rawtxt {
     font-family: 'SourceCodePro';
 }
