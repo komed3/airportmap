@@ -59,12 +59,10 @@
                             <h4 class="infobox-subtitle"></h4>
                         </div>
                         <div class="infobox-content"></div>
-                        <div class="infobox-footer">
-                            <a href="" class="infobox-link">
-                                <span class="infobox-linktext"></span>
-                                <i class="icon">chevron_right</i>
-                            </a>
-                        </div>
+                        <a href="" class="infobox-link">
+                            <span class="infobox-linktext"></span>
+                            <i class="icon">chevron_right</i>
+                        </a>
                     </div>
                     <button class="map-scroll-below" map-action="scroll-below" title="<?php _i18n( 'map-overlay-scroll' ); ?>">
                         <i class="icon">arrow_downward</i>

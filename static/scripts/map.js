@@ -4,16 +4,21 @@ var maps_config = {},
     maps_layer = {},
     maps_timeout = {},
     map_sigmet_colors = {
+        CLD: '#bbbbbb',
         CONV: '#aa66ff',
         DS: '#eebb55',
+        FC: '#aa66ff',
+        GR: '#ff2200',
         ICE: '#4488dd',
         MTW: '#44aa44',
         SS: '#eebb55',
         TC: '#dd66ee',
+        TDO: '#ff2200',
         TS: '#ff2200',
         TSGR: '#ff2200',
         TURB: '#ee8844',
-        VA: '#bbbbbb'
+        VA: '#bbbbbb',
+        WTSPT: '#4488dd'
     };
 
 ( function( $ ) {
@@ -297,7 +302,7 @@ var maps_config = {},
 
     };
 
-    var map_info = ( uuid, infobox ) => {
+    var map_info = ( uuid, infobox, classes = '' ) => {
 
         let box = $( '#' + uuid + ' .map-infobox' );
 
@@ -307,7 +312,7 @@ var maps_config = {},
         box.find( '.infobox-link' ).attr( 'href', infobox.link );
         box.find( '.infobox-linktext' ).html( infobox.linktext );
 
-        box.show();
+        box.attr( 'class', 'map-infobox ' + classes ).show();
 
     };
 
@@ -332,7 +337,7 @@ var maps_config = {},
                         padding: [ 50, 50 ]
                     } );
 
-                    map_info( uuid, res.response.infobox );
+                    map_info( uuid, res.response.infobox, 'sigmet-' + sigmet.hazard );
 
                 }
 
@@ -551,6 +556,12 @@ var maps_config = {},
                     ), 8 );
 
                 } );
+
+                break;
+
+            case 'close-infobox':
+
+                $( '#' + uuid + ' .map-infobox' ).attr( 'class', 'map-infobox' ).hide();
 
                 break;
 

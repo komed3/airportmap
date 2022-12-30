@@ -12,10 +12,12 @@
     --primary-dark: #382855;
     --primary-light: #b7a7d4;
 
-    --indicator-good: #00b67a;
-    --indicator-info: #ffd400;
-    --indicator-warn: #ff903b;
-    --indicator-bad: #fa6464;
+    --indicator-yellow: #ffd400;
+    --indicator-orange: #ff903b;
+    --indicator-red: #fa6464;
+    --indicator-pink: #aa66ff;
+    --indicator-blue: #4488dd;
+    --indicator-green: #00b67a;
 
     --gray-0: #ffffff;
     --gray-1: #ecedf1;
@@ -282,6 +284,10 @@ windflag.wind-14 {
 
 windflag.wind-15 {
     background-image: url( './../resources/wind-15.svg' );
+}
+
+.rawtxt {
+    font-family: 'SourceCodePro';
 }
 
 .searchform {

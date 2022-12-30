@@ -86,8 +86,107 @@
     bottom: 0;
     display: none;
     width: 380px;
-    background: var( --gray-0 );
+    padding: 20px;
+    color: var( --gray-0 );
+    background: var( --gray-3 );
     box-shadow: 0 0 40px var( --shade-3 );
+}
+
+.map .map-overlay .map-infobox .infobox-header .infobox-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.map .map-overlay .map-infobox .infobox-header .infobox-subtitle {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.map .map-overlay .map-infobox .infobox-header .infobox-close {
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 20px 20px;
+    width: 32px;
+    height: 32px;
+    background: var( --gray-0 );
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.map .map-overlay .map-infobox .infobox-header .infobox-close .icon {
+    font-size: 26px;
+    color: var( --gray-5 );
+}
+
+.map .map-overlay .map-infobox .infobox-content {
+    margin: 30px 0;
+}
+
+.map .map-overlay .map-infobox .infobox-content .rawtxt {
+    font-size: 16px;
+}
+
+.map .map-overlay .map-infobox .infobox-link {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid var( --gray-0 );
+    border-radius: 3px;
+}
+
+.map .map-overlay .map-infobox .infobox-link .icon {
+    font-size: 22px;
+}
+
+.map .map-overlay .map-infobox .infobox-link:hover {
+    text-decoration: none;
+    color: var( --gray-5 );
+    background: var( --gray-0 );
+}
+
+.map .map-overlay .map-infobox.sigmet-CLD,
+.map .map-overlay .map-infobox.sigmet-VA {
+    color: var( --gray-5 );
+    background: var( --gray-2 );
+}
+
+.map .map-overlay .map-infobox.sigmet-CONV,
+.map .map-overlay .map-infobox.sigmet-FC {
+    background: var( --indicator-pink );
+}
+
+.map .map-overlay .map-infobox.sigmet-DS,
+.map .map-overlay .map-infobox.sigmet-SS {
+    color: var( --gray-5 );
+    background: var( --indicator-yellow );
+}
+
+.map .map-overlay .map-infobox.sigmet-GR,
+.map .map-overlay .map-infobox.sigmet-TDO,
+.map .map-overlay .map-infobox.sigmet-TS,
+.map .map-overlay .map-infobox.sigmet-TSGR {
+    background: var( --indicator-red );
+}
+
+.map .map-overlay .map-infobox.sigmet-ICE,
+.map .map-overlay .map-infobox.sigmet-WTSPT {
+    background: var( --indicator-blue );
+}
+
+.map .map-overlay .map-infobox.sigmet-MTW {
+    background: var( --indicator-green );
+}
+
+.map .map-overlay .map-infobox.sigmet-TURB {
+    background: var( --indicator-orange );
 }
 
 .map .leaflet-attribution-flag {

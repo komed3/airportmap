@@ -83,7 +83,7 @@
     font-weight: 800;
     letter-spacing: 1px;
     color: var( --gray-0 );
-    background: var( --indicator-bad );
+    background: var( --indicator-red );
 }
 
 #scroll-to-top {

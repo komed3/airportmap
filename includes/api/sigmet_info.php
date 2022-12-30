@@ -24,7 +24,7 @@
         $infobox = [
             'title' => sigmet_hazard( $sigmet ),
             'subtitle' => $sigmet['name'],
-            'content' => '',
+            'content' => '<div class="rawtxt">' . $sigmet['raw'] . '</div>',
             'link' => SITE . 'weather/sigmets',
             'linktext' => i18n( 'view-sigmets' )
         ];
