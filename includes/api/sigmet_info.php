@@ -21,6 +21,9 @@
 
     if( $res->num_rows == 1 && $sigmet = $res->fetch_assoc() ) {
 
+        $valid_from = strtotime( $sigmet['valid_from'] );
+        $valid_to = strtotime( $sigmet['valid_to'] );
+
         $infobox = [
             'title' => sigmet_hazard( $sigmet ),
             'subtitle' => $sigmet['name'],
@@ -28,9 +31,12 @@
             <hr />
             <h5>
                 <i class="icon">schedule</i>
-                <span>' . i18n( 'valid-from-to',
-                    date( 'H:i', strtotime( $sigmet['valid_from'] ) ),
-                    date( 'H:i', strtotime( $sigmet['valid_to'] ) )
+                <span>' . i18n( $valid_to >= strtotime( 'tomorrow' )
+                    ? 'valid-until' : 'valid-from-to',
+                date( 'm/d', $valid_from ),
+                date( 'H:i', $valid_from ),
+                date( 'm/d', $valid_to ),
+                date( 'H:i', $valid_to )
                 ) . '</span>
             </h5>
             <h5>
