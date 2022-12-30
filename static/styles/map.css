@@ -90,6 +90,8 @@
     color: var( --gray-0 );
     background: var( --gray-3 );
     box-shadow: 0 0 40px var( --shade-3 );
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .map .map-overlay .map-infobox .infobox-header .infobox-title {
