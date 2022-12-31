@@ -4,7 +4,7 @@ var maps_config = {},
     maps_layer = {},
     maps_timeout = {},
     map_sigmet_colors = {
-        CLD: '#bbbbbb',
+        CLD: '#595b64',
         CONV: '#aa66ff',
         DS: '#eebb55',
         FC: '#aa66ff',
@@ -17,7 +17,7 @@ var maps_config = {},
         TS: '#ff2200',
         TSGR: '#ff2200',
         TURB: '#ee8844',
-        VA: '#bbbbbb',
+        VA: '#595b64',
         WTSPT: '#4488dd'
     };
 
@@ -262,7 +262,7 @@ var maps_config = {},
                             if( typeof polygon === 'object' && polygon.length > 1 &&
                                 polygon.length == polygon.filter( p => typeof p === 'object' ).length ) {
 
-                                let hazard_color = map_sigmet_colors[ sigmet.hazard ] || '#eeeeee';
+                                let hazard_color = map_sigmet_colors[ sigmet.hazard ] || '#1b1d23';
 
                                 let poly = L.polygon( polygon.filter( p => p.reverse() ), {
                                     color: hazard_color,
