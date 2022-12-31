@@ -66,4 +66,32 @@
 
     }
 
+    function sigmet_info(
+        array $sigmet,
+        bool $location = true
+    ) {
+
+        return '<li>
+            <i class="icon">schedule</i>
+            <span>' . sigmet_valid( $sigmet ) . '</span>
+        </li>
+        <li>
+            <i class="icon">near_me</i>
+            <span>' . sigmet_move( $sigmet ) . '</span>
+        </li>
+        <li>
+            <i class="icon">warning</i>
+            <span>' . sigmet_cng( $sigmet ) . '</span>
+        </li>
+        ' . ( empty( $fl = sigmet_fl( $sigmet ) ) ? '' : '<li>
+            <i class="icon">flight_takeoff</i>
+            <span>' . $fl . '</span>
+        </li>' ) . '
+        ' . ( !$location || empty( $airport = airport_by( 'ICAO', $sigmet['airport'] ) ) ? '' : '<li>
+            <i class="icon">location_on</i>
+            <span>' . airport_link( $airport ) . '</span>
+        </li>' );
+
+    }
+
 ?>

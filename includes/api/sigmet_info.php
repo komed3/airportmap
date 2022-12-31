@@ -27,22 +27,7 @@
             'content' => '<div class="rawtxt">' . $sigmet['raw'] . '</div>
             <hr />
             <ul class="infobox-list">
-                <li>
-                    <i class="icon">schedule</i>
-                    <span>' . sigmet_valid( $sigmet ) . '</span>
-                </li>
-                <li>
-                    <i class="icon">near_me</i>
-                    <span>' . sigmet_move( $sigmet ) . '</span>
-                </li>
-                <li>
-                    <i class="icon">warning</i>
-                    <span>' . sigmet_cng( $sigmet ) . '</span>
-                </li>
-                ' . ( empty( $fl = sigmet_fl( $sigmet ) ) ? '' : '<li>
-                    <i class="icon">flight_takeoff</i>
-                    <span>' . $fl . '</span>
-                </li>' ) . '
+                ' . sigmet_info( $sigmet, false ) . '
             </ul>',
             'link' => SITE . 'weather/sigmets',
             'linktext' => i18n( 'view-sigmets' )

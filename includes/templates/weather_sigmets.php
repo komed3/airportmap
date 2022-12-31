@@ -13,6 +13,7 @@
     $__site_desc = 'sigmets-desc';
 
     add_resource( 'sigmets', 'css', 'sigmet.css' );
+    add_resource( 'sigmets', 'js', 'sigmet.js' );
 
     _header();
 
@@ -34,26 +35,7 @@
                     <?php echo $sigmet['raw']; ?>
                 </div>
                 <ul class="sigmet-list">
-                    <li>
-                        <i class="icon">schedule</i>
-                        <span><?php echo sigmet_valid( $sigmet ); ?></span>
-                    </li>
-                    <li>
-                        <i class="icon">near_me</i>
-                        <span><?php echo sigmet_move( $sigmet ); ?></span>
-                    </li>
-                    <li>
-                        <i class="icon">warning</i>
-                        <span><?php echo sigmet_cng( $sigmet ); ?></span>
-                    </li>
-                    <?php if( !empty( $fl = sigmet_fl( $sigmet ) ) ) { ?><li>
-                        <i class="icon">flight_takeoff</i>
-                        <span><?php echo $fl; ?></span>
-                    </li><?php } ?>
-                    <?php if( !empty( $airport = airport_by( 'ICAO', $sigmet['airport'] ) ) ) { ?><li>
-                        <i class="icon">location_on</i>
-                        <span><?php echo airport_link( $airport ); ?></span>
-                    </li><?php } ?>
+                    <?php echo sigmet_info( $sigmet ); ?>
                 </ul>
             </div>
         <?php } ?>
