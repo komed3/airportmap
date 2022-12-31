@@ -170,6 +170,8 @@ var maps_config = {},
                                 className: 'tooltip-airport',
                                 direction: 'center',
                                 opacity: 1
+                            } ).on( 'click', ( e ) => {
+                                map_airport_info( e, uuid, airport );
                             } )
                         );
 
@@ -200,6 +202,8 @@ var maps_config = {},
                                 className: 'tooltip-airport',
                                 direction: 'center',
                                 opacity: 1
+                            } ).on( 'click', ( e ) => {
+                                map_airport_info( e, uuid, station );
                             } )
                         );
 
@@ -325,6 +329,36 @@ var maps_config = {},
         }
 
         box.attr( 'class', 'map-infobox ' + classes ).show();
+
+    };
+
+    var map_airport_info = ( _e, uuid, airport ) => {
+
+        $.ajax( {
+            url: apiurl + 'airport_info.php',
+            type: 'post',
+            data: {
+                token: get_token(),
+                locale: $.cookie( 'locale' ),
+                airport: airport.ICAO
+            },
+            success: ( raw ) => {
+
+                let res = JSON.parse( raw );
+
+                if( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
+
+                    maps[ uuid ].flyTo(
+                        L.latLng( airport.lat, airport.lon ),
+                        Math.max( 8, maps[ uuid ].getZoom() )
+                    );
+
+                    map_info( uuid, res.response.infobox, 'airport' );
+
+                }
+
+            }
+        } );
 
     };
 
