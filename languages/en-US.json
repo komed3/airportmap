@@ -38,6 +38,7 @@
     "map-overlay-zoom-out": "Zoom out",
     "map-overlay-scroll": "Scroll below map",
     "map-overlay-close": "Close",
+    "view-airport": "View Airport",
     "valid-from-to": "Valid from <b>$2</b> to <b>$4</b> UTC",
     "valid-until": "Valid until <b>$3 $4</b> UTC",
     "movement": "Moves <b>$1 @ $2</b>",

@@ -25,6 +25,24 @@
 
     }
 
+    function airport_image(
+        string $ICAO
+    ) {
+
+        global $DB;
+
+        return ( $res = $DB->query( '
+            SELECT   *
+            FROM     ' . DB_PREFIX . 'image
+            WHERE    airport = "' . $ICAO . '"
+            ORDER BY _touched DESC
+            LIMIT    0, 1
+        ' ) )->num_rows == 1
+            ? $res->fetch_assoc()
+            : null;
+
+    }
+
     function alt_in(
         float $altitude,
         string $in = 'ft'

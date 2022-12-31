@@ -16,8 +16,9 @@
     if( !empty( $airport = airport_by( 'ICAO', $_POST['airport'] ?? '' ) ) ) {
 
         $infobox = [
-            'title' => '',
-            'subtitle' => '',
+            'image' => airport_image( $airport['ICAO'] ),
+            'title' => $airport['ICAO'],
+            'subtitle' => $airport['name'],
             'content' => '',
             'link' => SITE . 'airport/' . $airport['ICAO'],
             'linktext' => i18n( 'view-airport' )
