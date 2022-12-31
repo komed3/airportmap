@@ -313,6 +313,17 @@ var maps_config = {},
 
         let box = $( '#' + uuid + ' .map-infobox' );
 
+        if( 'image' in infobox && infobox.image !== null ) {
+
+            box.find( '.infobox-image' ).css( 'backgroundImage', infobox.image.file ).show();
+            box.find( '.infobox-image-credits' ).html( infobox.image.credits );
+
+        } else {
+
+            box.find( '.infobox-image' ).hide();
+
+        }
+
         box.find( '.infobox-title' ).html( infobox.title );
         box.find( '.infobox-subtitle' ).html( infobox.subtitle );
         box.find( '.infobox-content' ).html( infobox.content );

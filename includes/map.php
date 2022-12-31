@@ -55,6 +55,9 @@
                             <div class="infobox-close" map-action="close-infobox" title="<?php _i18n( 'map-overlay-close' ); ?>">
                                 <i class="icon">close</i>
                             </div>
+                            <div class="infobox-image">
+                                <div class="infobox-image-credits"></div>
+                            </div>
                             <h3 class="infobox-title"></h3>
                             <h4 class="infobox-subtitle"></h4>
                         </div>
