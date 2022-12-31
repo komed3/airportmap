@@ -18,7 +18,7 @@
         $valid_from = strtotime( $sigmet['valid_from'] );
         $valid_to = strtotime( $sigmet['valid_to'] );
 
-        return i18n( $valid_to >= strtotime( 'tomorrow' )
+        return i18n( date( 'd', $valid_from ) != date( 'd', $valid_to )
                 ? 'valid-until' : 'valid-from-to',
             date( 'm/d', $valid_from ),
             date( 'H:i', $valid_from ),
