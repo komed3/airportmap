@@ -118,6 +118,11 @@ select {
     cursor: pointer;
 }
 
+morse {
+    font-family: 'SourceCodePro' !important;
+    font-weight: 900;
+}
+
 mapicon, navicon, wxicon {
     display: inline-block;
     width: 20px;
