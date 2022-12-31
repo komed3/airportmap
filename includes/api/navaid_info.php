@@ -2,7 +2,7 @@
 
     require_once __DIR__ . '/api.php';
 
-    if( !load_requirements( 'language', 'content' ) ) {
+    if( !load_requirements( 'language', 'content', 'airport', 'navaid' ) ) {
 
         api_exit( [
             'raw' => null,
@@ -22,9 +22,18 @@
     if( $res->num_rows == 1 && $navaid = $res->fetch_assoc() ) {
 
         $infobox = [
-            'title' => '',
-            'subtitle' => '',
-            'content' => ''
+            'title' => format_freq( $navaid['frequency'] ),
+            'subtitle' => $navaid['type'] . ' ' . $navaid['ident'],
+            'content' => '<ul class="infobox-list">
+                ' . ( $navaid['country'] ? '<li>
+                    <i class="icon">location_on</i>
+                    <span>' . region_name( 'country', $navaid['country'] ) . '</span>
+                </li>' : '' ) . '
+                ' . ( $navaid['level'] ? '<li>
+                    <i class="icon">near_me</i>
+                    <span>' . navaid_level( $navaid ) . '</span>
+                </li>' : '' ) . '
+            </ul>'
         ];
 
     }

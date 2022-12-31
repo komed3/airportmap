@@ -14,6 +14,7 @@
     require_once PATH . 'language.php';
     require_once PATH . 'airport.php';
     require_once PATH . 'weather.php';
+    require_once PATH . 'navaid.php';
     require_once PATH . 'content.php';
     require_once PATH . 'map.php';
 

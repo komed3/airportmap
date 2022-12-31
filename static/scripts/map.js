@@ -348,7 +348,7 @@ var maps_config = {},
                         Math.max( 10, maps[ uuid ].getZoom() )
                     );
 
-                    map_info( uuid, res.response.infobox, 'navaid-' + navaid.type );
+                    map_info( uuid, res.response.infobox, 'navaid navaid-' + navaid.type );
 
                 }
 

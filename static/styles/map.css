@@ -181,6 +181,10 @@
     background: var( --gray-0 );
 }
 
+.map .map-overlay .map-infobox.navaid {
+    background: var( --primary );
+}
+
 .map .map-overlay .map-infobox.sigmet-CLD,
 .map .map-overlay .map-infobox.sigmet-VA {
     color: var( --gray-5 );
