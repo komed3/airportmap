@@ -131,4 +131,14 @@
 
     }
 
+    function region_link(
+        string $type,
+        string $region
+    ) {
+
+        return '<a href="' . SITE . $type . '/' . $region . '">' .
+            region_name( $type, $region ) . '</a>';
+
+    }
+
 ?>

@@ -31,7 +31,7 @@
                 </li>
                 ' . ( $navaid['country'] ? '<li>
                     <i class="icon">location_on</i>
-                    <span>' . region_name( 'country', $navaid['country'] ) . '</span>
+                    <span>' . region_link( 'country', $navaid['country'] ) . '</span>
                 </li>' : '' ) . '
                 ' . ( $navaid['level'] ? '<li>
                     <i class="icon">cell_tower</i>
@@ -43,7 +43,10 @@
                 </li>' : '' ) . '
                 <li>
                     <i class="icon">near_me</i>
-                    <span>' . __DMS_coords( $navaid['lat'], $navaid['lon'] ) . '</span>
+                    ' . __DMS_coords(
+                        $navaid['lat'],
+                        $navaid['lon']
+                    ) . '
                 </li>
                 ' . ( $navaid['alt'] ? '<li>
                     <i class="icon">vertical_align_top</i>
