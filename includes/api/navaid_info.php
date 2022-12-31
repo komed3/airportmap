@@ -22,16 +22,24 @@
     if( $res->num_rows == 1 && $navaid = $res->fetch_assoc() ) {
 
         $infobox = [
-            'title' => format_freq( $navaid['frequency'] ),
+            'title' => $freq = format_freq( $navaid['frequency'] ),
             'subtitle' => $navaid['type'] . ' ' . $navaid['name'],
             'content' => '<ul class="infobox-list">
                 <li>
                     <i class="icon">tag</i>
                     <span>' . $navaid['type'] . ' <b>' . $navaid['ident'] . '</b></span>
                 </li>
+                <li>
+                    <i class="icon">radar</i>
+                    <span>' . $freq . '</span>
+                </li>
                 ' . ( $navaid['country'] ? '<li>
                     <i class="icon">location_on</i>
                     <span>' . region_link( 'country', $navaid['country'] ) . '</span>
+                </li>' : '' ) . '
+                ' . ( !empty( $airport = airport_by( 'ICAO', $navaid['airport'] ?? '' ) ) ? '<li>
+                    <i class="icon">flight</i>
+                    <span>' . airport_link( $airport ) . '</span>
                 </li>' : '' ) . '
                 ' . ( $navaid['level'] ? '<li>
                     <i class="icon">cell_tower</i>
