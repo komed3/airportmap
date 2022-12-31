@@ -67,7 +67,7 @@
 .sigmets .sigmet .sigmet-raw {
     padding: 20px 30px;
     font-size: 14px;
-    border-bottom: 2px solid var( --gray-1 );
+    border-bottom: 4px solid var( --gray-1 );
 }
 
 .sigmets .sigmet .sigmet-list {
