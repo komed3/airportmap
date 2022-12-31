@@ -53,6 +53,34 @@
 
     }
 
+    function __DMS(
+        float $decimal,
+        string $type = 'lat'
+    ) {
+
+        $abs = abs( $decimal );
+        $deg = floor( $abs );
+        $sub = ( $abs - $deg ) * 60;
+        $min = floor( $sub );
+        $sec = floor( ( $sub - $min ) * 60 );
+
+        return $deg . '°&#8239;' . $min . '′&#8239;' . $sec . '″&#8239;' . i18n( 'sdir-' . [
+            'lat' => $dec < 0 ? 'S' : 'N',
+            'lon' => $dec < 0 ? 'W' : 'E'
+        ][ $type ] );
+
+    }
+
+    function __DMS_coords(
+        float $lat,
+        float $lon
+    ) {
+
+        return '<span>' . __DMS( $lat, 'lat' ) . '</span> ' .
+               '<span>' . __DMS( $lon, 'lon' ) . '</span>';
+
+    }
+
     function __morse(
         string $input,
         bool $decode = false

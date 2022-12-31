@@ -27,8 +27,7 @@
             'content' => '<ul class="infobox-list">
                 <li>
                     <i class="icon">tag</i>
-                    <span>' . $navaid['ident'] . '</span>
-                    ' . navaid_ident( $navaid ) . '
+                    <span>' . $navaid['type'] . ' <b>' . $navaid['ident'] . '</b></span>
                 </li>
                 ' . ( $navaid['country'] ? '<li>
                     <i class="icon">location_on</i>
@@ -42,6 +41,10 @@
                     <i class="icon">power</i>
                     <span>' . navaid_power( $navaid ) . '</span>
                 </li>' : '' ) . '
+                <li>
+                    <i class="icon">near_me</i>
+                    <span>' . __DMS_coords( $navaid['lat'], $navaid['lon'] ) . '</span>
+                </li>
                 ' . ( $navaid['alt'] ? '<li>
                     <i class="icon">vertical_align_top</i>
                     <span>' . alt_in( $navaid['alt'] ) . '</span>
