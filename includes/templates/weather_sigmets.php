@@ -25,7 +25,7 @@
             <label for="sigmet-filter_hazard">
                 <?php _i18n( 'sigmet-filter-hazard' ); ?>
             </label>
-            <select id="sigmet-filter_hazard" data-filter="hazard">
+            <select id="sigmet-filter_hazard" filter="hazard">
                 <option value=""><?php _i18n( 'filter-all' ); ?></option>
                 <?php foreach( array_filter( array_unique( array_column( $sigmets, 'hazard' ) ) ) as $hazard ) { ?>
                     <option value="<?php echo $hazard; ?>">
@@ -38,7 +38,7 @@
             <label for="sigmet-filter_change">
                 <?php _i18n( 'sigmet-filter-change' ); ?>
             </label>
-            <select id="sigmet-filter_change" data-filter="change">
+            <select id="sigmet-filter_change" filter="change">
                 <option value=""><?php _i18n( 'filter-all' ); ?></option>
                 <?php foreach( array_filter( array_unique( array_column( $sigmets, 'cng' ) ) ) as $change ) { ?>
                     <option value="<?php echo $change; ?>">
