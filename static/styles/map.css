@@ -145,6 +145,7 @@
 
 .map .map-overlay .map-infobox.image .infobox-header .infobox-close {
     margin-top: 20px;
+    box-shadow: 0 0 10px var( --shade-3 );
 }
 
 .map .map-overlay .map-infobox .infobox-header .infobox-close .icon {
