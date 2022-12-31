@@ -52,7 +52,7 @@
             LIMIT    0, ' . ( $_POST['limit'] ?? 75 )
         )->fetch_all( MYSQLI_ASSOC ),
         'navaids' => ( $_POST['navaids'] ?? 0 ) == 1 ? $DB->query( '
-            SELECT   ident, type, frequency, lat, lon, alt
+            SELECT   _id, ident, type, frequency, lat, lon, alt
             FROM     ' . DB_PREFIX . 'navaid
             WHERE    ' . $navaids_query . '
             LIMIT    0, 50

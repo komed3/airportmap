@@ -139,6 +139,8 @@ var maps_config = {},
                                 className: 'tooltip-navaid',
                                 direction: 'center',
                                 opacity: 1
+                            } ).on( 'click', ( e ) => {
+                                map_navaid_info( e, uuid, navaid );
                             } )
                         );
 
@@ -309,14 +311,53 @@ var maps_config = {},
         box.find( '.infobox-title' ).html( infobox.title );
         box.find( '.infobox-subtitle' ).html( infobox.subtitle );
         box.find( '.infobox-content' ).html( infobox.content );
-        box.find( '.infobox-link' ).attr( 'href', infobox.link );
-        box.find( '.infobox-linktext' ).html( infobox.linktext );
+
+        if( 'link' in infobox ) {
+
+            box.find( '.infobox-link' ).attr( 'href', infobox.link ).show();
+            box.find( '.infobox-linktext' ).html( infobox.linktext );
+
+        } else {
+
+            box.find( '.infobox-link' ).hide();
+
+        }
 
         box.attr( 'class', 'map-infobox ' + classes ).show();
 
     };
 
-    var map_sigmet_info = ( poly, e, uuid, sigmet ) => {
+    var map_navaid_info = ( _e, uuid, navaid ) => {
+
+        $.ajax( {
+            url: apiurl + 'navaid_info.php',
+            type: 'post',
+            data: {
+                token: get_token(),
+                locale: $.cookie( 'locale' ),
+                sigmet: navaid._id
+            },
+            success: ( raw ) => {
+
+                let res = JSON.parse( raw );
+
+                if( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
+
+                    maps[ uuid ].flyTo(
+                        L.latLng( navaid.lat, navaid.lon ),
+                        Math.max( 10, maps[ uuid ].getZoom() )
+                    );
+
+                    map_info( uuid, res.response.infobox, 'navaid-' + navaid.type );
+
+                }
+
+            }
+        } );
+
+    };
+
+    var map_sigmet_info = ( poly, _e, uuid, sigmet ) => {
 
         $.ajax( {
             url: apiurl + 'sigmet_info.php',
