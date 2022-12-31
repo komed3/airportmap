@@ -226,6 +226,10 @@ wxicon {
     background-image: url( './../resources/cat-LIFR.svg' );
 }
 
+.mypos {
+    pointer-events: none !important;
+}
+
 .mypos mapicon {
     width: 24px;
     height: 24px;
