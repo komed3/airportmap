@@ -335,7 +335,7 @@ var maps_config = {},
             data: {
                 token: get_token(),
                 locale: $.cookie( 'locale' ),
-                sigmet: navaid._id
+                navaid: navaid._id
             },
             success: ( raw ) => {
 
