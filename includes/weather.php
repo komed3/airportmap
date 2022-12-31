@@ -53,7 +53,7 @@
 
         $fl_msgkey = 'fl';
 
-        if( !empty( $fl_base = $sigmet['lo_1'] ?? ( $sigmet['lo_2'] ?? null ) ) )
+        if( !empty( $fl_base = $sigmet['low_1'] ?? ( $sigmet['low_2'] ?? null ) ) )
             $fl_msgkey .= '-from';
 
         if( !empty( $fl_top = $sigmet['hi_1'] ?? ( $sigmet['hi_2'] ?? null ) ) )
