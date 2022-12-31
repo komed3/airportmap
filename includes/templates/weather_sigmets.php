@@ -20,9 +20,37 @@
 ?>
 <div class="content-normal">
     <h1><?php echo $__site_title; ?></h1>
+    <div class="filter sigmets-filter">
+        <div class="filter-group">
+            <label for="sigmet-filter_hazard">
+                <?php _i18n( 'sigmet-filter-hazard' ); ?>
+            </label>
+            <select id="sigmet-filter_hazard" data-filter="hazard">
+                <option value=""><?php _i18n( 'filter-all' ); ?></option>
+                <?php foreach( array_filter( array_unique( array_column( $sigmets, 'hazard' ) ) ) as $hazard ) { ?>
+                    <option value="<?php echo $hazard; ?>">
+                        <?php _i18n( 'hazard-' . $hazard ); ?>
+                    </option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="sigmet-filter_change">
+                <?php _i18n( 'sigmet-filter-change' ); ?>
+            </label>
+            <select id="sigmet-filter_change" data-filter="change">
+                <option value=""><?php _i18n( 'filter-all' ); ?></option>
+                <?php foreach( array_filter( array_unique( array_column( $sigmets, 'cng' ) ) ) as $change ) { ?>
+                    <option value="<?php echo $change; ?>">
+                        <?php _i18n( 'change-' . $change ); ?>
+                    </option>
+                <?php } ?>
+            </select>
+        </div>
+    </div>
     <div class="sigmets">
         <?php foreach( $sigmets as $sigmet ) { ?>
-            <div class="sigmet sigmet-<?php echo $sigmet['hazard']; ?>">
+            <div class="sigmet hazard-<?php echo $sigmet['hazard']; ?> change-<?php echo $sigmet['cng'] ?? 'NC'; ?>">
                 <div class="sigmet-header">
                     <h2 class="sigmet-title">
                         <?php echo sigmet_hazard( $sigmet ); ?>

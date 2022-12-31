@@ -14,40 +14,40 @@
     color: var( --gray-0 );
 }
 
-.sigmets .sigmet.sigmet-CLD .sigmet-header,
-.sigmets .sigmet.sigmet-VA .sigmet-header {
+.sigmets .sigmet.hazard-CLD .sigmet-header,
+.sigmets .sigmet.hazard-VA .sigmet-header {
     color: var( --gray-5 );
     background: var( --gray-2 );
 }
 
-.sigmets .sigmet.sigmet-CONV .sigmet-header,
-.sigmets .sigmet.sigmet-FC .sigmet-header {
+.sigmets .sigmet.hazard-CONV .sigmet-header,
+.sigmets .sigmet.hazard-FC .sigmet-header {
     background: var( --indicator-pink );
 }
 
-.sigmets .sigmet.sigmet-DS .sigmet-header,
-.sigmets .sigmet.sigmet-SS .sigmet-header {
+.sigmets .sigmet.hazard-DS .sigmet-header,
+.sigmets .sigmet.hazard-SS .sigmet-header {
     color: var( --gray-5 );
     background: var( --indicator-yellow );
 }
 
-.sigmets .sigmet.sigmet-GR .sigmet-header,
-.sigmets .sigmet.sigmet-TDO .sigmet-header,
-.sigmets .sigmet.sigmet-TS .sigmet-header,
-.sigmets .sigmet.sigmet-TSGR .sigmet-header {
+.sigmets .sigmet.hazard-GR .sigmet-header,
+.sigmets .sigmet.hazard-TDO .sigmet-header,
+.sigmets .sigmet.hazard-TS .sigmet-header,
+.sigmets .sigmet.hazard-TSGR .sigmet-header {
     background: var( --indicator-red );
 }
 
-.sigmets .sigmet.sigmet-ICE .sigmet-header,
-.sigmets .sigmet.sigmet-WTSPT .sigmet-header {
+.sigmets .sigmet.hazard-ICE .sigmet-header,
+.sigmets .sigmet.hazard-WTSPT .sigmet-header {
     background: var( --indicator-blue );
 }
 
-.sigmets .sigmet.sigmet-MTW .sigmet-header {
+.sigmets .sigmet.hazard-MTW .sigmet-header {
     background: var( --indicator-green );
 }
 
-.sigmets .sigmet.sigmet-TURB .sigmet-header {
+.sigmets .sigmet.hazard-TURB .sigmet-header {
     background: var( --indicator-orange );
 }
 

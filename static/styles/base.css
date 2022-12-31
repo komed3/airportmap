@@ -105,6 +105,19 @@ button {
     cursor: pointer;
 }
 
+select {
+    appearance: none;
+    width: auto;
+    height: 40px;
+    padding: 0 20px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    background: var( --gray-0 );
+    border: 0;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
 mapicon, navicon, wxicon {
     display: inline-block;
     width: 20px;
@@ -329,4 +342,26 @@ h1 {
 
 .searchform button .icon {
     font-size: 30px;
+}
+
+.filter {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 60px;
+    margin: 40px 0;
+}
+
+.filter .filter-group {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.filter .filter-group label {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 300;
+    color: var( --gray-3 );
 }

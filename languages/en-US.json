@@ -6,6 +6,7 @@
     "site-nav-weather": "Weather",
     "searchform-placeholder": "Search for ICAO, IATA or airport name …",
     "searchform-submit-title": "Search airports all over the world",
+    "filter-all": "All",
     "footer-about": "Open source project with information and weather data on more than $1 airports, heliports and air bases worldwide.",
     "footer-credits": "© $1 <a href=\"https://github.com/komed3\" target=\"_blank\">Paul Köhler (komed3)</a>",
     "footer-headline-discover": "Discover",
@@ -90,5 +91,7 @@
     "change-intsf": "intensifying",
     "change-wkn": "weakening",
     "sigmets-title": "View $1 active SIGMETs",
-    "sigmets-desc": "List of active reported significant weather conditions (SIGMET)"
+    "sigmets-desc": "List of active reported significant weather conditions (SIGMET)",
+    "sigmet-filter-hazard": "Hazard",
+    "sigmet-filter-change": "Changing"
 }
