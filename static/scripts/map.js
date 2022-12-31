@@ -591,10 +591,21 @@ var maps_config = {},
 
                 navigator.geolocation.getCurrentPosition( ( position ) => {
 
-                    map.setView( new L.LatLng(
+                    let latlon = new L.LatLng(
                         position.coords.latitude,
                         position.coords.longitude
-                    ), 8 );
+                    );
+
+                    map.setView( latlon, 8 );
+
+                    L.marker( latlon, {
+                        icon: L.divIcon( {
+                            iconSize: [ 20, 20 ],
+                            iconAnchor: [ 10, 10 ],
+                            className: 'mypos',
+                            html: '<mapicon></mapicon>'
+                        } )
+                    } ).addTo( map );
 
                 } );
 

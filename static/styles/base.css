@@ -226,6 +226,29 @@ wxicon {
     background-image: url( './../resources/cat-LIFR.svg' );
 }
 
+.mypos mapicon {
+    background-image: url( './../resources/mypos.svg' );
+    animation: pulse 3s infinite;
+}
+
+.mypos mapicon::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    right: -30px;
+    bottom: -30px;
+    background: var( --gray-0 );
+    border-radius: 50%;
+    animation: mypos 2.5s infinite;
+    z-index: -1;
+}
+
+@keyframes mypos {
+      0% { opacity: 1; transform: scale( 0 ); }
+    100% { opacity: 0; transform: scale( 1 ); }
+}
+
 windflag {
     pointer-events: none;
     position: absolute;
