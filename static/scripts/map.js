@@ -315,7 +315,9 @@ var maps_config = {},
 
         if( 'image' in infobox && infobox.image !== null ) {
 
-            box.find( '.infobox-image' ).css( 'backgroundImage', infobox.image.file ).show();
+            classes += ' image';
+
+            box.find( '.infobox-image' ).css( 'backgroundImage', 'url( ' + infobox.image.file + ' )' ).show();
             box.find( '.infobox-image-credits' ).html( infobox.image.credits );
 
         } else {

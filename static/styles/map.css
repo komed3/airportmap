@@ -94,8 +94,30 @@
     overflow-y: auto;
 }
 
+.map .map-overlay .map-infobox .infobox-header .infobox-image {
+    position: relative;
+    margin: -20px -20px 16px -20px;
+    width: auto;
+    height: 200px;
+    background-color: var( --gray-6 );
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.map .map-overlay .map-infobox .infobox-header .infobox-image .infobox-image-credits {
+    position: absolute;
+    right: 6px;
+    bottom: 4px;
+    text-shadow: 0 0 2px var( --gray-6 );
+    line-height: 1;
+    font-size: 9px;
+    opacity: 0.8;
+}
+
 .map .map-overlay .map-infobox .infobox-header .infobox-title {
     margin: 0;
+    line-height: 1.2;
     font-size: 20px;
     font-weight: 600;
 }
@@ -107,6 +129,7 @@
 }
 
 .map .map-overlay .map-infobox .infobox-header .infobox-close {
+    position: relative;
     float: right;
     display: flex;
     justify-content: center;
@@ -116,7 +139,12 @@
     height: 32px;
     background: var( --gray-0 );
     border-radius: 3px;
+    z-index: 99;
     cursor: pointer;
+}
+
+.map .map-overlay .map-infobox.image .infobox-header .infobox-close {
+    margin-top: 20px;
 }
 
 .map .map-overlay .map-infobox .infobox-header .infobox-close .icon {
@@ -181,6 +209,7 @@
     background: var( --gray-0 );
 }
 
+.map .map-overlay .map-infobox.airport,
 .map .map-overlay .map-infobox.navaid {
     background: var( --primary );
 }
