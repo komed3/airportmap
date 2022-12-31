@@ -19,7 +19,21 @@
             'image' => airport_image( $airport['ICAO'] ),
             'title' => $airport['ICAO'],
             'subtitle' => $airport['name'],
-            'content' => '',
+            'content' => '<ul class="infobox-list">
+                <li>
+                    <i class="icon">location_on</i>
+                    <span>' . region_link( 'country', $airport['country'] ) . '</span>
+                </li>
+                <li>
+                    <i class="icon">near_me</i>
+                    ' . __DMS_coords( $airport['lat'], $airport['lon'] ) . '
+                </li>
+                <li>
+                    <i class="icon">flight_takeoff</i>
+                    <span>' . alt_in( (int) $airport['alt'] ) . '</span>
+                    <span>(' . alt_in( (int) $airport['alt'] / 3.281, 'm&#8239;MSL' ) . ')</span>
+                </li>
+            </ul>',
             'link' => SITE . 'airport/' . $airport['ICAO'],
             'linktext' => i18n( 'view-airport' )
         ];

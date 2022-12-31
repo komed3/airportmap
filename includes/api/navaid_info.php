@@ -51,14 +51,12 @@
                 </li>' : '' ) . '
                 <li>
                     <i class="icon">near_me</i>
-                    ' . __DMS_coords(
-                        $navaid['lat'],
-                        $navaid['lon']
-                    ) . '
+                    ' . __DMS_coords( $navaid['lat'], $navaid['lon'] ) . '
                 </li>
                 ' . ( $navaid['alt'] ? '<li>
-                    <i class="icon">vertical_align_top</i>
+                    <i class="icon">flight_takeoff</i>
                     <span>' . alt_in( $navaid['alt'] ) . '</span>
+                    <span>(' . alt_in( $navaid['alt'] / 3.281, 'm&#8239;MSL' ) . ')</span>
                 </li>' : '' ) . '
             </ul>'
         ];

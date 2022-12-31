@@ -118,14 +118,14 @@
 .map .map-overlay .map-infobox .infobox-header .infobox-title {
     margin: 0;
     line-height: 1.2;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
 }
 
 .map .map-overlay .map-infobox .infobox-header .infobox-subtitle {
     margin: 0;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .map .map-overlay .map-infobox .infobox-header .infobox-close {
