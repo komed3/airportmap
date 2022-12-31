@@ -3,6 +3,7 @@ var maps_config = {},
     maps_type = {},
     maps_layer = {},
     maps_timeout = {},
+    maps_mypos_marker = {},
     map_sigmet_colors = {
         CLD: '#595b64',
         CONV: '#aa66ff',
@@ -598,14 +599,20 @@ var maps_config = {},
 
                     map.setView( latlon, 8 );
 
-                    L.marker( latlon, {
-                        icon: L.divIcon( {
-                            iconSize: [ 20, 20 ],
-                            iconAnchor: [ 10, 10 ],
-                            className: 'mypos',
-                            html: '<mapicon></mapicon>'
-                        } )
-                    } ).addTo( map );
+                    if( !maps_mypos_marker[ uuid ] ) {
+
+                        maps_mypos_marker[ uuid ] = true;
+
+                        L.marker( latlon, {
+                            icon: L.divIcon( {
+                                iconSize: [ 24, 24 ],
+                                iconAnchor: [ 12, 12 ],
+                                className: 'mypos',
+                                html: '<mapicon></mapicon>'
+                            } )
+                        } ).addTo( map );
+
+                    }
 
                 } );
 

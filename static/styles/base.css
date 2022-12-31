@@ -227,6 +227,8 @@ wxicon {
 }
 
 .mypos mapicon {
+    width: 24px;
+    height: 24px;
     background-image: url( './../resources/mypos.svg' );
     animation: pulse 3s infinite;
 }
@@ -234,11 +236,11 @@ wxicon {
 .mypos mapicon::before {
     content: '';
     position: absolute;
-    top: -30px;
-    left: -30px;
-    right: -30px;
-    bottom: -30px;
-    background: var( --gray-0 );
+    top: -24px;
+    left: -24px;
+    right: -24px;
+    bottom: -24px;
+    background: var( --shade-5 );
     border-radius: 50%;
     animation: mypos 2.5s infinite;
     z-index: -1;
