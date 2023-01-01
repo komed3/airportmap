@@ -21,7 +21,18 @@
             'image' => airport_image( $airport['ICAO'] ),
             'title' => $airport['ICAO'],
             'subtitle' => $airport['name'],
-            'content' => '<ul class="infobox-list">
+            'content' => ( !empty( $weather ) ? '<div class="infobox-weather">
+                <div class="cat">
+                    <span>' . $weather['flight_cat'] . '</span>
+                </div>
+                <div class="info">
+                    <div class="temp"></div>
+                    <div class="wx"></div>
+                    <div class="wind"></div>
+                </div>
+            </div>
+            <hr />' : '' ) . '
+            <ul class="infobox-list">
                 <li>
                     <i class="icon">location_on</i>
                     <span>' . region_link( 'country', $airport['country'] ) . '</span>
