@@ -31,7 +31,7 @@
             ? round( $horiz * 1000 ) . '&#8239;m'
             : $horiz . '&#8239;km'
         ) ) . '</span><span>/</span><span>' . ( $vert > 50000
-            ? i18n( 'sky-clear' )
+            ? i18n( 'clear-sky' )
             : $vert . '&#8239;ft'
         ) . '</span>';
 

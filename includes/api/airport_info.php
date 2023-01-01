@@ -22,10 +22,17 @@
             'title' => $airport['ICAO'],
             'subtitle' => $airport['name'],
             'content' => ( !empty( $weather ) ? '<div class="infobox-weather">
-                <div class="cat">
-                    <span>' . ( $weather['flight_cat'] ?? 'UNK' ) . '</span>
-                </div>
-                <div class="vis">' . vis_info( $weather ) . '</div>
+                ' . ( $weather['flight_cat'] ? '
+                    <div class="cat">
+                        <span>' . $weather['flight_cat'] . '</span>
+                    </div>
+                    <div class="vis">' . vis_info( $weather ) . '</div>
+                ' : '
+                    <div class="cat">
+                        <span>UNK</span>
+                    </div>
+                    <div class="vis">' . i18n( 'sky-unknown' ) . '</div>'
+                ) . '
                 <div class="icon">' . wx_icon( $weather ) . '</div>
                 <div class="info">
                     <div class="temp">
