@@ -231,7 +231,7 @@ wxicon {
     background-image: url( './../resources/cat-LIFR.svg' );
 }
 
-.mypos {
+.mypos, .halo {
     pointer-events: none !important;
 }
 
@@ -239,23 +239,27 @@ wxicon {
     width: 24px;
     height: 24px;
     background-image: url( './../resources/mypos.svg' );
-    animation: pulse 3s infinite;
+}
+
+.mypos mapicon::before, halo {
+    position: absolute;
+    width: 72px;
+    height: 72px;
+    background: var( --shade-5 );
+    border-radius: 50%;
+    animation: halo 2.5s infinite;
+    z-index: -1;
 }
 
 .mypos mapicon::before {
     content: '';
-    position: absolute;
     top: -24px;
     left: -24px;
     right: -24px;
     bottom: -24px;
-    background: var( --shade-5 );
-    border-radius: 50%;
-    animation: mypos 2.5s infinite;
-    z-index: -1;
 }
 
-@keyframes mypos {
+@keyframes halo {
       0% { opacity: 1; transform: scale( 0 ); }
     100% { opacity: 0; transform: scale( 1 ); }
 }

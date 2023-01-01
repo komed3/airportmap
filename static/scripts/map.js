@@ -42,6 +42,29 @@ var maps_config = {},
 
     };
 
+    var map_halo = ( uuid, position = false ) => {
+
+        if( maps_layer[ uuid ].halo ) {
+
+            maps[ uuid ].removeLayer( maps_layer[ uuid ].halo );
+
+        }
+
+        if( position !== false ) {
+
+            maps_layer[ uuid ].halo = L.marker( position, {
+                icon: L.divIcon( {
+                    iconSize: [ 72, 72 ],
+                    iconAnchor: [ 36, 36 ],
+                    className: 'halo',
+                    html: '<halo></halo>'
+                } )
+            } ).addTo( maps[ uuid ] );
+
+        }
+
+    };
+
     var map_check_zoom = ( uuid ) => {
 
         let zoom = maps[ uuid ].getZoom();
@@ -368,10 +391,14 @@ var maps_config = {},
 
                 if( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
 
+                    let position = L.latLng( airport.lat, airport.lon );
+
                     maps[ uuid ].flyTo(
-                        L.latLng( airport.lat, airport.lon ),
+                        position,
                         Math.max( 8, maps[ uuid ].getZoom() )
                     );
+
+                    map_halo( uuid, position );
 
                     map_info( uuid, res.response.infobox, 'airport' );
 
@@ -675,6 +702,8 @@ var maps_config = {},
             case 'close-infobox':
 
                 $( '#' + uuid + ' .map-infobox' ).attr( 'class', 'map-infobox' ).hide();
+
+                map_halo( uuid );
 
                 break;
 
