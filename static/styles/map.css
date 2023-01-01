@@ -107,11 +107,16 @@
 
 .map .map-overlay .map-infobox .infobox-header .infobox-image .infobox-image-credits {
     position: absolute;
+    left: 24px;
     right: 6px;
     bottom: 4px;
+    text-align: right;
+    text-overflow: ellipsis;
     text-shadow: 0 0 2px var( --gray-6 );
+    white-space: nowrap;
     line-height: 1;
     font-size: 9px;
+    overflow: hidden;
     opacity: 0.8;
 }
 
