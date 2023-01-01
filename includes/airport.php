@@ -43,6 +43,59 @@
 
     }
 
+    function airport_weather(
+        array $airport,
+        int $max_deg = 10,
+        int $max_age = 1
+    ) {
+
+        global $DB;
+
+        $first = [];
+
+        if( ( $res = $DB->query( '
+            SELECT   metar.*, ( 3440.29182 * acos(
+                cos( radians( ' . $airport['lat'] . ' ) ) *
+                cos( radians( lat ) ) *
+                cos(
+                    radians( lon ) -
+                    radians( ' . $airport['lon'] . ' )
+                ) +
+                sin( radians( ' . $airport['lat'] . ' ) ) *
+                sin( radians( lat ) )
+            ) ) AS distance
+            FROM     ' . DB_PREFIX . 'metar,
+                     ' . DB_PREFIX . 'airport
+            WHERE    station = ICAO
+            AND      lat BETWEEN ' . ( $airport['lat'] - $max_deg ) . ' AND ' . ( $airport['lat'] + $max_deg ) . '
+            AND      lon BETWEEN ' . ( $airport['lon'] - $max_deg ) . ' AND ' . ( $airport['lon'] + $max_deg ) . '
+            AND      reported >= DATE_SUB( NOW(), INTERVAL ' . $max_age . ' DAY )
+            ORDER BY distance ASC
+            LIMIT    0, 10
+        ' ) )->num_rows > 0 ) {
+
+            while( $row = $res->fetch_assoc() ) {
+
+                if( empty( $first ) ) {
+
+                    $first = $row;
+
+                }
+
+                if( $row->flight_cat != null ) {
+
+                    return $row;
+
+                }
+
+            }
+
+        }
+
+        return $first;
+
+    }
+
     function alt_in(
         float $altitude,
         string $in = 'ft'
