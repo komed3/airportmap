@@ -31,7 +31,9 @@
                         <span>(' . temp_in( ( (int) $weather['temp'] ) * 1.8 + 32, 'f' ) . ')</span>
                     </div>
                     <div class="wx"></div>
-                    <div class="wind"></div>
+                    <div class="wind">
+                        ' . wind_info( $weather ) . '
+                    </div>
                 </div>
             </div>
             <hr />' : '' ) . '

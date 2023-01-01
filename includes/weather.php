@@ -9,6 +9,17 @@
 
     }
 
+    function wind_info(
+        array $weather
+    ) {
+
+        return i18n( 'wind-' . ( ( $weather['wind_spd'] ?? 0 ) == 0 ? 'calm' : 'to' ),
+            round( $weather['wind_spd'] ?? 0 ),
+            __cardinal( $weather['wind_dir'] ?? 0 )
+        );
+
+    }
+
     function sigmet_hazard(
         array $sigmet
     ) {

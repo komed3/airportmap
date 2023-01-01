@@ -152,6 +152,21 @@
 
     }
 
+    function __cardinal(
+        float $hdg,
+        bool $short = true
+    ) {
+
+        return i18n( ( $short ? 's' : '' ) . 'dir-' . [
+            'N', 'NNE', 'NE', 'ENE',
+            'E', 'ESE', 'SE', 'SSE',
+            'S', 'SSW', 'SW', 'WSW',
+            'W', 'WNW', 'NW', 'NNW',
+            'N'
+        ][ round( $hdg / 22.5 ) ] );
+
+    }
+
     function __morse(
         string $input,
         bool $decode = false
