@@ -20,6 +20,23 @@
 
     }
 
+    function vis_info(
+        array $weather
+    ) {
+
+        $horiz = round( ( $weather['vis_horiz'] ?? 10 ) * 1.609, 1 );
+        $vert = round( $weather['vis_vert'] ?? 99999 );
+
+        return '<span>' . ( $horiz >= 10 ? '10km+' : ( $horiz < 1
+            ? round( $horiz * 1000 ) . '&#8239;m'
+            : $horiz . '&#8239;km'
+        ) ) . '</span><span>/</span><span>' . ( $vert > 50000
+            ? i18n( 'sky-clear' )
+            : $vert . '&#8239;ft'
+        ) . '</span>';
+
+    }
+
     function wx(
         array $weather
     ) {

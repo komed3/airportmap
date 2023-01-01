@@ -25,14 +25,11 @@
                 <div class="cat">
                     <span>' . ( $weather['flight_cat'] ?? 'UNK' ) . '</span>
                 </div>
-                <div class="vis">
-                    <div class="vis-horiz"></div>
-                    <div class="vis-vert"></div>
-                </div>
+                <div class="vis">' . vis_info( $weather ) . '</div>
                 <div class="icon">' . wx_icon( $weather ) . '</div>
                 <div class="info">
                     <div class="temp">
-                        <span>' . temp_in( (int) $weather['temp'], 'c' ) . '</span>
+                        <b>' . temp_in( (int) $weather['temp'], 'c' ) . '</b>
                         <span>(' . temp_in( ( (int) $weather['temp'] ) * 1.8 + 32, 'f' ) . ')</span>
                     </div>
                     <div class="wx">' . ucfirst( wx( $weather ) ) . '</div>
