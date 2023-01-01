@@ -425,10 +425,14 @@ var maps_config = {},
 
                 if( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
 
+                    let position = L.latLng( navaid.lat, navaid.lon );
+
                     maps[ uuid ].flyTo(
-                        L.latLng( navaid.lat, navaid.lon ),
+                        position,
                         Math.max( 10, maps[ uuid ].getZoom() )
                     );
+
+                    map_halo( uuid, position );
 
                     map_info( uuid, res.response.infobox, 'navaid navaid-' + navaid.type );
 
