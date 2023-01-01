@@ -313,6 +313,12 @@ var maps_config = {},
 
         let box = $( '#' + uuid + ' .map-infobox' );
 
+        if( 'classes' in infobox ) {
+
+            classes += ' ' + infobox.classes;
+
+        }
+
         if( 'image' in infobox && infobox.image !== null ) {
 
             classes += ' image';

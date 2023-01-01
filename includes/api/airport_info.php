@@ -15,6 +15,8 @@
 
     if( !empty( $airport = airport_by( 'ICAO', $_POST['airport'] ?? '' ) ) ) {
 
+        $weather = airport_weather( $airport );
+
         $infobox = [
             'image' => airport_image( $airport['ICAO'] ),
             'title' => $airport['ICAO'],
@@ -35,7 +37,8 @@
                 </li>
             </ul>',
             'link' => SITE . 'airport/' . $airport['ICAO'],
-            'linktext' => i18n( 'view-airport' )
+            'linktext' => i18n( 'view-airport' ),
+            'classes' => 'cat-' . ( $weather['flight_cat'] ?? 'UNK' )
         ];
 
     }
