@@ -8,7 +8,7 @@
     $lon_max = max( $_POST['bounds']['lon'] ?? 0 );
 
     api_exit( [
-        'stations' => $DB->query( '
+        'stations' => $stations = $DB->query( '
             SELECT   a.ICAO, a.name, a.lat, a.lon, a.alt,
                      m.flight_cat AS cat, m.wind_dir, m.wind_spd
             FROM     ' . DB_PREFIX . 'airport a,
@@ -19,6 +19,16 @@
             AND      m.reported >= DATE_SUB( NOW(), INTERVAL ' . ( $_POST['maxage'] ?? 1 ) . ' DAY )
             ORDER BY ' . ( $_POST['orderby'] ?? 'a.tier DESC' ) . '
             LIMIT    0, ' . ( $_POST['limit'] ?? 50 )
+        )->fetch_all( MYSQLI_ASSOC ),
+        'airports' => $DB->query( '
+            SELECT   ICAO, name, lat, lon, alt, type, restriction
+            FROM     ' . DB_PREFIX . 'airport
+            WHERE    ( lat BETWEEN ' . $lat_min . ' AND ' . $lat_max . ' )
+            AND      ( lon BETWEEN ' . $lon_min . ' AND ' . $lon_max . ' )
+            AND      type NOT IN ( "closed" )
+            AND      ICAO NOT IN ( "' . implode( '", "', array_column( $stations, 'ICAO' ) ) . '" )
+            ORDER BY ' . ( $_POST['orderby'] ?? 'tier DESC' ) . '
+            LIMIT    0, ' . ( ( $_POST['limit'] ?? 75 ) - count( $stations ) )
         )->fetch_all( MYSQLI_ASSOC )
     ] );
 
