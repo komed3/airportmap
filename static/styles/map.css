@@ -259,19 +259,19 @@
     background: var( --gray-2 );
 }
 
+.map .map-overlay .map-infobox.airport.cat-LIFR,
 .map .map-overlay .map-infobox.sigmet-CONV,
 .map .map-overlay .map-infobox.sigmet-FC {
     background: var( --indicator-pink );
 }
 
-.map .map-overlay .map-infobox.airport.cat-MVFR,
 .map .map-overlay .map-infobox.sigmet-DS,
 .map .map-overlay .map-infobox.sigmet-SS {
     color: var( --gray-5 );
     background: var( --indicator-yellow );
 }
 
-.map .map-overlay .map-infobox.airport.cat-LIFR,
+.map .map-overlay .map-infobox.airport.cat-IFR,
 .map .map-overlay .map-infobox.sigmet-GR,
 .map .map-overlay .map-infobox.sigmet-TDO,
 .map .map-overlay .map-infobox.sigmet-TS,
@@ -279,6 +279,7 @@
     background: var( --indicator-red );
 }
 
+.map .map-overlay .map-infobox.airport.cat-MVFR,
 .map .map-overlay .map-infobox.sigmet-ICE,
 .map .map-overlay .map-infobox.sigmet-WTSPT {
     background: var( --indicator-blue );
@@ -289,7 +290,6 @@
     background: var( --indicator-green );
 }
 
-.map .map-overlay .map-infobox.airport.cat-IFR,
 .map .map-overlay .map-infobox.sigmet-TURB {
     background: var( --indicator-orange );
 }
