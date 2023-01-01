@@ -138,6 +138,11 @@ navicon {
     height: 24px;
 }
 
+wxicon {
+    width: 28px;
+    height: 28px;
+}
+
 .airport-large mapicon {
     background-image: url( './../resources/civil-large.svg' );
 }
@@ -267,10 +272,6 @@ windflag {
     background-size: contain;
     background-repeat: no-repeat;
     z-index: -1;
-}
-
-windflag.wind-00 {
-    background-image: url( './../resources/wind-00.svg' );
 }
 
 windflag.wind-01 {

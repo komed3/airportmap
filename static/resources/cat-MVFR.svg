@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg">
-<path d="m21.96 13.229a8.7311 8.7311 0 0 1-8.7311 8.7311 8.7311 8.7311 0 0 1-8.7311-8.7311 8.7311 8.7311 0 0 1 8.7311-8.7311 8.7311 8.7311 0 0 1 8.7311 8.7311z" fill="#2e313b" stroke-linejoin="round" stroke-width="1.5994" style="paint-order:fill markers stroke"/>
-<path d="m19.844 13.229a6.6145 6.6145 0 0 1-6.6145 6.6145 6.6145 6.6145 0 0 1-6.6145-6.6145 6.6145 6.6145 0 0 1 6.6145-6.6145 6.6145 6.6145 0 0 1 6.6145 6.6145z" fill="#ffd400" stroke-linejoin="bevel" stroke-width=".18709" style="paint-order:fill markers stroke"/>
+<g stroke-linejoin="round">
+<path d="m23.812 13.229a10.583 10.583 0 0 1-10.583 10.583 10.583 10.583 0 0 1-10.583-10.583 10.583 10.583 0 0 1 10.583-10.583 10.583 10.583 0 0 1 10.583 10.583z" fill="#48d" stroke-width="2.7609" style="paint-order:fill markers stroke"/>
+<g transform="translate(0 5.2917)" fill="#fff" stroke-width="2.1167" style="paint-order:fill markers stroke" aria-label="M">
+<path d="m10.43 1.6674 2.7991 8.7247 2.7905-8.7247h3.9791v12.54h-3.0317v-2.9283l0.29283-5.9945-3.0317 8.9228h-1.9982l-3.0403-8.9314 0.29283 6.0031v2.9283h-3.0231v-12.54z"/>
+</g>
+</g>
 </svg>

@@ -1,48 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   width="100"
-   height="100"
-   version="1.1"
-   viewBox="0 0 26.458 26.458"
-   id="svg3617"
-   sodipodi:docname="cat-LIFR.svg"
-   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <defs
-     id="defs3621" />
-  <sodipodi:namedview
-     id="namedview3619"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     showgrid="false"
-     inkscape:zoom="8.29"
-     inkscape:cx="36.369119"
-     inkscape:cy="49.939686"
-     inkscape:window-width="1920"
-     inkscape:window-height="1009"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg3617" />
-  <path
-     d="m21.96 13.229a8.7311 8.7311 0 0 1-8.7311 8.7311 8.7311 8.7311 0 0 1-8.7311-8.7311 8.7311 8.7311 0 0 1 8.7311-8.7311 8.7311 8.7311 0 0 1 8.7311 8.7311z"
-     stroke-linejoin="round"
-     stroke-width="1.5994"
-     style="paint-order:fill markers stroke;fill:#2e313b;fill-opacity:1"
-     id="path3613" />
-  <path
-     d="m19.844 13.229a6.6145 6.6145 0 0 1-6.6145 6.6145 6.6145 6.6145 0 0 1-6.6145-6.6145 6.6145 6.6145 0 0 1 6.6145-6.6145 6.6145 6.6145 0 0 1 6.6145 6.6145z"
-     fill="#fa6464"
-     stroke-linejoin="bevel"
-     stroke-width=".18709"
-     style="paint-order:fill markers stroke"
-     id="path3615" />
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg">
+<g stroke-linejoin="round">
+<path d="m23.812 13.229a10.583 10.583 0 0 1-10.583 10.583 10.583 10.583 0 0 1-10.583-10.583 10.583 10.583 0 0 1 10.583-10.583 10.583 10.583 0 0 1 10.583 10.583z" fill="#a6f" stroke-width="2.7609" style="paint-order:fill markers stroke"/>
+<g fill="#fff" stroke-width="2.1167" style="paint-order:fill markers stroke" aria-label="L">
+<path d="m12.11 17.174h5.2624v2.3254h-8.2855v-12.54h3.0231z"/>
+</g>
+</g>
 </svg>

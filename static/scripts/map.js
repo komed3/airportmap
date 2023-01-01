@@ -189,8 +189,8 @@ var maps_config = {},
                                 parseFloat( station.lon )
                             ), {
                                 icon: L.divIcon( {
-                                    iconSize: [ 20, 20 ],
-                                    iconAnchor: [ 10, 10 ],
+                                    iconSize: [ 28, 28 ],
+                                    iconAnchor: [ 14, 14 ],
                                     className: 'cat-' + station.cat,
                                     html: '<wxicon></wxicon><windflag class="wind-' + (
                                         station.wind_spd == null ? '' : Math.floor( station.wind_spd / 5 ).toString().padStart( 2, '0' )

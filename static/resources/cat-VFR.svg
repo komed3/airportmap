@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg">
-<path d="m21.96 13.229a8.7311 8.7311 0 0 1-8.7311 8.7311 8.7311 8.7311 0 0 1-8.7311-8.7311 8.7311 8.7311 0 0 1 8.7311-8.7311 8.7311 8.7311 0 0 1 8.7311 8.7311z" fill="#2e313b" stroke-linejoin="round" stroke-width="1.5994" style="paint-order:fill markers stroke"/>
-<path d="m19.844 13.229a6.6145 6.6145 0 0 1-6.6145 6.6145 6.6145 6.6145 0 0 1-6.6145-6.6145 6.6145 6.6145 0 0 1 6.6145-6.6145 6.6145 6.6145 0 0 1 6.6145 6.6145z" fill="#00b67a" stroke-linejoin="bevel" stroke-width=".18709" style="paint-order:fill markers stroke"/>
+<g stroke-linejoin="round">
+<path d="m23.812 13.229a10.583 10.583 0 0 1-10.583 10.583 10.583 10.583 0 0 1-10.583-10.583 10.583 10.583 0 0 1 10.583-10.583 10.583 10.583 0 0 1 10.583 10.583z" fill="#00b67a" stroke-width="2.7609" style="paint-order:fill markers stroke"/>
+<g transform="translate(-5e-8 -.063333)" fill="#fff" stroke-width="4.4465" style="paint-order:fill markers stroke" aria-label="V">
+<path d="m13.212 16.744 2.4977-9.1295h3.3762l-4.2202 12.54h-3.3073l-4.1858-12.54h3.3504z" fill="#fff"/>
+</g>
+</g>
 </svg>
