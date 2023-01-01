@@ -23,17 +23,15 @@
             'subtitle' => $airport['name'],
             'content' => ( !empty( $weather ) ? '<div class="infobox-weather">
                 <div class="cat">
-                    <span>' . $weather['flight_cat'] . '</span>
+                    <span>' . ( $weather['flight_cat'] ?? 'UNK' ) . '</span>
                 </div>
                 <div class="info">
                     <div class="temp">
                         <span>' . temp_in( (int) $weather['temp'], 'c' ) . '</span>
                         <span>(' . temp_in( ( (int) $weather['temp'] ) * 1.8 + 32, 'f' ) . ')</span>
                     </div>
-                    <div class="wx"></div>
-                    <div class="wind">
-                        ' . wind_info( $weather ) . '
-                    </div>
+                    <div class="wx">' . ucfirst( wx( $weather ) ) . '</div>
+                    <div class="wind">' . wind_info( $weather ) . '</div>
                 </div>
             </div>
             <hr />' : '' ) . '

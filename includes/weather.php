@@ -20,6 +20,73 @@
 
     }
 
+    function wx(
+        array $weather
+    ) {
+
+        $text = [];
+
+        if( empty( $weather['wx'] ) ) {
+
+            return i18n( 'cloud-' . ( $weather['cloud_1_cover'] ?? 'clear' ) );
+
+        }
+
+        foreach( array_unique( explode( ' ', $weather['wx'] ) ) as $symbol ) {
+
+            $raw = preg_match( '/^(\+|-|VC|RE)?([A-Z]{2})([A-Z]{2})?$/i', $symbol, $matches );
+
+            $parts = array_filter( array_map( function( $p ) {
+                return i18n_save( 'wx-' . $p );
+            }, $matches ) );
+
+            if( !empty( array_intersect( $matches, [ 'TS', 'SH' ] ) ) ) {
+
+                array_pop( $parts );
+
+            }
+
+            $text[] = trim( implode( ' ', array_unique( $parts ) ) );
+
+        }
+
+        return trim( implode( ', ', array_unique( $text ) ) );
+
+    }
+
+    function wx_icon(
+        string $text
+    ) {
+
+        $icons = [
+            'thunderstorm' => 'thunderstorm',
+            'heavy storm' => 'cyclone',
+            'squalls' => 'cyclone',
+            'storm' => 'storm',
+            'sand' => 'storm',
+            'ice' => 'ac_unit',
+            'ash' => 'lens_blur',
+            'fog' => 'foggy',
+            'haze' => 'foggy',
+            'dust' => 'waves',
+            'smoke' => 'waves',
+            'mist' => 'waves',
+            'snow' => 'weather_snowy',
+            'hail' => 'grain',
+            'grain' => 'grain',
+            'drizzle' => 'rainy',
+            'shower' => 'rainy',
+            'spray' => 'rainy',
+            'rain' => 'rainy',
+            'overcast' => 'cloud',
+            'broken' => 'partly_cloudy_day',
+            'few' => 'partly_cloudy_day',
+            'cloud' => 'cloud',
+            'clear' => 'sunny',
+        ];
+
+    }
+
     function sigmet_hazard(
         array $sigmet
     ) {

@@ -188,6 +188,27 @@
     font-size: 18px;
 }
 
+.map .map-overlay .map-infobox .infobox-content .infobox-weather {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    gap: 20px;
+    font-size: 16px;
+}
+
+.map .map-overlay .map-infobox .infobox-content .infobox-weather .cat {
+    flex: 0 0 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    font-size: 20px;
+    font-weight: 800;
+    color: var( --gray-5 );
+    background: var( --gray-0 );
+    border-radius: 3px;
+}
+
 .map .map-overlay .map-infobox .infobox-link {
     display: flex;
     flex-flow: row nowrap;
@@ -253,6 +274,10 @@
 .map .map-overlay .map-infobox.airport.cat-IFR,
 .map .map-overlay .map-infobox.sigmet-TURB {
     background: var( --indicator-orange );
+}
+
+.map .map-overlay .map-infobox.airport.cat-UNK {
+    background: var( --gray-6 );
 }
 
 .map .leaflet-attribution-flag {
