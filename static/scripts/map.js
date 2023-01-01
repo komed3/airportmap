@@ -192,7 +192,8 @@ var maps_config = {},
                                     iconSize: [ 28, 28 ],
                                     iconAnchor: [ 14, 14 ],
                                     className: 'cat-' + station.cat,
-                                    html: '<wxicon></wxicon><windflag class="wind-' + (
+                                    html: '<wxicon></wxicon><windbug style="transform: rotate( ' +
+                                        station.wind_dir + 'deg );"></windbug><windflag class="wind-' + (
                                         station.wind_spd == null ? '' : Math.floor( station.wind_spd / 5 ).toString().padStart( 2, '0' )
                                     ) + '" style="transform: rotate( ' + station.wind_dir + 'deg );"></windflag>'
                                 } )

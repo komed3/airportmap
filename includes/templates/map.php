@@ -4,7 +4,7 @@
 
     _map( [
         'save_position' => true
-    ], 'full-screen full-overlay' );
+    ], 'full-screen full-overlay windbug' );
 
     _footer();
 

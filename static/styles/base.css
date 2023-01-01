@@ -260,11 +260,12 @@ wxicon {
     100% { opacity: 0; transform: scale( 1 ); }
 }
 
-windflag {
+windbug, windflag {
     pointer-events: none;
     position: absolute;
     top: calc( 50% - 35px );
     left: calc( 50% - 35px );
+    display: none;
     width: 70px;
     height: 70px;
     background-color: transparent;
@@ -272,6 +273,17 @@ windflag {
     background-size: contain;
     background-repeat: no-repeat;
     z-index: -1;
+    transition: all 1s ease-out;
+}
+
+windbug {
+    background-image: url( './../resources/wind-dir.svg' );
+    opacity: 0.5;
+}
+
+.map.windbug windbug,
+.map.windflag windflag {
+    display: block;
 }
 
 windflag.wind-01 {
