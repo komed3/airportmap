@@ -25,6 +25,11 @@
                 <div class="cat">
                     <span>' . ( $weather['flight_cat'] ?? 'UNK' ) . '</span>
                 </div>
+                <div class="vis">
+                    <div class="vis-horiz"></div>
+                    <div class="vis-vert"></div>
+                </div>
+                <div class="icon">' . wx_icon( $weather ) . '</div>
                 <div class="info">
                     <div class="temp">
                         <span>' . temp_in( (int) $weather['temp'], 'c' ) . '</span>

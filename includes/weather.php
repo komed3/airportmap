@@ -28,7 +28,7 @@
 
         if( empty( $weather['wx'] ) ) {
 
-            return i18n( 'cloud-' . ( $weather['cloud_1_cover'] ?? 'clear' ) );
+            return i18n( 'cloud-' . ( $weather['cloud_1_cover'] ?? 'CLR' ) );
 
         }
 
@@ -55,35 +55,53 @@
     }
 
     function wx_icon(
-        string $text
+        array $weather
     ) {
 
-        $icons = [
-            'thunderstorm' => 'thunderstorm',
-            'heavy storm' => 'cyclone',
-            'squalls' => 'cyclone',
-            'storm' => 'storm',
-            'sand' => 'storm',
-            'ice' => 'ac_unit',
-            'ash' => 'lens_blur',
-            'fog' => 'foggy',
-            'haze' => 'foggy',
-            'dust' => 'waves',
-            'smoke' => 'waves',
-            'mist' => 'waves',
-            'snow' => 'weather_snowy',
-            'hail' => 'grain',
-            'grain' => 'grain',
-            'drizzle' => 'rainy',
-            'shower' => 'rainy',
-            'spray' => 'rainy',
-            'rain' => 'rainy',
-            'overcast' => 'cloud',
-            'broken' => 'partly_cloudy_day',
-            'few' => 'partly_cloudy_day',
-            'cloud' => 'cloud',
-            'clear' => 'sunny',
-        ];
+        $wx = $weather['wx'] ?? ( $weather['cloud_1_cover'] ?? 'CLR' );
+
+        foreach( [
+            'FZ' => 'ac_unit',
+            'SH' => 'rainy',
+            'TS' => 'thunderstorm',
+            'BR' => 'waves',
+            'DS' => 'waves',
+            'DU' => 'waves',
+            'DZ' => 'rainy',
+            'FC' => 'tornado',
+            'FG' => 'foggy',
+            'FU' => 'dehaze',
+            'GR' => 'grain',
+            'GS' => 'grain',
+            'HZ' => 'dehaze',
+            'IC' => 'ac_unit',
+            'PE' => 'ac_unit',
+            'PO' => 'storm',
+            'PY' => 'rainy',
+            'RA' => 'rainy',
+            'SA' => 'storm',
+            'SG' => 'grain',
+            'SN' => 'weather_snowy',
+            'SQ' => 'tsunami',
+            'SS' => 'storm',
+            'VA' => 'blur_on',
+            'SKC' => 'sunny',
+            'CLR' => 'sunny',
+            'CAVOK' => 'sunny',
+            'FEW' => 'partly_cloudy_day',
+            'SCT' => 'partly_cloudy_day',
+            'BKN' => 'cloudy',
+            'OVC' => 'cloudy',
+            'OVX' => 'cloudy'
+        ] as $probe => $icon ) {
+
+            if( stripos( $wx, $probe ) !== false ) {
+
+                return $icon;
+
+            }
+
+        }
 
     }
 
