@@ -63,6 +63,8 @@
     "dir-sse": "south-southeast",
     "dir-ssw": "south-southwest",
     "dir-wsw": "west-southwest",
+    "temp-c": "°C",
+    "temp-f": "°F",
     "fl-from": "from <b>FL$1</b>",
     "fl-to": "to <b>FL$2</b>",
     "level-both": "High- and low-level enroute",

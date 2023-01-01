@@ -2,7 +2,7 @@
 
     require_once __DIR__ . '/api.php';
 
-    if( !load_requirements( 'language', 'content', 'airport' ) ) {
+    if( !load_requirements( 'language', 'content', 'airport', 'weather' ) ) {
 
         api_exit( [
             'raw' => null,
@@ -26,7 +26,10 @@
                     <span>' . $weather['flight_cat'] . '</span>
                 </div>
                 <div class="info">
-                    <div class="temp"></div>
+                    <div class="temp">
+                        <span>' . temp_in( (int) $weather['temp'], 'c' ) . '</span>
+                        <span>(' . temp_in( ( (int) $weather['temp'] ) * 1.8 + 32, 'f' ) . ')</span>
+                    </div>
                     <div class="wx"></div>
                     <div class="wind"></div>
                 </div>

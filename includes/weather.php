@@ -1,5 +1,14 @@
 <?php
 
+    function temp_in(
+        float $temp,
+        string $in = 'c'
+    ) {
+
+        return round( $temp, 1 ) . '&#8239;' . i18n( 'temp-' . $in );
+
+    }
+
     function sigmet_hazard(
         array $sigmet
     ) {
