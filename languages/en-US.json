@@ -165,6 +165,7 @@
     "change-nc": "no change",
     "change-intsf": "intensifying",
     "change-wkn": "weakening",
+    "airport-title": "$1: $2",
     "sigmets-title": "View $1 active SIGMETs",
     "sigmets-desc": "List of active reported significant weather conditions (SIGMET)",
     "sigmet-filter-hazard": "Hazard",
