@@ -175,5 +175,7 @@
     "sigmets-title": "View $1 active SIGMETs",
     "sigmets-desc": "List of active reported significant weather conditions (SIGMET)",
     "sigmet-filter-hazard": "Hazard",
-    "sigmet-filter-change": "Changing"
+    "sigmet-filter-change": "Changing",
+    "link-home": "Homepage",
+    "link-wiki": "Wiki"
 }

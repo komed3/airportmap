@@ -44,7 +44,7 @@
 
         $tabs[] = [
             'i18n' => 'link-home',
-            'url' => $airport['home']
+            'external' => $airport['home']
         ];
 
     }
@@ -53,7 +53,7 @@
 
         $tabs[] = [
             'i18n' => 'link-wiki',
-            'url' => $airport['wiki']
+            'external' => 'https://wikipedia.org/wiki/' . $airport['wiki']
         ];
 
     }
