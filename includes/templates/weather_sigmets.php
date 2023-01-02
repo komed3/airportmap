@@ -10,7 +10,7 @@
     $__site_canonical = 'weather/sigmets';
 
     $__site_title = i18n( 'sigmets-title', count( $sigmets ) );
-    $__site_desc = 'sigmets-desc';
+    $__site_desc = i18n( 'sigmets-desc' );
 
     add_resource( 'sigmets', 'css', 'sigmet.css' );
     add_resource( 'sigmets', 'js', 'sigmet.js' );
