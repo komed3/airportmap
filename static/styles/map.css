@@ -317,7 +317,7 @@
     padding: 0;
     text-align: center;
     text-shadow: 0 0 2px var( --gray-0 );
-    line-height: 1.1;
+    line-height: 1;
     color: var( --gray-6 );
     background: transparent;
     border: 0;
@@ -325,7 +325,7 @@
 }
 
 .map .leaflet-tooltip.tooltip-airport {
-    padding-bottom: 54px;
+    padding-bottom: 58px;
 }
 
 .map .leaflet-tooltip.tooltip-navaid {
