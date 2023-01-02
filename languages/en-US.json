@@ -183,12 +183,12 @@
     "info-region": "Region",
     "info-coords": "Coordinates",
     "info-alt": "Elevation",
-    "airport-type-large": "",
-    "airport-type-medium": "",
-    "airport-type-small": "",
-    "airport-type-heliport": "",
-    "airport-type-altiport": "",
-    "airport-type-seaplane": "",
-    "airport-type-balloonport": "",
-    "airport-type-closed": ""
+    "airport-type-large": "International Airport",
+    "airport-type-medium": "Airport",
+    "airport-type-small": "Airfield",
+    "airport-type-heliport": "Heliport",
+    "airport-type-altiport": "Altiport",
+    "airport-type-seaplane": "Seaplane Base",
+    "airport-type-balloonport": "Balloon Port",
+    "airport-type-closed": "Closed Airfield"
 }
