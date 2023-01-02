@@ -6,7 +6,9 @@
 
     }
 
-    $__site_canonical = 'airport/' . $airport['ICAO'];
+    $base = 'airport/' . $airport['ICAO'] . '/';
+
+    $__site_canonical = $base . ( $path[2] = $path[2] ?? 'info' );
 
     $__site_title = i18n( 'airport-title', $airport['ICAO'], $airport['name'] );
 
@@ -28,5 +30,26 @@
         <b><?php echo $airport['ICAO']; ?></b>
         <span><?php echo $airport['name']; ?></span>
     </h1>
+    <?php _site_nav( [ [
+        'i18n' => 'airport-info',
+        'url' => $base . 'info',
+        'check' => 'info'
+    ], [
+        'i18n' => 'airport-weather',
+        'url' => $base . 'weather',
+        'check' => 'weather'
+    ], [
+        'i18n' => 'airport-nearby',
+        'url' => $base . 'nearby',
+        'check' => 'nearby'
+    ], [
+        'i18n' => 'airport-radio',
+        'url' => $base . 'radio',
+        'check' => 'radio'
+    ], [
+        'i18n' => 'airport-runways',
+        'url' => $base . 'runways',
+        'check' => 'runways'
+    ] ], 'site-tabs content-normal', 2 ); ?>
 </div>
 <?php _footer(); ?>
