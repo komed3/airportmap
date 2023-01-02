@@ -10,6 +10,10 @@
 
     $__site_title = i18n( 'airport-title', $airport['ICAO'], $airport['name'] );
 
+    $weather = airport_weather( $airport );
+
+    add_resource( 'airport', 'css', 'airport.css' );
+
     _header();
 
 ?>
@@ -19,7 +23,8 @@
             <div class="credits"><?php echo $image['credits']; ?></div>
         </div>
     <?php } ?>
-    <h1 class="primary-headline">
+    <h1 class="primary-headline cat-<?php echo ( $cat = ( $weather['flight_cat'] ?? 'UNK' ) ); ?>">
+        <span class="cat"><?php echo $cat; ?></span>
         <b><?php echo $airport['ICAO']; ?></b>
         <span><?php echo $airport['name']; ?></span>
     </h1>

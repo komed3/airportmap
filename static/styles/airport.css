@@ -1,0 +1,30 @@
+.primary-headline .cat {
+    width: 90px;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    color: var( --gray-6 );
+    background: var( --gray-0 );
+    border-radius: 5px;
+}
+
+.primary-headline.cat-VFR {
+    background: var( --indicator-green );
+}
+
+.primary-headline.cat-MVFR {
+    background: var( --indicator-blue );
+}
+
+.primary-headline.cat-IFR {
+    background: var( --indicator-red );
+}
+
+.primary-headline.cat-LIFR {
+    background: var( --indicator-pink );
+}
+
+.primary-headline.cat-UNK {
+    background: var( --gray-6 );
+}
