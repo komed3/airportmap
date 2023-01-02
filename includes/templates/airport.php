@@ -2,7 +2,7 @@
 
     if( empty( $airport = airport_by( 'ICAO', $path[1] ?? '' ) ) ) {
 
-        //
+        __404();
 
     }
 

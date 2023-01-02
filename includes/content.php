@@ -25,6 +25,22 @@
 
     }
 
+    function __redirect(
+        string $to
+    ) {
+
+        header( 'Location: ' . SITE . $to );
+
+        exit;
+
+    }
+
+    function __404() {
+
+        __redirect( '404' );
+
+    }
+
     function load_tpl_part(
         string $tpl
     ) {
