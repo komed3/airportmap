@@ -12,6 +12,16 @@
 
     _header();
 
-    _footer();
-
 ?>
+<div class="content-full airport">
+    <?php if( $image = airport_image( $airport['ICAO'] ) ) { ?>
+        <div class="site-image" style="background-image: url( <?php echo $image['file']; ?> );">
+            <div class="credits"><?php echo $image['credits']; ?></div>
+        </div>
+    <?php } ?>
+    <h1 class="primary-headline">
+        <b><?php echo $airport['ICAO']; ?></b>
+        <span><?php echo $airport['name']; ?></span>
+    </h1>
+</div>
+<?php _footer(); ?>

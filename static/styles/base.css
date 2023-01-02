@@ -357,6 +357,10 @@ h1 {
     font-weight: 800;
 }
 
+.content-full {
+    margin: 0;
+}
+
 .content-normal {
     margin: 50px var( --padding-normal );
 }
@@ -415,4 +419,35 @@ h1 {
     font-size: 16px;
     font-weight: 300;
     color: var( --gray-3 );
+}
+
+.site-image {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    background-color: var( --gray-6 );
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.site-image .credits {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 2px 6px;
+    font-size: 12px;
+    background: var( --light-6 );
+}
+
+h1.primary-headline {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 20px;
+    margin-top: 0;
+    padding: 24px var( --padding-normal );
+    font-weight: 300;
+    color: var( --gray-0 );
+    background: var( --primary );
 }
