@@ -25,6 +25,14 @@
 
     }
 
+    function airport_type_link(
+        string $type
+    ) {
+
+        return '<a href="' . SITE . 'type/' . $type . '">' . i18n( 'airport-type-' . $type ) . '</a>';
+
+    }
+
     function airport_image(
         string $ICAO
     ) {
