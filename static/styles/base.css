@@ -470,6 +470,10 @@ h1 {
     background: var( --primary );
 }
 
+.site-tabs .empty {
+    flex: 1;
+}
+
 h1.primary-headline {
     display: flex;
     flex-flow: row nowrap;

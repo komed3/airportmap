@@ -93,13 +93,13 @@
 
         return '<nav class="' . $classes . '">' . implode( '', array_map( function( $link ) use ( $equal ) {
 
-            return '<a href="' . (
+            return $link ? '<a href="' . (
                 $link['external'] ?? base_url( $link['url'] ?? '' )
             ) . '" class="' . $link['classes'] . ' ' . (
                 ( $link['check'] ?? '' ) == $equal ? 'current' : ''
             ) . '">
                 <span>' . ( $link['text'] ?? i18n( $link['i18n'] ?? '' ) ) . '</span>
-            </a>';
+            </a>' : '<div class="empty"></div>';
 
         }, $links ) ) . '</nav>';
 
