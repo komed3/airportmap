@@ -177,5 +177,18 @@
     "sigmet-filter-hazard": "Hazard",
     "sigmet-filter-change": "Changing",
     "link-home": "Homepage",
-    "link-wiki": "Wiki"
+    "link-wiki": "Wiki",
+    "info-name": "Name",
+    "info-airport-type": "Airport",
+    "info-region": "Region",
+    "info-coords": "Coordinates",
+    "info-alt": "Elevation",
+    "airport-type-large": "",
+    "airport-type-medium": "",
+    "airport-type-small": "",
+    "airport-type-heliport": "",
+    "airport-type-altiport": "",
+    "airport-type-seaplane": "",
+    "airport-type-balloonport": "",
+    "airport-type-closed": ""
 }
