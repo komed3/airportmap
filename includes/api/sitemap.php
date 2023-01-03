@@ -59,7 +59,7 @@
 
     }
 
-    file_put_contents( BASE . 'sitemap-index.xml', '<?xml version="1.0" encoding="UTF-8"?>
+    file_put_contents( BASE . 'sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         ' . implode( '', $index ) . '
     </sitemapindex>' );
