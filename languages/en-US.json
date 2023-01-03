@@ -179,7 +179,8 @@
     "link-home": "Homepage",
     "link-wiki": "Wiki",
     "info-name": "Name",
-    "info-airport-type": "Airport",
+    "info-type": "Type",
+    "info-res": "Restriction",
     "info-region": "Region",
     "info-coords": "Coordinates",
     "info-alt": "Elevation",
@@ -190,5 +191,8 @@
     "airport-type-altiport": "Altiport",
     "airport-type-seaplane": "Seaplane Base",
     "airport-type-balloonport": "Balloon Port",
-    "airport-type-closed": "Closed Airfield"
+    "airport-type-closed": "Closed Airfield",
+    "airport-res-public": "Public Airport",
+    "airport-res-private": "Private Airfield",
+    "airport-res-military": "Military Air Base"
 }

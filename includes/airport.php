@@ -33,6 +33,14 @@
 
     }
 
+    function airport_res_link(
+        string $res
+    ) {
+
+        return '<a href="' . SITE . 'restriction/' . $res . '">' . i18n( 'airport-res-' . $res ) . '</a>';
+
+    }
+
     function airport_image(
         string $ICAO
     ) {
