@@ -40,6 +40,10 @@
                     <span><?php echo region_link( 'country', $airport['country'] ); ?></span>
                 </div>
             </li>
+            <?php if( $airport['municipality'] ) { ?><li>
+                <span class="label"><?php _i18n( 'info-municipality' ); ?></span>
+                <div><?php echo $airport['municipality']; ?></div>
+            </li><?php } ?>
             <li>
                 <span class="label"><?php _i18n( 'info-coords' ); ?></span>
                 <div><?php echo __DMS_coords( $airport['lat'], $airport['lon'] ); ?></div>
