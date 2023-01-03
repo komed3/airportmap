@@ -56,7 +56,7 @@
                 ' . ( $navaid['alt'] ? '<li>
                     <i class="icon">flight_takeoff</i>
                     <span>' . alt_in( $navaid['alt'] ) . '</span>
-                    <span>(' . alt_in( $navaid['alt'] / 3.281, 'm&#8239;MSL' ) . ')</span>
+                    <span>(' . alt_in( $navaid['alt'] / 3.281, 'm&nbsp;MSL' ) . ')</span>
                 </li>' : '' ) . '
             </ul>'
         ];

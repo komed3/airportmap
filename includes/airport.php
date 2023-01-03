@@ -146,24 +146,6 @@
 
     }
 
-    function navaid_list(
-        array $airport,
-        array $navaids
-    ) {
-
-        return '';
-
-    }
-
-    function _navaid_list(
-        array $airport,
-        array $navaids
-    ) {
-
-        echo navaid_list( $airport, $navaids );
-
-    }
-
     function alt_in(
         float $altitude,
         string $in = 'ft'
