@@ -357,6 +357,18 @@ h1 {
     font-weight: 800;
 }
 
+h1.primary-headline {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 20px;
+    margin-top: 0;
+    padding: 24px var( --padding-normal );
+    font-weight: 300;
+    color: var( --gray-0 );
+    background: var( --primary );
+}
+
 .content-full {
     margin: 0;
 }
@@ -474,14 +486,32 @@ h1 {
     flex: 1;
 }
 
-h1.primary-headline {
+.infolist {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.infolist li {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    margin-top: 0;
-    padding: 24px var( --padding-normal );
+    gap: 40px;
+    padding: 16px 0;
+}
+
+.infolist li .label {
     font-weight: 300;
-    color: var( --gray-0 );
-    background: var( --primary );
+}
+
+.infolist li > div {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    gap: 5px 10px;
+}
+
+.infolist li:not(:last-of-type) {
+    border-bottom: 1px solid var( --shade-1 );
 }

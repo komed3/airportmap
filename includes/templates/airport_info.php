@@ -48,10 +48,13 @@
                 <span class="label"><?php _i18n( 'info-alt' ); ?></span>
                 <div>
                     <span><?php echo alt_in( (int) $airport['alt'] ); ?></span>
-                    <span><?php echo alt_in( (int) $airport['alt'] / 3.281, 'm&#8239;MSL' ); ?></span>
+                    <span>(<?php echo alt_in( (int) $airport['alt'] / 3.281, 'm&nbsp;MSL' ); ?>)</span>
                 </div>
             </li>
         </ul>
     </div>
-    <?php _map( [] ); ?>
+    <?php _map( [
+        'lat' => $airport['lat'],
+        'lon' => $airport['lon']
+    ] ); ?>
 </div>
