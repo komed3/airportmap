@@ -370,7 +370,7 @@ h1.primary-headline {
 }
 
 h2 {
-    margin: 30px 0;
+    margin: 40px 0;
     text-transform: capitalize;
     font-size: 24px;
     font-weight: 600;
@@ -544,10 +544,14 @@ h2.secondary-headline {
 
 .radiolist .radio .type {
     flex: 0 0 140px;
+    color: var( --primary );
+}
+
+.radiolist .radio .info .freq {
     font-weight: 800;
 }
 
 .radiolist .radio .info .label {
-    margin-top: 6px;
+    margin-top: 4px;
     font-size: 14px;
 }
