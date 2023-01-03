@@ -21,8 +21,8 @@
                 <div><?php echo $airport['name']; ?></div>
             </li>
             <li>
-                <span class="label"><?php echo implode( ' / ', array_keys( $codes ) ); ?></span>
-                <div><?php echo implode( ' / ', $codes ); ?></div>
+                <span class="label"><?php echo implode( '&nbsp;/ ', array_keys( $codes ) ); ?></span>
+                <div><?php echo implode( '&nbsp;/ ', $codes ); ?></div>
             </li>
             <li>
                 <span class="label"><?php _i18n( 'info-type' ); ?></span>
@@ -53,5 +53,5 @@
             </li>
         </ul>
     </div>
-    <?php ?>
+    <?php _map( [] ); ?>
 </div>
