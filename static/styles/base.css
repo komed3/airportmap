@@ -369,6 +369,20 @@ h1.primary-headline {
     background: var( --primary );
 }
 
+h2 {
+    margin: 30px 0;
+    text-transform: capitalize;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+h2.secondary-headline {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 20px;
+}
+
 .content-full {
     margin: 0;
 }
