@@ -112,6 +112,46 @@
 
     }
 
+    function airport_warn(
+        array $airport
+    ) {
+
+        global $DB;
+
+        if( ( $res = $DB->query( '
+            SELECT  *
+            FROM    ' . DB_PREFIX . 'sigmet
+            WHERE   airport = "' . $airport['ICAO'] . '"
+            AND     valid_from <= NOW()
+            AND     valid_to >= NOW()
+        ' ) )->num_rows > 0 ) {
+
+            $sigmet = $res->fetch_assoc();
+
+            return '<div class="airport-warn content-normal hazard-' . $sigmet['hazard'] . '">
+                <div class="info">
+                    <div class="hazard">' . sigmet_hazard( $sigmet ) . '</div>
+                    <div class="valid">' . sigmet_valid( $sigmet ) . '</div>
+                </div>
+                <a href="' . SITE . 'weather/sigmets" class="link">
+                    <span>' . i18n( 'read-more' ) . '</span>
+                </a>
+            </div>';
+
+        }
+
+        return '';
+
+    }
+
+    function _airport_warn(
+        array $airport
+    ) {
+
+        echo airport_warn( $airport );
+
+    }
+
     function radio_list(
         array $airport,
         array $radios

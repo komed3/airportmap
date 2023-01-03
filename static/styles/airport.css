@@ -29,6 +29,82 @@
     background: var( --gray-6 );
 }
 
+.airport-warn {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    color: var( --gray-0 );
+    background: var( --gray-6 );
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.airport-warn.hazard-CLD,
+.airport-warn.hazard-VA {
+    color: var( --gray-5 );
+    background: var( --gray-2 );
+}
+
+.airport-warn.hazard-CONV,
+.airport-warn.hazard-FC {
+    background: var( --indicator-pink );
+}
+
+.airport-warn.hazard-DS,
+.airport-warn.hazard-SS {
+    color: var( --gray-5 );
+    background: var( --indicator-yellow );
+}
+
+.airport-warn.hazard-GR,
+.airport-warn.hazard-TDO,
+.airport-warn.hazard-TS,
+.airport-warn.hazard-TSGR {
+    background: var( --indicator-red );
+}
+
+.airport-warn.hazard-ICE,
+.airport-warn.hazard-WTSPT {
+    background: var( --indicator-blue );
+}
+
+.airport-warn.hazard-MTW {
+    background: var( --indicator-green );
+}
+
+.airport-warn.hazard-TURB {
+    background: var( --indicator-orange );
+}
+
+.airport-warn .info {
+    padding: 16px 20px;
+}
+
+.airport-warn .info .hazard {
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.airport-warn .info .valid {
+    font-weight: 300;
+}
+
+.airport-warn .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.airport-warn .link:hover {
+    text-decoration: none;
+}
+
 .airport-info {
     display: grid;
     grid-template-columns: 35% auto;
