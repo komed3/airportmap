@@ -112,6 +112,58 @@
 
     }
 
+    function radio_list(
+        array $airport,
+        array $radios
+    ) {
+
+        $list = '';
+
+        foreach( $radios as $radio ) {
+
+            $list .= '<div class="radio radio-' . $radio['type'] . '">
+                <div class="type">' . $radio['type'] . '</div>
+                <div class="info">
+                    <div class="freq">' . format_freq( $radio['frequency'] ) . '</div>
+                    <div class="label">' . i18n( 'radio-' . $radio['type'] ) . '</div>
+                </div>
+            </div>';
+
+        }
+
+        return '<div class="radiolist">
+            ' . $list . '
+        </div>';
+
+    }
+
+    function _radio_list(
+        array $airport,
+        array $radios
+    ) {
+
+        echo radio_list( $airport, $radios );
+
+    }
+
+    function navaid_list(
+        array $airport,
+        array $navaids
+    ) {
+
+        return '';
+
+    }
+
+    function _navaid_list(
+        array $airport,
+        array $navaids
+    ) {
+
+        echo navaid_list( $airport, $navaids );
+
+    }
+
     function alt_in(
         float $altitude,
         string $in = 'ft'
