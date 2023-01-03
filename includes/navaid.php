@@ -38,7 +38,7 @@
                 <div class="info">
                     <div class="headline">
                         <span class="ident">' . $navaid['ident'] . '</span>
-                        <span class="morse">' . __morse( $navaid['ident'] ) . '</span>
+                        <morse>' . __morse( $navaid['ident'] ) . '</morse>
                     </div>
                     <div class="freq">' . format_freq( $navaid['frequency'] ) . '</div>
                     <div class="line">
