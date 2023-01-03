@@ -70,22 +70,22 @@
         $first = [];
 
         if( ( $res = $DB->query( '
-            SELECT   metar.*, ( 3440.29182 * acos(
+            SELECT   m.*, a.gmt_offset, ( 3440.29182 * acos(
                 cos( radians( ' . $airport['lat'] . ' ) ) *
-                cos( radians( lat ) ) *
+                cos( radians( a.lat ) ) *
                 cos(
-                    radians( lon ) -
+                    radians( a.lon ) -
                     radians( ' . $airport['lon'] . ' )
                 ) +
                 sin( radians( ' . $airport['lat'] . ' ) ) *
-                sin( radians( lat ) )
+                sin( radians( a.lat ) )
             ) ) AS distance
-            FROM     ' . DB_PREFIX . 'metar,
-                     ' . DB_PREFIX . 'airport
-            WHERE    station = ICAO
-            AND      lat BETWEEN ' . ( $airport['lat'] - $max_deg ) . ' AND ' . ( $airport['lat'] + $max_deg ) . '
-            AND      lon BETWEEN ' . ( $airport['lon'] - $max_deg ) . ' AND ' . ( $airport['lon'] + $max_deg ) . '
-            AND      reported >= DATE_SUB( NOW(), INTERVAL ' . $max_age . ' DAY )
+            FROM     ' . DB_PREFIX . 'metar m,
+                     ' . DB_PREFIX . 'airport a
+            WHERE    m.station = a.ICAO
+            AND      a.lat BETWEEN ' . ( $airport['lat'] - $max_deg ) . ' AND ' . ( $airport['lat'] + $max_deg ) . '
+            AND      a.lon BETWEEN ' . ( $airport['lon'] - $max_deg ) . ' AND ' . ( $airport['lon'] + $max_deg ) . '
+            AND      m.reported >= DATE_SUB( NOW(), INTERVAL ' . $max_age . ' DAY )
             ORDER BY distance ASC
             LIMIT    0, 10
         ' ) )->num_rows > 0 ) {

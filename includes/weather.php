@@ -75,6 +75,8 @@
         array $weather
     ) {
 
+        $night = ( ( $h = date( 'G', $weather['gmt_offset'] * 60 + time() ) ) <= 6 ) || ( $h >= 19 );
+
         $wx = $weather['wx'] ?? ( $weather['cloud_1_cover'] ?? 'CLR' );
 
         foreach( [
@@ -102,11 +104,11 @@
             'SQ' => 'tsunami',
             'SS' => 'storm',
             'VA' => 'blur_on',
-            'SKC' => 'sunny',
-            'CLR' => 'sunny',
-            'CAVOK' => 'sunny',
-            'FEW' => 'partly_cloudy_day',
-            'SCT' => 'partly_cloudy_day',
+            'SKC' => $night ? 'clear_night' : 'clear_day',
+            'CLR' => $night ? 'clear_night' : 'clear_day',
+            'CAVOK' => $night ? 'clear_night' : 'clear_day',
+            'FEW' => $night ? 'partly_cloudy_night' : 'partly_cloudy_day',
+            'SCT' => $night ? 'partly_cloudy_night' : 'partly_cloudy_day',
             'BKN' => 'cloudy',
             'OVC' => 'cloudy',
             'OVX' => 'cloudy'
