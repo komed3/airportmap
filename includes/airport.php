@@ -302,7 +302,7 @@
             FROM    ' . DB_PREFIX . $type . '
             WHERE   code = "' . $region . '"
         ' ) )->num_rows == 1
-            ? $res->fetch_object()->name
+            ? $res->fetch_object()->name ?? i18n( 'unknown' )
             : $region;
 
     }

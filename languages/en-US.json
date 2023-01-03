@@ -30,6 +30,7 @@
     "scroll-to-top": "Scroll to top",
     "read-more": "Read more",
     "not-available": "Not available",
+    "unknown": "Unknown",
     "map-overlay-type-airport": "Airports",
     "map-overlay-type-weather": "Significant weather",
     "map-overlay-sigmet": "Show/hide significant meteorological phenomena (Sigmets)",
