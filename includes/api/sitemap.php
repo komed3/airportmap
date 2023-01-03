@@ -4,6 +4,8 @@
 
     $sitemap = [];
 
+    /* Airports */
+
     foreach( $DB->query( '
         SELECT   ICAO
         FROM     ' . DB_PREFIX . 'airport
