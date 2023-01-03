@@ -8,9 +8,9 @@
 
     }
 
-    $codes = array_intersect_key( $airport, [
+    $codes = array_filter( array_intersect_key( $airport, [
         'ICAO' => true, 'IATA' => true, 'GPS' => true
-    ] );
+    ] ) );
 
 ?>
 <div class="airport-info content-normal">
@@ -54,7 +54,14 @@
         </ul>
     </div>
     <?php _map( [
-        'lat' => $airport['lat'],
-        'lon' => $airport['lon']
-    ] ); ?>
+        'type' => 'airport',
+        'navaids' => true,
+        'supress_sigmets' => false,
+        'supress_day_night' => false,
+        'position' => [
+            'lat' => $airport['lat'],
+            'lon' => $airport['lon'],
+            'zoom' => 12
+        ]
+    ], 'minimal-ui' ); ?>
 </div>

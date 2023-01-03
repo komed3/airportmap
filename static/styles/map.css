@@ -357,3 +357,10 @@
     font-size: 12px;
     font-weight: 600;
 }
+
+/* minimal UI */
+
+.map.minimal-ui .map-overlay .map-control .map-control-group:not(:last-of-type),
+.map.minimal-ui .map-overlay .map-scroll-below {
+    display: none;
+}

@@ -132,8 +132,11 @@ var maps_config = {},
                     lon: [ bounds.getEast(), bounds.getWest() ]
                 },
                 navaids: +!!(
-                    map.getZoom() >= 10 &&
-                    ( $.cookie( 'apm_navaids' ) || 0 ) == 1
+                    map.getZoom() >= 10 && (
+                        maps_config[ uuid ].navaids || (
+                            $.cookie( 'apm_navaids' ) || 0
+                        )
+                    ) == 1
                 )
             },
             success: ( raw ) => {
@@ -517,12 +520,22 @@ var maps_config = {},
 
             let data = JSON.parse( window.atob( $( this ).attr( 'map-data' ) ) || '{}' ),
                 uuid = get_token(),
+                position = {};
+
+            if( 'position' in data ) {
+
+                position = data.position;
+
+            } else {
+                
                 position = ( pos = $.cookie( 'apm_lastpos' ) || false )
-                ? JSON.parse( pos ) : {
-                    lat: 40.7,
-                    lon: -74,
-                    zoom: 6
-                };
+                    ? JSON.parse( pos ) : {
+                        lat: 40.7,
+                        lon: -74,
+                        zoom: 6
+                    };
+
+            }
 
             $( this ).attr( 'id', uuid ).removeAttr( 'map-data' );
 
@@ -531,14 +544,14 @@ var maps_config = {},
             maps_layer[ uuid ] = {};
             maps_timeout[ uuid ] = {};
 
-            maps_type[ uuid ] = $.cookie( 'apm_map_type' ) || 'airport';
+            maps_type[ uuid ] = data.type || ( $.cookie( 'apm_map_type' ) || 'airport' );
 
             maps[ uuid ] = L.map( uuid, {
                 center: [
-                    position.lat,
-                    position.lon
+                    position.lat || 0,
+                    position.lon || 0
                 ],
-                zoom: position.zoom,
+                zoom: position.zoom || 6,
                 maxBounds: L.latLngBounds(
                     L.latLng( -90, -180 ),
                     L.latLng(  90,  180 )
@@ -563,13 +576,13 @@ var maps_config = {},
 
             maps_layer[ uuid ].marker = L.layerGroup().addTo( maps[ uuid ] );
 
-            if( ( $.cookie( 'apm_day_night' ) || 0 ) == 1 ) {
+            if( !( 'supress_day_night' in data ) && ( $.cookie( 'apm_day_night' ) || 0 ) == 1 ) {
 
                 $( '[map-action="day-night"]' ).click();
 
             }
 
-            if( ( $.cookie( 'apm_sigmet' ) || 0 ) == 1 ) {
+            if( !( 'supress_sigmets' in data ) && ( $.cookie( 'apm_sigmet' ) || 0 ) == 1 ) {
 
                 $( '[map-action="sigmet"]' ).click();
 
@@ -636,11 +649,18 @@ var maps_config = {},
 
             case 'type':
 
+                let type = $( this ).attr( 'map-type' );
+
                 $( '[map-action="type"]' ).removeClass( 'active' );
                 $( this ).addClass( 'active' );
 
-                $.cookie( 'apm_map_type', $( this ).attr( 'map-type' ) );
-                maps_type[ uuid ] = $.cookie( 'apm_map_type' );
+                if( 'save_type' in maps_config[ uuid ] && maps_config[ uuid ].save_type ) {
+
+                    $.cookie( 'apm_map_type', type );
+
+                }
+
+                maps_type[ uuid ] = type;
 
                 map_check_zoom( uuid );
                 map_load_marker( uuid );
