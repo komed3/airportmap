@@ -59,15 +59,6 @@
 
     }
 
-    function airport_nearby(
-        array $from,
-        array $to
-    ) {
-
-        return '<div class="nearby"></div>';
-
-    }
-
     function airport_nearest(
         float $lat,
         float $lon,
@@ -241,7 +232,9 @@
                             ' . ( $airport['service'] ? '<span>' . i18n( 'airline-service' ) . '</span>' : '' ) . '
                         </div>
                     </div>
-                    ' . ( !empty( $point ) ? airport_nearby( [ $airport['lat'], $airport['lon'] ], $point ) : '' ) . '
+                    ' . ( !empty( $point ) ? __nearby( $airport['distance'], [
+                        $airport['lat'], $airport['lon']
+                    ], $point ) : '' ) . '
                 </div>';
 
             }
@@ -449,6 +442,28 @@
 
     }
 
+    function __HDG(
+        float $p1_lat,
+        float $p1_lon,
+        float $p2_lat,
+        float $p2_lon
+    ) {
+
+        $p1_lat = $p1_lat * M_PI / 180;
+        $p1_lon = $p1_lon * M_PI / 180;
+        $p2_lat = $p2_lat * M_PI / 180;
+        $p2_lon = $p2_lon * M_PI / 180;
+
+        $delta_lon = $p2_lon - $p1_lon;
+
+        $X = cos( $p2_lat ) * sin( $delta_lon );
+        $Y = cos( $p1_lat ) * sin( $p2_lat ) - sin( $p1_lat ) *
+             cos( $p2_lat ) * cos( $delta_lon );
+
+        return ( ( atan2( $X, $Y ) * 180 / M_PI ) + 180 ) % 360;
+
+    }
+
     function __HDG_bug(
         float $hdg = 0,
         string $empty = ''
@@ -459,6 +474,24 @@
                 <i class="icon">navigation</i>
             </div>
             <div class="deg">' . round( $hdg ) . '°</div>
+        </div>';
+
+    }
+
+    function __nearby(
+        float $dist,
+        array $from,
+        array $to
+    ) {
+
+        $hdg = __HDG( $from[0], $from[1], $to[0], $to[1] );
+
+        return '<div class="nearby">
+            ' . __HDG_bug( $hdg ) . '
+            <div class="meta">
+                <div class="label">' . __cardinal( $hdg ) . '</div>
+                <div class="dist">' . round( $dist ) . '&nbsp;nm</div>
+            </div>
         </div>';
 
     }

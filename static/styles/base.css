@@ -561,6 +561,34 @@ h2.secondary-headline {
     font-size: 16px;
 }
 
+.nearby {
+    align-self: center;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.nearby > div {
+    flex: 1;
+}
+
+.nearby .meta {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
+}
+
+.nearby .meta .label {
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.nearby .meta .dist {
+    font-size: 16px;
+}
+
 .airportlist .empty {
     display: flex;
     flex-flow: column nowrap;
@@ -685,6 +713,10 @@ h2.secondary-headline {
     padding: 2px 6px;
     background: transparent;
     border: 2px solid var( --indicator-orange );
+}
+
+.airportlist .list .row .nearby {
+    flex: 0 0 120px;
 }
 
 .runwaylist .runway {
