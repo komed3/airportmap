@@ -42,12 +42,17 @@
     }
 
     function load_tpl_part(
-        string $tpl
+        string $tpl,
+        string $fallback = ''
     ) {
 
         if( is_readable( TEMPLATE . $tpl . '.php' ) ) {
 
             include TEMPLATE . $tpl . '.php';
+
+        } else if( is_readable( TEMPLATE . $fallback . '.php' ) ) {
+
+            include TEMPLATE . $fallback . '.php';
 
         }
 

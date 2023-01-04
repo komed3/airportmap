@@ -72,6 +72,6 @@
     </h1>
     <?php _airport_warn( $airport ); ?>
     <?php _site_nav( $tabs, 'site-tabs content-normal', 2 ); ?>
-    <?php echo load_tpl_part( 'airport_' . $path[2] ); ?>
+    <?php echo load_tpl_part( 'airport_' . $path[2], 'airport_404' ); ?>
 </div>
 <?php _footer(); ?>
