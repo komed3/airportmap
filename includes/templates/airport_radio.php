@@ -16,7 +16,9 @@
         FROM    ' . DB_PREFIX . 'frequency
         WHERE   airport = "' . $airport['ICAO'] . '"
     ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) {
+
         _radio_list( $airport, $radios );
+
     } else { ?>
         <p><?php _i18n( 'airport-frequencies-empty' ); ?></p>
     <?php } if( count( $navaids = $DB->query( '

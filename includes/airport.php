@@ -186,6 +186,24 @@
 
     }
 
+    function runway_list(
+        array $airport,
+        array $runways
+    ) {
+
+        return '';
+
+    }
+
+    function _runway_list(
+        array $airport,
+        array $runways
+    ) {
+
+        echo runway_list( $airport, $runways );
+
+    }
+
     function alt_in(
         float $altitude,
         string $in = 'ft'
