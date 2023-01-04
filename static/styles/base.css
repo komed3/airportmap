@@ -589,10 +589,6 @@ h2.secondary-headline {
     padding: 30px 20px;
 }
 
-.airportlist .list .row:not(:last-of-type) {
-    border-bottom: 1px solid var( --shade-1 );
-}
-
 .airportlist .list .row mapicon {
     width:  32px;
     height: 32px;
