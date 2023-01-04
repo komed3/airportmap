@@ -10,7 +10,8 @@
 
     $__site_canonical = $base . ( $path[2] = $path[2] ?? 'info' );
 
-    $__site_title = i18n( 'airport-title', $airport['ICAO'], $airport['name'] );
+    $__site_title = i18n_save( 'airport-title-' . $path[2], $airport['ICAO'], $airport['name'] ) ??
+        i18n( 'airport-title', $airport['ICAO'], $airport['name'] );
 
     add_resource( 'airport', 'css', 'airport.css' );
 
