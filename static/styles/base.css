@@ -530,6 +530,37 @@ h2.secondary-headline {
     border-bottom: 1px solid var( --shade-1 );
 }
 
+.heading {
+    flex: 0 0 120px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.heading.no-hdg {
+    visibility: hidden;
+}
+
+.heading .bug {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    transform-origin: center;
+}
+
+.bug .icon {
+    font-size: 24px;
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 200;
+    color: var( --primary );
+}
+
+.heading .deg {
+    font-size: 14px;
+}
+
 .runwaylist .runway {
     display: flex;
     flex-flow: row nowrap;
@@ -538,7 +569,7 @@ h2.secondary-headline {
 }
 
 .runwaylist .runway .heading {
-    flex: 0 0 120px;
+    flex: 0 0 160px;
 }
 
 .runwaylist .runway .info {

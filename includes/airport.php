@@ -196,7 +196,7 @@
         foreach( $runways as $runway ) {
 
             $list .= '<div class="runway">
-                ' . __HDG_bug( $runway['l_hdg'] ?? -1, '<div class="heading"></div>' ) . '
+                ' . __HDG_bug( $runway['l_hdg'] ?? -1 ) . '
                 <div class="info">
                     <div class="headline">
                         <span class="state state-' . $runway['inuse'] . '">
@@ -340,7 +340,7 @@
         string $empty = ''
     ) {
 
-        return $hdg < 0 ? $empty : '<div class="heading">
+        return '<div class="heading ' . ( $hdg < 0 ? 'no-hdg' : '' ) . '">
             <div class="bug" style="transform: rotate( ' . $hdg . 'deg );">
                 <i class="icon">navigation</i>
             </div>
