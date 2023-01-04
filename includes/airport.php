@@ -191,7 +191,64 @@
         array $runways
     ) {
 
-        return '';
+        $list = '';
+
+        foreach( $runways as $runway ) {
+
+            $list .= '<div class="runway">
+                ' . __HDG_bug( $runway['l_hdg'] ?? -1, '<div class="heading"></div>' ) . '
+                <div class="info">
+                    <div class="headline">
+                        <span class="state state-' . $runway['inuse'] . '">
+                            ' . i18n( 'runway-state-' . $runway['inuse'] ) . '
+                        </span>
+                        <b class="ident">' . $runway['ident'] . '</b>
+                    </div>
+                    ' . ( $runway['length'] ? '<div class="size">
+                        <i class="icon">crop_free</i>
+                        <span>' . alt_in( $runway['length'], 'ft' ) . '</span>
+                        ' . ( $runway['width'] ? '<span class="divider">×</span>
+                        <span>' . alt_in( $runway['width'], 'ft' ) . '</span>' : '' ) . '
+                        ' . ( $runway['l_alt'] ? '<span class="divider">/</span>
+                        <span>' . alt_in( $runway['l_alt'], 'ft' ) . '</span>
+                        <span>(' . alt_in( $runway['l_alt'] / 3.281, 'm&nbsp;MSL' ) . ')</span>' : '' ) . '
+                    </div>' : '' ) . '
+                    <div class="condition">
+                        <div class="surface">
+                            <i class="icon">flight_takeoff</i>
+                            <span>' . i18n( 'surface-' . $runway['surface'] ) . '</span>
+                        </div>
+                        <div class="lighting ' . ( $runway['lighted'] ? 'lighted' : '' ) . '">
+                            <i class="icon">lightbulb</i>
+                            <span>' . i18n( 'runway-lighted-' . $runway['lighted'] ) . '</span>
+                        </div>
+                    </div>
+                    ' . ( $runway['l_dthr'] ? '<div class="dthr">
+                        <span>
+                            <i class="icon">texture</i>
+                            <span>' . i18n( 'displaced-threshold-runway',
+                                $runway[ 'l_ident' ],
+                                alt_in( $runway['l_dthr'], 'ft' )
+                            ) . '</span>
+                        </span>
+                    </div>' : '' ) . '
+                    ' . ( $runway['r_dthr'] ? '<div class="dthr">
+                        <span>
+                            <i class="icon">texture</i>
+                            <span>' . i18n( 'displaced-threshold-runway',
+                                $runway[ 'r_ident' ],
+                                alt_in( $runway['r_dthr'], 'ft' )
+                            ) . '</span>
+                        </span>
+                    </div>' : '' ) . '
+                </div>
+            </div>';
+
+        }
+
+        return '<div class="runwaylist">
+            ' . $list . '
+        </div>';
 
     }
 
@@ -272,6 +329,20 @@
             'W', 'WNW', 'NW', 'NNW',
             'N'
         ][ round( $hdg / 22.5 ) ] );
+
+    }
+
+    function __HDG_bug(
+        float $hdg = 0,
+        string $empty = ''
+    ) {
+
+        return $hdg < 0 ? $empty : '<div class="heading">
+            <div class="bug" style="transform: rotate( ' . $hdg . 'deg );">
+                <i class="icon">navigation</i>
+            </div>
+            <div class="deg">' . round( $hdg ) . '°</div>
+        </div>';
 
     }
 
