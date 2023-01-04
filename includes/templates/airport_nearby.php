@@ -69,9 +69,9 @@
                 'service',
                 $path[3] == 'service' ? 1 : null,
             ] ]
-        ), -1, [
-            $airport->lat,
-            $airport->lon
+        ), $path[4] ?? 1, [
+            $airport['lat'],
+            $airport['lon']
         ] );
 
     ?>

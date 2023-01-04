@@ -120,6 +120,26 @@
 
     }
 
+    function pagination(
+        int $results,
+        int $page = 1,
+        int $per_page = 24
+    ) {
+
+        return '<div class="pagination"></div>';
+
+    }
+
+    function _pagination(
+        int $results,
+        int $page = 1,
+        int $per_page = 24
+    ) {
+
+        echo pagination( $results, $page, $per_page );
+
+    }
+
     function add_resource(
         string $resource,
         string $type,

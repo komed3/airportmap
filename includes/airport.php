@@ -59,6 +59,15 @@
 
     }
 
+    function airport_nearby(
+        array $from,
+        array $to
+    ) {
+
+        return '<div class="nearby"></div>';
+
+    }
+
     function airport_nearest(
         float $lat,
         float $lon,
@@ -85,8 +94,8 @@
                 sin( radians( lat ) )
             ) ) AS distance
             FROM     airport
-            WHERE    lat BETWEEN ' . ( $lat - $max_deg ) . ' AND ' . ( $lat + $max_deg ) . '
-            AND      lon BETWEEN ' . ( $lon - $max_deg ) . ' AND ' . ( $lon + $max_deg ) . '
+            WHERE    ( lat BETWEEN ' . ( $lat - $max_deg ) . ' AND ' . ( $lat + $max_deg ) . ' )
+            AND      ( lon BETWEEN ' . ( $lon - $max_deg ) . ' AND ' . ( $lon + $max_deg ) . ' )
             AND      ' . $query . '
             ORDER BY distance ASC
             LIMIT    0, ' . $limit
@@ -188,18 +197,72 @@
     }
 
     function airport_list(
-        array $airports
+        array $airports,
+        int $page = 1,
+        array $point = []
     ) {
 
-        return '';
+        if( count( $airports ) == 0 ) {
+
+            $content = '<div class="empty">
+                <i class="icon">flight_takeoff</i>
+                <span class="label">' . i18n( 'search-result-empty' ) . '</span>
+            </div>';
+
+        } else {
+        
+            $pagination = $page == -1 ? '' : pagination( count( $airports ), $page );
+
+            $content = $pagination . '<div class="list">';
+
+            foreach( array_slice( $airports, ( $page - 1 ) * 24, 24 ) as $airport ) {
+
+                $content .= '<div class="row airport-' . $airport['type'] . ' restrict-' . $airport['restriction'] . ' service-' . $airport['service'] . '">
+                    <mapicon></mapicon>
+                    <div class="info">
+                        <div class="headline">
+                            <b class="code">' . $airport['ICAO'] . '</b>
+                            <a href="' . SITE . 'airport/' . $airport['ICAO'] . '" class="name">' . $airport['name'] . '</a>
+                        </div>
+                        <div class="location">
+                            ' . __DMS_coords( $airport['lat'], $airport['lon'] ) . '
+                            <span class="divider">/</span>
+                            <span>' . alt_in( $airport['alt'], 'ft' ) . '</span>
+                            <span>(' . alt_in( $airport['alt'] / 3.281, 'm&nbsp;MSL' ) . ')</span>
+                        </div>
+                        <div class="region">
+                            ' . region_link( 'country', $airport['country'] ) . '
+                            <span class="divider">/</span>
+                            ' . region_link( 'region', $airport['region'] ) . '
+                        </div>
+                        <div class="tags">
+                            ' . airport_type_link( $airport['type'] ?? 'unknown' ) . '
+                            ' . airport_res_link( $airport['restriction'] ?? 'public' ) . '
+                            ' . ( $airport['service'] ? '<span>' . i18n( 'airline-service' ) . '</span>' : '' ) . '
+                        </div>
+                    </div>
+                    ' . ( !empty( $point ) ? airport_nearby( [ $airport['lat'], $airport['lon'] ], $point ) : '' ) . '
+                </div>';
+
+            }
+
+            $content .= '</div>' . $pagination;
+
+        }
+
+        return '<div class="airportlist">
+            ' . $content . '
+        </div>';
 
     }
 
     function _airport_list(
-        array $airports
+        array $airports,
+        int $page = 1,
+        array $point = []
     ) {
 
-        echo airport_list( $airports );
+        echo airport_list( $airports, $page, $point );
 
     }
 
