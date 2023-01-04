@@ -554,11 +554,10 @@ h2.secondary-headline {
 .bug .icon {
     font-size: 24px;
     font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 200;
-    color: var( --primary );
 }
 
 .heading .deg {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .runwaylist .runway {
@@ -569,14 +568,14 @@ h2.secondary-headline {
 }
 
 .runwaylist .runway .heading {
-    flex: 0 0 160px;
+    flex: 0 0 140px;
 }
 
 .runwaylist .runway .info {
     flex: 1;
     display: flex;
     flex-flow: column nowrap;
-    gap: 10px;
+    gap: 12px;
 }
 
 .runwaylist .runway .info .icon {
@@ -618,8 +617,8 @@ h2.secondary-headline {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    gap: 12px;
-    font-size: 14px;
+    gap: 20px;
+    font-size: 15px;
     color: var( --gray-4 );
 }
 
@@ -629,7 +628,7 @@ h2.secondary-headline {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .runwaylist .runway .info .condition .lighting:not(.lighted) .icon {
