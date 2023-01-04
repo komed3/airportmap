@@ -561,6 +561,136 @@ h2.secondary-headline {
     font-size: 16px;
 }
 
+.airportlist .empty {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.airportlist .empty .icon {
+    font-size: 60px;
+    color: var( --primary-light );
+}
+
+.airportlist .empty .label {
+    font-size: 26px;
+    font-weight: 800;
+    color: var( --gray-3 );
+    opacity: 0.3;
+}
+
+.airportlist .list .row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 30px 20px;
+}
+
+.airportlist .list .row:not(:last-of-type) {
+    border-bottom: 1px solid var( --shade-1 );
+}
+
+.airportlist .list .row mapicon {
+    width:  32px;
+    height: 32px;
+}
+
+.airportlist .list .row .info {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 8px;
+}
+
+.airportlist .list .row .info .headline {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+    height: 32px;
+    margin-bottom: 10px;
+}
+
+.airportlist .list .row .info .headline .code,
+.airportlist .list .row .info .tags > * {
+    padding: 4px 8px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 300;
+    background: var( --shade-1 );
+    border-radius: 3px;
+}
+
+.airportlist .list .row .info .headline .code {
+    font-weight: 800;
+    color: var( --gray-0 );
+    background: var( --gray-3 );
+}
+
+.airportlist .list .row.airport-large .info .headline .code {
+    background: var( --indicator-pink );
+}
+
+.airportlist .list .row.airport-medium .info .headline .code {
+    background: var( --indicator-green );
+}
+
+.airportlist .list .row.airport-small .info .headline .code,
+.airportlist .list .row.airport-seaplane .info .headline .code {
+    background: var( --indicator-blue );
+}
+
+.airportlist .list .row.airport-heliport .info .headline .code,
+.airportlist .list .row.airport-altiport .info .headline .code {
+    background: var( --indicator-orange );
+}
+
+.airportlist .list .row.airport-closed .info .headline .code {
+    background: var( --indicator-red );
+}
+
+.airportlist .list .row .info .headline .name {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.airportlist .list .row .info .location,
+.airportlist .list .row .info .region,
+.airportlist .list .row .info .tags {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 4px 10px;
+    margin: 0;
+}
+
+.airportlist .list .row .info .location,
+.airportlist .list .row .info .region {
+    font-size: 16px;
+    color: var( --gray-4 );
+}
+
+.airportlist .list .row .info .location {
+    gap: 12px;
+}
+
+.airportlist .list .row .info .tags {
+    margin-top: 10px;
+}
+
+.airportlist .list .row .info .tags a:hover {
+    text-decoration: none;
+}
+
+.airportlist .list .row .info .tags span {
+    padding: 2px 6px;
+    background: transparent;
+    border: 2px solid var( --indicator-orange );
+}
+
 .runwaylist .runway {
     display: flex;
     flex-flow: row nowrap;
