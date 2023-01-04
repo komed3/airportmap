@@ -48,5 +48,31 @@
             'check' => 'all'
         ], null ], 'site-tabs content-normal', 3 );
 
+        _airport_list( airport_nearest(
+            $airport['lat'],
+            $airport['lon'],
+            [ [
+                'ICAO',
+                '"' . $airport['ICAO'] . '"',
+                '!='
+            ], [
+                'type',
+                '( "' . implode( '", "', [
+                    'nearest' => [ 'closed' ],
+                    'largest' => [ 'closed', 'balloonport', 'heliport', 'altiport', 'seaplane', 'small', 'medium' ],
+                    'airports' => [ 'closed', 'balloonport', 'heliport', 'seaplane' ],
+                    'service' => [ 'closed', 'balloonport', 'heliport', 'seaplane' ],
+                    'all' => []
+                ][ $path[3] ] ) . '" )',
+                'NOT IN'
+            ], [
+                'service',
+                $path[3] == 'service' ? 1 : null,
+            ] ]
+        ), -1, [
+            $airport->lat,
+            $airport->lon
+        ] );
+
     ?>
 </div>

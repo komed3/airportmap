@@ -59,6 +59,41 @@
 
     }
 
+    function airport_nearest(
+        float $lat,
+        float $lon,
+        array $options = [],
+        int $max_deg = 10,
+        int $limit = 99999
+    ) {
+
+        global $DB;
+
+        $query = implode( ' AND ', array_filter( array_map( function( $o ) {
+            return $o[1] ? $o[0] . ' ' . ( $o[2] ?? '=' ) . ' ' . $o[1] : null;
+        }, $options ) ) );
+
+        return $DB->query( '
+            SELECT  *, ( 3440.29182 * acos(
+                cos( radians( ' . $lat . ' ) ) *
+                cos( radians( lat ) ) *
+                cos(
+                    radians( lon ) -
+                    radians( ' . $lon . ' )
+                ) +
+                sin( radians( ' . $lat . ' ) ) *
+                sin( radians( lat ) )
+            ) ) AS distance
+            FROM     airport
+            WHERE    lat BETWEEN ' . ( $lat - $max_deg ) . ' AND ' . ( $lat + $max_deg ) . '
+            AND      lon BETWEEN ' . ( $lon - $max_deg ) . ' AND ' . ( $lon + $max_deg ) . '
+            AND      ' . $query . '
+            ORDER BY distance ASC
+            LIMIT    0, ' . $limit
+        )->fetch_all( MYSQLI_ASSOC );
+
+    }
+
     function airport_weather(
         array $airport,
         int $max_deg = 10,
@@ -149,6 +184,22 @@
     ) {
 
         echo airport_warn( $airport );
+
+    }
+
+    function airport_list(
+        array $airports
+    ) {
+
+        return '';
+
+    }
+
+    function _airport_list(
+        array $airports
+    ) {
+
+        echo airport_list( $airports );
 
     }
 
