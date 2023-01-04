@@ -524,6 +524,7 @@ h2.secondary-headline {
     flex-flow: row;
     align-items: center;
     gap: 5px 10px;
+    text-align: right;
 }
 
 .infolist li:not(:last-of-type) {
