@@ -313,6 +313,11 @@
     border-color: var( --gray-3 );
 }
 
+.map .leaflet-control-attribution {
+    color: var( --gray-6 );
+    background: var( --light-6 );
+}
+
 .map .leaflet-tooltip {
     padding: 0;
     text-align: center;
