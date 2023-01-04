@@ -204,18 +204,21 @@
                         </span>
                         <b class="ident">' . $runway['ident'] . '</b>
                     </div>
-                    ' . ( $runway['length'] ? '<div class="size">
-                        <i class="icon">crop_free</i>
-                        <span>' . alt_in( $runway['length'], 'ft' ) . '</span>
-                        ' . ( $runway['width'] ? '<span class="divider">×</span>
-                        <span>' . alt_in( $runway['width'], 'ft' ) . '</span>' : '' ) . '
-                        ' . ( $runway['l_alt'] ? '<span class="divider">/</span>
-                        <span>' . alt_in( $runway['l_alt'], 'ft' ) . '</span>
-                        <span>(' . alt_in( $runway['l_alt'] / 3.281, 'm&nbsp;MSL' ) . ')</span>' : '' ) . '
-                    </div>' : '' ) . '
+                    <div class="site">
+                        ' . ( $runway['length'] ? '<div class="size">
+                            <i class="icon">crop_free</i>
+                            <span>' . alt_in( $runway['length'], 'ft' ) . '</span>
+                            ' . ( $runway['width'] ? '<span class="divider">×</span>
+                            <span>' . alt_in( $runway['width'], 'ft' ) . '</span>' : '' ) . '
+                        </div>' : '' ) . ( $runway['l_alt'] ? '<div class="alt">
+                            <i class="icon">flight_takeoff</i>
+                            <span>' . alt_in( $runway['l_alt'], 'ft' ) . '</span>
+                            <span>(' . alt_in( $runway['l_alt'] / 3.281, 'm&nbsp;MSL' ) . ')</span>
+                        </div>' : '' ) . '
+                    </div>
                     <div class="condition">
                         <div class="surface">
-                            <i class="icon">flight_takeoff</i>
+                            <i class="icon">dehaze</i>
                             <span>' . i18n( 'surface-' . $runway['surface'] ) . '</span>
                         </div>
                         <div class="lighting ' . ( $runway['lighted'] ? 'lighted' : '' ) . '">
