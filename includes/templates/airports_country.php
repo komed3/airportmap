@@ -66,5 +66,9 @@
         <span><?php echo $country->name; ?></span>
         <b><?php echo $count; ?></b>
     </h1>
+    <?php _breadcrumbs( [
+        [ 'continent', $country->continent ],
+        [ 'country', $country->code ]
+    ] ); ?>
 </div>
 <?php _footer(); ?>

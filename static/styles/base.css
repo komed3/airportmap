@@ -641,6 +641,14 @@ h2.secondary-headline {
     font-weight: 800;
 }
 
+.breadcrumbs {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+    margin: 40px var( --padding-normal );
+}
+
 .airportlist .empty {
     display: flex;
     flex-flow: column nowrap;

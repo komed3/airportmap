@@ -585,4 +585,27 @@
 
     }
 
+    function breadcrumbs(
+        array $regions
+    ) {
+
+        return '<div class="breadcrumbs">
+            ' . implode(
+                '<div class="divider">/</div>',
+                array_map( function( $r ) {
+                    return region_link( $r[0], $r[1] );
+                }, $regions )
+            ) . '
+        </div>';
+
+    }
+
+    function _breadcrumbs(
+        array $regions
+    ) {
+
+        echo breadcrumbs( $regions );
+
+    }
+
 ?>
