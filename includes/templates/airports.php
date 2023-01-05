@@ -48,6 +48,26 @@
 
     }
 
+    $zones = [];
+
+    foreach( $DB->query( '
+        SELECT   gmt_offset,
+                 timezone,
+                 CONCAT( timezone, "_", gmt_offset ) AS tz,
+                 COUNT( ICAO ) AS cnt
+        FROM     ' . DB_PREFIX . 'airport
+        GROUP BY tz
+        ORDER BY gmt_offset ASC
+    ' )->fetch_all( MYSQLI_ASSOC ) as $zone ) {
+
+        $zones[] = [
+            'page' => '',
+            'name' => '',
+            'cnt' => $zone['cnt']
+        ];
+
+    }
+
     $count = array_sum( array_column( $list, 'cnt' ) );
     $_count = __number( $count );
 
@@ -84,5 +104,6 @@
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-restriction' ); ?></h2>
     <?php _pagelist( 'airports/restriction', $rests ); ?>
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-zone' ); ?></h2>
+    <?php _pagelist( 'airports/timezone', $zones ); ?>
 </div>
 <?php _footer(); ?>
