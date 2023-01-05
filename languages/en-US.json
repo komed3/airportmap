@@ -280,5 +280,7 @@
     "radio-tma": "Terminal Control Area",
     "radio-tower": "Tower",
     "radio-traffic": "Traffic",
-    "radio-unicom": "Aeronautical Advisory Service"
+    "radio-unicom": "Aeronautical Advisory Service",
+    "airports-country-title": "Airports in $1",
+    "airports-country-desc": "List of all airports in $1"
 }
