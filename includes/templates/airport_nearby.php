@@ -46,7 +46,7 @@
             'i18n' => 'nearby-all',
             'url' => $base . 'nearby/all',
             'check' => 'all'
-        ], null ], 'site-tabs content-normal', 3 );
+        ], null ], 'site-tabs content-normal', 3, '_nearby' );
 
         _airport_list(
             airport_nearest(

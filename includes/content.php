@@ -89,34 +89,41 @@
     function site_nav(
         array $links = [],
         string $classes = '',
-        int $check_path = 0
+        int $check_path = 0,
+        $jump_to = null
     ) {
 
         global $path;
 
         $equal = $path[ $check_path ] ?? '';
 
-        return '<nav class="' . $classes . '">' . implode( '', array_map( function( $link ) use ( $equal ) {
+        return '<a name="' . $jump_to . '" class="anchor"></a>
+        <nav class="' . $classes . '">' .
+            implode( '', array_map( function( $link ) use ( $equal, $jump_to ) {
 
-            return $link ? '<a href="' . (
-                $link['external'] ?? base_url( $link['url'] ?? '' )
-            ) . '" class="' . $link['classes'] . ' ' . (
-                ( $link['check'] ?? '' ) == $equal ? 'current' : ''
-            ) . '">
-                <span>' . ( $link['text'] ?? i18n( $link['i18n'] ?? '' ) ) . '</span>
-            </a>' : '<div class="empty"></div>';
+                return $link ? '<a href="' . (
+                    $link['external'] ?? base_url( $link['url'] ?? '' )
+                ) . (
+                    $jump_to ? '#' . $jump_to : ''
+                ) . '" class="' . $link['classes'] . ' ' . (
+                    ( $link['check'] ?? '' ) == $equal ? 'current' : ''
+                ) . '">
+                    <span>' . ( $link['text'] ?? i18n( $link['i18n'] ?? '' ) ) . '</span>
+                </a>' : '<div class="empty"></div>';
 
-        }, $links ) ) . '</nav>';
+            }, $links ) ) . '
+        </nav>';
 
     }
 
     function _site_nav(
         array $links = [],
         string $classes = '',
-        int $check_path = 0
+        int $check_path = 0,
+        $jump_to = null
     ) {
 
-        echo site_nav( $links, $classes, $check_path );
+        echo site_nav( $links, $classes, $check_path, $jump_to );
 
     }
 
@@ -124,11 +131,12 @@
         int $results,
         int $page = 1,
         string $baseurl = '',
-        int $per_page = 24
+        int $per_page = 24,
+        $jump_to = '_pagination'
     ) {
 
-        $maxpage = ceil( $results / 24 );
-        $baseurl = SITE . $baseurl . '/';
+        $maxpage = ceil( $results / $per_page );
+        $baseurl = base_url( $baseurl . '/' );
         $pagelinks = [];
         $latest = 0;
 
@@ -149,8 +157,12 @@
             }
 
             $pagelinks[] = $pageno == $page
-                ? '<span class="curr"><span>' . $pageno . '</span></span>'
-                : '<a class="link" href="' . $baseurl . $pageno . '"><span>' . $pageno . '</span></a>';
+                ? '<span class="curr">
+                       <span>' . $pageno . '</span>
+                   </span>'
+                : '<a class="link" href="' . $baseurl . $pageno . ( $jump_to ? '#' . $jump_to : '' ) . '">
+                       <span>' . $pageno . '</span>
+                   </a>';
 
             $latest = $pageno;
 
@@ -162,7 +174,8 @@
 
         }
 
-        return '<div class="pagination">
+        return '<a name="' . $jump_to . '" class="anchor"></a>
+        <div class="pagination">
             <div class="pagelinks">
                 ' . implode( '', $pagelinks ) . '
             </div>
