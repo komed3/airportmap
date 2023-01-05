@@ -122,23 +122,34 @@ var maps_config = {},
             bounds = map.getBounds(),
             layer = maps_layer[ uuid ].marker;
 
+        let data = {
+            token: get_token(),
+            navaids: +!!(
+                map.getZoom() >= 10 && (
+                    maps_config[ uuid ].navaids || (
+                        $.cookie( 'apm_navaids' ) || 0
+                    )
+                ) == 1
+            )
+        };
+
+        if( 'query' in maps_config[ uuid ] ) {
+
+            data = { ...data, ...maps_config[ uuid ].query };
+
+        } else {
+
+            data.bounds = {
+                lat: [ bounds.getNorth(), bounds.getSouth() ],
+                lon: [ bounds.getEast(), bounds.getWest() ]
+            };
+
+        }
+
         $.ajax( {
             url: apiurl + maps_type[ uuid ] + '_layer.php',
             type: 'post',
-            data: {
-                token: get_token(),
-                bounds: {
-                    lat: [ bounds.getNorth(), bounds.getSouth() ],
-                    lon: [ bounds.getEast(), bounds.getWest() ]
-                },
-                navaids: +!!(
-                    map.getZoom() >= 10 && (
-                        maps_config[ uuid ].navaids || (
-                            $.cookie( 'apm_navaids' ) || 0
-                        )
-                    ) == 1
-                )
-            },
+            data: data,
             success: ( raw ) => {
 
                 let res = JSON.parse( raw );

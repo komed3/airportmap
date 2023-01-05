@@ -18,15 +18,25 @@
 
     }
 
+    foreach( [ 'continent', 'country', 'region' ] as $col ) {
+
+        if( array_key_exists( $col, $_POST ) ) {
+
+            $query .= ' AND ' . $col . ' = "' . $_POST[ $col ] . '"';
+
+        }
+
+    }
+
     if( array_key_exists( 'types', $_POST ) ) {
 
-        $query .= ' AND type IN ( "' . implode( '", "', $types ) . '" )';
+        $query .= ' AND type IN ( "' . implode( '", "', $_POST['types'] ) . '" )';
 
     }
 
     if( array_key_exists( 'types_not', $_POST ) ) {
 
-        $query .= ' AND type NOT IN ( "' . implode( '", "', $types_not ) . '" )';
+        $query .= ' AND type NOT IN ( "' . implode( '", "', $_POST['types_not'] ) . '" )';
 
     }
 
