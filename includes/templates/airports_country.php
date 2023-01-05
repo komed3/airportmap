@@ -50,7 +50,7 @@
 <div class="region">
     <?php _map( [
         'type' => 'airport',
-        'navaids' => true,
+        'navaids' => false,
         'supress_sigmets' => false,
         'supress_day_night' => false,
         'query' => [
@@ -70,6 +70,6 @@
         [ 'continent', $country->continent ],
         [ 'country', $country->code ]
     ] ); ?>
-    <?php _region_list( 'region', $list ) ?>
+    <?php _region_list( 'region', $list ); ?>
 </div>
 <?php _footer(); ?>
