@@ -11,6 +11,43 @@
         ORDER BY c.code ASC
     ' )->fetch_all( MYSQLI_ASSOC );
 
+    $types = [];
+
+    foreach( $DB->query( '
+        SELECT   type,
+                 COUNT( ICAO ) AS cnt
+        FROM     ' . DB_PREFIX . 'airport
+        GROUP BY type
+        ORDER BY type ASC
+    ' )->fetch_all( MYSQLI_ASSOC ) as $type ) {
+
+        $types[] = [
+            'page' => $type['type'],
+            'name' => i18n( 'airport-type-' . $type['type'] ),
+            'cnt' => $type['cnt']
+        ];
+
+    }
+
+    $rests = [];
+
+    foreach( $DB->query( '
+        SELECT   restriction,
+                 COUNT( ICAO ) AS cnt
+        FROM     ' . DB_PREFIX . 'airport
+        WHERE    restriction IS NOT NULL
+        GROUP BY restriction
+        ORDER BY restriction ASC
+    ' )->fetch_all( MYSQLI_ASSOC ) as $rest ) {
+
+        $rests[] = [
+            'page' => $rest['restriction'],
+            'name' => i18n( 'airport-res-' . $rest['restriction'] ),
+            'cnt' => $rest['cnt']
+        ];
+
+    }
+
     $count = array_sum( array_column( $list, 'cnt' ) );
     $_count = __number( $count );
 
@@ -43,7 +80,9 @@
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-region' ); ?></h2>
     <?php _pagelist( 'airports/continent', $list ); ?>
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-type' ); ?></h2>
+    <?php _pagelist( 'airports/type', $types ); ?>
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-restriction' ); ?></h2>
+    <?php _pagelist( 'airports/restriction', $rests ); ?>
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-zone' ); ?></h2>
 </div>
 <?php _footer(); ?>
