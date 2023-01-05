@@ -4,45 +4,66 @@
 
     $sitemap = [];
 
-    /* Airports */
+    /* airports */
 
-    foreach( $DB->query( '
+    foreach( array_column( $DB->query( '
         SELECT   ICAO
         FROM     ' . DB_PREFIX . 'airport
         ORDER BY tier DESC
-    ' )->fetch_all( MYSQLI_ASSOC ) as $airport ) {
+    ' )->fetch_all( MYSQLI_ASSOC ), 'ICAO' ) as $airport ) {
 
         $sitemap[] = '<url>
-            <loc>' . SITE . 'airport/' . $airport['ICAO'] . '/info</loc>
+            <loc>' . SITE . 'airport/' . $airport . '/info</loc>
             <changefreq>monthly</changefreq>
             <priority>0.9</priority>
         </url>';
 
         $sitemap[] = '<url>
-            <loc>' . SITE . 'airport/' . $airport['ICAO'] . '/weather</loc>
+            <loc>' . SITE . 'airport/' . $airport . '/weather</loc>
             <changefreq>hourly</changefreq>
             <priority>0.9</priority>
         </url>';
 
         $sitemap[] = '<url>
-            <loc>' . SITE . 'airport/' . $airport['ICAO'] . '/nearby</loc>
+            <loc>' . SITE . 'airport/' . $airport . '/nearby</loc>
             <changefreq>monthly</changefreq>
             <priority>0.8</priority>
         </url>';
 
         $sitemap[] = '<url>
-            <loc>' . SITE . 'airport/' . $airport['ICAO'] . '/radio</loc>
+            <loc>' . SITE . 'airport/' . $airport . '/radio</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>';
 
         $sitemap[] = '<url>
-            <loc>' . SITE . 'airport/' . $airport['ICAO'] . '/runways</loc>
+            <loc>' . SITE . 'airport/' . $airport . '/runways</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>';
 
     }
+
+    /* regions */
+
+    foreach( [ 'continent', 'country', 'region' ] as $type ) {
+
+        foreach( array_column( $DB->query( '
+            SELECT  code
+            FROM    ' . DB_PREFIX . $type . '
+        ' )->fetch_all( MYSQLI_ASSOC ), 'code' ) as $region ) {
+
+            $sitemap[] = '<url>
+                <loc>' . SITE . 'airports/' . $type . '/' . $region . '</loc>
+                <changefreq>monthly</changefreq>
+                <priority>0.7</priority>
+            </url>';
+
+        }
+
+    }
+
+    /* build index */
 
     $index = [];
 
@@ -63,5 +84,10 @@
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         ' . implode( '', $index ) . '
     </sitemapindex>' );
+
+    api_exit( [
+        'urls' => count( $sitemap ),
+        'files' => count( $index )
+    ] );
 
 ?>
