@@ -369,6 +369,11 @@ h1.primary-headline {
     background: var( --primary );
 }
 
+h1.primary-headline .icon {
+    font-size: 26px;
+    font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 200;
+}
+
 h2 {
     margin: 40px 0;
     text-transform: capitalize;

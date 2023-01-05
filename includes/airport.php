@@ -59,6 +59,33 @@
 
     }
 
+    function airport_search(
+        string $word,
+        int $limit = -1,
+        int $offset = 0
+    ) {
+
+        global $DB;
+
+        $word = strtolower( trim( $word ) );
+
+        return $DB->query( '
+            SELECT   *
+            FROM     ' . DB_PREFIX . 'airport
+            WHERE    CONVERT( ICAO USING utf8 ) LIKE "%' . $word . '%"
+            OR       CONVERT( IATA USING utf8 ) LIKE "%' . $word . '%"
+            OR       CONVERT( GPS USING utf8 ) LIKE "%' . $word . '%"
+            OR       CONVERT( LOCAL USING utf8 ) LIKE "%' . $word . '%"
+            OR       CONVERT( name USING utf8 ) LIKE "%' . $word . '%"
+            ORDER BY tier DESC
+            ' . ( $limit >= 0
+                ? 'LIMIT ' . $offset . ', ' . $limit
+                : ''
+            )
+        )->fetch_all( MYSQLI_ASSOC );
+
+    }
+
     function airport_nearest(
         float $lat,
         float $lon,

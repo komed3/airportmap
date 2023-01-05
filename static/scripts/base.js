@@ -79,7 +79,7 @@ var freq_format = ( frequency ) => {
 
             case 'search':
                 location.href = baseurl + '/search/' + btoa(
-                    ( $( this ).find( '[name="searchtext"]' ).val() || '' ).toString()
+                    ( $( this ).find( '[name="searchtext"]' ).val() || '' ).toString().trim()
                 );
                 break;
 

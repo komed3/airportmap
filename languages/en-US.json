@@ -7,6 +7,7 @@
     "searchform-placeholder": "Search for ICAO, IATA or airport name …",
     "searchform-submit-title": "Search airports all over the world",
     "search-title": "Search for $1",
+    "search-for": "Search results for",
     "search-desc": "Search airports by ICAO, IATA or airport name all over the world",
     "search-results": "<b>$1</b> Search results — Page <b>$2</b> of <b>$3</b>",
     "search-results-empty": "Your request didn’t provide any results",
