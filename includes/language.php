@@ -5,7 +5,7 @@
 
     function i18n(
         string $msgkey,
-        string ...$replaces
+        ...$replaces
     ) {
 
         global $__i18n_msg;
@@ -26,7 +26,7 @@
 
     function i18n_save(
         string $msgkey,
-        string ...$replaces
+        ...$replaces
     ) {
 
         return strpos(
@@ -37,7 +37,7 @@
 
     function _i18n(
         string $msgkey,
-        string ...$replaces
+        ...$replaces
     ) {
 
         echo i18n( $msgkey, ...$replaces );
