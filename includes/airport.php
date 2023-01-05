@@ -405,7 +405,7 @@
         string $in = 'ft'
     ) {
 
-        return round( $altitude ) . '&#8239;' . $in;
+        return __number( $altitude ) . '&#8239;' . $in;
 
     }
 
@@ -424,7 +424,7 @@
 
         }
 
-        return round( $frequency, 3 ) . '&#8239;' . $suffix;
+        return __number( $frequency, 3 ) . '&#8239;' . $suffix;
 
     }
 
@@ -519,7 +519,7 @@
             ' . __HDG_bug( $hdg ) . '
             <div class="meta">
                 <div class="label">' . __cardinal( $hdg ) . '</div>
-                <div class="dist">' . round( $dist ) . '&nbsp;nm</div>
+                <div class="dist">' . __number( $dist ) . '&nbsp;nm</div>
             </div>
         </div>';
 
@@ -633,7 +633,7 @@
 
             $list .= '<a href="' . base_url( 'airports/' . $page . '/' . $region['code'] ) . '">
                 <span>' . ( $region['name'] ?? i18n( 'unknown' ) ) . '</span>
-                <b>(' . $region['cnt'] . ')</b>
+                <b>(' . __number( $region['cnt'] ) . ')</b>
             </a>';
 
         }

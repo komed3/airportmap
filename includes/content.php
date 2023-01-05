@@ -160,10 +160,10 @@
 
             $pagelinks[] = $pageno == $page
                 ? '<span class="curr">
-                       <span>' . $pageno . '</span>
+                       <span>' . __number( $pageno ) . '</span>
                    </span>'
                 : '<a class="link" href="' . $baseurl . $pageno . ( $jump_to ? '#' . $jump_to : '' ) . '">
-                       <span>' . $pageno . '</span>
+                       <span>' . __number( $pageno ) . '</span>
                    </a>';
 
             $latest = $pageno;
@@ -182,7 +182,7 @@
                 ' . implode( '', $pagelinks ) . '
             </div>
             <div class="results">
-                ' . i18n( 'search-results', $results, $page, $maxpage ) . '
+                ' . i18n( 'search-results', __number( $results ), __number( $page ), __number( $maxpage ) ) . '
             </div>
         </div>';
 
