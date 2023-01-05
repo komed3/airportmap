@@ -124,6 +124,10 @@ var maps_config = {},
 
         let data = {
             token: get_token(),
+            bounds: {
+                lat: [ bounds.getNorth(), bounds.getSouth() ],
+                lon: [ bounds.getEast(), bounds.getWest() ]
+            },
             navaids: +!!(
                 map.getZoom() >= 10 && (
                     maps_config[ uuid ].navaids || (
@@ -136,13 +140,6 @@ var maps_config = {},
         if( 'query' in maps_config[ uuid ] ) {
 
             data = { ...data, ...maps_config[ uuid ].query };
-
-        } else {
-
-            data.bounds = {
-                lat: [ bounds.getNorth(), bounds.getSouth() ],
-                lon: [ bounds.getEast(), bounds.getWest() ]
-            };
 
         }
 
@@ -628,6 +625,12 @@ var maps_config = {},
                 map_check_zoom( uuid );
 
             } );
+
+            if( 'fit_bounds' in data ) {
+
+                maps[ uuid ].fitBounds( data.fit_bounds );
+
+            }
 
             $( '#' + uuid + ' [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' ).click();
 

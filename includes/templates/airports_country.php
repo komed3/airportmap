@@ -24,6 +24,17 @@
         ORDER BY r.code ASC
     ' )->fetch_all( MYSQLI_ASSOC );
 
+    $position = $DB->query( '
+        SELECT  MIN( lat ) AS lat_min,
+                MIN( lon ) AS lon_min,
+                MAX( lat ) AS lat_max,
+                MAX( lon ) AS lon_max,
+                AVG( lat ) AS lat_avg,
+                AVG( lon ) AS lon_avg
+        FROM    ' . DB_PREFIX . 'airport
+        WHERE   country = "' . $country->code . '"
+    ' )->fetch_object();
+
     $count = array_sum( array_column( $list, 'cnt' ) );
 
     $__site_canonical = $base . 'airports/country/' . $country->code;
@@ -45,7 +56,10 @@
         'query' => [
             'country' => $country->code
         ],
-        'fit_bounds' => true
+        'fit_bounds' => [
+            [ $position->lat_min, $position->lon_min ],
+            [ $position->lat_max, $position->lon_max ]
+        ]
     ], 'minimal-ui' ); ?>
     <h1 class="primary-headline">
         <i class="icon">language</i>
