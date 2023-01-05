@@ -198,7 +198,7 @@
 
             $content = '<div class="empty">
                 <i class="icon">flight_takeoff</i>
-                <span class="label">' . i18n( 'search-result-empty' ) . '</span>
+                <span class="label">' . i18n( 'search-results-empty' ) . '</span>
             </div>';
 
         } else {
