@@ -199,6 +199,37 @@
 
     }
 
+    function pagelist(
+        string $page,
+        array $results
+    ) {
+
+        $list = '';
+
+        foreach( $results as $row ) {
+
+            $list .= '<div><a href="' . base_url( $page . '/' . $row['page'] ) . '">
+                <span>' . ( $row['name'] ?? i18n( 'unknown' ) ) . '</span>
+                <b>(' . __number( $row['cnt'] ) . ')</b>
+            </a></div>';
+
+        }
+
+        return '<div class="pagelist">
+            ' . $list . '
+        </div>';
+
+    }
+
+    function _pagelist(
+        string $page,
+        array $results
+    ) {
+
+        echo pagelist( $page, $results );
+
+    }
+
     function add_resource(
         string $resource,
         string $type,

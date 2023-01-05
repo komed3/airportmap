@@ -1,7 +1,7 @@
 <?php
 
     $list = $DB->query( '
-        SELECT   c.code AS code,
+        SELECT   c.code AS page,
                  c.name AS name,
                  COUNT( a.ICAO ) AS cnt
         FROM     ' . DB_PREFIX . 'continent c,
@@ -41,7 +41,7 @@
         <b><?php echo $_count; ?></b>
     </h1>
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-region' ); ?></h2>
-    <?php _region_list( 'continent', $list ); ?>
+    <?php _pagelist( 'airports/continent', $list ); ?>
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-type' ); ?></h2>
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-restriction' ); ?></h2>
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-zone' ); ?></h2>

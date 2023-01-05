@@ -624,35 +624,4 @@
 
     }
 
-    function region_list(
-        string $page,
-        array $regions
-    ) {
-
-        $list = '';
-
-        foreach( $regions as $region ) {
-
-            $list .= '<div><a href="' . base_url( 'airports/' . $page . '/' . $region['code'] ) . '">
-                <span>' . ( $region['name'] ?? i18n( 'unknown' ) ) . '</span>
-                <b>(' . __number( $region['cnt'] ) . ')</b>
-            </a></div>';
-
-        }
-
-        return '<div class="regionslist">
-            ' . $list . '
-        </div>';
-
-    }
-
-    function _region_list(
-        string $page,
-        array $regions
-    ) {
-
-        echo region_list( $page, $regions );
-
-    }
-
 ?>

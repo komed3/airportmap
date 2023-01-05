@@ -13,7 +13,7 @@
     $continent = $continent->fetch_object();
 
     $list = $DB->query( '
-        SELECT   c.code AS code,
+        SELECT   c.code AS page,
                  c.name AS name,
                  COUNT( a.ICAO ) AS cnt
         FROM     ' . DB_PREFIX . 'country c,
@@ -71,6 +71,6 @@
         [ 'world' ],
         [ 'continent', $continent->code ]
     ] ); ?>
-    <?php _region_list( 'country', $list ); ?>
+    <?php _pagelist( 'airports/country', $list ); ?>
 </div>
 <?php _footer(); ?>

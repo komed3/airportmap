@@ -936,17 +936,17 @@ h2.secondary-headline {
     color: var( --gray-4 );
 }
 
-.regionslist {
+.pagelist {
     display: grid;
     grid-template-columns: repeat( 3, 1fr );
     gap: 10px 30px;
     margin: 60px var( --padding-normal );
 }
 
-.regionslist a:hover {
+.pagelist a:hover {
     text-decoration: none;
 }
 
-.regionslist a:hover span {
+.pagelist a:hover span {
     text-decoration: underline;
 }
