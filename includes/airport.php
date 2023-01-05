@@ -29,7 +29,7 @@
         string $type
     ) {
 
-        return '<a href="' . SITE . 'type/' . $type . '">' . i18n( 'airport-type-' . $type ) . '</a>';
+        return '<a href="' . SITE . 'airports/type/' . $type . '">' . i18n( 'airport-type-' . $type ) . '</a>';
 
     }
 
@@ -37,7 +37,7 @@
         string $res
     ) {
 
-        return '<a href="' . SITE . 'restriction/' . $res . '">' . i18n( 'airport-res-' . $res ) . '</a>';
+        return '<a href="' . SITE . 'airports/restriction/' . $res . '">' . i18n( 'airport-res-' . $res ) . '</a>';
 
     }
 
@@ -580,7 +580,7 @@
         string $region
     ) {
 
-        return '<a href="' . SITE . $type . '/' . $region . '">' .
+        return '<a href="' . SITE . 'airports/' . $type . '/' . $region . '">' .
             region_name( $type, $region ) . '</a>';
 
     }
