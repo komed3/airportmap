@@ -607,7 +607,9 @@
             ' . implode(
                 '<div class="divider">/</div>',
                 array_map( function( $r ) {
-                    return region_link( $r[0], $r[1] );
+                    return isset( $r[1] ) ? region_link( $r[0], $r[1] ) : '<a href="' . SITE . 'airports">
+                        ' . i18n( 'region-' . $r[0] ) . '
+                    </a>';
                 }, $regions )
             ) . '
         </div>';

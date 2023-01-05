@@ -67,6 +67,7 @@
         <b><?php echo $_count; ?></b>
     </h1>
     <?php _breadcrumbs( [
+        [ 'world' ],
         [ 'continent', $region->continent ],
         [ 'country', $region->country ],
         [ 'region', $region->code ]
