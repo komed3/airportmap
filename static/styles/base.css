@@ -589,6 +589,53 @@ h2.secondary-headline {
     font-size: 16px;
 }
 
+.pagination {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+    font-size: 16px;
+}
+
+.pagination .pagelinks {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.pagination .pagelinks > * {
+    padding: 4px 12px;
+    font-weight: 800;
+    border-radius: 4px;
+}
+
+.pagination .pagelinks .dots {
+    color: var( --gray-3 );
+}
+
+.pagination .pagelinks .curr {
+    color: var( --gray-0 );
+    background: var( --primary );
+}
+
+.pagination .pagelinks .link:hover {
+    text-decoration: none;
+    color: var( --gray-0 );
+    background: var( --primary-light );
+}
+
+.pagination .results {
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.pagination .results b {
+    font-weight: 800;
+}
+
 .airportlist .empty {
     display: flex;
     flex-flow: column nowrap;

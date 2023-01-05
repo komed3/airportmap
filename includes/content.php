@@ -162,11 +162,13 @@
 
         }
 
-        return '<div class="pagelinks">
-            ' . implode( '', $pagelinks ) . '
-        </div>
-        <div class="results">
-            ' . i18n( 'search-results', $results, $page, $maxpage ) . '
+        return '<div class="pagination">
+            <div class="pagelinks">
+                ' . implode( '', $pagelinks ) . '
+            </div>
+            <div class="results">
+                ' . i18n( 'search-results', $results, $page, $maxpage ) . '
+            </div>
         </div>';
 
     }
