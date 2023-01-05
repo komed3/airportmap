@@ -123,20 +123,62 @@
     function pagination(
         int $results,
         int $page = 1,
+        string $baseurl = '',
         int $per_page = 24
     ) {
 
-        return '<div class="pagination"></div>';
+        $maxpage = ceil( $results / 24 );
+        $baseurl = SITE . $baseurl . '/';
+        $pagelinks = [];
+        $latest = 0;
+
+        foreach( array_filter( array_unique( [
+            1,
+            max( 1, $page - 2 ),
+            max( 1, $page - 1 ),
+            $page,
+            min( $maxpage, $page + 1 ),
+            min( $maxpage, $page + 2 ),
+            $maxpage
+        ] ) ) as $pageno ) {
+
+            if( $pageno > $latest + 1 ) {
+
+                $pagelinks[] = '<span class="dots"><span>…</span></span>';
+
+            }
+
+            $pagelinks[] = $pageno == $page
+                ? '<span class="curr"><span>' . $pageno . '</span></span>'
+                : '<a class="link" href="' . $baseurl . $pageno . '"><span>' . $pageno . '</span></a>';
+
+            $latest = $pageno;
+
+        }
+
+        if( count( $pagelinks ) <= 1 ) {
+
+            $pagelinks = [];
+
+        }
+
+        return '<div class="pagelinks">
+            ' . implode( '', $pagelinks ) . '
+        </div>
+        <div class="results">
+            ' . i18n( 'search-results', $results, $page, $maxpage ) . '
+        </div>';
 
     }
 
     function _pagination(
         int $results,
         int $page = 1,
+        string $baseurl = '',
         int $per_page = 24
     ) {
 
-        echo pagination( $results, $page, $per_page );
+        echo pagination( $results, $page, $baseurl, $per_page );
 
     }
 

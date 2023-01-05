@@ -190,6 +190,7 @@
     function airport_list(
         array $airports,
         int $page = 1,
+        string $baseurl = '',
         array $point = []
     ) {
 
@@ -202,7 +203,7 @@
 
         } else {
         
-            $pagination = $page == -1 ? '' : pagination( count( $airports ), $page );
+            $pagination = $page == -1 ? '' : pagination( count( $airports ), $page, $baseurl );
 
             $content = $pagination . '<div class="list">';
 
@@ -252,10 +253,11 @@
     function _airport_list(
         array $airports,
         int $page = 1,
+        string $baseurl = '',
         array $point = []
     ) {
 
-        echo airport_list( $airports, $page, $point );
+        echo airport_list( $airports, $page, $baseurl, $point );
 
     }
 
