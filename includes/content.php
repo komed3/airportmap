@@ -9,6 +9,8 @@
 
     $__site_classes = [ 'apm' ];
 
+    $__site_search = '';
+
     function base_url(
         string $url = ''
     ) {

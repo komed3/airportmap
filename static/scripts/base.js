@@ -71,6 +71,24 @@ var freq_format = ( frequency ) => {
 
     } );
 
+    $( document ).on( 'submit', '[data-form]', function( e ) {
+
+        prevent( e );
+
+        switch( $( this ).attr( 'data-form' ) ) {
+
+            case 'search':
+                location.href = baseurl + '/search/' + btoa(
+                    ( $( this ).find( '[name="searchtext"]' ).val() || '' ).toString()
+                );
+                break;
+
+        }
+
+        return false;
+
+    } );
+
     $( document ).scroll( function() {
 
         if( $( window ).scrollTop() > 200 ) {
