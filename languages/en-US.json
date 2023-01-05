@@ -284,6 +284,8 @@
     "radio-tower": "Tower",
     "radio-traffic": "Traffic",
     "radio-unicom": "Aeronautical Advisory Service",
+    "airports-title": "Worldwide Airports",
+    "airports-desc": "List of worldwide airports",
     "airports-continent-title": "Airports in $1",
     "airports-continent-desc": "List of all airports in $1",
     "airports-country-title": "Airports in $1",
