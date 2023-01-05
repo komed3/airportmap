@@ -70,5 +70,6 @@
         [ 'continent', $country->continent ],
         [ 'country', $country->code ]
     ] ); ?>
+    <?php _region_list( 'region', $list ) ?>
 </div>
 <?php _footer(); ?>
