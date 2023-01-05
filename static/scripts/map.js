@@ -3,6 +3,7 @@ var maps_config = {},
     maps_type = {},
     maps_layer = {},
     maps_timeout = {},
+    maps_loaded = {},
     maps_mypos_marker = {},
     map_sigmet_colors = {
         CLD: '#595b64',
@@ -616,7 +617,11 @@ var maps_config = {},
 
             maps[ uuid ].on( 'moveend', () => {
 
-                map_load_marker( uuid );
+                if( uuid in maps_loaded ) {
+
+                    map_load_marker( uuid );
+
+                }
 
             } );
 
@@ -628,13 +633,21 @@ var maps_config = {},
 
             if( 'fit_bounds' in data ) {
 
-                maps[ uuid ].fitBounds( data.fit_bounds );
+                maps[ uuid ].fitBounds( data.fit_bounds, {
+                    animate: false
+                } );
 
             }
 
-            $( '#' + uuid + ' [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' ).click();
+            setTimeout( function() {
 
-            map_check_zoom( uuid );
+                $( '#' + uuid + ' [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' ).click();
+
+                map_check_zoom( uuid );
+
+                maps_loaded[ uuid ] = true;
+
+            }, 250 );
 
         } );
 
