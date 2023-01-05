@@ -525,6 +525,20 @@
 
     }
 
+    function __number(
+        float $number,
+        int $digits = 0
+    ) {
+
+        return number_format(
+            $number,
+            $digits,
+            i18n_save( 'dp' ) ?? '.',
+            i18n_save( 'tp' ) ?? ','
+        );
+
+    }
+
     function __morse(
         string $input,
         bool $decode = false

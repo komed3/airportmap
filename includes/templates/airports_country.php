@@ -36,11 +36,12 @@
     ' )->fetch_object();
 
     $count = array_sum( array_column( $list, 'cnt' ) );
+    $_count = __number( $count );
 
     $__site_canonical = $base . 'airports/country/' . $country->code;
 
-    $__site_title = i18n( 'airports-country-title', $country->name, $country->code, $count );
-    $__site_desc = i18n( 'airports-country-desc', $country->name, $country->code, $count );
+    $__site_title = i18n( 'airports-country-title', $country->name, $country->code, $_count );
+    $__site_desc = i18n( 'airports-country-desc', $country->name, $country->code, $_count );
 
     add_resource( 'region', 'css', 'region.css' );
 
@@ -64,7 +65,7 @@
     <h1 class="primary-headline">
         <i class="icon">language</i>
         <span><?php echo $country->name; ?></span>
-        <b><?php echo $count; ?></b>
+        <b><?php echo $_count; ?></b>
     </h1>
     <?php _breadcrumbs( [
         [ 'continent', $country->continent ],

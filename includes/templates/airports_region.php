@@ -31,13 +31,14 @@
     ' )->fetch_object();
 
     $count = count( $airports );
+    $_count = __number( $count );
 
     $country = region_name( 'country', $region->country );
 
     $__site_canonical = $base . 'airports/region/' . $region->code;
 
-    $__site_title = i18n( 'airports-region-title', $region->name, $region->code, $count, $country );
-    $__site_desc = i18n( 'airports-region-desc', $region->name, $region->code, $count, $country );
+    $__site_title = i18n( 'airports-region-title', $region->name, $region->code, $_count, $country );
+    $__site_desc = i18n( 'airports-region-desc', $region->name, $region->code, $_count, $country );
 
     add_resource( 'region', 'css', 'region.css' );
 
@@ -63,7 +64,7 @@
         <span><?php echo $country; ?></span>
         <span>/</span>
         <span><?php echo $region->name; ?></span>
-        <b><?php echo $count; ?></b>
+        <b><?php echo $_count; ?></b>
     </h1>
     <?php _breadcrumbs( [
         [ 'continent', $region->continent ],
