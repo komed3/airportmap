@@ -4,6 +4,12 @@
 
     $results = airport_search( $__site_search );
 
+    if( count( $results ) == 1 && strpos( $_SERVER['HTTP_REFERER'], 'search' ) === false ) {
+
+        __redirect( 'airport/' . $results[0]['ICAO'] );
+
+    }
+
     $__site_canonical = $base . 'search';
 
     $__site_title = i18n( 'search-title', $__site_search, count( $results ) );
