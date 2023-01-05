@@ -40,6 +40,10 @@
         <span><?php _i18n( 'region-world' ); ?></span>
         <b><?php echo $_count; ?></b>
     </h1>
+    <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-region' ); ?></h2>
     <?php _region_list( 'continent', $list ); ?>
+    <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-type' ); ?></h2>
+    <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-restriction' ); ?></h2>
+    <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-zone' ); ?></h2>
 </div>
 <?php _footer(); ?>
