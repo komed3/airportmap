@@ -21,6 +21,8 @@
         <span><?php _i18n( 'search-for' ); ?></span>
         <b><?php echo $__site_search; ?></b>
     </h1>
-    <div class="search-results content-normal"></div>
+    <div class="search-results content-normal">
+        <?php _airport_list( $results, $path[2] ?? 1, 'search/' . $path[1] ); ?>
+    </div>
 </div>
 <?php _footer(); ?>
