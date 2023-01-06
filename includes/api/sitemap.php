@@ -63,6 +63,42 @@
 
     }
 
+    /* types + restrictions */
+
+    foreach( [ 'type', 'restriction' ] as $type ) {
+
+        foreach( array_column( $DB->query( '
+            SELECT   ' . $type . ' AS col
+            FROM     ' . DB_PREFIX . 'airport
+            WHERE    ' . $type . ' IS NOT NULL
+            GROUP BY ' . $type . '
+        ' )->fetch_all( MYSQLI_ASSOC ), 'col' ) as $col ) {
+
+            $sitemap[] = '<url>
+                <loc>' . SITE . 'airports/' . $type . '/' . $col . '</loc>
+                <changefreq>monthly</changefreq>
+                <priority>0.7</priority>
+            </url>';
+
+        }
+
+    }
+
+    /* timezones */
+
+    foreach( array_column( $DB->query( '
+        SELECT  ident
+        FROM    ' . DB_PREFIX . 'timezone
+    ' )->fetch_all( MYSQLI_ASSOC ), 'ident' ) as $tz ) {
+
+        $sitemap[] = '<url>
+            <loc>' . SITE . 'airports/timezone/' . $tz . '</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>';
+
+    }
+
     /* build index */
 
     $index = [];
