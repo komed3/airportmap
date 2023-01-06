@@ -45,3 +45,30 @@
     _header();
 
 ?>
+<div class="region">
+    <?php _map( [
+        'type' => 'airport',
+        'navaids' => false,
+        'supress_sigmets' => false,
+        'supress_day_night' => false,
+        'query' => [
+            'restriction' => $rest
+        ],
+        'fit_bounds' => [
+            [ $position->lat_min, $position->lon_min ],
+            [ $position->lat_max, $position->lon_max ]
+        ]
+    ], 'minimal-ui' ); ?>
+    <h1 class="primary-headline">
+        <i class="icon">language</i>
+        <span><?php echo $name; ?></span>
+        <b><?php echo $_count; ?></b>
+    </h1>
+    <div class="content-normal">
+        <?php _airport_list(
+            $airports, $path[3] ?? 1,
+            'airports/restriction/' . $rest
+        ); ?>
+    </div>
+</div>
+<?php _footer(); ?>
