@@ -1,0 +1,22 @@
+.welcome h1 {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 400;
+    color: var( --primary );
+}
+
+.welcome h1 b,
+.welcome p b {
+    font-weight: 800;
+}
+
+.welcome p {
+    line-height: 1.5;
+    text-align: center;
+    font-size: 26px;
+    color: var( --gray-4 );
+}
+
+.welcome .searchform .searchtext {
+    flex: 0 0 100%;
+}

@@ -35,7 +35,7 @@
     /* airport count by type */
 
     define( 'AIRPORT_STATS', airport_count() );
-    define( 'AIRPORT_ALL', array_sum( array_column( AIRPORT_STATS, 'cnt' ) ) );
+    define( 'AIRPORT_ALL', array_sum( AIRPORT_STATS ) );
 
     /* load basic resources */
 

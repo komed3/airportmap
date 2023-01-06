@@ -6,12 +6,20 @@
 
         global $DB;
 
-        return $DB->query( '
+        $stats = [];
+
+        foreach( $DB->query( '
             SELECT   ' . $by . ' AS col,
-                     COUNT( ICAO ) AS cnt
+                    COUNT( ICAO ) AS cnt
             FROM     ' . DB_PREFIX . 'airport
             GROUP BY ' . $by
-        )->fetch_all( MYSQLI_ASSOC );
+        )->fetch_all( MYSQLI_ASSOC ) as $row ) {
+
+            $stats[ $row['col'] ] = $row['cnt'];
+
+        }
+
+        return $stats;
 
     }
 

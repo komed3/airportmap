@@ -396,6 +396,10 @@ h2.secondary-headline {
     margin: 50px var( --padding-normal );
 }
 
+.content-wide {
+    margin: 80px var( --padding-wide );
+}
+
 .rawtxt {
     font-family: 'SourceCodePro';
 }
