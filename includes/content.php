@@ -43,16 +43,24 @@
 
     }
 
+    function check_tpl(
+        string $tpl
+    ) {
+
+        return is_readable( TEMPLATE . $tpl . '.php' );
+
+    }
+
     function load_tpl_part(
         string $tpl,
         string $fallback = ''
     ) {
 
-        if( is_readable( TEMPLATE . $tpl . '.php' ) ) {
+        if( check_tpl( $tpl ) ) {
 
             include TEMPLATE . $tpl . '.php';
 
-        } else if( is_readable( TEMPLATE . $fallback . '.php' ) ) {
+        } else if( check_tpl( $fallback ) ) {
 
             include TEMPLATE . $fallback . '.php';
 

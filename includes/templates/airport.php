@@ -1,6 +1,7 @@
 <?php
 
-    if( empty( $airport = airport_by( 'ICAO', $path[1] ?? '' ) ) ) {
+    if( empty( $airport = airport_by( 'ICAO', $path[1] ?? '' ) ) ||
+        !check_tpl( 'airport_' . ( $path[2] ?? 'info' ) ) ) {
 
         __404();
 
@@ -76,6 +77,6 @@
     </h1>
     <?php _airport_warn( $airport ); ?>
     <?php _site_nav( $tabs, 'site-tabs content-normal', 2 ); ?>
-    <?php echo load_tpl_part( 'airport_' . $path[2], 'airport_404' ); ?>
+    <?php echo load_tpl_part( 'airport_' . $path[2] ); ?>
 </div>
 <?php _footer(); ?>
