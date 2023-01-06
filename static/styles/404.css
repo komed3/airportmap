@@ -7,7 +7,7 @@
     height: calc( 100vh - 80px );
     padding: 60px var( --padding-normal );
     background-color: var( --gray-7 );
-    background-image: url( './../resources/airplane.jpg' );
+    background-image: url( './../resources/airplane-thumb.jpg' );
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

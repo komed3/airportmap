@@ -107,7 +107,7 @@
 
         $equal = $path[ $check_path ] ?? '';
 
-        return '<a name="' . $jump_to . '" class="anchor"></a>
+        return '<a name="' . $jump_to . '" class="anchor" tabindex="-1"></a>
         <nav class="' . $classes . '">' .
             implode( '', array_map( function( $link ) use ( $equal, $jump_to ) {
 
@@ -184,7 +184,7 @@
 
         }
 
-        return '<a name="' . $jump_to . '" class="anchor"></a>
+        return '<a name="' . $jump_to . '" class="anchor" tabindex="-1"></a>
         <div class="pagination">
             <div class="pagelinks">
                 ' . implode( '', $pagelinks ) . '

@@ -36,6 +36,8 @@
     "site-warning": "Information on this website is for private use only. Do not use for real life flight.",
     "site-welcome-headline": "Welcome to <b>Airportmap</b>",
     "site-welcome-text": "Airportmap is an open source project with information and weather data on <b>$1</b> airports, heliports and air bases worldwide.",
+    "404-title": "Error 404",
+    "404-desc": "An 404 error has occurred. The requested page could not be found",
     "404-teaser": "Flight404",
     "404-headline": "Departure delayed",
     "404-credits": "Image by $1 from $2",
