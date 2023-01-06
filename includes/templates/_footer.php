@@ -22,6 +22,9 @@
                         'i18n' => 'footer-nav-sigmets',
                         'url' => 'weather/sigmets'
                     ], [
+                        'i18n' => 'footer-nav-info',
+                        'url' => 'info'
+                    ], [
                         'i18n' => 'footer-nav-stats',
                         'url' => 'stats'
                     ] ], 'footer-nav', -1 ); ?>
@@ -29,6 +32,9 @@
                 <div class="column">
                     <h3><?php _i18n( 'footer-headline-developer' ); ?></h3>
                     <?php _site_nav( [ [
+                        'i18n' => 'footer-nav-about',
+                        'url' => 'about'
+                    ], [
                         'i18n' => 'footer-nav-data',
                         'url' => 'data'
                     ], [
