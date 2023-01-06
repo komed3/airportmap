@@ -641,6 +641,29 @@ h2.secondary-headline {
     font-weight: 800;
 }
 
+.backto {
+    margin: 40px 0;
+}
+
+.backto a {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.backto a .icon {
+    font-size: 20px;
+}
+
+.backto a:hover {
+    text-decoration: none;
+}
+
+.backto a:hover span {
+    text-decoration: underline;
+}
+
 .breadcrumbs {
     display: flex;
     flex-flow: row nowrap;

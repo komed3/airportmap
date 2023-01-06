@@ -199,6 +199,31 @@
 
     }
 
+    function back_to(
+        string $page,
+        string $name,
+        string $classes = ''
+    ) {
+
+        return '<div class="backto ' . $classes . '">
+            <a href="' . base_url( $page ) . '">
+                <i class="icon">arrow_back</i>
+                <span>' . $name . '</span>
+            </a>
+        </div>';
+
+    }
+
+    function _back_to(
+        string $page,
+        string $name,
+        string $classes = ''
+    ) {
+
+        echo back_to( $page, $name, $classes );
+
+    }
+
     function pagelist(
         string $page,
         array $results

@@ -65,6 +65,7 @@
         <b><?php echo $_count; ?></b>
     </h1>
     <div class="content-normal">
+        <?php _back_to( 'airports', i18n( 'airports-title' ) ); ?>
         <?php _airport_list(
             $airports, $path[3] ?? 1,
             'airports/restriction/' . $rest
