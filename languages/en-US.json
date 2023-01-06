@@ -292,6 +292,8 @@
     "airports-country-desc": "List of all airports in $1",
     "airports-region-title": "Airports in $1 ($4)",
     "airports-region-desc": "List of all airports in $1 / $4",
+    "airports-timezone-title": "Airports in $1 ($4)",
+    "airports-timezone-desc": "List of all airports with timezone $1 ($4)",
     "airports-by-region": "Airports by regions",
     "airports-by-type": "Airports by types",
     "airports-by-restriction": "Airports by usage",

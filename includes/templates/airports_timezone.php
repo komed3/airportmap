@@ -11,17 +11,14 @@
     }
 
     $timezone = $timezone->fetch_object();
+    $tz_offset = tz_offset( $timezone->gmt_offset );
 
-    /*$list = $DB->query( '
-        SELECT   c.code AS page,
-                 c.name AS name,
-                 COUNT( a.ICAO ) AS cnt
-        FROM     ' . DB_PREFIX . 'country c,
-                 ' . DB_PREFIX . 'airport a
-        WHERE    c.continent = "' . $continent->code . '"
-        AND      a.country = c.code
-        GROUP BY c.code
-        ORDER BY c.code ASC
+    $airports = $DB->query( '
+        SELECT   *
+        FROM     ' . DB_PREFIX . 'airport
+        WHERE    timezone = "' . $timezone->short . '"
+        AND      gmt_offset = ' . $timezone->gmt_offset . '
+        ORDER BY tier DESC
     ' )->fetch_all( MYSQLI_ASSOC );
 
     $position = $DB->query( '
@@ -32,16 +29,17 @@
                 AVG( lat ) AS lat_avg,
                 AVG( lon ) AS lon_avg
         FROM    ' . DB_PREFIX . 'airport
-        WHERE   continent = "' . $continent->code . '"
-    ' )->fetch_object();*/
+        WHERE   timezone = "' . $timezone->short . '"
+        AND     gmt_offset = ' . $timezone->gmt_offset . '
+    ' )->fetch_object();
 
-    /*$count = array_sum( array_column( $list, 'cnt' ) );
+    $count = count( $airports );
     $_count = __number( $count );
 
-    $__site_canonical = $base . 'airports/continent/' . $continent->code;
+    $__site_canonical = $base . 'airports/timezone/' . $timezone->ident;
 
-    $__site_title = i18n( 'airports-continent-title', $continent->name, $continent->code, $_count );
-    $__site_desc = i18n( 'airports-continent-desc', $continent->name, $continent->code, $_count );*/
+    $__site_title = i18n( 'airports-timezone-title', $timezone->name, $timezone->short, $_count, $tz_offset );
+    $__site_desc = i18n( 'airports-timezone-desc', $timezone->name, $timezone->short, $_count, $tz_offset );
 
     add_resource( 'region', 'css', 'region.css' );
 
@@ -49,29 +47,31 @@
 
 ?>
 <div class="region">
-    <?php /*_map( [
+    <?php _map( [
         'type' => 'airport',
         'navaids' => false,
         'supress_sigmets' => false,
         'supress_day_night' => false,
         'query' => [
-            'continent' => $continent->code
+            'timezone' => $timezone->short,
+            'gmt_offset' => $timezone->gmt_offset
         ],
         'fit_bounds' => [
             [ $position->lat_min, $position->lon_min ],
             [ $position->lat_max, $position->lon_max ]
         ]
-    ], 'minimal-ui' );*/ ?>
+    ], 'minimal-ui' ); ?>
     <h1 class="primary-headline">
         <i class="icon">language</i>
         <span><?php echo $timezone->name; ?></span>
-        <span><?php echo tz_offset( $timezone->gmt_offset ); ?></span>
+        <span><?php echo $tz_offset; ?></span>
         <b><?php echo $_count; ?></b>
     </h1>
-    <?php /*_breadcrumbs( [
-        [ 'world' ],
-        [ 'continent', $continent->code ]
-    ] );*/ ?>
-    <?php /*_pagelist( 'airports/country', $list );*/ ?>
+    <div class="content-normal">
+        <?php _airport_list(
+            $airports, $path[3] ?? 1,
+            'airports/timezone/' . $timezone->ident
+        ); ?>
+    </div>
 </div>
 <?php _footer(); ?>
