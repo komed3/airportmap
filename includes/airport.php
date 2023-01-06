@@ -1,5 +1,20 @@
 <?php
 
+    function airport_count(
+        string $by = 'type'
+    ) {
+
+        global $DB;
+
+        return $DB->query( '
+            SELECT   ' . $by . ' AS col,
+                     COUNT( ICAO ) AS cnt
+            FROM     ' . DB_PREFIX . 'airport
+            GROUP BY ' . $by
+        )->fetch_all( MYSQLI_ASSOC );
+
+    }
+
     function airport_by(
         string $column,
         string $ident

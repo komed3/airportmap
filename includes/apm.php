@@ -32,6 +32,11 @@
 
     i18n_load();
 
+    /* airport count by type */
+
+    define( 'AIRPORT_STATS', airport_count() );
+    define( 'AIRPORT_ALL', array_sum( array_column( AIRPORT_STATS, 'cnt' ) ) );
+
     /* load basic resources */
 
     add_resource( 'leaflet', 'css', 'https://unpkg.com/leaflet@1.9.3/dist/leaflet.css' );

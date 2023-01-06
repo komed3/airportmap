@@ -4,7 +4,7 @@
                         <img src="<?php _base_url( 'favicon-48x48.png' ); ?>" alt="" />
                     </a>
                     <h3>Airportmap</h3>
-                    <p class="about"><?php _i18n( 'footer-about' ) ?></p>
+                    <p class="about"><?php _i18n( 'footer-about', __number( floor( AIRPORT_ALL / 500 ) * 500 ) ); ?></p>
                     <p class="credits"><?php _i18n( 'footer-credits', date( 'Y' ) ); ?></p>
                 </div>
                 <div class="column">
