@@ -1,0 +1,12 @@
+.error-404 {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    height: calc( 100vh - 80px );
+    padding: 60px var( --padding-wide );
+    background-color: var( --gray-7 );
+    background-image: url( './../resources/airplane.jpg' );
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
