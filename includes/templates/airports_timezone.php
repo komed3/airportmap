@@ -62,7 +62,7 @@
         ]
     ], 'minimal-ui' ); ?>
     <h1 class="primary-headline">
-        <i class="icon">language</i>
+        <i class="icon">schedule</i>
         <span><?php echo $timezone->name; ?></span>
         <span><?php echo $tz_offset; ?></span>
         <b><?php echo $_count; ?></b>

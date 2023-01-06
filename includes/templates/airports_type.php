@@ -60,7 +60,7 @@
         ]
     ], 'minimal-ui' ); ?>
     <h1 class="primary-headline">
-        <i class="icon">language</i>
+        <i class="icon">flight_takeoff</i>
         <span><?php echo $name; ?></span>
         <b><?php echo $_count; ?></b>
     </h1>

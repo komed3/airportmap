@@ -66,10 +66,13 @@
             <div class="credits"><?php echo $image['credits']; ?></div>
         </div>
     <?php } ?>
-    <h1 class="primary-headline cat-<?php echo ( $cat = ( $weather['flight_cat'] ?? 'UNK' ) ); ?>">
-        <span class="cat"><?php echo $cat; ?></span>
+    <h1 class="primary-headline airport-<?php echo $airport['type']; ?> restriction-<?php echo $airport['restriction']; ?> cat-<?php echo (
+        $cat = ( $weather['flight_cat'] ?? 'UNK' )
+    ); ?>">
+        <mapicon invert></mapicon>
         <b><?php echo $airport['ICAO']; ?></b>
-        <span><?php echo $airport['name']; ?></span>
+        <span class="name"><?php echo $airport['name']; ?></span>
+        <span class="cat"><?php echo $cat; ?></span>
     </h1>
     <?php _airport_warn( $airport ); ?>
     <?php _site_nav( $tabs, 'site-tabs content-normal', 2 ); ?>

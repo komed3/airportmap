@@ -133,6 +133,10 @@ mapicon, navicon, wxicon {
     background-repeat: no-repeat;
 }
 
+mapicon[invert] {
+    filter: grayscale( 1 ) contrast( 10 ) invert( 1 );
+}
+
 navicon {
     width: 24px;
     height: 24px;
