@@ -526,10 +526,12 @@ h2.secondary-headline {
 
 .infolist li > div {
     display: flex;
-    flex-flow: row;
+    flex-flow: row wrap;
+    justify-content: flex-end;
     align-items: center;
     gap: 5px 10px;
     text-align: right;
+    white-space: nowrap;
 }
 
 .infolist li:not(:last-of-type) {
