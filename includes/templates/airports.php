@@ -51,18 +51,19 @@
     $zones = [];
 
     foreach( $DB->query( '
-        SELECT   gmt_offset,
-                 timezone,
-                 CONCAT( timezone, "_", gmt_offset ) AS tz,
-                 COUNT( ICAO ) AS cnt
-        FROM     ' . DB_PREFIX . 'airport
-        GROUP BY tz
-        ORDER BY gmt_offset ASC
+        SELECT   t.ident, t.name,
+                 COUNT( a.ICAO ) AS cnt
+        FROM     ' . DB_PREFIX . 'airport a,
+                 ' . DB_PREFIX . 'timezone t
+        WHERE    t.short = a.timezone
+        AND      t.gmt_offset = a.gmt_offset
+        GROUP BY t.ident
+        ORDER BY t.gmt_offset ASC
     ' )->fetch_all( MYSQLI_ASSOC ) as $zone ) {
 
         $zones[] = [
-            'page' => '',
-            'name' => '',
+            'page' => $zone['ident'],
+            'name' => $zone['name'],
             'cnt' => $zone['cnt']
         ];
 
