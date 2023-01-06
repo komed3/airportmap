@@ -40,6 +40,10 @@
                     <span><?php echo region_link( 'country', $airport['country'] ); ?></span>
                 </div>
             </li>
+            <?php if( $tz = airport_timezone( $airport ) ) { ?><li>
+                <span class="label"><?php _i18n( 'info-timezone' ); ?></span>
+                <div><?php echo tz_link( $tz ); ?></div>
+            </li><?php } ?>
             <?php if( $airport['municipality'] ) { ?><li>
                 <span class="label"><?php _i18n( 'info-municipality' ); ?></span>
                 <div><?php echo $airport['municipality']; ?></div>
@@ -55,10 +59,6 @@
                     <span>(<?php echo alt_in( (int) $airport['alt'] / 3.281, 'm&nbsp;MSL' ); ?>)</span>
                 </div>
             </li>
-            <?php if( $tz = airport_timezone( $airport ) ) { ?><li>
-                <span class="label"><?php _i18n( 'info-timezone' ); ?></span>
-                <div><?php echo tz_link( $tz ); ?></div>
-            </li><?php } ?>
         </ul>
     </div>
     <?php _map( [
