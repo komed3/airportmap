@@ -428,6 +428,18 @@
 
     }
 
+    function tz_offset(
+        int $offset
+    ) {
+
+        $abs = abs( $offset );
+
+        return 'UTC' . ( $offset < 0 ? '–' : '+' ) .
+               str_pad( floor( $abs / 60 ), 2, '0', STR_PAD_LEFT ) . ':' .
+               str_pad( $abs % 60, 2, '0', STR_PAD_LEFT );
+
+    }
+
     function __DMS(
         float $decimal,
         string $type = 'lat'
