@@ -22,9 +22,6 @@
                         'i18n' => 'footer-nav-sigmets',
                         'url' => 'weather/sigmets'
                     ], [
-                        'i18n' => 'footer-nav-info',
-                        'url' => 'info'
-                    ], [
                         'i18n' => 'footer-nav-stats',
                         'url' => 'stats'
                     ] ], 'footer-nav', -1 ); ?>

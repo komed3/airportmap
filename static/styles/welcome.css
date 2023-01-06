@@ -20,3 +20,37 @@
 .welcome .searchform .searchtext {
     flex: 0 0 100%;
 }
+
+.welcome-stats {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 60px;
+    padding: 60px var( --padding-normal );
+    color: var( --gray-0 );
+    background: var( --primary );
+}
+
+.welcome-stats .stats-col {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.welcome-stats .stats-col:hover {
+    text-decoration: none;
+}
+
+.welcome-stats .stats-col .value {
+    font-size: 42px;
+    font-weight: 800;
+}
+
+.welcome-stats .stats-col .label {
+    text-transform: uppercase;
+}
+
+.welcome-stats .stats-col:hover .label {
+    text-decoration: underline;
+}
