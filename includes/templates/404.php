@@ -11,9 +11,8 @@
         '<a href="https://pixabay.com/users/tobiasrehbein-11751606">Tobias Rehbein</a>',
         '<a href="https://pixabay.com">Pixabay</a>'
     ); ?></div>
-    <h1><?php _i18n( '404-teaser' ); ?></h1>
+    <h1><span><?php echo implode( '</span><span>', str_split( i18n( '404-teaser' ) ) ); ?></span></h1>
     <h2><?php _i18n( '404-headline' ); ?></h2>
-    <p><?php _i18n( '404-text' ); ?></p>
     <?php load_tpl_part( '_searchform' ); ?>
 </div>
 <?php _footer(); ?>
