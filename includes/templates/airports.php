@@ -95,7 +95,7 @@
     ], 'minimal-ui' ); ?>
     <h1 class="primary-headline">
         <i class="icon">language</i>
-        <span><?php _i18n( 'region-world' ); ?></span>
+        <span><?php echo $__site_title; ?></span>
         <b><?php echo $_count; ?></b>
     </h1>
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-region' ); ?></h2>
