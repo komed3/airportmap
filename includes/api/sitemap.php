@@ -4,6 +4,28 @@
 
     $sitemap = [];
 
+    /* basic URLs */
+
+    foreach( [
+        '' => 1,
+        'airports' => 1,
+        'weather' => 1,
+        'weather/sigmets' => 1,
+        'stats' => 1,
+        'about' => 0.9,
+        'data' => 0.7,
+        'embed' => 0.7,
+        'privacy' => 0.5
+    ] as $site => $prior ) {
+
+        $sitemap[] = '<url>
+            <loc>' . SITE . $site . '</loc>
+            <changefreq>daily</changefreq>
+            <priority>' . $prior . '</priority>
+        </url>';
+
+    }
+
     /* airports */
 
     foreach( array_column( $DB->query( '
