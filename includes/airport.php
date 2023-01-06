@@ -59,6 +59,23 @@
 
     }
 
+    function airport_timezone(
+        array $airport
+    ) {
+
+        global $DB;
+
+        return ( $res = $DB->query( '
+            SELECT  *
+            FROM    ' . DB_PREFIX . 'timezone
+            WHERE   short = "' . $airport['timezone'] . '"
+            AND     gmt_offset = ' . $airport['gmt_offset']
+        ) )->num_rows == 1
+            ? $res->fetch_assoc()
+            : null;
+
+    }
+
     function airport_search(
         string $word,
         int $limit = -1,
@@ -428,18 +445,6 @@
 
     }
 
-    function tz_offset(
-        int $offset
-    ) {
-
-        $abs = abs( $offset );
-
-        return 'UTC' . ( $offset < 0 ? '–' : '+' ) .
-               str_pad( floor( $abs / 60 ), 2, '0', STR_PAD_LEFT ) . ':' .
-               str_pad( $abs % 60, 2, '0', STR_PAD_LEFT );
-
-    }
-
     function __DMS(
         float $decimal,
         string $type = 'lat'
@@ -608,6 +613,31 @@
 
         return '<a href="' . SITE . 'airports/' . $type . '/' . $region . '">' .
             region_name( $type, $region ) . '</a>';
+
+    }
+
+    function tz_offset(
+        int $offset
+    ) {
+
+        $abs = abs( $offset );
+
+        return 'UTC' . ( $offset < 0 ? '–' : '+' ) .
+               str_pad( floor( $abs / 60 ), 2, '0', STR_PAD_LEFT ) . ':' .
+               str_pad( $abs % 60, 2, '0', STR_PAD_LEFT );
+
+    }
+
+    function tz_link(
+        array $tz,
+        bool $short = false,
+        bool $offset = false
+    ) {
+
+        return '<a href="' . SITE . 'airports/timezone/' . $tz['ident'] . '">' .
+            $tz[ $short ? 'short' : 'name' ] . (
+                $offset ? ' (' . tz_offset( $tz['gmt_offset'] ) . ')' : ''
+            ) . '</a>';
 
     }
 
