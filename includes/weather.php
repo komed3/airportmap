@@ -2,10 +2,11 @@
 
     function temp_in(
         float $temp,
-        string $in = 'c'
+        string $in = 'c',
+        int $digits = 0
     ) {
 
-        return __number( $temp, 1 ) . '&#8239;' . i18n( 'temp-' . $in );
+        return __number( $temp, $digits ) . '&#8239;' . i18n( 'temp-' . $in );
 
     }
 
