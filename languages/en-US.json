@@ -348,5 +348,7 @@
     "weather-extrema-gust": "Wind gust",
     "weather-extrema-horiz": "Worst visibility",
     "weather-extrema-vert": "Lowest ceilling",
-    "weather-extrema-precip": "Heaviest precip"
+    "weather-extrema-precip": "Heaviest precip",
+    "weather-cat-title": "$2 ($1)",
+    "weather-cat-desc": "List of Airport weather stations reporting $2 ($1) flight conditions"
 }
