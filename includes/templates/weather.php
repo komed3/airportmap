@@ -32,7 +32,7 @@
             [ $position->lat_min, $position->lon_min ],
             [ $position->lat_max, $position->lon_max ]
         ]
-    ], 'minimal-ui' ); ?>
+    ], 'minimal-ui windbug' ); ?>
     <h1 class="primary-headline">
         <i class="icon">sunny</i>
         <span><?php _i18n( 'weather' ); ?></span>

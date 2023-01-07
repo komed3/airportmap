@@ -585,19 +585,22 @@ var maps_config = {},
 
             maps_layer[ uuid ].marker = L.layerGroup().addTo( maps[ uuid ] );
 
-            if( !( 'supress_day_night' in data ) && ( $.cookie( 'apm_day_night' ) || 0 ) == 1 ) {
+            if( ( !( 'supress_day_night' in data ) || !data.supress_day_night ) &&
+                ( $.cookie( 'apm_day_night' ) || 0 ) == 1 ) {
 
                 $( '[map-action="day-night"]' ).click();
 
             }
 
-            if( !( 'supress_sigmets' in data ) && ( $.cookie( 'apm_sigmet' ) || 0 ) == 1 ) {
+            if( ( !( 'supress_sigmets' in data ) || !data.supress_sigmets ) &&
+                ( $.cookie( 'apm_sigmet' ) || 0 ) == 1 ) {
 
                 $( '[map-action="sigmet"]' ).click();
 
             }
 
-            if( ( $.cookie( 'apm_navaids' ) || 0 ) == 1 ) {
+            if( ( !( 'navaids' in data ) || data.navaids ) &&
+                ( $.cookie( 'apm_navaids' ) || 0 ) == 1 ) {
 
                 $( '[map-action="navaids"]' ).click();
 
