@@ -251,4 +251,73 @@
 
     }
 
+    function station_list(
+        array $stations,
+        int $page = 1,
+        string $baseurl = ''
+    ) {
+
+        if( count( $stations ) == 0 ) {
+
+            $content = '<div class="empty">
+                <i class="icon">flight_takeoff</i>
+                <span class="label">' . i18n( 'search-results-empty' ) . '</span>
+            </div>';
+
+        } else {
+        
+            $pagination = $page == -1 ? '' : pagination( count( $stations ), $page, $baseurl );
+
+            $content = $pagination . '<div class="list">';
+
+            foreach( array_slice( $stations, ( $page - 1 ) * 24, 24 ) as $station ) {
+
+                $content .= '<div class="row station cat-' . $station['flight_cat'] . '">
+                    <div class="cat">
+                        <span>' . i18n( 'cat-' . ( $station['flight_cat'] ?? 'UNK' ) ) . '</span>
+                    </div>
+                    <div class="info">
+                        <div class="headline">
+                            <b class="code">' . $station['ICAO'] . '</b>
+                            <a href="' . SITE . 'airport/' . $station['ICAO'] . '" class="name">' . $station['name'] . '</a>
+                        </div>
+                        <div class="weather">
+                            <div class="wx">
+                                <i class="icon">' . wx_icon( $station ) . '</i>
+                                <span>' . ucfirst( wx( $station ) ) . '</span>
+                            </div>
+                            <div class="temp">
+                                <i class="icon">device_thermostat</i>
+                                <span>' . temp_in( $station['temp'], 'c' ) . '</span>
+                            </div>
+                            <div class="wind">
+                                <i class="icon">air</i>
+                                <span>' . wind_info( $station ) . '</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+
+            }
+
+            $content .= '</div>' . $pagination;
+
+        }
+
+        return '<div class="stationlist">
+            ' . $content . '
+        </div>';
+
+    }
+
+    function _station_list(
+        array $stations,
+        int $page = 1,
+        string $baseurl = ''
+    ) {
+
+        echo station_list( $stations, $page, $baseurl );
+
+    }
+
 ?>

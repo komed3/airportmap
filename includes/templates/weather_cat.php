@@ -69,6 +69,10 @@
     </h1>
     <div class="content-normal">
         <?php _back_to( 'weather', i18n( 'weather' ) ); ?>
+        <?php _station_list(
+            $stations, $path[3] ?? 1,
+            'weather/cat/' . $cat
+        ); ?>
     </div>
 </div>
 <?php _footer(); ?>
