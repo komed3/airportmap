@@ -234,10 +234,12 @@
         $cats = [];
 
         foreach( $DB->query( '
-            SELECT   flight_cat AS cat,
-                     COUNT( station ) AS cnt
-            FROM     ' . DB_PREFIX . 'metar
-            WHERE    reported >= DATE_SUB( NOW(), INTERVAL 1 DAY )
+            SELECT   m.flight_cat AS cat,
+                     COUNT( a.ICAO ) AS cnt
+            FROM     ' . DB_PREFIX . 'metar m,
+                     ' . DB_PREFIX . 'airport a
+            WHERE    a.ICAO = m.station
+            AND      reported >= DATE_SUB( NOW(), INTERVAL 1 DAY )
             GROUP BY cat
         ' )->fetch_all( MYSQLI_ASSOC ) as $cat ) {
 

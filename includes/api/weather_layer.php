@@ -17,6 +17,7 @@
             AND      ( a.lat BETWEEN ' . $lat_min . ' AND ' . $lat_max . ' )
             AND      ( a.lon BETWEEN ' . $lon_min . ' AND ' . $lon_max . ' )
             AND      m.reported >= DATE_SUB( NOW(), INTERVAL ' . ( $_POST['maxage'] ?? 1 ) . ' DAY )
+            ' . ( $_POST['cat'] ? 'AND flight_cat ' . ( $_POST['cat'] == 'UNK' ? 'IS NULL' : ' = "' . $_POST['cat'] . '"' ) : '' ) . '
             ORDER BY ' . ( $_POST['orderby'] ?? 'a.tier DESC' ) . '
             LIMIT    0, ' . ( $_POST['limit'] ?? 50 )
         )->fetch_all( MYSQLI_ASSOC ),

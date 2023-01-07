@@ -58,6 +58,10 @@
     height: 32px;
 }
 
+.weather .cat-stats .cat b {
+    font-weight: 800;
+}
+
 .weather .weather-extrema {
     display: grid;
     grid-template-columns: repeat( 3, 1fr );

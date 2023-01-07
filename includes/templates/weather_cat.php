@@ -8,6 +8,16 @@
 
     }
 
+    $stations = $DB->query( '
+        SELECT   *
+        FROM     ' . DB_PREFIX . 'metar m,
+                 ' . DB_PREFIX . 'airport a
+        WHERE    m.station = a.ICAO
+        AND      m.reported >= DATE_SUB( NOW(), INTERVAL 1 DAY )
+        AND      m.flight_cat ' . ( $cat == 'UNK' ? 'IS NULL' : ' = "' . $cat . '"' ) . '
+        ORDER BY tier DESC
+    ' )->fetch_all( MYSQLI_ASSOC );
+
     $position = $DB->query( '
         SELECT  MIN( a.lat ) AS lat_min,
                 MIN( a.lon ) AS lon_min,
@@ -19,7 +29,7 @@
                 ' . DB_PREFIX . 'airport a
         WHERE   m.station = a.ICAO
         AND     m.reported >= DATE_SUB( NOW(), INTERVAL 1 DAY )
-        AND     m.flight_cat = "' . $cat . '"
+        AND     m.flight_cat ' . ( $cat == 'UNK' ? 'IS NULL' : ' = "' . $cat . '"' ) . '
     ' )->fetch_object();
 
     $__site_canonical = $base . 'airports/weather/cat/' . $cat;
@@ -27,8 +37,11 @@
     $cat_name = i18n( 'cat-' . $cat );
     $cat_label = i18n( 'cat-' . $cat . '-label' );
 
-    $__site_title = i18n( 'weather-cat-title', $cat_name, $cat_label );
-    $__site_desc = i18n( 'weather-cat-desc', $cat_name, $cat_label );
+    $count = count( $stations );
+    $_count = __number( $count );
+
+    $__site_title = i18n( 'weather-cat-title', $cat_name, $cat_label, $_count );
+    $__site_desc = i18n( 'weather-cat-desc', $cat_name, $cat_label, $_count );
 
     add_resource( 'weather', 'css', 'weather.css' );
 
@@ -41,7 +54,7 @@
         'navaids' => false,
         'supress_day_night' => true,
         'query' => [
-            'flight_cat' => $cat
+            'cat' => $cat
         ],
         'fit_bounds' => [
             [ $position->lat_min, $position->lon_min ],
@@ -52,6 +65,7 @@
         <wxicon></wxicon>
         <b><?php echo $cat_name; ?></b>
         <span><?php echo $cat_label; ?></span>
+        <b><?php echo $_count; ?></b>
     </h1>
     <div class="content-normal">
         <?php _back_to( 'weather', i18n( 'weather' ) ); ?>
