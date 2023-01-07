@@ -64,8 +64,8 @@
     <?php _map( [
         'type' => 'airport',
         'navaids' => true,
-        'supress_sigmets' => false,
-        'supress_day_night' => false,
+        'supress_sigmets' => true,
+        'supress_day_night' => true,
         'position' => [
             'lat' => $airport['lat'],
             'lon' => $airport['lon'],

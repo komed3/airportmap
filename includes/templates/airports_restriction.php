@@ -49,8 +49,8 @@
     <?php _map( [
         'type' => 'airport',
         'navaids' => false,
-        'supress_sigmets' => false,
-        'supress_day_night' => false,
+        'supress_sigmets' => true,
+        'supress_day_night' => true,
         'query' => [
             'restriction' => $rest
         ],
