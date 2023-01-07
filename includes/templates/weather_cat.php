@@ -35,5 +35,26 @@
     _header();
 
 ?>
-
+<div class="weather">
+    <?php _map( [
+        'type' => 'weather',
+        'navaids' => false,
+        'supress_day_night' => true,
+        'query' => [
+            'flight_cat' => $cat
+        ],
+        'fit_bounds' => [
+            [ $position->lat_min, $position->lon_min ],
+            [ $position->lat_max, $position->lon_max ]
+        ]
+    ], 'minimal-ui windbug' ); ?>
+    <h1 class="primary-headline cat-<?php echo $cat; ?>">
+        <wxicon></wxicon>
+        <b><?php echo $cat_name; ?></b>
+        <span><?php echo $cat_label; ?></span>
+    </h1>
+    <div class="content-normal">
+        <?php _back_to( 'weather', i18n( 'weather' ) ); ?>
+    </div>
+</div>
 <?php _footer(); ?>

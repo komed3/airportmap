@@ -3,6 +3,33 @@
     height: 420px;
 }
 
+.weather .primary-headline.cat-VFR {
+    background: var( --indicator-green );
+}
+
+.weather .primary-headline.cat-MVFR {
+    background: var( --indicator-blue );
+}
+
+.weather .primary-headline.cat-IFR {
+    background: var( --indicator-red );
+}
+
+.weather .primary-headline.cat-LIFR {
+    background: var( --indicator-pink );
+}
+
+.weather .primary-headline.cat-UNK {
+    background: var( --gray-7 );
+}
+
+.weather .primary-headline wxicon {
+    width: 36px;
+    height: 36px;
+    background-color: var( --gray-0 );
+    border-radius: 50%;
+}
+
 .weather .cat-stats {
     display: flex;
     flex-flow: row nowrap;

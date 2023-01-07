@@ -133,7 +133,7 @@ mapicon, navicon, wxicon {
     background-repeat: no-repeat;
 }
 
-mapicon[invert] {
+mapicon[invert], navicon[invert], wxicon[invert] {
     filter: grayscale( 1 ) contrast( 10 ) invert( 1 );
 }
 
