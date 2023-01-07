@@ -9,6 +9,15 @@
 
     }
 
+    function wind_in(
+        float $wind,
+        string $in = 'kt'
+    ) {
+
+        return round( $wind ) . '&#8239;' . i18n( 'wind-' . $in );
+
+    }
+
     function wind_info(
         array $weather
     ) {

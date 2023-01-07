@@ -49,5 +49,78 @@
             </a>
         <?php } ?>
     </div>
+    <div class="weather-extrema">
+        <?php $i = 0; foreach( [
+            'hot' => [ 'temp', 'temp DESC' ],
+            'cold' => [ 'temp', 'temp ASC' ],
+            'wind' => [ 'wind_spd', 'wind_spd DESC' ],
+            'gust' => [ 'wind_gust', 'wind_gust DESC' ],
+            'horiz' => [ 'vis_horiz', 'vis_horiz ASC' ],
+            'vert' => [ 'vis_vert', 'vis_vert ASC' ],
+            'precip' => [ 'precip', 'precip DESC' ]
+        ] as $ext => $opt ) {
+
+            $info = $DB->query( '
+                SELECT   a.ICAO, a.name,
+                         m.' . $opt[0] . ' AS col
+                FROM     ' . DB_PREFIX . 'metar m,
+                         ' . DB_PREFIX . 'airport a
+                WHERE    m.station = a.ICAO
+                AND      m.reported >= DATE_SUB( NOW(), INTERVAL 1 DAY )
+                AND      m.' . $opt[0] . ' IS NOT NULL
+                ORDER BY ' . $opt[1] . '
+                LIMIT    0, 1
+            ' );
+
+            if( $info->num_rows == 0 || ++$i > 5 ) continue;
+
+            $info = $info->fetch_assoc();
+
+        ?>
+            <div class="extrema">
+                <i class="icon"><?php echo [
+                    'hot' => 'sunny',
+                    'cold' => 'ac_unit',
+                    'wind' => 'air',
+                    'gust' => 'cyclone',
+                    'horiz' => 'cloudy',
+                    'vert' => 'foggy',
+                    'precip' => 'water_drop'
+                ][ $ext ]; ?></i>
+                <div class="info">
+                    <div class="label"><?php _i18n( 'weather-extrema-' . $ext ); ?></div>
+                    <div class="value"><?php
+
+                        switch( $ext ) {
+
+                            case 'hot':
+                            case 'cold':
+                                echo '<span>' . temp_in( round( $info['col'] ), 'c' ) . '</span><span>(' .
+                                    temp_in( round( $info['col'] * 1.8 + 32 ), 'f' ) . ')</span>';
+                                break;
+
+                            case 'wind':
+                            case 'gust':
+                                echo '<span>' . wind_in( $info['col'], 'kt' ) . '</span><span>(' .
+                                    wind_in( $info['col'] * 1.852, 'kmh' ) . ')</span>';
+                                break;
+
+                            case 'horiz':
+                            case 'vert':
+                                echo '<span></span>';
+                                break;
+
+                            case 'precip':
+                                echo '<span></span>';
+                                break;
+
+                        }
+
+                    ?></div>
+                    <div class="station"><?php echo airport_link( $info ); ?></div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
 </div>
 <?php _footer(); ?>
