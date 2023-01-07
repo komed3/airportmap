@@ -42,9 +42,9 @@
     <div class="cat-stats content-normal">
         <div class="label"><?php _i18n( 'flight-cats' ); ?></div>
         <?php foreach( [ 'VFR', 'MVFR', 'IFR', 'LIFR', 'UNK' ] as $cat ) { ?>
-            <a href="<?php _base_url( 'weather/cat/' . $cat ); ?>" class="cat cat-<?php echo $cat; ?>">
+            <a href="<?php _base_url( 'weather/cat/' . $cat ); ?>" class="cat cat-<?php echo $cat; ?>" title="<?php _i18n( 'cat-' . $cat . '-label' ); ?>">
                 <wxicon></wxicon>
-                <span><?php echo $cat; ?></span>
+                <span><?php _i18n( 'cat-' . $cat ); ?></span>
                 <b><?php echo __number( $cat_stats[ $cat ] ); ?></b>
             </a>
         <?php } ?>
