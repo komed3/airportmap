@@ -73,7 +73,7 @@
     flex-flow: row nowrap;
     align-items: center;
     padding: 20px 24px;
-    border: 2px solid var( --shade-1 );
+    background: var( --gray-0 );
     border-radius: 12px;
 }
 
