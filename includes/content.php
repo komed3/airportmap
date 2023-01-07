@@ -117,6 +117,8 @@
                     $jump_to ? '#' . $jump_to : ''
                 ) . '" class="' . $link['classes'] . ' ' . (
                     ( $link['check'] ?? '' ) == $equal ? 'current' : ''
+                ) . '" target="' . (
+                    $link['external'] ? '_blank' : '_self'
                 ) . '">
                     <span>' . ( $link['text'] ?? i18n( $link['i18n'] ?? '' ) ) . '</span>
                 </a>' : '<div class="empty"></div>';
