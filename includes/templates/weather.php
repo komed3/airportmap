@@ -49,15 +49,14 @@
             </a>
         <?php } ?>
     </div>
-    <div class="weather-extrema">
-        <?php $i = 0; foreach( [
+    <div class="weather-extrema content-normal">
+        <?php foreach( [
+            'vert' => [ 'vis_vert', 'vis_vert ASC' ],
             'hot' => [ 'temp', 'temp DESC' ],
             'cold' => [ 'temp', 'temp ASC' ],
             'wind' => [ 'wind_spd', 'wind_spd DESC' ],
             'gust' => [ 'wind_gust', 'wind_gust DESC' ],
-            'horiz' => [ 'vis_horiz', 'vis_horiz ASC' ],
-            'vert' => [ 'vis_vert', 'vis_vert ASC' ],
-            'precip' => [ 'precip', 'precip DESC' ]
+            'horiz' => [ 'vis_horiz', 'vis_horiz ASC' ]
         ] as $ext => $opt ) {
 
             $info = $DB->query( '
@@ -72,26 +71,29 @@
                 LIMIT    0, 1
             ' );
 
-            if( $info->num_rows == 0 || ++$i > 5 ) continue;
+            if( $info->num_rows == 0 ) continue;
 
             $info = $info->fetch_assoc();
 
         ?>
             <div class="extrema">
                 <i class="icon"><?php echo [
+                    'vert' => 'foggy',
                     'hot' => 'sunny',
                     'cold' => 'ac_unit',
                     'wind' => 'air',
                     'gust' => 'cyclone',
-                    'horiz' => 'cloudy',
-                    'vert' => 'foggy',
-                    'precip' => 'water_drop'
+                    'horiz' => 'cloudy'
                 ][ $ext ]; ?></i>
                 <div class="info">
                     <div class="label"><?php _i18n( 'weather-extrema-' . $ext ); ?></div>
                     <div class="value"><?php
 
                         switch( $ext ) {
+
+                            case 'vert':
+                                echo '<span>' . alt_in( $info['col'], 'ft' ) . '</span>';
+                                break;
 
                             case 'hot':
                             case 'cold':
@@ -106,12 +108,7 @@
                                 break;
 
                             case 'horiz':
-                            case 'vert':
-                                echo '<span></span>';
-                                break;
-
-                            case 'precip':
-                                echo '<span></span>';
+                                echo '<span>' . alt_in( $info['col'] * 1609.34, 'm' ) . '</span>';
                                 break;
 
                         }
