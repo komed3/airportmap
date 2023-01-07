@@ -272,7 +272,7 @@
 
             foreach( array_slice( $stations, ( $page - 1 ) * 24, 24 ) as $station ) {
 
-                $content .= '<div class="row station cat-' . $station['flight_cat'] . '">
+                $content .= '<div class="row station cat-' . ( $station['flight_cat'] ?? 'UNK' ) . '">
                     <div class="cat">
                         <span>' . i18n( 'cat-' . ( $station['flight_cat'] ?? 'UNK' ) ) . '</span>
                     </div>
