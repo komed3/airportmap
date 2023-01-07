@@ -34,7 +34,7 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    gap: 80px;
+    gap: 60px;
 }
 
 .weather .cat-stats .label {
@@ -78,7 +78,7 @@
 }
 
 .weather .weather-extrema .extrema .icon {
-    flex: 0 0 62px;
+    flex: 0 0 60px;
     font-size: 40px;
 }
 
