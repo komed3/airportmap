@@ -325,5 +325,8 @@
     "airports-by-region": "Airports by regions",
     "airports-by-type": "Airports by types",
     "airports-by-restriction": "Airports by usage",
-    "airports-by-zone": "Airports by timezones"
+    "airports-by-zone": "Airports by timezones",
+    "weather": "Weather",
+    "weather-title": "Weather Stations",
+    "weather-desc": "List of worldwide airport weather stations, weather extremes and significant weather phenomena"
 }
