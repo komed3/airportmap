@@ -24,12 +24,12 @@
             'content' => ( !empty( $weather ) ? '<div class="infobox-weather">
                 ' . ( $weather['flight_cat'] ? '
                     <div class="cat">
-                        <span>' . $weather['flight_cat'] . '</span>
+                        <span>' . i18n( 'cat-' . $weather['flight_cat'] ) . '</span>
                     </div>
                     <div class="vis">' . vis_info( $weather ) . '</div>
                 ' : '
                     <div class="cat">
-                        <span>UNK</span>
+                        <span>' . i18n( 'cat-unk' ) . '</span>
                     </div>
                     <div class="vis">' . i18n( 'sky-unknown' ) . '</div>'
                 ) . '

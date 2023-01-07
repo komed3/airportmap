@@ -73,7 +73,7 @@
         <mapicon invert></mapicon>
         <b><?php echo $airport['ICAO']; ?></b>
         <span class="name"><?php echo $airport['name']; ?></span>
-        <span class="cat"><?php echo $cat; ?></span>
+        <span class="cat"><?php _i18n( 'cat-' . $cat ); ?></span>
     </h1>
     <?php _airport_warn( $airport ); ?>
     <?php _site_nav( $tabs, 'site-tabs content-normal', 2 ); ?>

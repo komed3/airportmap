@@ -218,4 +218,26 @@
 
     }
 
+    function flight_cat_count() {
+
+        global $DB;
+
+        $cats = [];
+
+        foreach( $DB->query( '
+            SELECT   flight_cat AS cat,
+                     COUNT( station ) AS cnt
+            FROM     ' . DB_PREFIX . 'metar
+            WHERE    reported >= DATE_SUB( NOW(), INTERVAL 1 DAY )
+            GROUP BY cat
+        ' )->fetch_all( MYSQLI_ASSOC ) as $cat ) {
+
+            $cats[ $cat['cat'] ?? 'UNK' ] = $cat['cnt'];
+
+        }
+
+        return $cats;
+
+    }
+
 ?>

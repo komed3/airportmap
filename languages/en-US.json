@@ -328,5 +328,16 @@
     "airports-by-zone": "Airports by timezones",
     "weather": "Weather",
     "weather-title": "Weather Stations",
-    "weather-desc": "List of worldwide airport weather stations, weather extremes and significant weather phenomena"
+    "weather-desc": "List of worldwide airport weather stations, weather extremes and significant weather phenomena",
+    "flight-cats": "Flight categories",
+    "cat-vfr": "VFR",
+    "cat-vfr-label": "Visual Flight Rules",
+    "cat-mvfr": "MVFR",
+    "cat-mvfr-label": "Marginal VFR",
+    "cat-ifr": "IFR",
+    "cat-ifr-label": "Instrument Flight Rules",
+    "cat-lifr": "LIFR",
+    "cat-lifr-label": "Low IFR",
+    "cat-unk": "UNK",
+    "cat-unk-label": "Unknown"
 }
