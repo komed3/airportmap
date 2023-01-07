@@ -5,7 +5,7 @@
         string $in = 'c'
     ) {
 
-        return round( $temp, 1 ) . '&#8239;' . i18n( 'temp-' . $in );
+        return __number( $temp, 1 ) . '&#8239;' . i18n( 'temp-' . $in );
 
     }
 
@@ -14,7 +14,7 @@
         string $in = 'kt'
     ) {
 
-        return round( $wind ) . '&#8239;' . i18n( 'wind-' . $in );
+        return __number( $wind ) . '&#8239;' . i18n( 'wind-' . $in );
 
     }
 
@@ -23,7 +23,7 @@
     ) {
 
         return i18n( 'wind-' . ( ( $weather['wind_spd'] ?? 0 ) == 0 ? 'calm' : 'to' ),
-            round( $weather['wind_spd'] ?? 0 ),
+            __number( $weather['wind_spd'] ?? 0 ),
             __cardinal( $weather['wind_dir'] ?? 0 )
         );
 
@@ -37,11 +37,11 @@
         $vert = round( $weather['vis_vert'] ?? 99999 );
 
         return '<span>' . ( $horiz >= 10 ? '10km+' : ( $horiz < 1
-            ? round( $horiz * 1000 ) . '&#8239;m'
-            : $horiz . '&#8239;km'
+            ? __number( $horiz * 1000 ) . '&#8239;m'
+            : __number( $horiz ) . '&#8239;km'
         ) ) . '</span><span>/</span><span>' . ( $vert > 50000
             ? i18n( 'clear-sky' )
-            : $vert . '&#8239;ft'
+            : __number( $vert ) . '&#8239;ft'
         ) . '</span>';
 
     }
@@ -278,7 +278,6 @@
                     </div>
                     <div class="info">
                         <div class="headline">
-                            <b class="code">' . $station['ICAO'] . '</b>
                             <a href="' . SITE . 'airport/' . $station['ICAO'] . '" class="name">' . $station['name'] . '</a>
                         </div>
                         <div class="weather">
@@ -293,6 +292,10 @@
                             <div class="wind">
                                 <i class="icon">air</i>
                                 <span>' . wind_info( $station ) . '</span>
+                            </div>
+                            <div class="vis">
+                                <i class="icon">routine</i>
+                                ' . vis_info( $station ) . '
                             </div>
                         </div>
                     </div>

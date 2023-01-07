@@ -682,7 +682,8 @@ h2.secondary-headline {
     margin: 40px var( --padding-normal );
 }
 
-.airportlist .empty {
+.airportlist .empty,
+.stationlist .empty {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -690,19 +691,22 @@ h2.secondary-headline {
     text-align: center;
 }
 
-.airportlist .empty .icon {
+.airportlist .empty .icon,
+.stationlist .empty .icon {
     font-size: 60px;
     color: var( --primary-light );
 }
 
-.airportlist .empty .label {
+.airportlist .empty .label,
+.stationlist .empty .label {
     font-size: 26px;
     font-weight: 800;
     color: var( --gray-3 );
     opacity: 0.3;
 }
 
-.airportlist .list .row {
+.airportlist .list .row,
+.stationlist .list .row {
     display: flex;
     flex-flow: row nowrap;
     align-items: flex-start;
@@ -715,24 +719,34 @@ h2.secondary-headline {
     height: 32px;
 }
 
-.airportlist .list .row .info {
+.airportlist .list .row .info,
+.stationlist .list .row .info {
     flex: 1;
     display: flex;
     flex-flow: column nowrap;
     gap: 8px;
 }
 
-.airportlist .list .row .info .headline {
+.airportlist .list .row .info .headline,
+.stationlist .list .row .info .headline {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     gap: 12px;
     height: 32px;
+}
+
+.airportlist .list .row .info .headline {
     margin-bottom: 10px;
 }
 
+.stationlist .list .row .info .headline {
+    margin-bottom: 5px;
+}
+
 .airportlist .list .row .info .headline .code,
-.airportlist .list .row .info .tags > * {
+.airportlist .list .row .info .tags > *,
+.stationlist .list .row .info .headline .code {
     padding: 4px 8px;
     text-transform: uppercase;
     font-size: 14px;
@@ -741,7 +755,8 @@ h2.secondary-headline {
     border-radius: 3px;
 }
 
-.airportlist .list .row .info .headline .code {
+.airportlist .list .row .info .headline .code,
+.stationlist .list .row .info .headline .code {
     font-weight: 800;
     color: var( --gray-0 );
     background: var( --gray-3 );
@@ -769,7 +784,8 @@ h2.secondary-headline {
     background: var( --indicator-red );
 }
 
-.airportlist .list .row .info .headline .name {
+.airportlist .list .row .info .headline .name,
+.stationlist .list .row .info .headline .name {
     font-size: 20px;
     font-weight: 800;
 }
@@ -810,6 +826,58 @@ h2.secondary-headline {
 
 .airportlist .list .row .nearby {
     flex: 0 0 120px;
+}
+
+.stationlist .list .row .info .weather {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 6px 26px;
+    font-size: 20px;
+}
+
+.stationlist .list .row .info .weather div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.stationlist .list .row .info .weather div .icon {
+    font-size: 28px;
+}
+
+.stationlist .list .row .cat {
+    flex: 0 0 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    font-weight: 800;
+    color: var( --gray-0 );
+    background: var( --gray-3 );
+    border-radius: 3px;
+}
+
+.stationlist .list .row.cat-VFR .cat {
+    background: var( --indicator-green );
+}
+
+.stationlist .list .row.cat-MVFR .cat {
+    background: var( --indicator-blue );
+}
+
+.stationlist .list .row.cat-IFR .cat {
+    background: var( --indicator-red );
+}
+
+.stationlist .list .row.cat-LIFR .cat {
+    background: var( --indicator-pink );
+}
+
+.stationlist .list .row.cat-UNK .cat {
+    background: var( --gray-7 );
 }
 
 .runwaylist .runway {
