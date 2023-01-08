@@ -579,6 +579,26 @@
 
     }
 
+    function __timediff(
+        int $minutes
+    ) {
+
+        if( $minutes >= 1440 ) {
+
+            return floor( $minutes / 1440 ) . '&nbsp;' . i18n( 'timediff-days' );
+
+        } else if( $minutes >= 60 ) {
+
+            return floor( $minutes / 60 ) . '&nbsp;' . i18n( 'timediff-hours' );
+
+        } else {
+
+            return $minutes . '&nbsp;' . i18n( 'timediff-minutes' );
+
+        }
+
+    }
+
     function __morse(
         string $input,
         bool $decode = false

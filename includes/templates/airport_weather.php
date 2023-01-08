@@ -19,7 +19,7 @@
             sin( radians( ' . $airport['lat'] . ' ) ) *
             sin( radians( a.lat ) )
         ) ) AS distance, TIMESTAMPDIFF(
-            MINUTE, m.reported, CURRENT_TIMESTAMP()
+            MINUTE, m.reported, "' . date( 'Y-m-d H:i:s' ) . '"
         ) AS age
         FROM     ' . DB_PREFIX . 'metar m,
                  ' . DB_PREFIX . 'airport a
@@ -51,7 +51,8 @@
         $weather = $stations[ $index ];
 
     ?>
-        <div class="weather-station">
+        <div class="weather-station <?php echo $weather['distance'] < 1 ? 'on-site' : ''; ?>">
+            <div class="label"><?php _i18n( 'airport-weather-station' ); ?></div>
             <select data-action="select-station" data-base="<?php echo $base; ?>weather/">
                 <?php foreach( $stations as $idx => $station ) { ?>
                     <option value="<?php echo $station['ICAO']; ?>" <?php echo $idx == $index ? 'selected': ''; ?>>
@@ -59,6 +60,15 @@
                     </option>
                 <?php } ?>
             </select>
+            <div class="space"></div>
+            <div class="quality q-<?php echo min( 3, floor( $weather['distance'] / 50 ) ); ?> dist">
+                <i class="icon">near_me</i>
+                <span><?php echo __number( $weather['distance'] ); ?>&nbsp;nm</span>
+            </div>
+            <div class="quality q-<?php echo min( 3, floor( $weather['age'] / 60 ) ); ?> age">
+                <i class="icon">schedule</i>
+                <span><?php echo __timediff( $weather['age'] ); ?></span>
+            </div>
         </div>
     <?php } ?>
 </div>
