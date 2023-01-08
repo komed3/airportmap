@@ -71,6 +71,20 @@ var freq_format = ( frequency ) => {
 
     } );
 
+    $( document ).on( 'change', '[data-action]', function( e ) {
+
+        prevent( e );
+
+        switch( $( this ).attr( 'data-action' ) ) {
+
+            case 'select-station':
+                location.href = baseurl + '/' + $( this ).attr( 'data-base' ) + $( this ).val();
+                break;
+
+        }
+
+    } );
+
     $( document ).on( 'submit', '[data-form]', function( e ) {
 
         prevent( e );

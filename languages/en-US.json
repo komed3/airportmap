@@ -248,6 +248,8 @@
     "airport-res-military": "Military Air Base",
     "airport-resp-military": "Military Air Bases",
     "airline-service": "Airline Service",
+    "airport-weather-empty": "No weather data available at this airport.",
+    "airport-weather-select": "$1 — $2",
     "airport-runways-empty": "No runways matched for this record.",
     "airport-frequencies": "Airport Frequencies",
     "airport-frequencies-empty": "No frequencies matched for this record.",

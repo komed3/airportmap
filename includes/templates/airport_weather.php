@@ -1,6 +1,6 @@
 <?php
 
-    global $DB, $airport;
+    global $DB, $path, $base, $airport;
 
     if( empty( $airport ) ) {
 
@@ -38,3 +38,27 @@
     ' )->fetch_all( MYSQLI_ASSOC );
 
 ?>
+<div class="airport-weather content-normal">
+    <?php if( empty( $stations ) ) { ?>
+        <p><?php _i18n( 'airport-weather-empty' ); ?></p>
+    <?php } else {
+
+        $index = (int) array_search(
+            strtoupper( $path[3] ?? 0 ),
+            array_column( $stations, 'ICAO' )
+        );
+
+        $weather = $stations[ $index ];
+
+    ?>
+        <div class="weather-station">
+            <select data-action="select-station" data-base="<?php echo $base; ?>weather/">
+                <?php foreach( $stations as $idx => $station ) { ?>
+                    <option value="<?php echo $station['ICAO']; ?>" <?php echo $idx == $index ? 'selected': ''; ?>>
+                        <?php _i18n( 'airport-weather-select', $station['ICAO'], $station['name'] ); ?>
+                    </option>
+                <?php } ?>
+            </select>
+        </div>
+    <?php } ?>
+</div>
