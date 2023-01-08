@@ -106,11 +106,15 @@
                 </li>
                 <li>
                     <span class="label"><?php _i18n( 'weather-relhum' ); ?></span>
-                    <div></div>
+                    <div>
+                        <b><x><?php echo __number( relhum( $weather ), 1 ); ?></x>&#8239;%</b>
+                    </div>
                 </li>
                 <li>
                     <span class="label"><?php _i18n( 'weather-airdens' ); ?></span>
-                    <div></div>
+                    <div>
+                        <b><x><?php echo __number( airdens( $weather ), 2 ); ?></x>&#8239;kg/m<sup>3</sup></b>
+                    </div>
                 </li>
             </ul>
         </div>

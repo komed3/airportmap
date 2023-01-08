@@ -1,5 +1,4 @@
 h1.primary-headline {
-    padding: 18px var( --padding-normal );
     font-size: 28px;
 }
 
@@ -216,15 +215,16 @@ h1.primary-headline {
 }
 
 .airport-weather .weather-info .info .icon {
-    flex: 0 0 100px;
+    flex: 0 0 80px;
     text-align: center;
-    font-size: 52px;
+    font-size: 48px;
 }
 
 .airport-weather .weather-info .info .list {
     display: flex;
     flex-flow: column nowrap;
     gap: 4px;
+    font-size: 20px;
 }
 
 .airport-weather .weather-info hr {
@@ -243,9 +243,9 @@ h1.primary-headline {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     gap: 20px;
-    padding: 8px 0;
+    padding: 6px 0;
 }
 
 .airport-weather .weather-info .list li .label {
@@ -256,7 +256,14 @@ h1.primary-headline {
 .airport-weather .weather-info .list li div {
     display: flex;
     flex-flow: row wrap;
+    align-items: baseline;
     gap: 4px 12px;
+}
+
+.airport-weather .weather-info .info .list .row > :first-child x,
+.airport-weather .weather-info .list li div > :first-child x {
+    font-size: 26px;
+    letter-spacing: -0.75px;
 }
 
 .airport-weather .weather-raw {

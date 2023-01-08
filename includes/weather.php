@@ -6,7 +6,7 @@
         int $digits = 0
     ) {
 
-        return __number( $temp, $digits ) . '&#8239;' . i18n( 'temp-' . $in );
+        return '<x>' . __number( $temp, $digits ) . '</x>&#8239;' . i18n( 'temp-' . $in );
 
     }
 
@@ -16,7 +16,7 @@
         int $digits = 2
     ) {
 
-        return __number( $altim, $digits ) . '&#8239;' . i18n( 'altim-' . $in );
+        return '<x>' . __number( $altim, $digits ) . '</x>&#8239;' . i18n( 'altim-' . $in );
 
     }
 
@@ -25,7 +25,7 @@
         string $in = 'kt'
     ) {
 
-        return __number( $wind ) . '&#8239;' . i18n( 'wind-' . $in );
+        return '<x>' . __number( $wind ) . '</x>&#8239;' . i18n( 'wind-' . $in );
 
     }
 
@@ -141,6 +141,25 @@
             }
 
         }
+
+    }
+
+    function relhum(
+        array $weather
+    ) {
+
+        return 100 * (
+            exp( ( 17.625 * $weather['dewp'] ) / ( 243.04 + $weather['dewp'] ) ) /
+            exp( ( 17.625 * $weather['temp'] ) / ( 243.04 + $weather['temp'] ) )
+        );
+
+    }
+
+    function airdens(
+        array $weather
+    ) {
+
+        return ( $weather['altim'] * 3386.3886 ) / ( 287.0500676 * ( $weather['temp'] + 273.15 ) );
 
     }
 
