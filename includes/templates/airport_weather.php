@@ -95,7 +95,7 @@
                 <li>
                     <span class="label"><?php _i18n( 'weather-altimeter' ); ?></span>
                     <div>
-                        <b><?php echo altim_in( $weather['altim'], 'inhq', 2 ); ?></b>
+                        <b><?php echo altim_in( $weather['altim'], 'inhg', 2 ); ?></b>
                         <span>(<?php echo altim_in( $weather['altim'] * 33.863886, 'hpa', 0 ); ?>)</span>
                     </div>
                 </li>
@@ -127,7 +127,9 @@
                 </li>
             </ul>
         </div>
-        <div class="weather-skycond"></div>
+        <div class="weather-skycond">
+            
+        </div>
         <div class="weather-raw">
             <span class="rawtxt"><?php echo $weather['raw']; ?></span>
         </div>

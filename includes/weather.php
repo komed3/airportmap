@@ -12,7 +12,7 @@
 
     function altim_in(
         float $altim,
-        string $in = 'inhq',
+        string $in = 'inhg',
         int $digits = 2
     ) {
 
