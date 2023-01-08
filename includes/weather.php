@@ -10,6 +10,16 @@
 
     }
 
+    function altim_in(
+        float $altim,
+        string $in = 'inhq',
+        int $digits = 2
+    ) {
+
+        return __number( $altim, $digits ) . '&#8239;' . i18n( 'altim-' . $in );
+
+    }
+
     function wind_in(
         float $wind,
         string $in = 'kt'

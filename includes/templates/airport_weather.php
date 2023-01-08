@@ -70,5 +70,54 @@
                 <span><?php echo __timediff( $weather['age'] ); ?></span>
             </div>
         </div>
+        <div class="weather-info">
+            <div class="info">
+                <div class="icon">
+                    <?php echo wx_icon( $weather ); ?>
+                </div>
+                <div class="list">
+                    <div class="row temp">
+                        <b><?php echo temp_in( $weather['temp'], 'c' ); ?></b>
+                        <span>(<?php echo temp_in( $weather['temp'] * 1.8 + 32, 'f' ); ?>)</span>
+                    </div>
+                    <div class="row wx">
+                        <span><?php echo ucfirst( wx( $weather ) ); ?></span>
+                    </div>
+                    <div class="row wind">
+                        <span><?php echo wind_info( $weather ); ?></span>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <ul class="list">
+                <li>
+                    <span class="label"><?php _i18n( 'weather-altimeter' ); ?></span>
+                    <div>
+                        <b><?php echo altim_in( $weather['altim'], 'inhq', 2 ); ?></b>
+                        <span>(<?php echo altim_in( $weather['altim'] * 33.863886, 'hpa', 0 ); ?>)</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="label"><?php _i18n( 'weather-dewpoint' ); ?></span>
+                    <div>
+                        <b><?php echo temp_in( $weather['dewp'], 'c' ); ?></b>
+                        <span>(<?php echo temp_in( $weather['dewp'] * 1.8 + 32, 'f' ); ?>)</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="label"><?php _i18n( 'weather-relhum' ); ?></span>
+                    <div></div>
+                </li>
+                <li>
+                    <span class="label"><?php _i18n( 'weather-airdens' ); ?></span>
+                    <div></div>
+                </li>
+            </ul>
+        </div>
+        <div class="weather-skycond"></div>
+        <div class="weather-raw">
+            <span class="rawtxt"><?php echo $weather['raw']; ?></span>
+        </div>
+        <div class="weather-runways"></div>
     <?php } ?>
 </div>
