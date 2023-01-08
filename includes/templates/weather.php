@@ -2,6 +2,15 @@
 
     $cat_stats = flight_cat_count();
 
+    $stations = $DB->query( '
+        SELECT   *
+        FROM     ' . DB_PREFIX . 'metar m,
+                 ' . DB_PREFIX . 'airport a
+        WHERE    m.station = a.ICAO
+        AND      m.reported >= DATE_SUB( NOW(), INTERVAL 1 DAY )
+        ORDER BY tier DESC
+    ' )->fetch_all( MYSQLI_ASSOC );
+
     $position = $DB->query( '
         SELECT  MIN( a.lat ) AS lat_min,
                 MIN( a.lon ) AS lon_min,
@@ -128,5 +137,9 @@
         ' )->num_rows ) ); ?></span>
         <i class="icon">chevron_right</i>
     </a>
+    <div class="content-normal">
+        <h2 class="secondary-headline"><?php _i18n( 'weather-title' ); ?></h2>
+        <?php _station_list( $stations, $path[3] ?? 1, 'weather' ); ?>
+    </div>
 </div>
 <?php _footer(); ?>
