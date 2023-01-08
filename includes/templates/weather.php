@@ -119,5 +119,14 @@
             </div>
         <?php } ?>
     </div>
+    <a href="<?php _base_url( 'weather/sigmets' ); ?>" class="weather-active-sigmets content-normal">
+        <span><?php _i18n( 'sigmets-title', __number( $DB->query( '
+            SELECT  _id
+            FROM    ' . DB_PREFIX . 'sigmet
+            WHERE   valid_from <= NOW()
+            AND     valid_to >= NOW()
+        ' )->num_rows ) ); ?></span>
+        <i class="icon">chevron_right</i>
+    </a>
 </div>
 <?php _footer(); ?>

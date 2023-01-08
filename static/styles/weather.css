@@ -113,3 +113,24 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+.weather .weather-active-sigmets {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 26px;
+    font-size: 22px;
+    font-weight: 800;
+    color: var( --gray-0 );
+    background: var( --indicator-red );
+    border-radius: 12px;
+}
+
+.weather .weather-active-sigmets:hover {
+    text-decoration: none;
+}
+
+.weather .weather-active-sigmets .icon {
+    font-size: 32px;
+}
