@@ -136,7 +136,7 @@ h1.primary-headline {
     grid-template-areas:
         'station station'
         'info skycond'
-        'info raw'
+        'raw raw'
         'runways runways';
     gap: 40px;
     margin-top: 80px;
@@ -200,11 +200,17 @@ h1.primary-headline {
     display: none;
 }
 
+.airport-weather .weather-info,
+.airport-weather .weather-skycond,
+.airport-weather .weather-raw {
+    padding: 20px 30px;
+    background: var( --gray-0 );
+    border-radius: 22px;
+}
+
 .airport-weather .weather-info {
     grid-area: info;
     padding: 30px;
-    background: var( --gray-0 );
-    border-radius: 22px;
 }
 
 .airport-weather .weather-info .info {
@@ -261,16 +267,27 @@ h1.primary-headline {
 }
 
 .airport-weather .weather-info .info .list .row > :first-child x,
-.airport-weather .weather-info .list li div > :first-child x {
+.airport-weather .weather-info .list li div > :first-child x,
+.airport-weather .weather-skycond .vis-info x {
     font-size: 26px;
     letter-spacing: -0.75px;
 }
 
+.airport-weather .weather-skycond .vis-info {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.airport-weather .weather-skycond .vis-info .label {
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
 .airport-weather .weather-raw {
     grid-area: raw;
-    padding: 30px;
-    background: var( --gray-0 );
-    border-radius: 22px;
     font-size: 22px;
     font-weight: 600;
 }

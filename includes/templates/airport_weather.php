@@ -128,7 +128,10 @@
             </ul>
         </div>
         <div class="weather-skycond">
-            
+            <div class="vis-info">
+                <?php echo vis_info( $weather, true ); ?>
+            </div>
+            <div class="chart"></div>
         </div>
         <div class="weather-raw">
             <span class="rawtxt"><?php echo $weather['raw']; ?></span>

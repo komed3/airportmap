@@ -48,19 +48,27 @@
     }
 
     function vis_info(
-        array $weather
+        array $weather,
+        bool $labels = false
     ) {
 
         $horiz = round( ( $weather['vis_horiz'] ?? 10 ) * 1.609, 1 );
-        $vert = round( $weather['vis_vert'] ?? 99999 );
+        $_horiz = ( $horiz >= 10 ? '<x>10</x>&#8239;km+' : ( $horiz < 1
+            ? '<x>' . __number( $horiz * 1000 ) . '</x>&#8239;m'
+            : '<x>' . __number( $horiz ) . '</x>&#8239;km'
+        ) );
 
-        return '<span>' . ( $horiz >= 10 ? '10km+' : ( $horiz < 1
-            ? __number( $horiz * 1000 ) . '&#8239;m'
-            : __number( $horiz ) . '&#8239;km'
-        ) ) . '</span><span>/</span><span>' . ( $vert > 50000
+        $vert = round( $weather['vis_vert'] ?? 99999 );
+        $_vert = ( $vert > 20000
             ? i18n( 'clear-sky' )
-            : __number( $vert ) . '&#8239;ft'
-        ) . '</span>';
+            : '<x>' . __number( $vert ) . '</x>&#8239;ft'
+        );
+
+        return $labels
+            ? '<span class="label">' . i18n( 'weather-visibility' ) . '</span><b>' . $_horiz . '</b><span>/</span>' . (
+                   $vert > 20000 ? '' : '<span class="label">' . i18n( 'weather-ceiling' ) . '</span>'
+               ) . '<b>' . $_vert . '</b>'
+            : '<span>' . $_horiz . '</span><span>/</span><span>' . $_vert . '</span>';
 
     }
 

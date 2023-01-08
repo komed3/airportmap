@@ -365,5 +365,7 @@
     "weather-dewpoint": "Dew point",
     "weather-relhum": "Rel. humidity",
     "weather-airdens": "Air density",
-    "weather-windchill": "Wind chill"
+    "weather-windchill": "Wind chill",
+    "weather-visibility": "Visibility",
+    "weather-ceiling": "Ceiling"
 }
