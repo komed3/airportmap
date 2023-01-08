@@ -140,6 +140,7 @@ h1.primary-headline {
         'info raw'
         'runways runways';
     gap: 40px;
+    margin-top: 80px;
 }
 
 .airport-weather .weather-station {
@@ -256,4 +257,13 @@ h1.primary-headline {
     display: flex;
     flex-flow: row wrap;
     gap: 4px 12px;
+}
+
+.airport-weather .weather-raw {
+    grid-area: raw;
+    padding: 30px;
+    background: var( --gray-0 );
+    border-radius: 22px;
+    font-size: 22px;
+    font-weight: 600;
 }
