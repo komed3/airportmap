@@ -30,12 +30,19 @@
     }
 
     function wind_info(
-        array $weather
+        array $weather,
+        bool $gust = false
     ) {
 
-        return i18n( 'wind-' . ( ( $weather['wind_spd'] ?? 0 ) == 0 ? 'calm' : 'to' ),
+        return i18n(
+            'wind-' . (
+                ( $weather['wind_spd'] ?? 0 ) == 0 ? 'calm' : 'to'
+            ) . (
+                $gust && $weather['wind_gust'] ? '-gust' : ''
+            ),
             __number( $weather['wind_spd'] ?? 0 ),
-            __cardinal( $weather['wind_dir'] ?? 0 )
+            __cardinal( $weather['wind_dir'] ?? 0 ),
+            __number( $weather['wind_gust'] ?? 0 )
         );
 
     }
@@ -160,6 +167,16 @@
     ) {
 
         return ( $weather['altim'] * 3386.3886 ) / ( 287.0500676 * ( $weather['temp'] + 273.15 ) );
+
+    }
+
+    function windchill(
+        array $weather
+    ) {
+
+        $v = pow( $weather['wind_spd'] * 1.852, 0.16 );
+
+        return 13.12 + ( 0.6215 * $weather['temp'] ) - ( 11.37 * $v ) + ( 0.3965 * $weather['temp'] * $v );
 
     }
 
@@ -321,7 +338,7 @@
                             </div>
                             <div class="wind">
                                 <i class="icon">air</i>
-                                <span>' . wind_info( $station ) . '</span>
+                                <span>' . wind_info( $station, true ) . '</span>
                             </div>
                             <div class="vis">
                                 <i class="icon">routine</i>
