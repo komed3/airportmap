@@ -78,9 +78,11 @@
 
         $text = [];
 
-        if( empty( $weather['wx'] ) ) {
+        if( empty( $weather['wx'] ) || in_array( $weather['wx'], [
+            'CAVOK', 'CLR', 'FEW', 'SCT', 'BKN', 'OVC'
+        ] ) ) {
 
-            return i18n( 'cloud-' . ( $weather['cloud_1_cover'] ?? 'CLR' ) );
+            return i18n( 'cloud-' . ( $weather['wx'] ?? 'CLR' ) );
 
         }
 
