@@ -2,7 +2,21 @@
 
     require_once __DIR__ . '/api.php';
 
-    $ceiling = [ 'SKC', 'SCT', 'BKN', 'OVC', 'OVX' ];
+    $ceiling = [
+        'SKC', 'SCT', 'BKN', 'OVC', 'OVX'
+    ];
+
+    $sc_points = [
+        'SKC' => 0,
+        'CLR' => 0,
+        'FEW' => 1,
+        'SKC' => 2,
+        'SCT' => 2,
+        'BKN' => 3,
+        'OVC' => 4,
+        'OVX' => 4
+    ];
+
     $delete = $insert = [];
 
     foreach( explode( PHP_EOL, file_get_contents(
@@ -31,14 +45,41 @@
             )
         );
 
+        if( strlen( trim( $data[21] ) ) ) {
+
+            $wx = trim( $data[21] );
+
+        } else {
+
+            $sc_raw = [];
+
+            foreach( $data as $_i => $sc ) {
+
+                if( in_array( $_i, [ 22, 24, 26, 28 ] ) && !empty( $sc ) ) {
+
+                    $key = strtoupper( trim( $sc ) );
+
+                    $sc_raw[] = array_key_exists( $key, $sc_points )
+                        ? $sc_points[ $key ] : 0;
+
+                }
+
+            }
+
+            $wx = empty( $sc_raw ) ? 'CAVOK' : [
+                'CLR', 'FEW', 'SCT', 'BKN', 'OVC'
+            ][ max( $sc_points ) ];
+
+        }
+
         $insert[ $station ] = implode( ', ', array_map( function( $f ) {
             return $f == null ? 'NULL' : '"' . trim( $f ) . '"';
         }, [
             // GENERAL
                 $station, // ICAO
                 $data[0], // RAW
-                str_replace( [ 'T', 'Z' ], [ ' ', '' ], $data[2] ), // DATE AND TIME
-                strlen( $data[21] ) ? $data[21] : null, // WX
+                date( 'Y-m-d H:i:s', strtotime( $data[2] ?? 'now' ) ), // DATE AND TIME
+                $wx, // WX
             // TEMP
                 (float) $data[5], // TEMP (C)
                 (float) $data[6], // DEW POINT (C)
