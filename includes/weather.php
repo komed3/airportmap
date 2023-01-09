@@ -263,6 +263,31 @@
 
     }
 
+    function runway_cond(
+        array $weather
+    ) {
+
+        global $DB;
+
+        foreach( $DB->query( '
+            SELECT  *
+            FROM    ' . DB_PREFIX . 'runway
+            WHERE   airport = "' . $weather['ICAO'] . '"
+            AND     inuse = 1
+            AND     (
+                l_hdg IS NOT NULL OR
+                r_hdg IS NOT NULL
+            )
+        ' )->fetch_all( MYSQLI_ASSOC ) as $runwaw ) {
+
+
+
+        }
+
+        return '';
+
+    }
+
     function sigmet_hazard(
         array $sigmet
     ) {

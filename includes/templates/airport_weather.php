@@ -50,8 +50,6 @@
 
         $weather = $stations[ $index ];
 
-        $windchill = windchill( $weather );
-
     ?>
         <div class="weather-station <?php echo $weather['distance'] < 1 ? 'on-site' : ''; ?>">
             <div class="label"><?php _i18n( 'airport-weather-station' ); ?></div>
@@ -121,7 +119,7 @@
                 <li>
                     <span class="label"><?php _i18n( 'weather-windchill' ); ?></span>
                     <div>
-                        <b><?php echo temp_in( $windchill, 'c' ); ?></b>
+                        <b><?php echo temp_in( $windchill = windchill( $weather ), 'c' ); ?></b>
                         <span>(<?php echo temp_in( $windchill * 1.8 + 32, 'f' ); ?>)</span>
                     </div>
                 </li>
@@ -136,6 +134,8 @@
         <div class="weather-raw">
             <span class="rawtxt"><?php echo $weather['raw']; ?></span>
         </div>
-        <div class="weather-runways"></div>
+        <div class="weather-runways">
+            <?php echo runway_cond( $weather ); ?>
+        </div>
     <?php } ?>
 </div>
