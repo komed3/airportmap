@@ -114,7 +114,7 @@
 
         $night = ( ( $h = date( 'G', $weather['gmt_offset'] * 60 + time() ) ) <= 6 ) || ( $h >= 19 );
 
-        $wx = $weather['wx'] ?? ( $weather['cloud_1_cover'] ?? 'CLR' );
+        $wx = $weather['wx'] ?? 'CLR';
 
         foreach( [
             'FZ' => 'ac_unit',
@@ -187,6 +187,56 @@
         $v = pow( $weather['wind_spd'] * 1.852, 0.16 );
 
         return 13.12 + ( 0.6215 * $weather['temp'] ) - ( 11.37 * $v ) + ( 0.3965 * $weather['temp'] * $v );
+
+    }
+
+    function sky_chart(
+        array $weather
+    ) {
+
+        $layer = $legend = [];
+
+        for( $i = 1; $i <= 4; $i++ ) {
+
+            if( !empty( $cover = $weather[ 'cloud_' . $i . '_cover' ] ) &&
+                is_numeric( $base = $weather[ 'cloud_' . $i . '_base' ] ) ) {
+
+                $layer[ $base ] = $cover;
+
+            }
+
+        }
+
+        $max = ceil( ( max( array_keys( $layer ) ) + 1000 ) / 1000 ) * 1000;
+
+        for( $base = 0; $base <= $max; $base += ceil( $max / 2500 ) * 500 ) {
+
+            $legend[] = '<div class="label" style="bottom: ' . ( $base / $max * 100 ) . '%;">
+                <span>' . alt_in( $base, 'ft' ) . '</span>
+            </div>';
+
+        }
+
+        foreach( $layer as $base => $cover ) {
+
+            $layer[ $base ] = '<div class="layer" style="bottom: ' . ( $base / $max * 100 ) . '%;">
+                ' . str_repeat( '<i class="icon">cloudy</i>', [
+                    'SKC' => 0, 'CLR' => 0, 'FEW' => 3,
+                    'SKC' => 6, 'SCT' => 6, 'BKN' => 9,
+                    'OVC' => 15, 'OVX' => 15
+                ][ $cover ] ) . '
+            </div>';
+
+        }
+
+        return '<div class="skychart">
+            <div class="legend">
+                ' . implode( '', $legend ) . '
+            </div>
+            <div class="layer">
+                ' . implode( '', $layer ) . '
+            </div>
+        </div>';
 
     }
 
