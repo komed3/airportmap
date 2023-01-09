@@ -237,9 +237,7 @@
 
                 $bottom = $base / $max * 100;
 
-                $layer[ $base ] = '<div class="layer" style="gap: ' . [
-                    'FEW' => 120, 'SCT' => 80, 'BKN' => 40, 'OVC' => 0, 'OVX' => 0
-                ][ $cover ] . 'px; bottom: ' . $bottom . '%;">
+                $layer[ $base ] = '<div class="layer layer-' . $cover . '" style="bottom: ' . $bottom . '%;">
                     ' . str_repeat( '<div class="cloud"></div>', 18 ) . '
                 </div>';
 

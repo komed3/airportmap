@@ -1095,6 +1095,23 @@ h2.secondary-headline {
     overflow: hidden;
 }
 
+.skychart .layers .layer.layer-FEW {
+    gap: 120px;
+}
+
+.skychart .layers .layer.layer-SCT {
+    gap: 80px;
+}
+
+.skychart .layers .layer.layer-BKN {
+    gap: 40px;
+}
+
+.skychart .layers .layer.layer-OVX {
+    height: 50%;
+    background: linear-gradient( to top, var( --gray-1 ), var( --gray-0 ) );
+}
+
 .skychart .layers .layer .cloud {
     flex: 0 0 auto;
     width: 90px;
@@ -1105,6 +1122,10 @@ h2.secondary-headline {
     background-position: center center;
     background-repeat: no-repeat;
     z-index: 1;
+}
+
+.skychart .layers .layer.layer-OVX .cloud {
+    display: none;
 }
 
 .skychart .layers .layer .cloud:nth-child( 3n+2 ) {
