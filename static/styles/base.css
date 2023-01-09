@@ -1078,7 +1078,7 @@ h2.secondary-headline {
 
 .skychart .layers {
     position: absolute;
-    top: 40px;
+    top: 52px;
     left: 100px;
     right: 120px;
     bottom: 0;
@@ -1116,7 +1116,7 @@ h2.secondary-headline {
 
 .skychart .labels {
     position: absolute;
-    top: 40px;
+    top: 52px;
     left: 100px;
     right: 0;
     bottom: 0;
@@ -1152,7 +1152,7 @@ h2.secondary-headline {
 }
 
 .skychart .labels .label.layer-BKN > * {
-    background: var( --indicator-red );
+    background: var( --indicator-orange );
 }
 
 .skychart .labels .label.layer-OVC > *,

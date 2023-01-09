@@ -106,10 +106,10 @@
                     strlen( $data[25] ) ? (int) $data[25] : null, // BASE (FT)
                 // LAYER 1
                     strlen( $data[26] ) ? $data[26] : null, // COVER
-                    strlen( $data[27] ) ? (int) $data[23] : null, // BASE (FT)
+                    strlen( $data[27] ) ? (int) $data[27] : null, // BASE (FT)
                 // LAYER 1
                     strlen( $data[28] ) ? $data[28] : null, // COVER
-                    strlen( $data[29] ) ? (int) $data[25] : null, // BASE (FT)
+                    strlen( $data[29] ) ? (int) $data[29] : null, // BASE (FT)
         ] ) );
 
     }

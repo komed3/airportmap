@@ -225,7 +225,7 @@
                 'FEW' => 120, 'SKC' => 80, 'SCT' => 80,
                 'BKN' => 40, 'OVC' => 0, 'OVX' => 0
             ][ $cover ] . 'px; bottom: ' . $bottom . '%;">
-                ' . str_repeat( '<div class="cloud"></div>', 20 ) . '
+                ' . str_repeat( '<div class="cloud"></div>', 18 ) . '
             </div>';
 
             $label[] = '<div class="label layer-' . $cover . '" style="bottom: ' . $bottom . '%;">
