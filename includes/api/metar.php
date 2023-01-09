@@ -68,7 +68,7 @@
 
             $wx = empty( $sc_raw ) ? 'CAVOK' : [
                 'CLR', 'FEW', 'SCT', 'BKN', 'OVC'
-            ][ max( $sc_points ) ];
+            ][ max( $sc_raw ) ];
 
         }
 
