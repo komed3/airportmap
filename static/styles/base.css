@@ -1051,3 +1051,53 @@ h2.secondary-headline {
 .pagelist a:hover span {
     text-decoration: underline;
 }
+
+.skychart {
+    position: relative;
+    min-height: 260px;
+}
+
+.skychart .legend {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.skychart .legend .label {
+    position: absolute;
+    left: 0;
+    font-weight: 300;
+    letter-spacing: -1px;
+}
+
+.skychart .legend .label x {
+    font-size: 26px;
+}
+
+.skychart .layers {
+    position: absolute;
+    top: 40px;
+    left: 100px;
+    right: 0;
+    bottom: 0;
+}
+
+.skychart .layers .layer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    height: 52px;
+    overflow: hidden;
+}
+
+.skychart .layers .layer .icon {
+    line-height: 52px;
+    font-size: 52px;
+    font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 200, 'opsz' 48;
+    color: var( --gray-3 );
+}

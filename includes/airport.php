@@ -445,7 +445,7 @@
         string $in = 'ft'
     ) {
 
-        return __number( $altitude ) . '&#8239;' . $in;
+        return '<x>' . __number( $altitude ) . '</x>&#8239;' . $in;
 
     }
 
@@ -464,7 +464,7 @@
 
         }
 
-        return __number( $frequency, 3 ) . '&#8239;' . $suffix;
+        return '<x>' . __number( $frequency, 3 ) . '</x>&#8239;' . $suffix;
 
     }
 

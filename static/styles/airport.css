@@ -273,12 +273,22 @@ h1.primary-headline {
     letter-spacing: -0.75px;
 }
 
+.airport-weather .weather-skycond {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 30px;
+}
+
 .airport-weather .weather-skycond .vis-info {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: baseline;
     gap: 12px;
+}
+
+.airport-weather .weather-skycond .skychart {
+    flex: 1;
 }
 
 .airport-weather .weather-skycond .vis-info .label {

@@ -219,12 +219,12 @@
 
         foreach( $layer as $base => $cover ) {
 
-            $layer[ $base ] = '<div class="layer" style="bottom: ' . ( $base / $max * 100 ) . '%;">
-                ' . str_repeat( '<i class="icon">cloudy</i>', [
-                    'SKC' => 0, 'CLR' => 0, 'FEW' => 3,
-                    'SKC' => 6, 'SCT' => 6, 'BKN' => 9,
-                    'OVC' => 15, 'OVX' => 15
-                ][ $cover ] ) . '
+            $layer[ $base ] = '<div class="layer" style="gap: ' . [
+                'SKC' => 0, 'CLR' => 0, 'FEW' => 120,
+                'SKC' => 80, 'SCT' => 80, 'BKN' => 40,
+                'OVC' => 0, 'OVX' => 0
+            ][ $cover ] . 'px; bottom: ' . ( $base / $max * 100 ) . '%;">
+                ' . str_repeat( '<i class="icon">filter_drama</i>', 100 ) . '
             </div>';
 
         }
@@ -233,7 +233,7 @@
             <div class="legend">
                 ' . implode( '', $legend ) . '
             </div>
-            <div class="layer">
+            <div class="layers">
                 ' . implode( '', $layer ) . '
             </div>
         </div>';
