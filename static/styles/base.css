@@ -1104,14 +1104,19 @@ h2.secondary-headline {
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
+    z-index: 1;
 }
 
-.skychart .layers .layer .cloud:nth-child( 2n+2 ) {
+.skychart .layers .layer .cloud:nth-child( 3n+2 ) {
     transform: rotate( -10deg );
 }
 
-.skychart .layers .layer .cloud:nth-child( 4n+1 ) {
+.skychart .layers .layer .cloud:nth-child( 5n+1 ) {
     transform: rotate( -20deg );
+}
+
+.skychart .layers .layer.msg {
+    top: calc( 50% - 52px );
 }
 
 .skychart .labels {
@@ -1131,6 +1136,7 @@ h2.secondary-headline {
     align-items: center;
 }
 
+.skychart .layers .layer.msg span,
 .skychart .labels .label span {
     display: block;
     height: 26px;

@@ -207,7 +207,7 @@
         for( $i = 1; $i <= 4; $i++ ) {
 
             if( !empty( $cover = $weather[ 'cloud_' . $i . '_cover' ] ) &&
-                is_numeric( $base = $weather[ 'cloud_' . $i . '_base' ] ) ) {
+                is_numeric( $base = $weather[ 'cloud_' . $i . '_base' ] ?? 0 ) ) {
 
                 $layer[ $base ] = strtoupper( trim( $cover ) );
 
@@ -215,7 +215,7 @@
 
         }
 
-        $max = ceil( max( array_keys( $layer ) ) / 1000 ) * 1000;
+        $max = ceil( max( 1000, ...array_keys( $layer ) ) / 1000 ) * 1000;
 
         for( $base = 0; $base <= $max; $base += ceil( $max / 2500 ) * 500 ) {
 
@@ -227,18 +227,27 @@
 
         foreach( $layer as $base => $cover ) {
 
-            $bottom = $base / $max * 100;
+            if( in_array( $cover, [ 'CLR', 'SKC', 'CLEAR', 'CAVOK' ] ) ) {
 
-            $layer[ $base ] = '<div class="layer" style="gap: ' . [
-                'FEW' => 120, 'SKC' => 80, 'SCT' => 80,
-                'BKN' => 40, 'OVC' => 0, 'OVX' => 0
-            ][ $cover ] . 'px; bottom: ' . $bottom . '%;">
-                ' . str_repeat( '<div class="cloud"></div>', 18 ) . '
-            </div>';
+                $layer[ $base ] = '<div class="layer msg">
+                    <span>' . $cover . '</span>
+                </div>';
 
-            $label[] = '<div class="label layer-' . $cover . '" style="bottom: ' . $bottom . '%;">
-                <span>' . i18n( 'skychart-label', $cover, alt_in( $base, 'ft' ) ) . '</span>
-            </div>';
+            } else {
+
+                $bottom = $base / $max * 100;
+
+                $layer[ $base ] = '<div class="layer" style="gap: ' . [
+                    'FEW' => 120, 'SCT' => 80, 'BKN' => 40, 'OVC' => 0, 'OVX' => 0
+                ][ $cover ] . 'px; bottom: ' . $bottom . '%;">
+                    ' . str_repeat( '<div class="cloud"></div>', 18 ) . '
+                </div>';
+
+                $label[] = '<div class="label layer-' . $cover . '" style="bottom: ' . $bottom . '%;">
+                    <span>' . i18n( 'skychart-label', $cover, alt_in( $base, 'ft' ) ) . '</span>
+                </div>';
+
+            }
 
         }
 
