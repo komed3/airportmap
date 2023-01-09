@@ -288,6 +288,6 @@ h1.primary-headline {
 
 .airport-weather .weather-raw {
     grid-area: raw;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
 }
