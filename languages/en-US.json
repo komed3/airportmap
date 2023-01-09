@@ -106,6 +106,8 @@
     "wind-calm-gust": "Wind <b>calm</b>",
     "wind-to": "Wind <b>$1&#8239;kt</b> to <b>$2</b>",
     "wind-to-gust": "Wind <b>$1&#8239;kt</b> / gust <b>$3&#8239;kt</b> to <b>$2</b>",
+    "vis-10": "more than 10",
+    "ceiling-none": "none",
     "wx-+": "heavy",
     "wx--": "light",
     "wx-re": "recent",
