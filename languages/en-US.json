@@ -367,5 +367,6 @@
     "weather-airdens": "Air density",
     "weather-windchill": "Wind chill",
     "weather-visibility": "Visibility",
-    "weather-ceiling": "Ceiling"
+    "weather-ceiling": "Ceiling",
+    "skychart-label": "<b>$1</b>&nbsp;$2"
 }

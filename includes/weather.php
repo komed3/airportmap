@@ -194,20 +194,20 @@
         array $weather
     ) {
 
-        $layer = $legend = [];
+        $layer = $legend = $label = [];
 
         for( $i = 1; $i <= 4; $i++ ) {
 
             if( !empty( $cover = $weather[ 'cloud_' . $i . '_cover' ] ) &&
                 is_numeric( $base = $weather[ 'cloud_' . $i . '_base' ] ) ) {
 
-                $layer[ $base ] = $cover;
+                $layer[ $base ] = strtoupper( trim( $cover ) );
 
             }
 
         }
 
-        $max = ceil( ( max( array_keys( $layer ) ) + 1000 ) / 1000 ) * 1000;
+        $max = ceil( max( array_keys( $layer ) ) / 1000 ) * 1000;
 
         for( $base = 0; $base <= $max; $base += ceil( $max / 2500 ) * 500 ) {
 
@@ -219,12 +219,17 @@
 
         foreach( $layer as $base => $cover ) {
 
+            $bottom = $base / $max * 100;
+
             $layer[ $base ] = '<div class="layer" style="gap: ' . [
-                'SKC' => 0, 'CLR' => 0, 'FEW' => 120,
-                'SKC' => 80, 'SCT' => 80, 'BKN' => 40,
-                'OVC' => 0, 'OVX' => 0
-            ][ $cover ] . 'px; bottom: ' . ( $base / $max * 100 ) . '%;">
-                ' . str_repeat( '<i class="icon">filter_drama</i>', 100 ) . '
+                'FEW' => 120, 'SKC' => 80, 'SCT' => 80,
+                'BKN' => 40, 'OVC' => 0, 'OVX' => 0
+            ][ $cover ] . 'px; bottom: ' . $bottom . '%;">
+                ' . str_repeat( '<div class="cloud"></div>', 20 ) . '
+            </div>';
+
+            $label[] = '<div class="label layer-' . $cover . '" style="bottom: ' . $bottom . '%;">
+                <span>' . i18n( 'skychart-label', $cover, alt_in( $base, 'ft' ) ) . '</span>
             </div>';
 
         }
@@ -235,6 +240,9 @@
             </div>
             <div class="layers">
                 ' . implode( '', $layer ) . '
+            </div>
+            <div class="labels">
+                ' . implode( '', $label ) . '
             </div>
         </div>';
 
