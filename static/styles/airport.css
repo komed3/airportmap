@@ -325,7 +325,7 @@ h1.primary-headline {
 }
 
 .airport-weather .weather-wind .wind-info span {
-    padding: 10px 20px;
+    padding: 10px 80px;
 }
 
 .airport-weather .weather-wind .runways {
@@ -334,4 +334,42 @@ h1.primary-headline {
 
 .airport-weather .weather-wind .runways .secondary-headline {
     margin-top: 10px;
+}
+
+.airport-weather .weather-wind .runways .runway {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 60px;
+    min-height: 120px;
+}
+
+.airport-weather .weather-wind .runways .runway:not(:last-of-type) {
+    margin-bottom: 20px;
+}
+
+.airport-weather .weather-wind .runways .runway .hdg {
+    flex: 0 0 120px;
+}
+
+.airport-weather .weather-wind .runways .runway .info {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 8px;
+}
+
+.airport-weather .weather-wind .runways .runway .info .idents {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.airport-weather .weather-wind .runways .runway .info .component {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 20px;
+}
+
+.airport-weather .weather-wind .runways .runway .info .component span {
+    text-transform: uppercase;
+    font-weight: 300;
 }

@@ -205,6 +205,7 @@
 
         $wind_dir = (float) $weather['wind_dir'] ?? 0;
         $wind_spd = (float) $weather['wind_spd'] ?? 0;
+        $wind_gust = (float) $weather['wind_gust'] ?? 0;
 
         $hdg_recip = $hdg < 180 ? $hdg + 180 : $hdg - 180;
         $wind_recip = $wind_dir < 180 ? $wind_dir + 180 : $wind_dir - 180;
@@ -222,8 +223,11 @@
         $theta_rad = acos( $dot_prod );
         $theta_deg = round( $theta_rad * 180 / M_PI );
 
-        $par_spd = round( 100 * $wind_spd * cos( $theta_rad ) ) / 100;
-        $crs_spd = round( 100 * $wind_spd * sin( $theta_rad ) ) / 100;
+        $par_spd = abs( $wind_spd * cos( $theta_rad ) );
+        $crs_spd = $wind_spd * sin( $theta_rad );
+
+        $par_gust = abs( $wind_gust * cos( $theta_rad ) );
+        $crs_gust = $wind_gust * sin( $theta_rad );
 
         $par_dir = $par_spd < 0 ? 'tail' : 'head';
 
@@ -231,13 +235,13 @@
 
             if( ( $wind_dir >= $hdg ) && ( $wind_dir < $hdg_recip ) ) {
 
-                $crs_dir = 'right';
-                $crs_bool = -1;
+                $crs_dir = 'left';
+                $crs_bool = 1;
 
             } else {
 
-                $crs_dir = 'left';
-                $crs_bool = 1;
+                $crs_dir = 'right';
+                $crs_bool = -1;
 
             }
 
@@ -245,13 +249,13 @@
 
             if( ( $wind_dir >= $hdg ) || ( $wind_dir < $hdg_recip ) ) {
 
-                $crs_dir = 'right';
-                $crs_bol = -1;
+                $crs_dir = 'left';
+                $crs_bool = 1;
 
             } else {
 
-                $crs_dir = 'left';
-                $crs_bol = 1;
+                $crs_dir = 'right';
+                $crs_bool = -1;
 
             }
 
@@ -262,7 +266,9 @@
             'crs_spd' => $crs_spd,
             'par_dir' => $par_dir,
             'crs_dir' => $crs_dir,
-            'crs_bol' => $crs_bol
+            'crs_bool' => $crs_bool ?? 0,
+            'par_gust' => $par_gust,
+            'crs_gust' => $crs_gust
         ];
 
     }
@@ -336,12 +342,81 @@
         array $weather
     ) {
 
+        global $DB;
+
+        $rwy_svg = file_get_contents( FILES . 'resources/runway.svg' );
+
+        $runways = [];
+
+        foreach( $DB->query( '
+            SELECT  *
+            FROM    ' . DB_PREFIX . 'runway
+            WHERE   airport = "' . $weather['ICAO'] . '"
+            AND     inuse = 1
+        ' )->fetch_all( MYSQLI_ASSOC ) as $rwy ) {
+
+            if( $rwy['l_hdg'] != null ) {
+
+                $runways[ $rwy['l_hdg'] ][] = $rwy['l_ident'];
+
+            }
+
+            if( $rwy['r_hdg'] != null ) {
+
+                $runways[ $rwy['r_hdg'] ][] = $rwy['r_ident'];
+
+            }
+
+        }
+
+        foreach( $runways as $hdg => $rwys ) {
+
+            $wind = crosswind( $weather, $hdg );
+
+            $runways[ $hdg ] = '<div class="runway">
+                <div class="hdg">
+                    ' . str_replace( [ '<svg', 'XX', 'YY' ], [
+                        '<svg style="transform: rotate( ' . ( $hdg - 90 ) . 'deg );"',
+                        substr( $rwys[0], 0, 2 ),
+                        ''
+                    ], $rwy_svg ) . '
+                </div>
+                <div class="info">
+                    <div class="idents">' . i18n(
+                        'airport-runway-ident' . ( count( $rwys ) > 1 ? 's' : '' ),
+                        array_pop( $rwys ),
+                        implode( ', ', $rwys )
+                    ) . '</div>
+                    <div class="component parallel">
+                        <span>' . i18n( 'wind-' . $wind['par_dir'] ) . '</span>
+                        <b>' . wind_in( $wind['par_spd'] ) . '</b>
+                        ' . ( $wind['par_gust'] ? '
+                            <span>' . i18n( 'wind-up-to' ) . '</span>
+                            <b>' . wind_in( $wind['par_gust'] ) . '</b>
+                        ' : '' ) . '
+                    </div>
+                    <div class="component cross">
+                        <span>' . i18n( 'wind-cross-' . $wind['crs_dir'] ) . '</span>
+                        <b>' . wind_in( $wind['crs_spd'] ) . '</b>
+                        ' . ( $wind['par_gust'] ? '
+                            <span>' . i18n( 'wind-up-to' ) . '</span>
+                            <b>' . wind_in( $wind['crs_gust'] ) . '</b>
+                        ' : '' ) . '
+                    </div>
+                </div>
+            </div>';
+
+        }
+
         return '<div class="wind-info">
             <div class="windsock" style="transform: rotate( ' . ( $weather['wind_dir'] ?? 0 ) . 'deg );"></div>
             <span>' . wind_info( $weather, true ) . '</span>
         </div>
         <div class="runways">
             <h2 class="secondary-headline">' . i18n( 'airport-runways' ) . '</h2>
+            ' . ( count( $runways ) == 0
+                ? '<p>' . i18n( 'airport-runways-empty' ) . '</p>'
+                : implode( '', $runways ) ) . '
         </div>';
 
     }
