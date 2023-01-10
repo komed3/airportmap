@@ -78,7 +78,9 @@ var freq_format = ( frequency ) => {
         switch( $( this ).attr( 'data-action' ) ) {
 
             case 'select-station':
-                location.href = baseurl + '/' + $( this ).attr( 'data-base' ) + $( this ).val();
+                location.href = baseurl + '/' + $( this ).attr( 'data-base' ) + $( this ).val() + (
+                    ( jump = $( this ).attr( 'data-jump' ) ) ? '#' + jump : ''
+                );
                 break;
 
         }

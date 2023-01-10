@@ -14,6 +14,7 @@
     );
 
 ?>
+<a name="__weather" class="anchor" tabindex="-1"></a>
 <div class="airport-weather content-normal">
     <?php if( empty( $stations ) ) { ?>
         <p><?php _i18n( 'airport-weather-empty' ); ?></p>
@@ -29,7 +30,7 @@
     ?>
         <div class="weather-station <?php echo $weather['distance'] < 1 ? 'on-site' : ''; ?>">
             <div class="label"><?php _i18n( 'airport-weather-station' ); ?></div>
-            <select data-action="select-station" data-base="<?php echo $base; ?>weather/">
+            <select data-action="select-station" data-base="<?php echo $base; ?>weather/" data-jump="__weather">
                 <?php foreach( $stations as $idx => $station ) { ?>
                     <option value="<?php echo $station['ICAO']; ?>" <?php echo $idx == $index ? 'selected': ''; ?>>
                         <?php _i18n( 'airport-weather-select', $station['ICAO'], $station['name'] ); ?>
