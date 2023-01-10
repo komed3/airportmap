@@ -223,10 +223,10 @@
         $theta_rad = acos( $dot_prod );
         $theta_deg = round( $theta_rad * 180 / M_PI );
 
-        $par_spd = abs( $wind_spd * cos( $theta_rad ) );
+        $par_spd = $wind_spd * cos( $theta_rad );
         $crs_spd = $wind_spd * sin( $theta_rad );
 
-        $par_gust = abs( $wind_gust * cos( $theta_rad ) );
+        $par_gust = $wind_gust * cos( $theta_rad );
         $crs_gust = $wind_gust * sin( $theta_rad );
 
         $par_dir = $par_spd < 0 ? 'tail' : 'head';
@@ -235,13 +235,13 @@
 
             if( ( $wind_dir >= $hdg ) && ( $wind_dir < $hdg_recip ) ) {
 
-                $crs_dir = 'left';
-                $crs_bool = 1;
+                $crs_dir = 'right';
+                $crs_bool = -1;
 
             } else {
 
-                $crs_dir = 'right';
-                $crs_bool = -1;
+                $crs_dir = 'left';
+                $crs_bool = 1;
 
             }
 
@@ -249,25 +249,25 @@
 
             if( ( $wind_dir >= $hdg ) || ( $wind_dir < $hdg_recip ) ) {
 
-                $crs_dir = 'left';
-                $crs_bool = 1;
+                $crs_dir = 'right';
+                $crs_bool = -1;
 
             } else {
 
-                $crs_dir = 'right';
-                $crs_bool = -1;
+                $crs_dir = 'left';
+                $crs_bool = 1;
 
             }
 
         }
 
         return [
-            'par_spd' => $par_spd,
+            'par_spd' => abs( $par_spd ),
             'crs_spd' => $crs_spd,
             'par_dir' => $par_dir,
             'crs_dir' => $crs_dir,
             'crs_bool' => $crs_bool ?? 0,
-            'par_gust' => $par_gust,
+            'par_gust' => abs( $par_gust ),
             'crs_gust' => $crs_gust
         ];
 
@@ -287,6 +287,12 @@
                 $layer[ $base ] = strtoupper( trim( $cover ) );
 
             }
+
+        }
+
+        if( count( $layer ) == 0 ) {
+
+            $layer[ 0 ] = 'CAVOK';
 
         }
 
@@ -372,7 +378,7 @@
 
         foreach( $runways as $hdg => $rwys ) {
 
-            $wind = crosswind( $weather, $hdg );
+            $wind = crosswind( $weather, ( $hdg + 180 ) % 360 );
 
             $runways[ $hdg ] = '<div class="runway">
                 <div class="hdg">
