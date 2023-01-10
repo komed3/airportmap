@@ -464,6 +464,18 @@
 
         }
 
+        if( preg_match( '/WSHFT ([0-9]{2})([0-9]{2}) (FROPA)?/U', $raw, $matches ) ) {
+
+            $remarks[] = '<li>
+                <span>' . i18n( 'remarks-wind-shift-label' ) . '</span>
+                <div>' . i18n( 'remarks-wind-shift' . ( $matches[3] ? '-fropa' : '' ),
+                    $matches[1],
+                    $matches[2]
+                ) . '</div>
+            </li>';
+
+        }
+
         if( preg_match( '/SLP([0-9]{3})/U', $raw, $matches ) ) {
 
             $remarks[] = '<li>
