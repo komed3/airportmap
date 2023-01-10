@@ -203,7 +203,11 @@
         int $hdg = 0
     ) {
 
+        $wind_dir = (float) $weather['wind_dir'] ?? 0;
         $wind_spd = (float) $weather['wind_spd'] ?? 0;
+
+        $hdg_recip = $hdg < 180 ? $hdg + 180 : $hdg - 180;
+        $wind_recip = $wind_dir < 180 ? $wind_dir + 180 : $wind_dir - 180;
 
         $hdg_rad = $hdg * M_PI / 180;
         $wind_rad = $weather['wind_dir'] * M_PI / 180;
@@ -218,12 +222,47 @@
         $theta_rad = acos( $dot_prod );
         $theta_deg = round( $theta_rad * 180 / M_PI );
 
-        $p_comp = round( 100 * $wind_spd * cos( $theta_rad ) ) / 100;
-        $x_comp = round( 100 * $wind_spd * sin( $theta_rad ) ) / 100;
+        $par_spd = round( 100 * $wind_spd * cos( $theta_rad ) ) / 100;
+        $crs_spd = round( 100 * $wind_spd * sin( $theta_rad ) ) / 100;
+
+        $par_dir = $par_spd < 0 ? 'tail' : 'head';
+
+        if( $hdg < 180 ) {
+
+            if( ( $wind_dir >= $hdg ) && ( $wind_dir < $hdg_recip ) ) {
+
+                $crs_dir = 'right';
+                $crs_bool = -1;
+
+            } else {
+
+                $crs_dir = 'left';
+                $crs_bool = 1;
+
+            }
+
+        } else {
+
+            if( ( $wind_dir >= $hdg ) || ( $wind_dir < $hdg_recip ) ) {
+
+                $crs_dir = 'right';
+                $crs_bol = -1;
+
+            } else {
+
+                $crs_dir = 'left';
+                $crs_bol = 1;
+
+            }
+
+        }
 
         return [
-            'p' => $p_comp,
-            'x' => $x_comp
+            'par_spd' => $par_spd,
+            'crs_spd' => $crs_spd,
+            'par_dir' => $par_dir,
+            'crs_dir' => $crs_dir,
+            'crs_bol' => $crs_bol
         ];
 
     }
@@ -293,40 +332,13 @@
 
     }
 
-    function runway_info(
+    function wind_rwy(
         array $weather
     ) {
 
-        global $DB;
-
-        $list = [];
-
-        foreach( $DB->query( '
-            SELECT  *
-            FROM    ' . DB_PREFIX . 'runway
-            WHERE   airport = "' . $weather['ICAO'] . '"
-            AND     inuse = 1
-            AND     l_hdg IS NOT NULL
-        ' )->fetch_all( MYSQLI_ASSOC ) as $runway ) {
-
-            $wind = crosswind( $weather, $runway['l_hdg'] );
-
-            $list[] = '<div class="runway">
-                ' . __HDG_bug( $runway['l_hdg'] ?? -1 ) . '
-                <div class="info">
-                    <div class="headline">
-                        <b class="ident">' . $runway['ident'] . '</b>
-                    </div>
-                    <div class="components">
-                    </div>
-                </div>
-            </div>';
-
-        }
-
-        return '<div class="runwayinfo">
-            <h2 class="secondary-headline">' . i18n( 'airport-runways' ) . '</h2>
-            ' . implode( '', $list ) . '
+        return '<div class="wind-info">
+            <div class="windsock" style="transform: rotate( ' . ( $weather['wind_dir'] ?? 0 ) . 'deg );"></div>
+            <span>' . wind_info( $weather, true ) . '</span>
         </div>';
 
     }

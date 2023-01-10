@@ -132,13 +132,13 @@ h1.primary-headline {
 
 .airport-weather {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 460px auto;
     grid-template-areas:
         'station station'
         'info skycond'
         'list skycond'
         'raw raw'
-        'runways runways';
+        'wind wind';
     gap: 40px;
     margin-top: 80px;
 }
@@ -204,7 +204,8 @@ h1.primary-headline {
 .airport-weather .weather-info,
 .airport-weather .weather-list,
 .airport-weather .weather-skycond,
-.airport-weather .weather-raw {
+.airport-weather .weather-raw,
+.airport-weather .weather-wind {
     padding: 20px 30px;
     background: var( --gray-0 );
     border-radius: 22px;
@@ -216,6 +217,7 @@ h1.primary-headline {
     flex-flow: row nowrap;
     align-items: center;
     gap: 20px;
+    padding: 30px;
 }
 
 .airport-weather .weather-info .icon {
@@ -249,7 +251,7 @@ h1.primary-headline {
     justify-content: space-between;
     align-items: center;
     gap: 20px;
-    height: 40px;
+    height: 46px;
 }
 
 .airport-weather .weather-list ul li .label {
@@ -298,6 +300,30 @@ h1.primary-headline {
     font-weight: 600;
 }
 
-.airport-weather .weather-runways {
-    grid-area: runways;
+.airport-weather .weather-wind {
+    grid-area: wind;
+    display: grid;
+    grid-template-columns: 430px auto;
+    grid-template-areas: 'info runways';
+    gap: 40px;
+}
+
+.airport-weather .weather-wind .wind-info {
+    grid-area: info;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 300;
+}
+
+.airport-weather .weather-wind .wind-info .windsock {
+    width: 160px;
+    height: 160px;
+    background-image: url( './../resources/windsock.svg' );
+}
+
+.airport-weather .weather-wind .wind-info span {
+    padding: 10px 0;
 }

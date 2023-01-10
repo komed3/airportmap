@@ -106,8 +106,8 @@
         <div class="weather-raw">
             <span class="rawtxt"><?php echo $weather['raw']; ?></span>
         </div>
-        <div class="weather-runways">
-            <?php echo runway_info( $weather ); ?>
+        <div class="weather-wind">
+            <?php echo wind_rwy( $weather ); ?>
         </div>
     <?php } ?>
 </div>

@@ -1186,17 +1186,3 @@ h2.secondary-headline {
 .skychart .labels .label.layer-OVX > * {
     background: var( --indicator-pink );
 }
-
-.runwayinfo .runway {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    gap: 40px;
-    padding: 20px 30px;
-    background: var( --gray-0 );
-    border-radius: 12px;
-}
-
-.runwayinfo .runway:not(:last-of-type) {
-    margin-bottom: 40px;
-}
