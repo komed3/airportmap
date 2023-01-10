@@ -1170,19 +1170,19 @@ h2.secondary-headline {
 }
 
 .skychart .labels .label.layer-FEW > * {
-    background: var( --indicator-green );
+    background: var( --indicator-blue );
 }
 
 .skychart .labels .label.layer-SKC > *,
 .skychart .labels .label.layer-SCT > * {
-    background: var( --indicator-blue );
+    background: var( --indicator-orange );
 }
 
 .skychart .labels .label.layer-BKN > * {
-    background: var( --indicator-orange );
+    background: var( --indicator-red );
 }
 
 .skychart .labels .label.layer-OVC > *,
 .skychart .labels .label.layer-OVX > * {
-    background: var( --gray-5 );
+    background: var( --indicator-pink );
 }
