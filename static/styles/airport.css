@@ -325,5 +325,13 @@ h1.primary-headline {
 }
 
 .airport-weather .weather-wind .wind-info span {
-    padding: 10px 0;
+    padding: 10px 20px;
+}
+
+.airport-weather .weather-wind .runways {
+    grid-area: runways;
+}
+
+.airport-weather .weather-wind .runways .secondary-headline {
+    margin-top: 10px;
 }

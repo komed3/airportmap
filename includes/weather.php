@@ -339,6 +339,9 @@
         return '<div class="wind-info">
             <div class="windsock" style="transform: rotate( ' . ( $weather['wind_dir'] ?? 0 ) . 'deg );"></div>
             <span>' . wind_info( $weather, true ) . '</span>
+        </div>
+        <div class="runways">
+            <h2 class="secondary-headline">' . i18n( 'airport-runways' ) . '</h2>
         </div>';
 
     }
