@@ -263,7 +263,7 @@
 
     }
 
-    function runway_cond(
+    function runway_info(
         array $weather
     ) {
 
@@ -274,17 +274,56 @@
             FROM    ' . DB_PREFIX . 'runway
             WHERE   airport = "' . $weather['ICAO'] . '"
             AND     inuse = 1
-            AND     (
-                l_hdg IS NOT NULL OR
-                r_hdg IS NOT NULL
-            )
+            AND     l_hdg IS NOT NULL
         ' )->fetch_all( MYSQLI_ASSOC ) as $runwaw ) {
 
-
+            //
 
         }
 
         return '';
+
+    }
+
+    function stations_at(
+        float $lat,
+        float $lon,
+        int $limit = 10,
+        int $max_deg = 15,
+        int $max_age = 1,
+        string $test_time = 'now'
+    ) {
+
+        global $DB;
+
+        return $DB->query( '
+            SELECT   *, ( 3440.29182 * acos(
+                cos( radians( ' . $lat . ' ) ) *
+                cos( radians( a.lat ) ) *
+                cos(
+                    radians( a.lon ) -
+                    radians( ' . $lon . ' )
+                ) +
+                sin( radians( ' . $lat . ' ) ) *
+                sin( radians( a.lat ) )
+            ) ) AS distance, TIMESTAMPDIFF(
+                MINUTE, m.reported, "' . date( 'Y-m-d H:i:s', strtotime( $test_time ) ) . '"
+            ) AS age
+            FROM     ' . DB_PREFIX . 'metar m,
+                    ' . DB_PREFIX . 'airport a
+            WHERE    m.station = a.ICAO
+            AND      (
+                a.lat BETWEEN ' . ( $lat - $max_deg ) . '
+                AND ' . ( $lat + $max_deg ) . '
+            )
+            AND      (
+                a.lon BETWEEN ' . ( $lon - $max_deg ) . '
+                AND ' . ( $lon + $max_deg ) . '
+            )
+            AND      m.reported >= DATE_SUB( NOW(), INTERVAL ' . $max_age . ' DAY )
+            ORDER BY ( distance + age ) ASC
+            LIMIT    0, ' . $limit
+        )->fetch_all( MYSQLI_ASSOC );
 
     }
 
