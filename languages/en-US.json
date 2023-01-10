@@ -384,8 +384,8 @@
     "remarks-peak-wind-label": "Peak wind",
     "remarks-peak-wind": "<b>$1</b> to&nbsp;<b>$2</b> at <b>$3:$4</b>&nbsp;UTC",
     "remarks-present-label": "Present weather",
-    "remarks-present-b": "<b>$1</b> began at <b>$2:$3</b>&nbsp;UTC",
-    "remarks-present-e": "<b>$1</b> ended at <b>$2:$3</b>&nbsp;UTC",
+    "remarks-present-b": "<b>$1 began</b> at $2:$3&nbsp;UTC",
+    "remarks-present-e": "<b>$1 ended</b> at $2:$3&nbsp;UTC",
     "remarks-wind-shift-label": "Wind shift",
     "remarks-wind-shift": "happened at <b>$1:$2</b>&nbsp;UTC",
     "remarks-wind-shift-fropa": "happened at <b>$1:$2</b>&nbsp;UTC as a result of a <b>frontal passage</b>",
@@ -397,5 +397,5 @@
     "remarks-station-1": "<b>without</b> a precipitation descriminator",
     "remarks-station-2": "<b>with</b> precipitation descriminator",
     "remarks-maintenance-label": "Maintenance",
-    "remarks-maintenance-asos": "needed on <b>Automated Surface Observing Systems</b> (ASOS)"
+    "remarks-maintenance-asos": "needed on <b title=\"Automated Surface Observing Systems\">ASOS</b>"
 }
