@@ -345,7 +345,7 @@ h1.primary-headline {
 }
 
 .airport-weather .weather-wind .runways .runway:not(:last-of-type) {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .airport-weather .weather-wind .runways .runway .hdg {

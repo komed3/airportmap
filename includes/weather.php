@@ -339,7 +339,8 @@
     }
 
     function wind_rwy(
-        array $weather
+        array $weather,
+        array $airport
     ) {
 
         global $DB;
@@ -351,7 +352,7 @@
         foreach( $DB->query( '
             SELECT  *
             FROM    ' . DB_PREFIX . 'runway
-            WHERE   airport = "' . $weather['ICAO'] . '"
+            WHERE   airport = "' . $airport['ICAO'] . '"
             AND     inuse = 1
         ' )->fetch_all( MYSQLI_ASSOC ) as $rwy ) {
 
