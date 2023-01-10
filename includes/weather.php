@@ -449,6 +449,21 @@
 
         }
 
+        if( preg_match( '/([A-Z]{2})(B|E)([0-9]{0,2})([0-9]{2})/U', $raw, $matches ) ) {
+
+            $remarks[] = '<li>
+                <span>' . i18n( 'remarks-present-label' ) . '</span>
+                <div>' . i18n( 'remarks-present-' . $matches[2],
+                    ucfirst( i18n( 'wx-' . $matches[1] ) ),
+                    strlen( $matches[3] ) == 2
+                        ? $matches[3]
+                        : date( 'H', strtotime( $weather['reported'] ) ),
+                    $matches[4]
+                ) . '</div>
+            </li>';
+
+        }
+
         if( preg_match( '/SLP([0-9]{3})/U', $raw, $matches ) ) {
 
             $remarks[] = '<li>
