@@ -269,19 +269,42 @@
 
         global $DB;
 
+        $rwy = file_get_contents( FILES . 'resources/runway.svg' );
+        $wnd = file_get_contents( FILES . 'resources/runway-wind.svg' );
+        $list = [];
+
         foreach( $DB->query( '
             SELECT  *
             FROM    ' . DB_PREFIX . 'runway
             WHERE   airport = "' . $weather['ICAO'] . '"
             AND     inuse = 1
             AND     l_hdg IS NOT NULL
-        ' )->fetch_all( MYSQLI_ASSOC ) as $runwaw ) {
+        ' )->fetch_all( MYSQLI_ASSOC ) as $runway ) {
 
-            //
+            $list[] = '<div class="runway">
+                <div class="hdg">
+                    ' . str_replace( [ '<svg', 'XX', 'YY' ], [
+                        '<svg style="transform: rotate( ' . ( $runway['l_hdg'] - 90 ) . 'deg );"',
+                        substr( $runway['l_ident'] ?? '', 0, 2 ),
+                        substr( $runway['r_ident'] ?? '', 0, 2 )
+                    ], $rwy ) . '
+                    ' . str_replace( [ '<svg' ], [
+                        '<svg style="transform: rotate( ' . ( $weather['wind_dir'] - 90 ) . 'deg );"'
+                    ], $wnd ) . '
+                </div>
+                <div class="info">
+                    ...
+                </div>
+            </div>';
 
         }
 
-        return '';
+        add_resource( 'runwayinfo', 'css', 'runwayinfo.css' );
+
+        return '<div class="runwayinfo">
+            <h2 class="secondary-headline">' . i18n( 'airport-runways' ) . '</h2>
+            ' . implode( '', $list ) . '
+        </div>';
 
     }
 

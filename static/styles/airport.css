@@ -301,3 +301,7 @@ h1.primary-headline {
     font-size: 20px;
     font-weight: 600;
 }
+
+.airport-weather .weather-runways {
+    grid-area: runways;
+}
