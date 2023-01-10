@@ -449,7 +449,7 @@
 
         }
 
-        if( preg_match( '/([A-Z]{2})(B|E)([0-9]{0,2})([0-9]{2})/U', $raw, $matches ) ) {
+        if( preg_match( '/(FZ|SH|TS|BR|DS|DU|DZ|FC|FG|FU|GR|GS|HZ|IC|PE|PO|PY|RA|SA|SG|SN|SQ|SS|VA)(B|E)([0-9]{0,2})([0-9]{2})/U', $raw, $matches ) ) {
 
             $remarks[] = '<li>
                 <span>' . i18n( 'remarks-present-label' ) . '</span>
