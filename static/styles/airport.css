@@ -136,6 +136,7 @@ h1.primary-headline {
     grid-template-areas:
         'station station'
         'info skycond'
+        'list skycond'
         'raw raw'
         'runways runways';
     gap: 40px;
@@ -201,6 +202,7 @@ h1.primary-headline {
 }
 
 .airport-weather .weather-info,
+.airport-weather .weather-list,
 .airport-weather .weather-skycond,
 .airport-weather .weather-raw {
     padding: 20px 30px;
@@ -210,70 +212,64 @@ h1.primary-headline {
 
 .airport-weather .weather-info {
     grid-area: info;
-    padding: 30px;
-}
-
-.airport-weather .weather-info .info {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     gap: 20px;
 }
 
-.airport-weather .weather-info .info .icon {
+.airport-weather .weather-info .icon {
     flex: 0 0 80px;
     text-align: center;
     font-size: 48px;
 }
 
-.airport-weather .weather-info .info .list {
+.airport-weather .weather-info .list .row > :first-child x {
+    font-size: 26px;
+    letter-spacing: -0.75px;
+}
+
+.airport-weather .weather-list {
+    grid-area: list;
     display: flex;
     flex-flow: column nowrap;
     gap: 4px;
     font-size: 20px;
 }
 
-.airport-weather .weather-info hr {
-    margin: 30px 0;
-    border: 0;
-    border-top: 1px solid var( --gray-1 );
-}
-
-.airport-weather .weather-info .list {
+.airport-weather .weather-list ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.airport-weather .weather-info .list li {
+.airport-weather .weather-list ul li {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     gap: 20px;
-    padding: 6px 0;
+    height: 40px;
 }
 
-.airport-weather .weather-info .list li .label {
+.airport-weather .weather-list ul li .label {
     text-transform: uppercase;
     font-weight: 300;
 }
 
-.airport-weather .weather-info .list li div {
+.airport-weather .weather-list ul li div {
     display: flex;
     flex-flow: row wrap;
     align-items: baseline;
-    gap: 4px 12px;
+    gap: 6px 12px;
 }
 
-.airport-weather .weather-info .info .list .row > :first-child x,
-.airport-weather .weather-info .list li div > :first-child x,
-.airport-weather .weather-skycond .vis-info x {
-    font-size: 26px;
-    letter-spacing: -0.75px;
+.airport-weather .weather-list ul li sup {
+    font-size: 12px;
 }
 
 .airport-weather .weather-skycond {
+    grid-area: skycond;
     display: flex;
     flex-flow: column nowrap;
     gap: 30px;
