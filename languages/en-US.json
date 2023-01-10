@@ -378,5 +378,18 @@
     "weather-windchill": "Wind chill",
     "weather-visibility": "Visibility",
     "weather-ceiling": "Ceiling",
-    "skychart-label": "<b>$1</b>&nbsp;$2"
+    "skychart-label": "<b>$1</b>&nbsp;$2",
+    "remarks": "Remarks",
+    "remarks-empty": "No remarks reported.",
+    "remarks-peak-wind-label": "Peak wind",
+    "remarks-peak-wind": "<b>$1</b> to&nbsp;<b>$2</b> at <b>$3:$4</b>&nbsp;UTC",
+    "remarks-sealevel-label": "Sea level pressure",
+    "remarks-station-label": "Automated station",
+    "remarks-pressure-label": "Pressure",
+    "remarks-pressure-f": "<b>falling rapidly</b> at time of observation",
+    "remarks-pressure-r": "<b>rising rapidly</b> at time of observation",
+    "remarks-station-1": "<b>without</b> a precipitation descriminator",
+    "remarks-station-2": "<b>with</b> precipitation descriminator",
+    "remarks-maintenance-label": "Maintenance",
+    "remarks-maintenance-asos": "needed on <b>Automated Surface Observing Systems</b> (ASOS)"
 }

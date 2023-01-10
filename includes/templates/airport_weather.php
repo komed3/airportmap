@@ -2,6 +2,8 @@
 
     global $DB, $path, $base, $airport;
 
+    add_resource( 'airport-weather', 'css', 'airport_weather.css' );
+
     if( empty( $airport ) ) {
 
         __404();
@@ -109,6 +111,10 @@
         </div>
         <div class="weather-wind">
             <?php echo wind_rwy( $weather, $airport ); ?>
+        </div>
+        <div class="weather-remarks">
+            <h2 class="secondary-headline"><?php _i18n( 'remarks' ); ?></h2>
+            <?php echo remarks( $weather ); ?>
         </div>
     <?php } ?>
 </div>

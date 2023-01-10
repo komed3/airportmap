@@ -428,6 +428,69 @@
 
     }
 
+    function remarks(
+        array $weather
+    ) {
+
+        $raw = $weather['raw'] ?? '';
+        $remarks = [];
+
+        if( preg_match( '/PK WND ([0-9]{3})([0-9]{2})\/([0-9]{2})([0-9]{2})/U', $raw, $matches ) ) {
+
+            $remarks[] = '<li>
+                <span>' . i18n( 'remarks-peak-wind-label' ) . '</span>
+                <div>' . i18n( 'remarks-peak-wind',
+                    wind_in( $matches[2] ),
+                    __cardinal( $matches[1] ),
+                    $matches[3],
+                    $matches[4]
+                ) . '</div>
+            </li>';
+
+        }
+
+        if( preg_match( '/SLP([0-9]{3})/U', $raw, $matches ) ) {
+
+            $remarks[] = '<li>
+                <span>' . i18n( 'remarks-sealevel-label' ) . '</span>
+                <div><b>' . altim_in( $matches[1] * 10, 'hPa', 0 ) . '</b></div>
+            </li>';
+
+        }
+
+        if( preg_match( '/PRES(F|R)R/U', $raw, $matches ) ) {
+
+            $remarks[] = '<li>
+                <span>' . i18n( 'remarks-pressure-label' ) . '</span>
+                <div>' . i18n( 'remarks-pressure-' . $matches[1] ) . '</div>
+            </li>';
+
+        }
+
+        if( preg_match( '/AO(1|2)/U', $raw, $matches ) ) {
+
+            $remarks[] = '<li>
+                <span>' . i18n( 'remarks-station-label' ) . '</span>
+                <div>' . i18n( 'remarks-station-' . $matches[1] ) . '</div>
+            </li>';
+
+        }
+
+        if( strpos( $raw, '$' ) != false ) {
+
+            $remarks[] = '<li>
+                <span>' . i18n( 'remarks-maintenance-label' ) . '</span>
+                <div>' . i18n( 'remarks-maintenance-asos' ) . '</div>
+            </li>';
+
+        }
+
+        return count( $remarks ) ? '<ul class="remarks">
+            ' . implode( '', $remarks ) . '
+        </ul>' : '<p>' . i18n( 'remarks-empty' ) . '</p>';
+
+    }
+
     function stations_at(
         float $lat,
         float $lon,
