@@ -198,6 +198,36 @@
 
     }
 
+    function crosswind(
+        array $weather,
+        int $hdg = 0
+    ) {
+
+        $wind_spd = (float) $weather['wind_spd'] ?? 0;
+
+        $hdg_rad = $hdg * M_PI / 180;
+        $wind_rad = $weather['wind_dir'] * M_PI / 180;
+
+        $hdg_x = sin( $hdg_rad );
+        $hdg_y = cos( $hdg_rad );
+
+        $wind_x = sin( $wind_rad );
+        $wind_y = cos( $wind_rad );
+
+        $dot_prod = $hdg_x * $wind_x + $hdg_y * $wind_y;
+        $theta_rad = acos( $dot_prod );
+        $theta_deg = round( $theta_rad * 180 / M_PI );
+
+        $p_comp = round( 100 * $wind_spd * cos( $theta_rad ) ) / 100;
+        $x_comp = round( 100 * $wind_spd * sin( $theta_rad ) ) / 100;
+
+        return [
+            'p' => $p_comp,
+            'x' => $x_comp
+        ];
+
+    }
+
     function sky_chart(
         array $weather
     ) {
@@ -269,8 +299,6 @@
 
         global $DB;
 
-        $rwy = file_get_contents( FILES . 'resources/runway.svg' );
-        $wnd = file_get_contents( FILES . 'resources/runway-wind.svg' );
         $list = [];
 
         foreach( $DB->query( '
@@ -281,25 +309,20 @@
             AND     l_hdg IS NOT NULL
         ' )->fetch_all( MYSQLI_ASSOC ) as $runway ) {
 
+            $wind = crosswind( $weather, $runway['l_hdg'] );
+
             $list[] = '<div class="runway">
-                <div class="hdg">
-                    ' . str_replace( [ '<svg', 'XX', 'YY' ], [
-                        '<svg style="transform: rotate( ' . ( $runway['l_hdg'] - 90 ) . 'deg );"',
-                        substr( $runway['l_ident'] ?? '', 0, 2 ),
-                        substr( $runway['r_ident'] ?? '', 0, 2 )
-                    ], $rwy ) . '
-                    ' . str_replace( [ '<svg' ], [
-                        '<svg style="transform: rotate( ' . ( $weather['wind_dir'] - 90 ) . 'deg );"'
-                    ], $wnd ) . '
-                </div>
+                ' . __HDG_bug( $runway['l_hdg'] ?? -1 ) . '
                 <div class="info">
-                    ...
+                    <div class="headline">
+                        <b class="ident">' . $runway['ident'] . '</b>
+                    </div>
+                    <div class="components">
+                    </div>
                 </div>
             </div>';
 
         }
-
-        add_resource( 'runwayinfo', 'css', 'runwayinfo.css' );
 
         return '<div class="runwayinfo">
             <h2 class="secondary-headline">' . i18n( 'airport-runways' ) . '</h2>
