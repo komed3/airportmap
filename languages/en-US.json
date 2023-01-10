@@ -386,6 +386,7 @@
     "remarks-present-label": "Present weather",
     "remarks-present-b": "<b>$1 began</b> at $2:$3&nbsp;UTC",
     "remarks-present-e": "<b>$1 ended</b> at $2:$3&nbsp;UTC",
+    "remarks-present-be": "<b>$1</b> began <b>$2:$3</b>&nbsp;UTC and ended <b>$4:$5</b>&nbsp;UTC",
     "remarks-wind-shift-label": "Wind shift",
     "remarks-wind-shift": "happened at <b>$1:$2</b>&nbsp;UTC",
     "remarks-wind-shift-fropa": "happened at <b>$1:$2</b>&nbsp;UTC as a result of a <b>frontal passage</b>",

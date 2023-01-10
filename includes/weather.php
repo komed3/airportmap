@@ -432,7 +432,7 @@
         array $weather
     ) {
 
-        $raw = $weather['raw'] ?? '';
+        $raw = $weather['raw'] . ' ' ?? '';
         $remarks = [];
 
         if( preg_match( '/PK WND ([0-9]{3})([0-9]{2})\/([0-9]{2})([0-9]{2})/U', $raw, $matches ) ) {
@@ -449,16 +449,21 @@
 
         }
 
-        if( preg_match( '/(FZ|SH|TS|BR|DS|DU|DZ|FC|FG|FU|GR|GS|HZ|IC|PE|PO|PY|RA|SA|SG|SN|SQ|SS|VA)(B|E)([0-9]{0,2})([0-9]{2})/U', $raw, $matches ) ) {
+        if( preg_match( '/(FZ|SH|TS|BR|DS|DU|DZ|FC|FG|FU|GR|GS|HZ|IC|PE|PO|PY|RA|SA|SG|SN|SQ|SS|VA)(B|E)' .
+                        '([0-9]{0,2})([0-9]{2})(B|E)?([0-9]{0,2})?([0-9]{2})? /U', $raw, $matches ) ) {
 
             $remarks[] = '<li>
                 <span>' . i18n( 'remarks-present-label' ) . '</span>
-                <div>' . i18n( 'remarks-present-' . $matches[2],
+                <div>' . i18n( 'remarks-present-' . $matches[2] . $matches[5],
                     ucfirst( i18n( 'wx-' . $matches[1] ) ),
                     strlen( $matches[3] ) == 2
                         ? $matches[3]
                         : date( 'H', strtotime( $weather['reported'] ) ),
-                    $matches[4]
+                    $matches[4],
+                    strlen( $matches[6] ) == 2
+                        ? $matches[6]
+                        : date( 'H', strtotime( $weather['reported'] ) ),
+                    $matches[7]
                 ) . '</div>
             </li>';
 
