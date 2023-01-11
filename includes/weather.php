@@ -577,6 +577,15 @@
 
         }
 
+        if( preg_match( '/ (AUTO|COR) /U', $raw, $matches ) ) {
+
+            $remarks[] = '<li>
+                <span>' . i18n( 'remarks-report-label' ) . '</span>
+                <div>' . i18n( 'remarks-report-' . $matches[1] ) . '</div>
+            </li>';
+
+        }
+
         if( preg_match( '/ AO(1|2) /U', $raw, $matches ) ) {
 
             $remarks[] = '<li>
