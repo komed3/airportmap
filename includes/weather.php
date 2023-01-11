@@ -29,6 +29,16 @@
 
     }
 
+    function precip_in(
+        float $precip,
+        string $in = 'in',
+        int $digits = 2
+    ) {
+
+        return '<x>' . __number( $precip, $digits ) . '</x>&#8239;' . i18n( 'precip-' . $in );
+
+    }
+
     function wind_info(
         array $weather,
         bool $gust = false
@@ -444,7 +454,7 @@
         $raw = $weather['raw'] . '  ' ?? '';
         $remarks = [];
 
-        if( preg_match( '/PK WND ([0-9]{3})([0-9]{2})\/([0-9]{2})([0-9]{2}) /U', $raw, $matches ) ) {
+        if( preg_match( '/ PK WND ([0-9]{3})([0-9]{2})\/([0-9]{2})([0-9]{2}) /U', $raw, $matches ) ) {
 
             $remarks[] = '<li>
                 <span>' . i18n( 'remarks-peak-wind-label' ) . '</span>
@@ -458,7 +468,7 @@
 
         }
 
-        if( preg_match( '/(FZ|SH|TS|BR|DS|DU|DZ|FC|FG|FU|GR|GS|HZ|IC|PE|PO|PY|RA|SA|SG|SN|SQ|SS|VA)(B|E)' .
+        if( preg_match( '/ (FZ|SH|TS|BR|DS|DU|DZ|FC|FG|FU|GR|GS|HZ|IC|PE|PO|PY|RA|SA|SG|SN|SQ|SS|VA)(B|E)' .
                         '([0-9]{0,2})([0-9]{2})(B|E)?([0-9]{0,2})?([0-9]{2})? /U', $raw, $matches ) ) {
 
             $remarks[] = '<li>
@@ -478,7 +488,66 @@
 
         }
 
-        if( preg_match( '/WSHFT ([0-9]{2})([0-9]{2}) (FROPA)? /U', $raw, $matches ) ) {
+        if( preg_match_all( '/ (P|6|7)([0-9]{4}) /U', $raw, $matches ) ) {
+
+            for( $i = 0; $i < count( $matches[0] ); $i++ ) {
+
+                $remarks[] = '<li>
+                    <span>' . i18n( 'remarks-precip-label' ) . '</span>
+                    <div>' . i18n( 'remarks-precip',
+                        precip_in( $matches[2][ $i ] / 100, 'in' ),
+                        i18n( 'remarks-period-' . [
+                            'P' => '1', '6' => '6', '7' => '24'
+                        ][ $matches[1][ $i ] ] )
+                    ) . '</div>
+                </li>';
+
+            }
+
+        }
+
+        if( preg_match( '/ T(0|1)([0-9]{3})(0|1)([0-9]{3}) /U', $raw, $matches ) ) {
+
+            $remarks[] = '<li>
+                <span>' . i18n( 'remarks-temp-dew-label' ) . '</span>
+                <div>' . i18n( 'remarks-temp-dew',
+                    temp_in( $matches[2] * ( $matches[1] == 1 ? -0.1 : 0.1 ), 'c', 1 ),
+                    temp_in( $matches[4] * ( $matches[3] == 1 ? -0.1 : 0.1 ), 'c', 1 )
+                ) . '</div>
+            </li>';
+
+        }
+
+        if( preg_match_all( '/ (1|2)(0|1)([0-9]{3}) /U', $raw, $matches ) ) {
+
+            for( $i = 0; $i < count( $matches[0] ); $i++ ) {
+
+                $remarks[] = '<li>
+                    <span>' . i18n( 'remarks-temp-label' ) . '</span>
+                    <div>' . i18n( 'remarks-temp-' . $matches[1][ $i ],
+                        temp_in( $matches[3][ $i ] * ( $matches[2][ $i ] == 1 ? -0.1 : 0.1 ), 'c', 1 ),
+                        i18n( 'remarks-period-6' )
+                    ) . '</div>
+                </li>';
+
+            }
+
+        }
+
+        if( preg_match( '/ 4(0|1)([0-9]{3})(0|1)([0-9]{3}) /U', $raw, $matches ) ) {
+
+            $remarks[] = '<li>
+                <span>' . i18n( 'remarks-temp-label' ) . '</span>
+                <div>' . i18n( 'remarks-temp',
+                    temp_in( $matches[2] * ( $matches[1] == 1 ? -0.1 : 0.1 ), 'c', 1 ),
+                    temp_in( $matches[4] * ( $matches[3] == 1 ? -0.1 : 0.1 ), 'c', 1 ),
+                    i18n( 'remarks-period-24' )
+                ) . '</div>
+            </li>';
+
+        }
+
+        if( preg_match( '/ WSHFT ([0-9]{2})([0-9]{2}) (FROPA)? /U', $raw, $matches ) ) {
 
             $remarks[] = '<li>
                 <span>' . i18n( 'remarks-wind-shift-label' ) . '</span>
@@ -490,7 +559,7 @@
 
         }
 
-        if( preg_match( '/SLP([0-9]{3}) /U', $raw, $matches ) ) {
+        if( preg_match( '/ SLP([0-9]{3}) /U', $raw, $matches ) ) {
 
             $remarks[] = '<li>
                 <span>' . i18n( 'remarks-sealevel-label' ) . '</span>
@@ -499,7 +568,7 @@
 
         }
 
-        if( preg_match( '/PRES(F|R)R /U', $raw, $matches ) ) {
+        if( preg_match( '/ PRES(F|R)R /U', $raw, $matches ) ) {
 
             $remarks[] = '<li>
                 <span>' . i18n( 'remarks-pressure-label' ) . '</span>
@@ -508,7 +577,7 @@
 
         }
 
-        if( preg_match( '/AO(1|2) /U', $raw, $matches ) ) {
+        if( preg_match( '/ AO(1|2) /U', $raw, $matches ) ) {
 
             $remarks[] = '<li>
                 <span>' . i18n( 'remarks-station-label' ) . '</span>
@@ -517,7 +586,7 @@
 
         }
 
-        if( preg_match( '/([A-Z]{1,4})NO (\S+)? /U', $raw, $matches ) ) {
+        if( preg_match( '/ ([A-Z]{1,4})NO (\S+)? /U', $raw, $matches ) ) {
 
             $remarks[] = '<li>
                 <span>' . i18n( 'remarks-sensor-label' ) . '</span>
