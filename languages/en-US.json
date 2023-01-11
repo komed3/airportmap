@@ -397,6 +397,14 @@
     "remarks-pressure-r": "<b>rising rapidly</b> at time of observation",
     "remarks-station-1": "<b>without</b> a precipitation descriminator",
     "remarks-station-2": "<b>with</b> precipitation descriminator",
+    "remarks-sensor-label": "Sensor status",
+    "remarks-sensor-rvr": "<b title=\"Runway Visual Range\">RVR</b> missing",
+    "remarks-sensor-pwi": "<b>Precipitation identifier</b> information not available",
+    "remarks-sensor-p": "<b>Precipitation amount</b> not available",
+    "remarks-sensor-fzra": "<b>Freezing rain</b> information not available",
+    "remarks-sensor-ts": "<b>Thunderstorm</b> information not available",
+    "remarks-sensor-vis": "<b>visibility</b> at <b>$2</b> not available",
+    "remarks-sensor-chi": "<b>sky condition</b> at <b>$2</b> not available",
     "remarks-maintenance-label": "Maintenance",
     "remarks-maintenance-asos": "needed on <b title=\"Automated Surface Observing Systems\">ASOS</b>"
 }
