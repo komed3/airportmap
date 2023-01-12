@@ -595,12 +595,16 @@
 
         }
 
-        if( preg_match( '/ ([A-Z]{1,4})NO (\S+)? /U', $raw, $matches ) ) {
+        if( preg_match_all( '/ ([A-Z]{1,4})NO (\S+)? /U', $raw, $matches ) ) {
 
-            $remarks[] = '<li>
-                <span>' . i18n( 'remarks-sensor-label' ) . '</span>
-                <div>' . i18n( 'remarks-sensor-' . $matches[1], $matches[2] ?? '—' ) . '</div>
-            </li>';
+            for( $i = 0; $i < count( $matches[0] ); $i++ ) {
+
+                $remarks[] = '<li>
+                    <span>' . i18n( 'remarks-sensor-label' ) . '</span>
+                    <div>' . i18n( 'remarks-sensor-' . $matches[1][ $i ], $matches[2][ $i ] ?? '—' ) . '</div>
+                </li>';
+
+            }
 
         }
 
