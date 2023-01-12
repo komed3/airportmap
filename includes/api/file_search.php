@@ -251,8 +251,8 @@
                                         <p><b>MIME TYPE:</b> <?php echo $info['mime']; ?></p>
                                         <p><b>SIZE:</b> <?php echo $info['width']; ?> x <?php echo $info['height']; ?>px</p>
                                         <p><b>CREDITS:</b> <?php echo $credits; ?></p>
-                                        <input type="hidden" name="url" value="' . base64_encode( $info['url'] ) . '" />
-                                        <input type="hidden" name="credits" value="' . base64_encode( $credits ) . '" />
+                                        <input type="hidden" name="url" value="<?php echo base64_encode( $info['url'] ); ?>" />
+                                        <input type="hidden" name="credits" value="<?php echo base64_encode( $credits ); ?>" />
                                         <button type="submit">Take it!</button>
                                     </form><?php
 
