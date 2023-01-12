@@ -6,6 +6,7 @@
         $_SERVER['SERVER_NAME'] . '/' );
 
     define( 'RESOURCE', SITE . 'static/' );
+    define( 'API', SITE . 'includes/api/' );
 
     /* paths */
 

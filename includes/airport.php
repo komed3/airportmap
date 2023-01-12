@@ -74,6 +74,7 @@
             SELECT   *
             FROM     ' . DB_PREFIX . 'image
             WHERE    airport = "' . $ICAO . '"
+            AND      file IS NOT NULL
             ORDER BY _touched DESC
             LIMIT    0, 1
         ' ) )->num_rows == 1
