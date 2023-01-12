@@ -225,24 +225,29 @@
                                     str_replace( ' ', '_', $img['title'] ), $lang ) ) &&
                                 !empty( $res = wiki_page( $res ) ) ) {
 
-                                $has_images = true;
-
                                 $info = $res['imageinfo'][0];
                                 $meta = $info['extmetadata'];
 
-                                $credits = '<a href="' . $info['descriptionshorturl'] . '" target="_blank">' . $info['user'] . '</a> (' .
-                                    date( 'Y', strtotime( $meta['DateTimeOriginal']['value'] ?? $meta['DateTime']['value'] ) ) . ') / ' .
-                                    $meta['LicenseShortName']['value'] . ', via Wikimedia Commons';
+                                if( strpos( $info['mime'], 'image' ) !== false ) {
 
-                                ?><form action="" method="post" class="image">
-                                    <img src="<?php echo $info['url']; ?>">
-                                    <p><b>MIME TYPE:</b> <?php echo $info['mime']; ?></p>
-                                    <p><b>SIZE:</b> <?php echo $info['width']; ?> x <?php echo $info['height']; ?>px</p>
-                                    <p><b>CREDITS:</b> <?php echo $credits; ?></p>
-                                    <input type="hidden" name="url" value="' . base64_encode( $info['url'] ) . '" />
-                                    <input type="hidden" name="credits" value="' . base64_encode( $credits ) . '" />
-                                    <button type="submit">Take it!</button>
-                                </form><?php
+                                    $credits = '<a href="' . $info['descriptionshorturl'] . '" target="_blank">' . $info['user'] . '</a> (' .
+                                        date( 'Y', strtotime( $meta['DateTimeOriginal']['value'] ?? $meta['DateTime']['value'] ) ) . '), ' .
+                                        $meta['LicenseShortName']['value'] . ', via Wikimedia Commons';
+
+                                    ?><form action="" method="post" class="image">
+                                        <img src="<?php echo $info['url']; ?>">
+                                        <p><b>TITLE:</b> <?php echo $img['title']; ?></p>
+                                        <p><b>MIME TYPE:</b> <?php echo $info['mime']; ?></p>
+                                        <p><b>SIZE:</b> <?php echo $info['width']; ?> x <?php echo $info['height']; ?>px</p>
+                                        <p><b>CREDITS:</b> <?php echo $credits; ?></p>
+                                        <input type="hidden" name="url" value="' . base64_encode( $info['url'] ) . '" />
+                                        <input type="hidden" name="credits" value="' . base64_encode( $credits ) . '" />
+                                        <button type="submit">Take it!</button>
+                                    </form><?php
+
+                                    $has_images = true;
+
+                                }
 
                             }
 
