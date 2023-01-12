@@ -225,7 +225,7 @@
 
                     $has_images = false;
 
-                    if( !empty( $images = wiki_page( wiki( 'prop=images&imlimit=max&redirects=1&&titles=' . $search ) )['images'] ) ) {
+                    if( !empty( $images = wiki_page( wiki( 'prop=images&imlimit=max&redirects=1&&titles=' . $search, $lang ) )['images'] ) ) {
 
                         ?><div class="grid"><?php
 
