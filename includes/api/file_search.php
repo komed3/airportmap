@@ -127,7 +127,9 @@
                 color: #0047ab;
             }
 
-            button, .skip, .redl {
+            button,
+            .skip:link, .skip:visited, .skip:hover,
+            .redl:link, .redl:visited, .redl:hover {
                 display: inline-block;
                 padding: 4px 8px;
                 text-decoration: none;
@@ -140,7 +142,7 @@
                 cursor: pointer;
             }
 
-            .redl {
+            .redl:link, .redl:visited, .redl:hover {
                 background: #ee4b2b;
             }
 
