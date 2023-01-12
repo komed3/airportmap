@@ -19,7 +19,7 @@
 
         $infobox = [
             'image' => ( $image = airport_image( $airport['ICAO'] ) ) ? [
-                'file' => get_file( $image['file'], 'thumb-' ),
+                'file' => $image['url'],
                 'credits' => $image['credits']
             ] : null,
             'title' => $airport['ICAO'],

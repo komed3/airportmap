@@ -63,7 +63,7 @@
 ?>
 <div class="content-full airport">
     <?php if( $image = airport_image( $airport['ICAO'] ) ) { ?>
-        <div class="site-image" style="background-image: url( <?php _get_file( $image['file'] ); ?> );">
+        <div class="site-image" style="background-image: url( <?php echo $image['url']; ?> );">
             <div class="credits"><?php echo $image['credits']; ?></div>
         </div>
     <?php } ?>
