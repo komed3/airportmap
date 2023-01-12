@@ -53,6 +53,14 @@
         $search = trim( $_GET['search'] );
         $ICAO = trim( strtoupper( $_GET['ICAO'] ?? $search ) );
 
+        // red list
+
+        if( !empty( $_GET['redlist'] ) ) {
+
+            file_put_contents( './file_search_redlist.txt', ' ' . $ICAO, FILE_APPEND );
+
+        }
+
         // skip airport
 
         if( !empty( $_GET['skip'] ) ) {
@@ -114,16 +122,12 @@
                 border-radius: 4px;
             }
 
-            a:link, a:visited {
+            a:link, a:visited, a:hover {
                 text-decoration: none;
                 color: #0047ab;
             }
 
-            a:hover {
-                text-decoration: underline;
-            }
-
-            button, .skip:link, .skip:visited, .skip:hover {
+            button, .skip, .redl {
                 display: inline-block;
                 padding: 4px 8px;
                 text-decoration: none;
@@ -134,6 +138,10 @@
                 border: 0;
                 border-radius: 4px;
                 cursor: pointer;
+            }
+
+            .redl {
+                background: #ee4b2b;
             }
 
             .error {
@@ -169,6 +177,7 @@
     <body>
         <h1>Search for: <code><?php echo str_replace( '_', ' ', $search ); ?></code></h1>
         <a href="<?php echo $base . $ICAO; ?>&skip=1" class="skip">Skip this Airport!</a>
+        <a href="<?php echo $base . $ICAO; ?>&skip=1&redlist=1" class="redl">Red List!</a>
         <?php
 
         foreach( [ 'en', 'de', 'fr' ] as $lang ) {
