@@ -83,12 +83,97 @@
 
         }
 
-        echo '<h1>Search for <u>' . $search . '</u></h1>
-        <a href="' . $base . $ICAO . '&skip=1"><b>SKIP AIRPORT!</b></a>';
+        ?>
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8" />
+        <title>APM API :: FILE SEARCH</title>
+        <style>
+
+            body {
+                margin: 20px;
+                font-family: sans-serif;
+            }
+
+            h1 {
+                margin: 0 0 20px 0;
+                font-size: 26px;
+                font-weight: bold;
+            }
+
+            h2 {
+                margin: 40px 0 20px 0;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            code {
+                padding: 1px 5px;
+                background: #e5e5e5;
+                border-radius: 4px;
+            }
+
+            a:link, a:visited {
+                text-decoration: none;
+                color: #0047ab;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            button, .skip:link, .skip:visited, .skip:hover {
+                display: inline-block;
+                padding: 4px 8px;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: bold;
+                color: #ffffff;
+                background: #0047ab;
+                border: 0;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .error {
+                font-size: 18px;
+                font-weight: bold;
+                color: #ee4b2b;
+            }
+
+            .grid {
+                display: flex;
+                flex-flow: row wrap;
+                gap: 30px;
+            }
+
+            .grid .image {
+                flex: 0 0 460px;
+                padding: 10px;
+                border: 2px solid #e5e5e5;
+                border-radius: 10px;
+            }
+
+            .grid .image img {
+                width: 100%;
+                height: auto;
+            }
+
+            .grid .image p {
+                margin: 10px 0;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Search for: <code><?php echo str_replace( '_', ' ', $search ); ?></code></h1>
+        <a href="<?php echo $base . $ICAO; ?>&skip=1" class="skip">Skip this Airport!</a>
+        <?php
 
         foreach( [ 'en', 'de', 'fr' ] as $lang ) {
 
-            echo '<h2>Search in [' . $lang . '] …</h2>';
+            ?><h2>Search in <code>wiki::<?php echo $lang; ?></code> …</h2><?php
 
             if( !empty( $check = wiki( 'prop=pageprops&ppprop=disambiguation&titles=' . $search, $lang ) ) &&
                 !empty( $check = wiki_page( $check ) ) ) {
@@ -97,7 +182,7 @@
 
                 if( array_key_exists( 'missing', $check ) ) {
 
-                    echo 'Missing page!';
+                    ?><p class="error">Missing page!</p><?php
 
                 }
 
@@ -105,20 +190,21 @@
 
                 else if( array_key_exists( 'pageprops', $check ) ) {
 
-                    echo 'Disambiguation:<ul>';
+                    ?><b>Disambiguation:</b><ul><?php
 
                     foreach( wiki( 'generator=links&gpllimit=max&titles=' . $search, $lang )['pages'] as $link ) {
 
                         if( $link['ns'] == 0 ) {
 
-                            echo '<li><a href="' . $base . str_replace( ' ', '_', $link['title'] ) . '&ICAO=' .
-                                $search . '">' . $link['title'] . '</a></li>';
+                            ?><li><a href="<?php echo $base . str_replace( ' ', '_', $link['title'] ); ?>&ICAO=<?php echo $search; ?>">
+                                <?php echo $link['title']; ?></a>
+                            </li><?php
 
                         }
 
                     }
 
-                    echo '</ul>';
+                    ?></ul><?php
 
                 }
 
@@ -126,16 +212,20 @@
 
                 else {
 
-                    echo 'Images:';
+                    $has_images = false;
 
                     if( !empty( $images = wiki_page( wiki( 'prop=images&imlimit=max&redirects=1&&titles=' . $search ) )['images'] ) ) {
+
+                        ?><div class="grid"><?php
 
                         foreach( $images as $img ) {
 
                             if( strpos( $img['title'], '.svg' ) === false &&
-                                !empty( $res = wiki( 'prop=imageinfo&iiprop=url|user|size|extmetadata&titles=' .
+                                !empty( $res = wiki( 'prop=imageinfo&iiprop=url|user|size|mime|extmetadata&titles=' .
                                     str_replace( ' ', '_', $img['title'] ), $lang ) ) &&
                                 !empty( $res = wiki_page( $res ) ) ) {
+
+                                $has_images = true;
 
                                 $info = $res['imageinfo'][0];
                                 $meta = $info['extmetadata'];
@@ -144,22 +234,27 @@
                                     date( 'Y', strtotime( $meta['DateTimeOriginal']['value'] ?? $meta['DateTime']['value'] ) ) . ') / ' .
                                     $meta['LicenseShortName']['value'] . ', via Wikimedia Commons';
 
-                                echo '<form action="" method="post">
-                                    <img src="' . $info['url'] . '" style="max-width: 320px; max-height: 260px;">
-                                    <p><b>SIZE:</b> ' . $info['width'] . ' x ' . $info['height'] . 'px</p>
-                                    <p><b>CREDITS: ' . $credits . '</b></p>
+                                ?><form action="" method="post" class="image">
+                                    <img src="<?php echo $info['url']; ?>">
+                                    <p><b>MIME TYPE:</b> <?php echo $info['mime']; ?></p>
+                                    <p><b>SIZE:</b> <?php echo $info['width']; ?> x <?php echo $info['height']; ?>px</p>
+                                    <p><b>CREDITS:</b> <?php echo $credits; ?></p>
                                     <input type="hidden" name="url" value="' . base64_encode( $info['url'] ) . '" />
                                     <input type="hidden" name="credits" value="' . base64_encode( $credits ) . '" />
                                     <button type="submit">Take it!</button>
-                                </form>';
+                                </form><?php
 
                             }
 
                         }
 
-                    } else {
+                        ?></div><?php
 
-                        echo ' <b>NONE</b>';
+                    }
+
+                    if( !$has_images ) {
+
+                        ?><p class="error">Could not found any images!</p><?php
 
                     }
 
@@ -167,11 +262,16 @@
 
             } else {
 
-                echo 'ERROR occurred!';
+                ?><p class="error">ERROR occurred!</p><?php
 
             }
 
         }
+
+        ?>
+    </body>
+</html>
+        <?php
 
     }
 
