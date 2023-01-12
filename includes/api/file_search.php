@@ -143,13 +143,13 @@
             }
 
             .grid {
-                display: flex;
-                flex-flow: row wrap;
-                gap: 30px;
+                column-count: 3;
+                column-gap: 30px;
             }
 
             .grid .image {
-                flex: 0 0 460px;
+                break-inside: avoid;
+                margin-bottom: 30px;
                 padding: 10px;
                 border: 2px solid #e5e5e5;
                 border-radius: 10px;
