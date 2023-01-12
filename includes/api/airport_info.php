@@ -18,7 +18,10 @@
         $weather = airport_weather( $airport );
 
         $infobox = [
-            'image' => airport_image( $airport['ICAO'] ),
+            'image' => ( $image = airport_image( $airport['ICAO'] ) ) ? [
+                'file' => get_file( $image['file'], 'thumb-' ),
+                'credits' => $image['credits']
+            ] : null,
             'title' => $airport['ICAO'],
             'subtitle' => $airport['name'],
             'content' => ( !empty( $weather ) ? '<div class="infobox-weather">

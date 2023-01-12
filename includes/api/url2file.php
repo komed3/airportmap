@@ -9,7 +9,7 @@
         SELECT  _id, url
         FROM    ' . DB_PREFIX . 'image
         WHERE   file IS NULL
-        LIMIT   0, 98
+        LIMIT   0, 25
     ' ) )->num_rows > 0 ) {
 
         while( $row = $res->fetch_object() ) {
@@ -82,6 +82,9 @@
 
                     $imagick->setImageFormat( 'gif' );
 
+                    break;
+
+                default:
                     break;
 
             }
