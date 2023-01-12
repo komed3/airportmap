@@ -24,7 +24,7 @@
             $file->readImageBlob( $blob );
 
             $file->setImageCompression( Imagick::COMPRESSION_JPEG );
-            $file->setImageCompressionQuality( 95 );
+            $file->setImageCompressionQuality( 90 );
 
             $file->writeImage( $dir . $name );
 
