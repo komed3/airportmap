@@ -231,7 +231,10 @@
 
                         foreach( $images as $img ) {
 
-                            if( strpos( $img['title'], '.svg' ) === false &&
+                            if( !in_array( $img['title'], [
+                                    'File:Aviacionavion.png'
+                                ] ) &&
+                                strpos( $img['title'], '.svg' ) === false &&
                                 !empty( $res = wiki( 'prop=imageinfo&iiprop=url|user|size|mime|extmetadata&titles=' .
                                     str_replace( ' ', '_', $img['title'] ), $lang ) ) &&
                                 !empty( $res = wiki_page( $res ) ) ) {
