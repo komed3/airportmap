@@ -96,6 +96,24 @@
 
     }
 
+    function get_file(
+        string $file,
+        string $size = ''
+    ) {
+
+        return RESOURCE . 'images/' . $size . $file;
+
+    }
+
+    function _get_file(
+        string $file,
+        string $size = ''
+    ) {
+
+        echo get_file( $file, $size );
+
+    }
+
     function site_nav(
         array $links = [],
         string $classes = '',
