@@ -14,6 +14,9 @@
     $__site_title = i18n_save( 'airport-title-' . $path[2], $airport['ICAO'], $airport['name'] ) ??
         i18n( 'airport-title', $airport['ICAO'], $airport['name'] );
 
+    $__site_desc = i18n_save( 'airport-desc-' . $path[2], $airport['ICAO'], $airport['name'] ) ??
+        i18n( 'airport-desc', $airport['ICAO'], $airport['name'] );
+
     add_resource( 'airport', 'css', 'airport.css' );
 
     _header();
