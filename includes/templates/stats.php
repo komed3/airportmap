@@ -86,6 +86,16 @@
 
     }
 
+    $super[] = [
+        'icon' => 'explore',
+        'label' => i18n( 'stats-super-remotest' ),
+        'value' => [
+            alt_in( 2030, 'nm' ),
+            '(' . alt_in( 3760, 'km' ) . ')'
+        ],
+        'link' => airport_link( airport_by( 'ICAO', 'SCIP' ) )
+    ];
+
     if( $res = $DB->query( '
         SELECT   a.ICAO, a.name, r.length
         FROM     ' . DB_PREFIX . 'airport a,
