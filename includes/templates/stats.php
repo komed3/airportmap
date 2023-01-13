@@ -247,6 +247,41 @@
         ] ] ); ?>
     </div>
     <div class="stats-section">
+        <h2 class="secondary-headline"><?php _i18n( 'stats-country' ); ?></h2>
+        <p><?php _i18n( 'stats-country-desc' ); ?></p>
+        <div class="stats-chart">
+            <?php
+
+                $c_res = $DB->query( '
+                    SELECT   c.*,
+                            COUNT( a.ICAO ) AS cnt
+                    FROM     ' . DB_PREFIX . 'airport a,
+                            ' . DB_PREFIX . 'country c
+                    WHERE    a.country = c.code
+                    GROUP BY c.code
+                    ORDER BY cnt DESC
+                    LIMIT    0, 10
+                ' )->fetch_all( MYSQLI_ASSOC );
+
+                $c_max = min( 10000, max( array_column( $c_res, 'cnt' ) ) );
+
+                foreach( $c_res as $c ) {
+
+                    ?><div class="chart-column">
+                        <div class="column" style="height: <?php echo min( 100, max( 10, $c['cnt'] / $c_max * 100 ) ); ?>%;">
+                            <div class="label"><?php echo __number( $c['cnt'] ); ?></div>
+                            <div class="cat">
+                                <a href="<?php _base_url( 'airports/country/' . $c['code'] ); ?>"><?php echo $c['name']; ?></a>
+                            </div>
+                        </div>
+                    </div><?php
+
+                }
+
+            ?>
+        </div>
+    </div>
+    <div class="stats-section">
         <h2 class="secondary-headline"><?php _i18n( 'stats-super' ); ?></h2>
         <p><?php _i18n( 'stats-super-desc' ); ?></p>
         <?php _stats_grid( $super ); ?>

@@ -435,6 +435,8 @@
     "stats-frequencies": "Frequencies",
     "stats-images": "Airport images",
     "stats-service": "Airline service",
+    "stats-country": "Countries",
+    "stats-country-desc": "Countries with most airports in the world",
     "stats-super": "Superlatives",
     "stats-super-desc": "Extreme airports and their records",
     "stats-super-heighest": "Heighest airport",
