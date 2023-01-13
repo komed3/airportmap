@@ -67,6 +67,13 @@
     font-size: 16px;
 }
 
+.stats .stats-grid .stats-box .info .link {
+    font-size: 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 .stats .stats-grid .stats-box .info .value span:first-of-type {
     font-size: 24px;
     font-weight: 800;

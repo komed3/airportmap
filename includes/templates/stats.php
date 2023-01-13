@@ -11,10 +11,15 @@
             $boxes[] = '<div class="stats-box">
                 <i class="icon">' . $row['icon'] . '</i>
                 <div class="info">
+                    <div class="label">
+                        ' . $row['label'] . '
+                    </div>
                     <div class="value">
                         <span>' . implode( '</span><span>', $row['value'] ) . '</span>
                     </div>
-                    <div class="label">' . $row['label'] . '</div>
+                    ' . ( array_key_exists( 'link', $row ) ? '<div class="link">
+                        ' . $row['link'] . '
+                    </div>' : '' ) . '
                 </div>
             </div>';
 
@@ -34,6 +39,130 @@
     $__site_desc = i18n( 'stats-desc' );
 
     _header();
+
+    /* superlatives */
+
+    $super = [];
+
+    if( $res = $DB->query( '
+        SELECT   ICAO, name, alt
+        FROM     ' . DB_PREFIX . 'airport
+        WHERE    type IN ( "large", "medium" )
+        ORDER BY alt DESC
+        LIMIT    0, 1
+    ' )->fetch_assoc() ) {
+
+        $super[] = [
+            'icon' => 'landscape',
+            'label' => i18n( 'stats-super-heighest' ),
+            'value' => [
+                alt_in( $res['alt'], 'ft' ),
+                '(' . alt_in( $res['alt'] / 3.281, 'm' ) . ')'
+            ],
+            'link' => airport_link( $res )
+        ];
+
+    }
+
+    if( $res = $DB->query( '
+        SELECT   ICAO, name, alt
+        FROM     ' . DB_PREFIX . 'airport
+        WHERE    type IN ( "large", "medium" )
+        ORDER BY alt ASC
+        LIMIT    0, 1
+    ' )->fetch_assoc() ) {
+
+        $super[] = [
+            'icon' => 'layers',
+            'label' => i18n( 'stats-super-lowest' ),
+            'value' => [
+                alt_in( $res['alt'], 'ft' ),
+                '(' . alt_in( $res['alt'] / 3.281, 'm' ) . ')'
+            ],
+            'link' => airport_link( $res )
+        ];
+
+    }
+
+    if( $res = $DB->query( '
+        SELECT   a.ICAO, a.name, r.length
+        FROM     ' . DB_PREFIX . 'airport a,
+                 ' . DB_PREFIX . 'runway r
+        WHERE    r.airport = a.ICAO
+        AND      a.service = 1
+        AND      a.type IN ( "large", "medium", "small" )
+        AND      a.restriction = "public"
+        AND      r.inuse = 1
+        AND      r.ident NOT LIKE "%H%"
+        AND      r.length IS NOT NULL
+        ORDER BY r.length DESC
+        LIMIT    0, 1
+    ' )->fetch_assoc() ) {
+
+        $super[] = [
+            'icon' => 'flight_takeoff',
+            'label' => i18n( 'stats-super-longest' ),
+            'value' => [
+                alt_in( $res['length'], 'ft' ),
+                '(' . alt_in( $res['length'] / 3.281, 'm' ) . ')'
+            ],
+            'link' => airport_link( $res )
+        ];
+
+    }
+
+    if( $res = $DB->query( '
+        SELECT   a.ICAO, a.name, r.length
+        FROM     ' . DB_PREFIX . 'airport a,
+                 ' . DB_PREFIX . 'runway r
+        WHERE    r.airport = a.ICAO
+        AND      a.service = 1
+        AND      a.type IN ( "large", "medium", "small" )
+        AND      a.restriction = "public"
+        AND      r.inuse = 1
+        AND      r.ident NOT LIKE "%H%"
+        AND      r.length IS NOT NULL
+        ORDER BY r.length ASC
+        LIMIT    0, 1
+    ' )->fetch_assoc() ) {
+
+        $super[] = [
+            'icon' => 'landslide',
+            'label' => i18n( 'stats-super-shortest' ),
+            'value' => [
+                alt_in( $res['length'], 'ft' ),
+                '(' . alt_in( $res['length'] / 3.281, 'm' ) . ')'
+            ],
+            'link' => airport_link( $res )
+        ];
+
+    }
+
+    if( $res = $DB->query( '
+        SELECT   a.ICAO, a.name,
+                 COUNT( r._id ) AS cnt
+        FROM     ' . DB_PREFIX . 'airport a,
+                 ' . DB_PREFIX . 'runway r
+        WHERE    r.airport = a.ICAO
+        AND      a.service = 1
+        AND      r.inuse = 1
+        AND      r.ident NOT LIKE "%H%"
+        AND      r.length IS NOT NULL
+        GROUP BY r.airport
+        ORDER BY cnt DESC
+        LIMIT    0, 1
+    ' )->fetch_assoc() ) {
+
+        $super[] = [
+            'icon' => 'tag',
+            'label' => i18n( 'stats-super-mostest' ),
+            'value' => [
+                __number( $res['cnt'] )
+            ],
+            'link' => airport_link( $res )
+        ];
+
+    }
 
 ?>
 <div class="content-full stats">
@@ -104,6 +233,11 @@
                 ' )->fetch_object()->cnt )
             ]
         ] ] ); ?>
+    </div>
+    <div class="stats-section">
+        <h2 class="secondary-headline"><?php _i18n( 'stats-super' ); ?></h2>
+        <p><?php _i18n( 'stats-super-desc' ); ?></p>
+        <?php _stats_grid( $super ); ?>
     </div>
     <div class="stats-section">
         <h2 class="secondary-headline"><?php _i18n( 'stats-type' ); ?></h2>

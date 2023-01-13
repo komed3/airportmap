@@ -428,13 +428,21 @@
     "stats-title": "Airport Statistics",
     "stats-desc": "All statistics enthusiasts will find numbers, superlatives and more about the listed airports here",
     "stats-count": "Counter",
-    "stats-count-desc": "Wealthy filled databases:",
+    "stats-count-desc": "Wealthy filled databases",
     "stats-airports": "Airports",
     "stats-active-runways": "Active runways",
     "stats-navaids": "Navaids",
     "stats-frequencies": "Frequencies",
     "stats-images": "Airport images",
     "stats-service": "Airline service",
+    "stats-super": "Superlatives",
+    "stats-super-desc": "Extreme airports and their records",
+    "stats-super-heighest": "Heighest airport",
+    "stats-super-lowest": "Lowest airport",
+    "stats-super-longest": "Longest runway",
+    "stats-super-shortest": "Shortest runway",
+    "stats-super-mostest": "Mostest runways",
+    "stats-super-widest": "Widest runway",
     "stats-type": "Airport types",
-    "stats-type-desc": "How many airports listed on this page?"
+    "stats-type-desc": "Airports listed on this page"
 }
