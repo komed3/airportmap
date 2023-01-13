@@ -254,9 +254,9 @@
 
                 $c_res = $DB->query( '
                     SELECT   c.*,
-                            COUNT( a.ICAO ) AS cnt
+                             COUNT( a.ICAO ) AS cnt
                     FROM     ' . DB_PREFIX . 'airport a,
-                            ' . DB_PREFIX . 'country c
+                             ' . DB_PREFIX . 'country c
                     WHERE    a.country = c.code
                     GROUP BY c.code
                     ORDER BY cnt DESC
@@ -271,7 +271,9 @@
                         <div class="column" style="height: <?php echo min( 100, max( 10, $c['cnt'] / $c_max * 100 ) ); ?>%;">
                             <div class="label"><?php echo __number( $c['cnt'] ); ?></div>
                             <div class="cat">
-                                <a href="<?php _base_url( 'airports/country/' . $c['code'] ); ?>"><?php echo $c['name']; ?></a>
+                                <a href="<?php _base_url( 'airports/country/' . $c['code'] ); ?>">
+                                    <?php echo $c['name']; ?>
+                                </a>
                             </div>
                         </div>
                     </div><?php
@@ -285,6 +287,44 @@
         <h2 class="secondary-headline"><?php _i18n( 'stats-super' ); ?></h2>
         <p><?php _i18n( 'stats-super-desc' ); ?></p>
         <?php _stats_grid( $super ); ?>
+    </div>
+    <div class="stats-section">
+        <h2 class="secondary-headline"><?php _i18n( 'stats-timezone' ); ?></h2>
+        <p><?php _i18n( 'stats-timezone-desc' ); ?></p>
+        <div class="stats-chart">
+            <?php
+
+                $tz_res = $DB->query( '
+                    SELECT   t.ident, t.name,
+                             COUNT( a.ICAO ) AS cnt
+                    FROM     ' . DB_PREFIX . 'airport a,
+                             ' . DB_PREFIX . 'timezone t
+                    WHERE    t.short = a.timezone
+                    AND      t.gmt_offset = a.gmt_offset
+                    GROUP BY t.ident
+                    ORDER BY cnt DESC
+                    LIMIT    0, 10
+                ' )->fetch_all( MYSQLI_ASSOC );
+
+                $tz_max = min( 10000, max( array_column( $tz_res, 'cnt' ) ) );
+
+                foreach( $tz_res as $tz ) {
+
+                    ?><div class="chart-column">
+                        <div class="column" style="height: <?php echo min( 100, max( 10, $tz['cnt'] / $tz_max * 100 ) ); ?>%;">
+                            <div class="label"><?php echo __number( $tz['cnt'] ); ?></div>
+                            <div class="cat">
+                                <a href="<?php _base_url( 'airports/timezone/' . $tz['ident'] ); ?>">
+                                    <?php echo $tz['name']; ?>
+                                </a>
+                            </div>
+                        </div>
+                    </div><?php
+
+                }
+
+            ?>
+        </div>
     </div>
     <div class="stats-section">
         <h2 class="secondary-headline"><?php _i18n( 'stats-type' ); ?></h2>

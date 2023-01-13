@@ -445,6 +445,8 @@
     "stats-super-longest": "Longest runway",
     "stats-super-shortest": "Shortest runway",
     "stats-super-steepest": "Steepest runway",
+    "stats-timezone": "Timezones",
+    "stats-timezone-desc": "Timezones with most airports",
     "stats-type": "Airport types",
     "stats-type-desc": "Airports listed on this page"
 }

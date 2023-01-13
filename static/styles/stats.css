@@ -116,7 +116,8 @@
 
 .stats .stats-chart .chart-column .column .cat {
     top: calc( 100% + 10px );
-    font-size: 16px;
+    padding: 0 10px;
+    font-size: 14px;
 }
 
 .stats .stats-chart .chart-column .column .label {
