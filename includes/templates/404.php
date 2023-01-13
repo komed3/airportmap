@@ -12,7 +12,7 @@
 ?>
 <div class="content-full error-404">
     <div class="credits"><?php _i18n(
-        '404-credits',
+        'pix-credits',
         '<a href="https://pixabay.com/users/tobiasrehbein-11751606">Tobias Rehbein</a>',
         '<a href="https://pixabay.com">Pixabay</a>'
     ); ?></div>

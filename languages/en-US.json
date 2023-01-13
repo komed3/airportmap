@@ -40,7 +40,7 @@
     "404-desc": "An 404 error has occurred. The requested page could not be found",
     "404-teaser": "Flight404",
     "404-headline": "Departure delayed",
-    "404-credits": "Image by $1 from $2",
+    "pix-credits": "Image by $1 from $2",
     "read-more": "Read more",
     "not-available": "Not available",
     "unknown": "Unknown",
@@ -424,5 +424,8 @@
     "remarks-sensor-vis": "<b>visibility</b> at <b>$2</b> not available",
     "remarks-sensor-chi": "<b>sky condition</b> at <b>$2</b> not available",
     "remarks-maintenance-label": "Maintenance",
-    "remarks-maintenance-asos": "needed on <b title=\"Automated Surface Observing Systems\">ASOS</b>"
+    "remarks-maintenance-asos": "needed on <b title=\"Automated Surface Observing Systems\">ASOS</b>",
+    "airport-stats-title": "Airport Statistics",
+    "airport-stats-desc": "All statistics enthusiasts will find numbers, superlatives and more about the listed airports here",
+    "airport-stats-intro": "For all statistics enthusiasts"
 }

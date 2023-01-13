@@ -1,0 +1,23 @@
+.stats .stats-intro {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: calc( 100vh - 80px );
+    padding: 60px var( --padding-normal );
+    background-color: var( --gray-7 );
+    background-image: url( './../resources/flight-board.jpg' );
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.stats .stats-intro .credits {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 2px 6px;
+    font-size: 12px;
+    background: var( --light-6 );
+}
