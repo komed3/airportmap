@@ -425,7 +425,16 @@
     "remarks-sensor-chi": "<b>sky condition</b> at <b>$2</b> not available",
     "remarks-maintenance-label": "Maintenance",
     "remarks-maintenance-asos": "needed on <b title=\"Automated Surface Observing Systems\">ASOS</b>",
-    "airport-stats-title": "Airport Statistics",
-    "airport-stats-desc": "All statistics enthusiasts will find numbers, superlatives and more about the listed airports here",
-    "airport-stats-intro": "For all statistics enthusiasts"
+    "stats-title": "Airport Statistics",
+    "stats-desc": "All statistics enthusiasts will find numbers, superlatives and more about the listed airports here",
+    "stats-count": "Counter",
+    "stats-count-desc": "Wealthy filled databases:",
+    "stats-airports": "Airports",
+    "stats-active-runways": "Active runways",
+    "stats-navaids": "Navaids",
+    "stats-frequencies": "Frequencies",
+    "stats-images": "Airport images",
+    "stats-service": "Airline service",
+    "stats-type": "Airport types",
+    "stats-type-desc": "How many airports listed on this page?"
 }

@@ -1,23 +1,73 @@
-.stats .stats-intro {
-    position: relative;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    height: calc( 100vh - 80px );
-    padding: 60px var( --padding-normal );
-    background-color: var( --gray-7 );
+.stats .site-image {
     background-image: url( './../resources/flight-board.jpg' );
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
 }
 
-.stats .stats-intro .credits {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding: 2px 6px;
-    font-size: 12px;
-    background: var( --light-6 );
+.stats .primary-headline {
+    margin-bottom: 0;
+}
+
+.stats .stats-section {
+    padding: 80px var( --padding-normal );
+}
+
+.stats .stats-section:nth-child( 2n + 2 ) {
+    color: var( --gray-0 );
+    background: var( --primary );
+}
+
+.stats .stats-section h2 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.stats .stats-section p {
+    margin: 10px 0 60px 0;
+    font-size: 22px;
+}
+
+.stats .stats-grid {
+    display: grid;
+    grid-template-columns: repeat( 3, 1fr );
+    gap: 30px;
+    color: var( --gray-5 );
+}
+
+.stats .stats-grid .stats-box {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 20px 24px;
+    background: var( --gray-0 );
+    border-radius: 12px;
+}
+
+.stats .stats-grid .stats-box .icon {
+    flex: 0 0 60px;
+    font-size: 40px;
+}
+
+.stats .stats-grid .stats-box .info {
+    flex: 1;
+    min-width: 0;
+}
+
+.stats .stats-grid .stats-box .info .label {
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.stats .stats-grid .stats-box .info .value {
+    display: flex;
+    flex-flow: row;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin: 4px 0;
+    font-size: 16px;
+}
+
+.stats .stats-grid .stats-box .info .value span:first-of-type {
+    font-size: 24px;
+    font-weight: 800;
 }
