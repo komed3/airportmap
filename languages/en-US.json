@@ -441,8 +441,7 @@
     "stats-super-lowest": "Lowest airport",
     "stats-super-longest": "Longest runway",
     "stats-super-shortest": "Shortest runway",
-    "stats-super-mostest": "Mostest runways",
-    "stats-super-widest": "Widest runway",
+    "stats-super-steepest": "Steepest runway",
     "stats-type": "Airport types",
     "stats-type-desc": "Airports listed on this page"
 }

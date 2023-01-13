@@ -40,7 +40,9 @@
 
     _header();
 
-    /* superlatives */
+    /* stats */
+
+    $res_count = airport_count( 'restriction' );
 
     $super = [];
 
@@ -127,7 +129,7 @@
     ' )->fetch_assoc() ) {
 
         $super[] = [
-            'icon' => 'landslide',
+            'icon' => 'warning',
             'label' => i18n( 'stats-super-shortest' ),
             'value' => [
                 alt_in( $res['length'], 'ft' ),
@@ -139,25 +141,25 @@
     }
 
     if( $res = $DB->query( '
-        SELECT   a.ICAO, a.name,
-                 COUNT( r._id ) AS cnt
+        SELECT   a.ICAO, a.name, r.slope, r.vertical
         FROM     ' . DB_PREFIX . 'airport a,
                  ' . DB_PREFIX . 'runway r
         WHERE    r.airport = a.ICAO
-        AND      a.service = 1
+        AND      a.type NOT IN ( "heliport", "seaplane", "closed" )
+        AND      a.restriction = "public"
         AND      r.inuse = 1
         AND      r.ident NOT LIKE "%H%"
-        AND      r.length IS NOT NULL
-        GROUP BY r.airport
-        ORDER BY cnt DESC
+        AND      r.slope IS NOT NULL
+        ORDER BY r.slope DESC
         LIMIT    0, 1
     ' )->fetch_assoc() ) {
 
         $super[] = [
-            'icon' => 'tag',
-            'label' => i18n( 'stats-super-mostest' ),
+            'icon' => 'landslide',
+            'label' => i18n( 'stats-super-steepest' ),
             'value' => [
-                __number( $res['cnt'] )
+                __number( $res['slope'] ) . '&#8239;%',
+                '(' . alt_in( $res['vertical'], 'ft' ) . ')'
             ],
             'link' => airport_link( $res )
         ];
@@ -243,7 +245,7 @@
         <h2 class="secondary-headline"><?php _i18n( 'stats-type' ); ?></h2>
         <p><?php _i18n( 'stats-type-desc' ); ?></p>
         <?php _stats_grid( [ [
-            'icon' => 'public',
+            'icon' => 'luggage',
             'label' => i18n( 'airport-typep-large' ),
             'value' => [
                 __number( AIRPORT_STATS['large'] )
@@ -277,6 +279,24 @@
             'label' => i18n( 'airport-typep-altiport' ),
             'value' => [
                 __number( AIRPORT_STATS['altiport'] )
+            ]
+        ], [
+            'icon' => 'public',
+            'label' => i18n( 'airport-resp-public' ),
+            'value' => [
+                __number( $res_count['public'] )
+            ]
+        ], [
+            'icon' => 'military_tech',
+            'label' => i18n( 'airport-resp-military' ),
+            'value' => [
+                __number( $res_count['military'] )
+            ]
+        ], [
+            'icon' => 'lock_open',
+            'label' => i18n( 'airport-resp-private' ),
+            'value' => [
+                __number( $res_count['private'] )
             ]
         ] ] ); ?>
     </div>
