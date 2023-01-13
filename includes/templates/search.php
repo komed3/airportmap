@@ -1,6 +1,6 @@
 <?php
 
-    $__site_search = base64_decode( $path[1] ?? '' );
+    $__site_search = urldecode( $path[1] ?? '' );
 
     $results = airport_search( $__site_search );
 

@@ -94,7 +94,7 @@ var freq_format = ( frequency ) => {
         switch( $( this ).attr( 'data-form' ) ) {
 
             case 'search':
-                location.href = baseurl + '/search/' + btoa(
+                location.href = baseurl + '/search/' + encodeURI(
                     ( $( this ).find( '[name="searchtext"]' ).val() || '' ).toString().trim()
                 );
                 break;
