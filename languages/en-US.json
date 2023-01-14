@@ -449,7 +449,7 @@
     "stats-timezone-desc": "Timezones with most airports",
     "stats-type": "Airport types",
     "stats-type-desc": "Airports listed on this page",
-    "about-title": "About project",
+    "about-title": "What is Airportmap?",
     "about-desc": "Informations about the open source project Airportmap",
     "about-code": "The source code for this project can be found openly on <a href=\"https://github.com/komed3/airportmap\" target=\"_blank\">GitHub</a>.",
     "about-goal": "Goal",
