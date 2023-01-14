@@ -19,6 +19,19 @@
         ); ?></div>
     </div>
     <h1 class="primary-headline"><?php _i18n( 'about-title' ); ?></h1>
+    <?php _site_nav( [ [
+        'i18n' => 'footer-nav-stats',
+        'url' => $base . 'stats'
+    ], [
+        'i18n' => 'footer-nav-data',
+        'url' => $base . 'data'
+    ], [
+        'i18n' => 'footer-nav-embed',
+        'url' => $base . 'embed'
+    ], [
+        'i18n' => 'site-privacy',
+        'url' => $base . 'privacy'
+    ] ], 'site-tabs content-normal' ); ?>
     <div class="content-normal">
         <p class="first"><?php _i18n( 'site-welcome-text', __number( AIRPORT_ALL ) ); ?></p>
         <p><?php _i18n( 'about-code' ); ?></p>
