@@ -50,3 +50,16 @@
 .welcome-stats .stats-col .label {
     text-transform: uppercase;
 }
+
+.welcome-tabs a {
+    font-weight: 600;
+    color: var( --gray-0 );
+    background: var( --primary );
+}
+
+.welcome-text p {
+    margin: 40px 0;
+    text-align: center;
+    line-height: 1.6;
+    font-size: 20px;
+}

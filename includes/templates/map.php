@@ -35,4 +35,18 @@
         <div class="label"><?php _i18n( 'stats-heliport' ); ?></div>
     </a>
 </div>
+<?php _site_nav( [ null, [
+        'i18n' => 'footer-nav-search-airports',
+        'url' => $base . 'airports'
+    ], [
+        'i18n' => 'footer-nav-weather-forecast',
+        'url' => $base . 'weather'
+    ], [
+        'i18n' => 'footer-nav-about',
+        'url' => $base . 'about'
+    ], null ], 'site-tabs content-wide welcome-tabs' ); ?>
+<div class="welcome-text content-wide">
+    <p><?php _i18n( 'about-goal-primary' ); ?></p>
+    <p><?php _i18n( 'about-goal-secondary' ); ?></p>
+</div>
 <?php _footer(); ?>
