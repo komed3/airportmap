@@ -310,6 +310,13 @@
     "surface-u": "Unknown surface",
     "surface-wat": "Water",
     "surface-roof": "Rooftop (Heliport)",
+    "navaid-dme": "Distance Measuring Equipment (DME)",
+    "navaid-ndb": "Non-Directional Beacon (NDB)",
+    "navaid-ndb-dme": "NDB-DME",
+    "navaid-vor": "Very high frequency omnirange station (VOR)",
+    "navaid-vor-dme": "VOR-DME",
+    "navaid-tacan": "Tactical Air Navigation System (TACAN)",
+    "navaid-vortac": "Very high frequency omnidirectional radio range (VORTAC)",
     "radio-a/a": "Air-To-Air",
     "radio-a/d": "Analog/Digital",
     "radio-a/g": "Air-To-Ground",
@@ -461,5 +468,10 @@
     "about-source-image": "The images shown at a wide range of airports are taken from <a href=\"https://wikipedia.org\" target=\"_blank\">Wikipedias</a> around the world and embedded via <a href=\"https://commons.wikimedia.org\" target=\"_blank\">Wikimedia Commons</a>. Corresponding copyrights are mentioned at the place where the image is displayed. Airportmap does not own any copyrights to the pictures.",
     "about-source-weather": "The always up-to-date weather data for thousands of airports comes from the US government’s <a href=\"https://www.weather.gov\" target=\"_blank\">National Weather Service</a> (NWS). The <a href=\"https://www.aviationweather.gov\" target=\"_blank\">National Oceanic and Atmospheric Administration</a> (NOAA) provides an hourly updated METAR database via its <a href=\"https://www.aviationweather.gov/adds/dataserver_current/current/\" target=\"_blank\">text server</a>, which is retrieved and processed by Airportmap five minutes after each full hour.",
     "about-source-sigmet": "The SIGMET and I-SIGMET data originate from the same source and are retrieved via <a href=\"https://www.aviationweather.gov/help/webservice\" target=\"_blank\">NOAA’s API</a> at five-minute intervals.",
-    "about-source-map": "Map data is available on the <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap project</a>, the tile server is provided by <a href=\"http://basemaps.cartocdn.com\" target=\"_blank\">CARTO</a>, and the library used is the well-known <a href=\"https://leafletjs.com\" target=\"_blank\">Leaflet</a>."
+    "about-source-map": "Map data is available on the <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap project</a>, the tile server is provided by <a href=\"http://basemaps.cartocdn.com\" target=\"_blank\">CARTO</a>, and the library used is the well-known <a href=\"https://leafletjs.com\" target=\"_blank\">Leaflet</a>.",
+    "map-legend": "Map legend",
+    "map-legend-type": "Airport types",
+    "map-legend-weather": "Flight categories",
+    "map-legend-restriction": "Airport restrictions",
+    "map-legend-navaid": "Navaids"
 }

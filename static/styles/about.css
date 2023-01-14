@@ -21,3 +21,47 @@
 .about p a {
     color: var( --primary );
 }
+
+.about hr {
+    margin-top: 80px;
+    height: 10px;
+    background: var( --shade-1 );
+    border: 0;
+}
+
+/* legend */
+
+.map-legend {
+    column-count: 2;
+    column-gap: 80px;
+}
+
+.map-legend .legend-box {
+    break-inside: avoid;
+    margin-bottom: 60px;
+}
+
+.map-legend .legend-box p {
+    font-weight: 800;
+}
+
+.map-legend .legend-box .legend {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.map-legend .legend-box .legend li {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+}
+
+.map-legend .legend-box .legend li mapicon,
+.map-legend .legend-box .legend li navicon,
+.map-legend .legend-box .legend li wxicon {
+    width: 30px;
+    height: 30px;
+}

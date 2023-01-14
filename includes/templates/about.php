@@ -46,6 +46,54 @@
         <p><?php _i18n( 'about-source-weather' ); ?></p>
         <p><?php _i18n( 'about-source-sigmet' ); ?></p>
         <p><?php _i18n( 'about-source-map' ); ?></p>
+        <hr />
+        <h2 class="secondary-headline"><?php _i18n( 'map-legend' ); ?></h2>
+        <div class="map-legend">
+            <div class="legend-box">
+                <p><?php _i18n( 'map-legend-type' ); ?></p>
+                <ul class="legend">
+                    <?php foreach( [ 'large', 'medium', 'small', 'heliport', 'altiport', 'seaplane', 'closed' ] as $type ) { ?>
+                        <li class="airport-<?php echo $type; ?>">
+                            <mapicon></mapicon>
+                            <span><?php _i18n( 'airport-type-' . $type ); ?></span>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+            <div class="legend-box">
+                <p><?php _i18n( 'map-legend-weather' ); ?></p>
+                <ul class="legend">
+                    <?php foreach( [ 'VFR', 'MVFR', 'IFR', 'LIFR', 'UNK' ] as $cat ) { ?>
+                        <li class="cat-<?php echo $cat; ?>">
+                            <wxicon></wxicon>
+                            <span><?php _i18n( 'cat-' . $cat . '-label' ); ?> (<?php _i18n( 'cat-' . $cat ); ?>)</span>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+            <div class="legend-box">
+                <p><?php _i18n( 'map-legend-restriction' ); ?></p>
+                <ul class="legend">
+                    <?php foreach( [ 'public', 'private', 'military' ] as $res ) { ?>
+                        <li class="airport-medium restriction-<?php echo $res; ?>">
+                            <mapicon></mapicon>
+                            <span><?php _i18n( 'airport-res-' . $res ); ?></span>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+            <div class="legend-box">
+                <p><?php _i18n( 'map-legend-navaid' ); ?></p>
+                <ul class="legend">
+                    <?php foreach( [ 'DME', 'NDB', 'NDB-DME', 'VOR', 'VOR-DME', 'TACAN', 'VORTAC' ] as $navaid ) { ?>
+                        <li class="navaid-<?php echo $navaid; ?>">
+                            <navicon></navicon>
+                            <span><?php _i18n( 'navaid-' . $navaid ); ?></span>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 <?php _footer(); ?>
