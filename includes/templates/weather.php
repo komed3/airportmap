@@ -139,7 +139,7 @@
     </a>
     <div class="content-normal">
         <h2 class="secondary-headline"><?php _i18n( 'weather-title' ); ?></h2>
-        <?php _station_list( $stations, $path[3] ?? 1, 'weather' ); ?>
+        <?php _station_list( $stations, $path[1] ?? 1, 'weather' ); ?>
     </div>
 </div>
 <?php _footer(); ?>
