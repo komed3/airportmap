@@ -29,7 +29,9 @@
     /* defaults */
 
     define( 'COOKIE_EXP', time() + 7776000 );
-    define( 'LOCALE', 'en-US' );
+    define( 'LOCALE', 'en' );
+
+    define( 'LANGUAGES', [ 'en', 'de' ] );
 
     /* API key */
 

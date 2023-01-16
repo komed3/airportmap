@@ -28,10 +28,6 @@
 
     $DB->set_charset( DB_CHARSET );
 
-    /* load language messages */
-
-    i18n_load();
-
     /* airport count by type */
 
     define( 'AIRPORT_STATS', airport_count() );
@@ -50,6 +46,18 @@
     /* fetch path */
 
     $path = array_values( array_filter( explode( '/', $_SERVER['REQUEST_URI'] ) ) );
+
+    /* load language messages */
+
+    if( in_array( $path[0] ?? '', LANGUAGES ) ) {
+
+        i18n_load( array_shift( $path ) );
+
+    } else {
+
+        i18n_load();
+
+    }
 
     /* load template */
 

@@ -19,7 +19,7 @@ var prevent = ( e ) => {
 var number_format = ( number, options = {} ) => {
 
     return ( new Intl.NumberFormat(
-        $.cookie( 'locale' ) || 'en-US',
+        $.cookie( 'locale' ) || 'en',
         options
     ) ).format( number );
 
