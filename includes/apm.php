@@ -51,7 +51,7 @@
 
     if( in_array( $path[0] ?? '', LANGUAGES ) ) {
 
-        i18n_load( array_shift( $path ) );
+        i18n_load( array_shift( $path ), true );
 
     } else {
 
