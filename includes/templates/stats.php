@@ -306,7 +306,7 @@
                     LIMIT    0, 10
                 ' )->fetch_all( MYSQLI_ASSOC );
 
-                $tz_max = min( 10000, max( array_column( $tz_res, 'cnt' ) ) );
+                $tz_max = min( 15000, max( array_column( $tz_res, 'cnt' ) ) );
 
                 foreach( $tz_res as $tz ) {
 
