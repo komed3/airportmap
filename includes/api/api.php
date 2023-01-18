@@ -13,7 +13,7 @@
 
     /* auth api access */
 
-    if( !defined( 'NOKEY' ) &&
+    if( !defined( 'NO_KEY' ) &&
         !array_key_exists( 'token', $_POST ) &&
         API_KEY != strtolower( trim( $_GET['api_key'] ?? '' ) ) ) {
 

@@ -1,6 +1,6 @@
 <?php
 
-    define( 'NOKEY', true );
+    define( 'NO_KEY', true );
 
     require_once __DIR__ . '/api.php';
 
@@ -59,7 +59,7 @@
                             <div class="info">
                                 <div class="temp">
                                     <b><?php echo temp_in( (int) $weather['temp'], 'c' ); ?></b>
-                                    <span>(<?php echo temp_in( ( (int) $weather['temp'] ) * 1.8 + 32, 'f' ); ?></span>
+                                    <span>(<?php echo temp_in( ( (int) $weather['temp'] ) * 1.8 + 32, 'f' ); ?>)</span>
                                 </div>
                                 <div class="wx"><?php echo ucfirst( wx( $weather ) ); ?></div>
                                 <div class="wind"><?php echo wind_info( $weather ); ?></div>
