@@ -22,7 +22,8 @@
 }
 
 .sigmets .sigmet.hazard-CONV .sigmet-header,
-.sigmets .sigmet.hazard-FC .sigmet-header {
+.sigmets .sigmet.hazard-FC .sigmet-header,
+.sigmets .sigmet.hazard-TC .sigmet-header {
     background: var( --indicator-pink );
 }
 

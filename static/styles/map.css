@@ -266,7 +266,8 @@
 
 .map .map-overlay .map-infobox.airport.cat-LIFR,
 .map .map-overlay .map-infobox.sigmet-CONV,
-.map .map-overlay .map-infobox.sigmet-FC {
+.map .map-overlay .map-infobox.sigmet-FC,
+.map .map-overlay .map-infobox.sigmet-TC {
     background: var( --indicator-pink );
 }
 
