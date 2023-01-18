@@ -18,6 +18,16 @@
     color: var( --primary );
 }
 
+.text-content p code {
+    margin-right: 12px;
+    padding: 4px 6px;
+    font-family: 'SourceCodePro', monospace;
+    font-size: 16px;
+    font-weight: 800;
+    background: var( --shade-1 );
+    border-radius: 4px;
+}
+
 .text-content hr {
     margin-top: 80px;
     height: 10px;
