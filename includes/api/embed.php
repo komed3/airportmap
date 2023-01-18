@@ -11,7 +11,13 @@
     $ICAO = strtoupper( trim( $_GET['airport'] ?? '' ) );
     $airport = airport_by( 'ICAO', $ICAO );
 
-    $__site_canonical = $base . 'airport/' . $ICAO . '/info';
+    if( $airport ) {
+
+        $weather = airport_weather( $airport );
+
+    } else $weather = null;
+
+    $__site_canonical = base_url( 'airport/' . $ICAO . '/info' );
 
     $__site_title = $airport['name'] ?? i18n( 'unknown' );
     $__site_desc = i18n( 'embed-info', $__site_title, $ICAO );
@@ -28,15 +34,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
         <?php _site_header(); ?>
     </head>
-    <body>
+    <body class="cat-<?php echo $weather['flight_cat'] ?? 'UNK'; ?>">
         <div id="wrapper">
             <?php if( !empty( $airport ) ) { ?>
                 <div class="embed airport">
                     <div class="embed-header">
                         <h1><?php echo $ICAO; ?></h1>
-                        <h2><?php echo $airport['name']; ?></h2>
+                        <h2><?php echo $__site_title; ?></h2>
                     </div>
-                    <?php if( !empty( $weather = airport_weather( $airport ) ) ) { ?>
+                    <?php if( !empty( $weather ) ) { ?>
                         <div class="embed-weather">
                             <?php if( $weather['flight_cat'] ) { ?>
                                 <div class="cat">
@@ -63,8 +69,12 @@
                     <?php } ?>
                     <ul class="embed-list">
                         <li>
+                            <i class="icon">luggage</i>
+                            <span><?php _i18n( 'airport-type-' . $airport['type'] ); ?></span>
+                        </li>
+                        <li>
                             <i class="icon">location_on</i>
-                            <span><?php echo region_link( 'country', $airport['country'] ); ?></span>
+                            <span><?php echo region_name( 'country', $airport['country'] ); ?></span>
                         </li>
                         <li>
                             <i class="icon">near_me</i>
@@ -76,15 +86,28 @@
                             <span>(<?php echo alt_in( (int) $airport['alt'] / 3.281, 'm&#8239;MSL' ); ?>)</span>
                         </li>
                     </ul>
-                    <a href="<?php echo $__site_canonical; ?>">
+                    <div class="embed-space"></div>
+                    <a class="embed-link" href="<?php echo $__site_canonical; ?>" target="_blank">
                         <span><?php _i18n( 'view-airport' ); ?></span>
                         <i class="icon">chevron_right</i>
                     </a>
+                    <p class="embed-credits"><?php _i18n( 'embed-credits', date( 'Y' ), base_url() ); ?></p>
                 </div>
             <?php } else { ?>
-                <div class="embed empty"></div>
+                <div class="embed empty">
+                    <div class="embed-header">
+                        <h1><?php echo $ICAO; ?></h1>
+                        <h2><?php echo $__site_title; ?></h2>
+                    </div>
+                    <p class="embed-empty"><?php _i18n( 'embed-empty' ); ?></p>
+                    <div class="embed-space"></div>
+                    <a class="embed-link" href="<?php _base_url( 'airports' ); ?>" target="_blank">
+                        <span><?php _i18n( 'embed-empty-link' ); ?></span>
+                        <i class="icon">chevron_right</i>
+                    </a>
+                    <p class="embed-credits"><?php _i18n( 'embed-credits', date( 'Y' ), base_url() ); ?></p>
+                </div>
             <?php } ?>
-            <p class="credits"><?php _i18n( 'embed-credits', date( 'Y' ), base_url() ); ?></p>
         </div>
         <?php _site_end(); ?>
     </body>
