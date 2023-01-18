@@ -58,7 +58,9 @@
                     <div class="language-selector">
                         <select data-action="select-language">
                             <?php foreach( LANGUAGES as $lng ) { ?>
-                                <option value="<?php echo $lng; ?>"><?php _i18n( 'site-language-' . $lng ); ?></option>
+                                <option value="<?php echo $lng; ?>" <?php if( $lng == i18n_locale() ) { ?>selected<?php } ?>>
+                                    <?php _i18n( 'site-language-' . $lng ); ?>
+                                </option>
                             <?php } ?>
                         </select>
                         <i class="icon">language</i>
