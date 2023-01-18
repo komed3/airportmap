@@ -34,3 +34,37 @@
     background: var( --shade-1 );
     border: 0;
 }
+
+.text-content dl {
+    margin: 60px 0;
+}
+
+.text-content dl dt {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.text-content dl dt a {
+    padding: 4px 8px;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var( --gray-0 );
+    background: var( --primary );
+    border-radius: 4px;
+}
+
+.text-content dl dt a:hover {
+    text-decoration: none;
+}
+
+.text-content dl dt:not(:first-of-type) {
+    margin-top: 30px;
+}
+
+.text-content dl dd {
+    margin: 0;
+}
