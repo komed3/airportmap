@@ -1,5 +1,6 @@
 <?php
 
+    add_resource( 'text', 'css', 'text.css' );
     add_resource( 'about', 'css', 'about.css' );
 
     $__site_canonical = $base . 'about';
@@ -10,7 +11,7 @@
     _header();
 
 ?>
-<div class="content-full about">
+<div class="content-full about text-content">
     <div class="site-image">
         <div class="credits"><?php _i18n(
             'pix-credits',
