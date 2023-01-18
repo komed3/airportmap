@@ -494,6 +494,7 @@
     "embed-desc": "Embed airport info and weather into your own website",
     "embed-intro": "You want to provide information and weather of an airport on your own website without programming? Simply use Airportmap and get hourly updated data to embed.",
     "embed-usage": "To embed data from Airportmap into your website, simply copy the code below into your HTML and you're done. Everything else will be handled for you. By using this function, you agree to our <a href=\"$1\">privacy policy</a> and may have to mention external content on your site.",
+    "embed-test": "Test the code above and see the result you embed on your website:",
     "embedform-title": "Generate embed code",
     "embedform-code": "Airport code (ICAO)",
     "embedform-lang": "Language",

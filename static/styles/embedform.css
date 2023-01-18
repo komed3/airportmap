@@ -1,6 +1,13 @@
-.embedform {
+.embed-generator {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: stretch;
+    gap: 30px;
     margin: 60px 0;
-    width: 800px;
+}
+
+.embedform,
+.embedcode {
     padding: 30px;
     background: var( --gray-0 );
     border-radius: 12px;
@@ -46,4 +53,18 @@
     font-size: 20px;
     font-weight: 600;
     background: var( --primary );
+}
+
+.embedcode {
+    font-family: 'SourceCodePro';
+    font-size: 20px;
+    border: 0;
+    resize: none;
+}
+
+.embediframe {
+    width: 400px;
+    height: 600px;
+    border: 0;
+    border-radius: 12px;
 }
