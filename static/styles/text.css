@@ -1,0 +1,26 @@
+.text-content p {
+    width: 75%;
+    line-height: 1.6;
+    font-size: 20px;
+}
+
+.text-content p.first {
+    width: 55%;
+    font-size: 26px;
+}
+
+.text-content p.warn {
+    font-weight: 800;
+    color: var( --indicator-red );
+}
+
+.text-content p a {
+    color: var( --primary );
+}
+
+.text-content hr {
+    margin-top: 80px;
+    height: 10px;
+    background: var( --shade-1 );
+    border: 0;
+}

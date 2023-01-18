@@ -473,5 +473,11 @@
     "map-legend-type": "Airport types",
     "map-legend-weather": "Flight categories",
     "map-legend-restriction": "Airport restrictions",
-    "map-legend-navaid": "Navaids"
+    "map-legend-navaid": "Navaids",
+    "privacy-consens": "Services provided by this website are available for free and without any advertisements. The source code can be viewed openly at <a href=\"https://github.com/komed3/airportmap\" target=\"_blank\">@komed3/airportmap</a>. Additional data and information other than those mentioned below are explicitly not stored. Functional cookies are used, as listed below.",
+    "privacy-storage-headline": "Data storage",
+    "privacy-storage": "This page collects a series of general data and information with each call by a person using it or an automated system. This general data and information is stored in the server’s log files. The browser types and versions used, the operating system used by the accessing system, the Internet page from which an accessing system accesses this page (so-called referrer), the sub-websites that are accessed via an accessing system to this page, the date and time of an access to the Internet page, an Internet protocol address (IP address), the Internet service provider of the accessing system and other similar data and information that serve to avert danger in the event of attacks on information technology systems may be recorded.",
+    "privacy-cookies-headline": "Cookies",
+    "privacy-cookies": "Used cookies serve to store the preferences of a user for purposes of providing the services of this website. These are the following:",
+    "privacy-contact": "If you have any questions about the website, stored data or cookies, please contact us at <a href=\"mailto:privacy@airportmap.de\">privacy@airportmap.de</a> or on GitHub at <a href=\"https://github.com/komed3/airportmap/issues\" target=\"_blank\">this address</a>."
 }
