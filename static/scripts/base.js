@@ -99,6 +99,12 @@ var freq_format = ( frequency ) => {
                 );
                 break;
 
+            case 'embed':
+                location.href = baseurl + '/embed/' +
+                    ( $( this ).find( '[name="code"]' ).val() || '' ).toString().trim().toUpperCase() + '/' +
+                    ( $( this ).find( '[name="lang"]' ).val() || '' ).toString().trim().toLowerCase();
+                break;
+
         }
 
         return false;
