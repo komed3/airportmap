@@ -57,8 +57,9 @@
                     <h3><?php _i18n( 'footer-headline-language' ); ?></h3>
                     <div class="language-selector">
                         <select data-action="select-language">
-                            <option value="en"><?php _i18n( 'site-language-en' ); ?></option>
-                            <option value="de"><?php _i18n( 'site-language-de' ); ?></option>
+                            <?php foreach( LANGUAGES as $lng ) { ?>
+                                <option value="<?php echo $lng; ?>"><?php _i18n( 'site-language-' . $lng ); ?></option>
+                            <?php } ?>
                         </select>
                         <i class="icon">language</i>
                     </div>
