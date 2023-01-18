@@ -63,6 +63,11 @@
 
     }
 
+    $tabs[] = [
+        'i18n' => 'link-embed',
+        'url' => 'embed/' . $airport['ICAO'] . '/' . i18n_locale()
+    ];
+
 ?>
 <div class="content-full airport">
     <?php if( $image = airport_image( $airport['ICAO'] ) ) { ?>
