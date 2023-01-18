@@ -299,7 +299,7 @@
             ][ strtolower( trim( $type ) ) ] ?? null ) &&
             !array_key_exists(
                 $res_id,
-                $__static_files
+                (array) $__static_files
             )
         ) {
 

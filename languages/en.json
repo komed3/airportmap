@@ -499,6 +499,8 @@
     "embedform-code": "Airport code (ICAO)",
     "embedform-lang": "Language",
     "embedform-submit": "Generate",
+    "embed-info": "Airport information and weather for $1 ($2)",
+    "embed-credits": "© $1 <a href=\"$2\" target=\"_blank\">Airportmap</a>",
     "privacy-consens": "Services provided by this website are available for free and without any advertisements. The source code can be viewed openly at <a href=\"https://github.com/komed3/airportmap\" target=\"_blank\">@komed3/airportmap</a>. Additional data and information other than those mentioned below are explicitly not stored. Functional cookies are used, as listed below.",
     "privacy-storage-headline": "Data storage",
     "privacy-storage": "This page collects a series of general data and information with each call by a person using it or an automated system. This general data and information is stored in the server’s log files. The browser types and versions used, the operating system used by the accessing system, the Internet page from which an accessing system accesses this page (so-called referrer), the sub-websites that are accessed via an accessing system to this page, the date and time of an access to the Internet page, an Internet protocol address (IP address), the Internet service provider of the accessing system and other similar data and information that serve to avert danger in the event of attacks on information technology systems may be recorded.",
