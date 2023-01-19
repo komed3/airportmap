@@ -376,6 +376,7 @@
     "searchform-submit-title": "Suche nach Flughäfen in der ganzen Welt",
     "sigmet-filter-change": "Änderung",
     "sigmet-filter-hazard": "Gefährdung",
+    "sigmet-hazard": "$1 ($2)",
     "sigmets-desc": "Liste der aktiv gemeldeten signifikanten Wetterbedingungen (SIGMET)",
     "sigmets-title": "$1 aktive SIGMETs",
     "site-desc-default": "Entdecke Flughäfen auf der ganzen Welt mit Infos und Wetter.",

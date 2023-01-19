@@ -376,6 +376,7 @@
     "searchform-submit-title": "Search airports all over the world",
     "sigmet-filter-change": "Changing",
     "sigmet-filter-hazard": "Hazard",
+    "sigmet-hazard": "$2 $1",
     "sigmets-desc": "List of active reported significant weather conditions (SIGMET)",
     "sigmets-title": "View $1 active SIGMETs",
     "site-desc-default": "Discover Airports all over the World with info & weather.",
