@@ -1,6 +1,7 @@
 var baseurl = window.location.origin,
     resurl = baseurl + '/static/resources/',
-    apiurl = baseurl + '/includes/api/';
+    apiurl = baseurl + '/includes/api/',
+    use_cookies = false;
 
 var get_token = () => {
 
@@ -53,6 +54,12 @@ var freq_format = ( frequency ) => {
 
         }
 
+        if( !!( $.cookie( 'cookie_test' ) || 0 ) ) {
+
+            use_cookies = true;
+
+        }
+
     } );
 
     $( document ).on( 'click', '[data-action]', function( e ) {
@@ -65,6 +72,11 @@ var freq_format = ( frequency ) => {
                 $( 'html, body' ).animate( {
                     scrollTop: 0
                 }, 'fast' );
+                break;
+
+            case 'cookie':
+                $.cookie( 'cookie_test', +!!parseInt( $( this ).attr( 'data-cookie' ) ) );
+                location.reload();
                 break;
 
         }

@@ -57,7 +57,7 @@
 
             $load_lang = $lang;
 
-            if( $set_cookie ) {
+            if( !!( $_COOKIE['cookie_test'] ?? 0 ) && $set_cookie ) {
 
                 setcookie( 'locale', $load_lang, COOKIE_EXP );
 

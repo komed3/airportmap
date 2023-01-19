@@ -30,11 +30,15 @@ var maps_config = {},
         let pos = maps[ uuid ].getCenter(),
             zoom = maps[ uuid ].getZoom();
 
-        $.cookie( 'apm_lastpos', JSON.stringify( {
-            lat: pos.lat,
-            lon: pos.lng,
-            zoom: zoom
-        } ) );
+        if( use_cookies ) {
+
+            $.cookie( 'apm_lastpos', JSON.stringify( {
+                lat: pos.lat,
+                lon: pos.lng,
+                zoom: zoom
+            } ) );
+
+        }
 
         location.hash =
             zoom + '/' +
@@ -262,19 +266,25 @@ var maps_config = {},
 
     var map_sigmets = ( uuid ) => {
 
-        if( 'sigmet' in maps_layer[ uuid ] ) {
+        let sigmet = 0;
 
-            $.cookie( 'apm_sigmet', 0 );
+        if( 'sigmet' in maps_layer[ uuid ] ) {
 
             map_remove_layer( uuid, 'sigmet', true );
 
         } else {
 
-            $.cookie( 'apm_sigmet', 1 );
+            sigmet = 1;
 
             maps_layer[ uuid ].sigmet = L.layerGroup().addTo( maps[ uuid ] );
 
             map_sigmets_update( uuid );
+
+        }
+
+        if( use_cookies ) {
+
+            $.cookie( 'apm_sigmet', sigmet );
 
         }
 
@@ -487,15 +497,15 @@ var maps_config = {},
 
     var map_day_night_border = ( uuid ) => {
 
-        if( 'terminator' in maps_layer[ uuid ] ) {
+        let day_night = 0;
 
-            $.cookie( 'apm_day_night', 0 );
+        if( 'terminator' in maps_layer[ uuid ] ) {
 
             map_remove_layer( uuid, 'terminator', true );
 
         } else {
 
-            $.cookie( 'apm_day_night', 1 );
+            day_night = 1;
 
             maps_layer[ uuid ].terminator = L.terminator();
 
@@ -504,6 +514,12 @@ var maps_config = {},
             maps_layer[ uuid ].terminator.bringToBack();
 
             map_day_night_update( uuid );
+
+        }
+
+        if( use_cookies ) {
+
+            $.cookie( 'apm_day_night', day_night );
 
         }
 
@@ -684,7 +700,8 @@ var maps_config = {},
                 $( '[map-action="type"]' ).removeClass( 'active' );
                 $( this ).addClass( 'active' );
 
-                if( 'save_type' in maps_config[ uuid ] && maps_config[ uuid ].save_type ) {
+                if( use_cookies && 'save_type' in maps_config[ uuid ] &&
+                    maps_config[ uuid ].save_type ) {
 
                     $.cookie( 'apm_map_type', type );
 
@@ -701,7 +718,11 @@ var maps_config = {},
 
                 $( this ).toggleClass( 'active' );
 
-                $.cookie( 'apm_navaids', +!!$( this ).hasClass( 'active' ) );
+                if( use_cookies ) {
+
+                    $.cookie( 'apm_navaids', +!!$( this ).hasClass( 'active' ) );
+
+                }
 
                 map_load_marker( uuid );
 
