@@ -1,0 +1,60 @@
+.cookie {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: var( --gray-0 );
+    background: var( --primary );
+    z-index: 9999;
+}
+
+.cookie .cookie-icon {
+    position: absolute;
+    top: -40px;
+    left: calc( 50% - 40px );
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 52px;
+    background: var( --primary );
+    border-radius: 40px;
+}
+
+.cookie .cookie-content {
+    padding: 60px var( --padding-normal );
+}
+
+.cookie .cookie-content h1 {
+    margin: 0;
+    font-size: 26px;
+}
+
+.cookie .cookie-content p {
+    line-height: 1.5;
+    font-size: 20px;
+}
+
+.cookie .cookie-save {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    gap: 20px;
+}
+
+.cookie .cookie-save a {
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-size: 20px;
+    border: 1px solid var( --gray-0 );
+    border-radius: 6px;
+}
+
+.cookie .cookie-save a:hover {
+    text-decoration: none;
+}
+
+.cookie .cookie-save a.accept {
+    color: var( --primary );
+    background: var( --gray-0 );
+}
