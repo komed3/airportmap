@@ -1,7 +1,7 @@
 <?php
 
     $embed_code = $path[1] ?? 'KLAX';
-    $embed_lang = $path[2] ?? 'en';
+    $embed_lang = $path[2] ?? i18n_locale();
 
     $embed_url = API . 'embed.php?airport=' . $embed_code . '&lang=' . $embed_lang;
 
