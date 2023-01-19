@@ -73,6 +73,9 @@
             <div id="scroll-to-top" data-action="scroll-to-top" title="<?php _i18n( 'scroll-to-top' ); ?>">
                 <i class="icon">arrow_upward</i>
             </div>
+            <?php if( !isset( $_COOKIE['cookie_test'] ) ) {
+                load_tpl_part( '_cookie' );
+            } ?>
         </div>
         <?php _site_end(); ?>
     </body>
