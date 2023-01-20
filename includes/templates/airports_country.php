@@ -73,5 +73,17 @@
         [ 'country', $country->code ]
     ] ); ?>
     <?php _pagelist( 'airports/region', $list ); ?>
+    <div class="content-normal">
+        <?php _airport_list(
+            $DB->query( '
+                SELECT   *
+                FROM     ' . DB_PREFIX . 'airport
+                WHERE    country = "' . $country->code . '"
+                ORDER BY tier DESC
+            ' )->fetch_all( MYSQLI_ASSOC ),
+            $path[3] ?? 1,
+            'airports/country/' . $country->code
+        ); ?>
+    </div>
 </div>
 <?php _footer(); ?>
