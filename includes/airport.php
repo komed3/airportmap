@@ -393,14 +393,19 @@
                         </div>' : '' ) . '
                     </div>
                     <div class="condition">
-                        <div class="surface">
+                        <div class="surface" title="' . i18n( 'runway-surface' ) . '">
                             <i class="icon">dehaze</i>
                             <span>' . i18n( 'surface-' . $runway['surface'] ) . '</span>
                         </div>
-                        <div class="lighting ' . ( $runway['lighted'] ? 'lighted' : '' ) . '">
+                        <div class="lighting ' . ( $runway['lighted'] ? 'lighted' : '' ) . '" title="' . i18n( 'runway-lighting' ) . '">
                             <i class="icon">lightbulb</i>
                             <span>' . i18n( 'runway-lighted-' . $runway['lighted'] ) . '</span>
                         </div>
+                        ' . ( $runway['slope'] ? '<div class="slope" title="' . i18n( 'runway-slope' ) . '">
+                            <i class="icon">change_history</i>
+                            <span>' . __number( $runway['slope'], 1 ) . '&#8239;% (' .
+                                alt_in( $runway['vertical'], 'ft' ) . ')' . '</span>
+                        </div>' : '' ) . '
                     </div>
                     ' . ( $runway['l_dthr'] ? '<div class="dthr">
                         <span>
