@@ -19,7 +19,7 @@
 }
 
 .region .icao-map svg path {
-    fill: var( --gray-0 );
+    fill: var( --gray-1 );
     stroke: transparent;
     stroke-width: 3px;
 }
