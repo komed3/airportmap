@@ -199,7 +199,30 @@ var maps_config = {},
 
                 if( 'waypoints' in res.response ) {
 
-                    // waypoints
+                    Object.values( res.response.waypoints ).forEach( ( waypoint ) => {
+
+                        layer.addLayer(
+                            L.marker( L.latLng(
+                                parseFloat( waypoint.lat ),
+                                parseFloat( waypoint.lon )
+                            ), {
+                                interactive: false,
+                                icon: L.divIcon( {
+                                    iconSize: [ 20, 20 ],
+                                    iconAnchor: [ 10, 10 ],
+                                    className: 'waypoint',
+                                    html: '<wpicon></wpicon>'
+                                } )
+                            } ).bindTooltip(
+                                '<div class="IDENT">' + waypoint.ident + '</div>', {
+                                className: 'tooltip-waypoint',
+                                direction: 'center',
+                                permanent: true,
+                                opacity: 1
+                            } )
+                        );
+
+                    } );
 
                 }
 

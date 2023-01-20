@@ -350,6 +350,14 @@
     font-weight: 600;
 }
 
+.map .leaflet-tooltip.tooltip-waypoint {
+    padding-top: 34px;
+}
+
+.map .leaflet-tooltip.tooltip-waypoint .IDENT {
+    font-size: 9px;
+}
+
 .map[zoom="0"] .leaflet-tooltip.tooltip-sigmet,
 .map[zoom="1"] .leaflet-tooltip.tooltip-sigmet,
 .map[zoom="2"] .leaflet-tooltip.tooltip-sigmet,

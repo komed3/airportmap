@@ -2,7 +2,7 @@
 
     require_once __DIR__ . '/api.php';
 
-    $query = $navaids_query = '1';
+    $query = $coods_query = '1';
 
     if( array_key_exists( 'bounds', $_POST ) ) {
 
@@ -14,7 +14,7 @@
         $query .= ' AND ( lat BETWEEN ' . $lat_min . ' AND ' . $lat_max . ' )' .
                   ' AND ( lon BETWEEN ' . $lon_min . ' AND ' . $lon_max . ' )';
 
-        $navaids_query = $query;
+        $coods_query = $query;
 
     }
 
@@ -64,7 +64,13 @@
         'navaids' => ( $_POST['navaids'] ?? 0 ) == 1 ? $DB->query( '
             SELECT   _id, ident, type, frequency, lat, lon, alt
             FROM     ' . DB_PREFIX . 'navaid
-            WHERE    ' . $navaids_query . '
+            WHERE    ' . $coods_query . '
+            LIMIT    0, 50
+        ' )->fetch_all( MYSQLI_ASSOC ) : [],
+        'waypoints' => ( $_POST['waypoints'] ?? 0 ) == 1 ? $DB->query( '
+            SELECT   _id, ident, lat, lon
+            FROM     ' . DB_PREFIX . 'waypoint
+            WHERE    ' . $coods_query . '
             LIMIT    0, 50
         ' )->fetch_all( MYSQLI_ASSOC ) : []
     ] );
