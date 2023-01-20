@@ -235,13 +235,12 @@
                 ' )->fetch_object()->cnt )
             ]
         ], [
-            'icon' => 'airlines',
-            'label' => i18n( 'stats-service' ),
+            'icon' => 'api',
+            'label' => i18n( 'stats-waypoints' ),
             'value' => [
                 __number( $DB->query( '
-                    SELECT  COUNT( ICAO ) AS cnt
-                    FROM    ' . DB_PREFIX . 'airport
-                    WHERE   service = 1
+                    SELECT  COUNT( _id ) AS cnt
+                    FROM    ' . DB_PREFIX . 'waypoint
                 ' )->fetch_object()->cnt )
             ]
         ] ] ); ?>
