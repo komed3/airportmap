@@ -61,11 +61,11 @@
 
     /* load template */
 
-    if( is_readable( TEMPLATE . ( $tpl = ( $path[0] . '_' . $path[1] ) ?? '' ) . '.php' ) ) {
+    if( is_readable( TEMPLATE . ( $tpl = strtolower( $path[0] . '_' . $path[1] ) ) . '.php' ) ) {
 
         require_once TEMPLATE . $tpl . '.php';
 
-    } else if( is_readable( TEMPLATE . ( $tpl = $path[0] ?? 'map' ) . '.php' ) ) {
+    } else if( is_readable( TEMPLATE . ( $tpl = strtolower( $path[0] ?? 'map' ) ) . '.php' ) ) {
 
         require_once TEMPLATE . $tpl . '.php';
 
