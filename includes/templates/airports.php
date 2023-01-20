@@ -78,6 +78,7 @@
     $__site_desc = i18n( 'airports-desc', $_count );
 
     add_resource( 'region', 'css', 'region.css' );
+    add_resource( 'icao', 'js', 'icao.js' );
 
     _header();
 
@@ -104,6 +105,10 @@
     <?php _pagelist( 'airports/type', $types ); ?>
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-restriction' ); ?></h2>
     <?php _pagelist( 'airports/restriction', $rests ); ?>
+    <div class="icao-map">
+        <h2 class="secondary-headline"><?php _i18n( 'airports-by-icao' ); ?></h2>
+        <?php echo file_get_contents( RESOURCE . 'resources/icao-regions.svg' ); ?>
+    </div>
     <h2 class="secondary-headline content-normal"><?php _i18n( 'airports-by-zone' ); ?></h2>
     <?php _pagelist( 'airports/timezone', $zones ); ?>
 </div>

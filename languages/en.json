@@ -61,6 +61,7 @@
     "airport-weather-empty": "No weather data available at this airport.",
     "airport-weather-select": "$1 — $2",
     "airport-weather-station": "Weather Station",
+    "airports-by-icao": "Airports by ICAO codes",
     "airports-by-region": "Airports by regions",
     "airports-by-restriction": "Airports by usage",
     "airports-by-type": "Airports by types",
