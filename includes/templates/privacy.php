@@ -22,7 +22,7 @@
     <h2><?php _i18n( 'privacy-cookies-headline' ); ?></h2>
     <p><?php _i18n( 'privacy-cookies' ); ?></p>
     <?php foreach( [
-        'apm_lastpos', 'apm_map_type', 'apm_sigmet',
+        'apm_lastpos', 'apm_map_type', 'apm_sigmet', 'apm_waypoints',
         'apm_day_night', 'locale', 'cookie_test'
     ] as $cookie ) { ?>
         <p><code><?php echo $cookie; ?></code> <?php _i18n( 'privacy-cookie-' . $cookie ); ?></p>

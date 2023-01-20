@@ -37,6 +37,11 @@
                             <button class="map-day-night" map-action="day-night" title="<?php _i18n( 'map-overlay-day-night' ); ?>">
                                 <i class="icon">nights_stay</i>
                             </button>
+                            <button class="map-waypoints" map-action="waypoints" title="<?php _i18n( 'map-overlay-waypoints' ); ?>">
+                                <i class="icon">api</i>
+                            </button>
+                        </div>
+                        <div class="map-control-group">
                             <button class="map-mypos" map-action="mypos" title="<?php _i18n( 'map-overlay-mypos' ); ?>">
                                 <i class="icon">near_me</i>
                             </button>

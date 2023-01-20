@@ -123,7 +123,7 @@ morse {
     font-weight: 900;
 }
 
-mapicon, navicon, wxicon {
+mapicon, navicon, wxicon, wpicon {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -133,7 +133,7 @@ mapicon, navicon, wxicon {
     background-repeat: no-repeat;
 }
 
-mapicon[invert], navicon[invert], wxicon[invert] {
+mapicon[invert], navicon[invert], wxicon[invert], wpicon[invert] {
     filter: grayscale( 1 ) contrast( 10 ) invert( 1 );
 }
 
@@ -233,6 +233,10 @@ wxicon {
 
 .cat-LIFR wxicon {
     background-image: url( './../resources/cat-LIFR.svg' );
+}
+
+wpicon {
+    background-image: url( './../resources/waypoint.svg' );
 }
 
 .mypos, .halo {

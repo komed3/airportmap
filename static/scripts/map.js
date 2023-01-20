@@ -79,6 +79,7 @@ var maps_config = {},
         $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', false );
         $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', false );
         $( '#' + uuid + ' [map-action="navaids"]' ).hide();
+        $( '#' + uuid + ' [map-action="waypoints"]' ).hide();
 
         if( zoom <= ( maps_config[ uuid ].minZoom || 4 ) ) {
 
@@ -95,6 +96,7 @@ var maps_config = {},
         if( zoom >= 10 && maps_type[ uuid ] == 'airport' ) {
 
             $( '#' + uuid + ' [map-action="navaids"]' ).show();
+            $( '#' + uuid + ' [map-action="waypoints"]' ).show();
 
         }
 
@@ -137,6 +139,13 @@ var maps_config = {},
                 map.getZoom() >= 10 && (
                     maps_config[ uuid ].navaids || (
                         $.cookie( 'apm_navaids' ) || 0
+                    )
+                ) == 1
+            ),
+            waypoints: +!!(
+                map.getZoom() >= 10 && (
+                    maps_config[ uuid ].waypoints || (
+                        $.cookie( 'apm_waypoints' ) || 0
                     )
                 ) == 1
             )
@@ -185,6 +194,12 @@ var maps_config = {},
                         );
 
                     } );
+
+                }
+
+                if( 'waypoints' in res.response ) {
+
+                    // waypoints
 
                 }
 
@@ -622,6 +637,13 @@ var maps_config = {},
 
             }
 
+            if( ( !( 'waypoints' in data ) || data.waypoints ) &&
+                ( $.cookie( 'apm_waypoints' ) || 0 ) == 1 ) {
+
+                $( '[map-action="waypoints"]' ).click();
+
+            }
+
             if( data.save_position || false ) {
 
                 map_set_position( uuid );
@@ -721,6 +743,20 @@ var maps_config = {},
                 if( use_cookies ) {
 
                     $.cookie( 'apm_navaids', +!!$( this ).hasClass( 'active' ) );
+
+                }
+
+                map_load_marker( uuid );
+
+                break;
+
+            case 'waypoints':
+
+                $( this ).toggleClass( 'active' );
+
+                if( use_cookies ) {
+
+                    $.cookie( 'apm_waypoints', +!!$( this ).hasClass( 'active' ) );
 
                 }
 
