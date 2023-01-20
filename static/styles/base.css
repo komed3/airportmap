@@ -1186,3 +1186,7 @@ h2.secondary-headline {
 .skychart .labels .label.layer-OVX > * {
     background: var( --indicator-pink );
 }
+
+#content {
+    min-height: 75vh;
+}

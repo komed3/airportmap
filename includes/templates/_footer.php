@@ -1,3 +1,4 @@
+            </div>
             <div id="footer">
                 <div class="column">
                     <a href="<?php _base_url(); ?>" title="<?php _i18n( 'site-title-default' ); ?>" class="site-logo">

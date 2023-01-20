@@ -35,3 +35,4 @@
                 ] ], 'site-nav' ); ?>
                 <?php load_tpl_part( '_searchform' ); ?>
             </div>
+            <div id="content">
