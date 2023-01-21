@@ -99,6 +99,8 @@
     "change-nc": "no change",
     "change-wkn": "weakening",
     "clear-sky": "Clear sky",
+    "clock-date": "m/d/y",
+    "clock-time": "g:i a",
     "cloud-bkn": "broken clouds",
     "cloud-cavok": "cavok",
     "cloud-clear": "clear",

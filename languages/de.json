@@ -99,6 +99,8 @@
     "change-nc": "keine Änderung",
     "change-wkn": "besser werdend",
     "clear-sky": "klarer Himmel",
+    "clock-date": "d.m.Y",
+    "clock-time": "H:i",
     "cloud-bkn": "aufgerissene Bewölkung",
     "cloud-cavok": "cavok",
     "cloud-clear": "klar",

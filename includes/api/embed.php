@@ -85,6 +85,14 @@
                             <span><?php echo alt_in( (int) $airport['alt'] ); ?></span>
                             <span>(<?php echo alt_in( (int) $airport['alt'] / 3.281, 'm&#8239;MSL' ); ?>)</span>
                         </li>
+                        <?php if( $airport['timezone'] ) { ?><li>
+                            <i class="icon">schedule</i>
+                            <span><?php echo date(
+                                i18n( 'clock-time' ),
+                                time() + ( $airport['gmt_offset'] * 60 )
+                            ); ?></span>
+                            <span>(<?php echo $airport['timezone']; ?>)</span>
+                        </li><?php } ?>
                     </ul>
                     <div class="embed-space"></div>
                     <a class="embed-link" href="<?php echo $__site_canonical; ?>" target="_blank">
