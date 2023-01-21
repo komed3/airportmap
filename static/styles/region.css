@@ -21,7 +21,7 @@
 .region .icao-map svg path {
     fill: var( --gray-1 );
     stroke: transparent;
-    stroke-width: 3px;
+    stroke-width: 10px;
 }
 
 .region .icao-map svg path:hover {
