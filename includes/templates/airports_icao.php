@@ -29,6 +29,7 @@
                 AVG( lon ) AS lon_avg
         FROM    ' . DB_PREFIX . 'airport
         WHERE   ICAO LIKE "' . $plain . '%"
+        AND     LENGTH( ICAO ) = 4
     ' )->fetch_object();
 
     $count = count( $airports );
