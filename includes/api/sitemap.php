@@ -66,7 +66,7 @@
 
     /* regions */
 
-    foreach( [ 'continent', 'country', 'region' ] as $type ) {
+    foreach( [ 'continent', 'country', 'region', 'ICAO' ] as $type ) {
 
         foreach( array_column( $DB->query( '
             SELECT  code
