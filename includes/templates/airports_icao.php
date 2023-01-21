@@ -72,6 +72,22 @@
         <b><?php echo $_count; ?></b>
     </h1>
     <?php _breadcrumbs( $breadcrumbs ); ?>
+    <?php if( strlen( $ICAO->code ) == 1 ) {
+
+        _pagelist( 'airports/ICAO', $DB->query( '
+            SELECT   i.code AS page,
+                     CONCAT( i.code, ": ", i.name ) AS name,
+                     COUNT( a.ICAO ) AS cnt
+            FROM     ' . DB_PREFIX . 'ICAO i,
+                     ' . DB_PREFIX . 'airport a
+            WHERE    i.code LIKE "' . $ICAO->code . '%"
+            AND      i.code != "' . $ICAO->code . '"
+            AND      a.ICAO LIKE CONCAT( i.code, "%" )
+            GROUP BY i.code
+            ORDER BY i.code ASC
+        ' )->fetch_all( MYSQLI_ASSOC ) );
+
+    } ?>
     <div class="content-normal">
         <?php _airport_list(
             $airports, $path[3] ?? 1,
