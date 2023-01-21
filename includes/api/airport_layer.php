@@ -28,6 +28,12 @@
 
     }
 
+    if( array_key_exists( 'ICAO', $_POST ) ) {
+
+        $query .= ' AND ICAO LIKE "' . $_POST['ICAO'] . '%" ';
+
+    }
+
     if( array_key_exists( 'types', $_POST ) ) {
 
         $query .= ' AND type IN ( "' . implode( '", "', $_POST['types'] ) . '" )';

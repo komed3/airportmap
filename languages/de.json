@@ -71,6 +71,8 @@
     "airports-country-desc": "Liste aller Flughäfen in $1",
     "airports-country-title": "Flughäfen in $1",
     "airports-desc": "Liste der weltweiten Flughäfen",
+    "airports-icao-desc": "Flughäfen mit ICAO-Code $1 ($2)",
+    "airports-icao-title": "$2 ($1)",
     "airports-region-desc": "Liste aller Flughäfen in $1 / $4",
     "airports-region-title": "Flughäfen in $1 ($4)",
     "airports-restriction-desc": "Liste aller $1",
