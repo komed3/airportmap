@@ -85,6 +85,7 @@
             WHERE    i.code LIKE "' . $ICAO->code . '%"
             AND      i.code != "' . $ICAO->code . '"
             AND      a.ICAO LIKE CONCAT( i.code, "%" )
+            AND      LENGTH( a.ICAO ) = 4
             GROUP BY i.code
             ORDER BY i.code ASC
         ' )->fetch_all( MYSQLI_ASSOC ) );
