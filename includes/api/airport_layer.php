@@ -46,6 +46,12 @@
 
     }
 
+    if( array_key_exists( 'restriction', $_POST ) ) {
+
+        $query .= ' AND restriction = "' . $_POST['restriction'] . '"';
+
+    }
+
     if( array_key_exists( 'service', $_POST ) ) {
 
         $query .= ' AND service = ' . +!!( $_POST['service'] );
