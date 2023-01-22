@@ -24,7 +24,7 @@
                             <i class="icon">location_searching</i>
                         </button>
                         <button class="map-type-weather" map-action="type" map-type="weather" title="<?php _i18n( 'map-overlay-type-weather' ); ?>">
-                            <i class="icon">rainy</i>
+                            <i class="icon">sunny</i>
                         </button>
                     </div>
                     <div class="map-control-group">
