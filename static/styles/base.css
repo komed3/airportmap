@@ -1165,3 +1165,38 @@ h2.secondary-headline {
 #content {
     min-height: 75vh;
 }
+
+/* mobile support */
+
+@media all and ( max-width: 1600px ) {
+
+    :root {
+
+        --padding-normal: 5%;
+        --padding-wide: 15%;
+
+    }
+
+}
+
+@media all and ( max-width: 1200px ) {
+
+    :root {
+
+        --padding-normal: var( --padding-narrow );
+        --padding-wide: 10%;
+
+    }
+
+}
+
+@media all and ( max-width: 900px ) {
+
+    :root {
+
+        --padding-narrow: 20px;
+        --padding-wide: 50px;
+
+    }
+
+}
