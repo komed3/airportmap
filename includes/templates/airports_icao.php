@@ -17,6 +17,7 @@
         SELECT   *
         FROM     ' . DB_PREFIX . 'airport
         WHERE    ICAO LIKE "' . $plain . '%"
+        AND      LENGTH( ICAO ) = 4
         ORDER BY tier DESC
     ' )->fetch_all( MYSQLI_ASSOC );
 

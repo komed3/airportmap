@@ -30,7 +30,8 @@
 
     if( array_key_exists( 'ICAO', $_POST ) ) {
 
-        $query .= ' AND ICAO LIKE "' . $_POST['ICAO'] . '%" ';
+        $query .= ' AND ICAO LIKE "' . $_POST['ICAO'] . '%" ' .
+                  ' AND LENGTH( ICAO ) = 4 ';
 
     }
 
