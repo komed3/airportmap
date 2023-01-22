@@ -75,7 +75,7 @@
             <div class="legend-box">
                 <p><?php _i18n( 'map-legend-restriction' ); ?></p>
                 <ul class="legend">
-                    <?php foreach( [ 'public', 'private', 'military' ] as $res ) { ?>
+                    <?php foreach( [ 'public', 'joint_use', 'military', 'private' ] as $res ) { ?>
                         <li class="airport-medium restriction-<?php echo $res; ?>">
                             <mapicon></mapicon>
                             <span><?php _i18n( 'airport-res-' . $res ); ?></span>

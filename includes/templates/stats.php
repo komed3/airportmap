@@ -374,7 +374,7 @@
             'icon' => 'military_tech',
             'label' => i18n( 'airport-resp-military' ),
             'value' => [
-                __number( $res_count['military'] )
+                __number( $res_count['military'] + $res_count['joint_use'] )
             ]
         ], [
             'icon' => 'lock_open',

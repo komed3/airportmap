@@ -27,7 +27,7 @@
         <div class="label"><?php _i18n( 'stats-airfield' ); ?></div>
     </a>
     <a href="<?php _base_url( 'airports/restriction/military' ); ?>" class="stats-col">
-        <div class="value"><?php echo __number( $res_stats['military'] ); ?></div>
+        <div class="value"><?php echo __number( $res_stats['military'] + $res_stats['joint_use'] ); ?></div>
         <div class="label"><?php _i18n( 'stats-airbase' ); ?></div>
     </a>
     <a href="<?php _base_url( 'airports/type/heliport' ); ?>" class="stats-col">
