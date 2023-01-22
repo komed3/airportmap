@@ -1,48 +1,55 @@
-.map.full-screen {
+.map-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.map-container.full-screen {
     width: 100%;
     height: calc( 100vh - 80px );
 }
 
-.map .map-overlay {
+/* map overlay */
+
+.map-container .map-overlay {
     pointer-events: none;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 999;
+    z-index: 9999;
 }
 
-.map .map-overlay * {
+.map-container .map-overlay * {
     pointer-events: auto;
 }
 
-.map .map-overlay button {
+.map-container .map-overlay button {
     background: var( --gray-4 );
     opacity: 0.7;
     transition: all 100ms ease-out;
 }
 
-.map .map-overlay button:hover {
+.map-container .map-overlay button:hover {
     opacity: 1;
 }
 
-.map .map-overlay button.active {
+.map-container .map-overlay button.active {
     background: var( --gray-6 );
     opacity: 1;
 }
 
-.map .map-overlay button:disabled {
+.map-container .map-overlay button:disabled {
     pointer-events: none;
     opacity: 0.25;
     cursor: not-allowed;
 }
 
-.map .map-overlay button .icon {
+.map-container .map-overlay button .icon {
     font-size: 26px;
 }
 
-.map .map-overlay .map-control {
+.map-container .map-overlay .map-control {
     position: absolute;
     top: 20px;
     left: 20px;
@@ -51,7 +58,7 @@
     gap: 6px;
 }
 
-.map .map-overlay .map-control .map-control-group {
+.map-container .map-overlay .map-control .map-control-group {
     display: flex;
     flex-flow: column nowrap;
     gap: 1px;
@@ -60,12 +67,12 @@
     overflow: hidden;
 }
 
-.map .map-overlay .map-control .map-control-group button {
+.map-container .map-overlay .map-control .map-control-group button {
     width: 40px;
     height: 40px;
 }
 
-.map .map-overlay .map-scroll-below {
+.map-container .map-overlay .map-scroll-below {
     position: absolute;
     left: calc( 50% - 20px );
     bottom: 20px;
@@ -75,11 +82,11 @@
     transform: scale( 1 );
 }
 
-.map .map-overlay .map-scroll-below:hover {
+.map-container .map-overlay .map-scroll-below:hover {
     transform: scale( 1.1 );
 }
 
-.map .map-overlay .map-infobox {
+.map-container .map-overlay .map-infobox {
     position: absolute;
     top: 0;
     right: 0;
@@ -94,7 +101,7 @@
     overflow-y: auto;
 }
 
-.map .map-overlay .map-infobox .infobox-header .infobox-image {
+.map-container .map-overlay .map-infobox .infobox-header .infobox-image {
     position: relative;
     margin: -20px -20px 16px -20px;
     width: auto;
@@ -105,7 +112,7 @@
     background-repeat: no-repeat;
 }
 
-.map .map-overlay .map-infobox .infobox-header .infobox-image .infobox-image-credits {
+.map-container .map-overlay .map-infobox .infobox-header .infobox-image .infobox-image-credits {
     position: absolute;
     left: 24px;
     right: 6px;
@@ -120,20 +127,20 @@
     opacity: 0.8;
 }
 
-.map .map-overlay .map-infobox .infobox-header .infobox-title {
+.map-container .map-overlay .map-infobox .infobox-header .infobox-title {
     margin: 0;
     line-height: 1.2;
     font-size: 22px;
     font-weight: 600;
 }
 
-.map .map-overlay .map-infobox .infobox-header .infobox-subtitle {
+.map-container .map-overlay .map-infobox .infobox-header .infobox-subtitle {
     margin: 0;
     font-size: 14px;
     font-weight: 300;
 }
 
-.map .map-overlay .map-infobox .infobox-header .infobox-close {
+.map-container .map-overlay .map-infobox .infobox-header .infobox-close {
     position: relative;
     float: right;
     display: flex;
@@ -148,33 +155,33 @@
     cursor: pointer;
 }
 
-.map .map-overlay .map-infobox.image .infobox-header .infobox-close {
+.map-container .map-overlay .map-infobox.image .infobox-header .infobox-close {
     margin-top: 20px;
     box-shadow: 0 0 10px var( --shade-3 );
 }
 
-.map .map-overlay .map-infobox .infobox-header .infobox-close .icon {
+.map-container .map-overlay .map-infobox .infobox-header .infobox-close .icon {
     font-size: 26px;
     color: var( --gray-5 );
 }
 
-.map .map-overlay .map-infobox .infobox-content {
+.map-container .map-overlay .map-infobox .infobox-content {
     margin: 30px 0;
 }
 
-.map .map-overlay .map-infobox .infobox-content hr {
+.map-container .map-overlay .map-infobox .infobox-content hr {
     margin: 20px 0;
     border: 0;
     border-top: 1px solid var( --light-3 );
 }
 
-.map .map-overlay .map-infobox .infobox-content .infobox-list {
+.map-container .map-overlay .map-infobox .infobox-content .infobox-list {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.map .map-overlay .map-infobox .infobox-content .infobox-list li {
+.map-container .map-overlay .map-infobox .infobox-content .infobox-list li {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -185,15 +192,15 @@
     font-weight: 300;
 }
 
-.map .map-overlay .map-infobox .infobox-content h5 .infobox-list li .icon {
+.map-container .map-overlay .map-infobox .infobox-content h5 .infobox-list li .icon {
     font-size: 20px;
 }
 
-.map .map-overlay .map-infobox .infobox-content .rawtxt {
+.map-container .map-overlay .map-infobox .infobox-content .rawtxt {
     font-size: 18px;
 }
 
-.map .map-overlay .map-infobox .infobox-content .infobox-weather {
+.map-container .map-overlay .map-infobox .infobox-content .infobox-weather {
     display: grid;
     grid-template-columns: min-content auto;
     align-items: center;
@@ -201,7 +208,7 @@
     font-size: 16px;
 }
 
-.map .map-overlay .map-infobox .infobox-content .infobox-weather .cat {
+.map-container .map-overlay .map-infobox .infobox-content .infobox-weather .cat {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -214,25 +221,25 @@
     border-radius: 3px;
 }
 
-.map .map-overlay .map-infobox .infobox-content .infobox-weather .vis {
+.map-container .map-overlay .map-infobox .infobox-content .infobox-weather .vis {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     gap: 10px;
 }
 
-.map .map-overlay .map-infobox .infobox-content .infobox-weather .icon {
+.map-container .map-overlay .map-infobox .infobox-content .infobox-weather .icon {
     text-align: center;
     font-size: 42px;
     font-variation-settings: 'FILL' 1, 'GRAD' 200;
 }
 
-.map .map-overlay .map-infobox .infobox-content .infobox-weather .info {
+.map-container .map-overlay .map-infobox .infobox-content .infobox-weather .info {
     display: flex;
     flex-flow: column nowrap;
 }
 
-.map .map-overlay .map-infobox .infobox-link {
+.map-container .map-overlay .map-infobox .infobox-link {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -244,82 +251,92 @@
     border-radius: 3px;
 }
 
-.map .map-overlay .map-infobox .infobox-link .icon {
+.map-container .map-overlay .map-infobox .infobox-link .icon {
     font-size: 22px;
 }
 
-.map .map-overlay .map-infobox .infobox-link:hover {
+.map-container .map-overlay .map-infobox .infobox-link:hover {
     text-decoration: none;
     color: var( --gray-5 );
     background: var( --gray-0 );
 }
 
-.map .map-overlay .map-infobox.navaid {
+.map-container .map-overlay .map-infobox.navaid {
     background: var( --primary );
 }
 
-.map .map-overlay .map-infobox.sigmet-CLD,
-.map .map-overlay .map-infobox.sigmet-VA {
+.map-container .map-overlay .map-infobox.sigmet-CLD,
+.map-container .map-overlay .map-infobox.sigmet-VA {
     color: var( --gray-5 );
     background: var( --gray-2 );
 }
 
-.map .map-overlay .map-infobox.airport.cat-LIFR,
-.map .map-overlay .map-infobox.sigmet-CONV,
-.map .map-overlay .map-infobox.sigmet-FC,
-.map .map-overlay .map-infobox.sigmet-TC {
+.map-container .map-overlay .map-infobox.airport.cat-LIFR,
+.map-container .map-overlay .map-infobox.sigmet-CONV,
+.map-container .map-overlay .map-infobox.sigmet-FC,
+.map-container .map-overlay .map-infobox.sigmet-TC {
     background: var( --indicator-pink );
 }
 
-.map .map-overlay .map-infobox.sigmet-DS,
-.map .map-overlay .map-infobox.sigmet-SS {
+.map-container .map-overlay .map-infobox.sigmet-DS,
+.map-container .map-overlay .map-infobox.sigmet-SS {
     color: var( --gray-5 );
     background: var( --indicator-yellow );
 }
 
-.map .map-overlay .map-infobox.airport.cat-IFR,
-.map .map-overlay .map-infobox.sigmet-GR,
-.map .map-overlay .map-infobox.sigmet-TDO,
-.map .map-overlay .map-infobox.sigmet-TS,
-.map .map-overlay .map-infobox.sigmet-TSGR {
+.map-container .map-overlay .map-infobox.airport.cat-IFR,
+.map-container .map-overlay .map-infobox.sigmet-GR,
+.map-container .map-overlay .map-infobox.sigmet-TDO,
+.map-container .map-overlay .map-infobox.sigmet-TS,
+.map-container .map-overlay .map-infobox.sigmet-TSGR {
     background: var( --indicator-red );
 }
 
-.map .map-overlay .map-infobox.airport.cat-MVFR,
-.map .map-overlay .map-infobox.sigmet-ICE,
-.map .map-overlay .map-infobox.sigmet-WTSPT {
+.map-container .map-overlay .map-infobox.airport.cat-MVFR,
+.map-container .map-overlay .map-infobox.sigmet-ICE,
+.map-container .map-overlay .map-infobox.sigmet-WTSPT {
     background: var( --indicator-blue );
 }
 
-.map .map-overlay .map-infobox.airport.cat-VFR,
-.map .map-overlay .map-infobox.sigmet-MTW {
+.map-container .map-overlay .map-infobox.airport.cat-VFR,
+.map-container .map-overlay .map-infobox.sigmet-MTW {
     background: var( --indicator-green );
 }
 
-.map .map-overlay .map-infobox.sigmet-TURB {
+.map-container .map-overlay .map-infobox.sigmet-TURB {
     background: var( --indicator-orange );
 }
 
-.map .map-overlay .map-infobox.airport.cat-UNK {
+.map-container .map-overlay .map-infobox.airport.cat-UNK {
     background: var( --gray-6 );
 }
 
-.map .leaflet-attribution-flag {
+/* leaflet map */
+
+.map-container .map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.map-container .map .leaflet-attribution-flag {
     display: none !important;
 }
 
-.map .leaflet-control-scale-line {
+.map-container .map .leaflet-control-scale-line {
     text-shadow: none;
     background: var( --light-2 );
     border-color: var( --gray-3 );
 }
 
-.map .leaflet-control-attribution {
+.map-container .map .leaflet-control-attribution {
     color: var( --gray-6 );
     background: var( --light-6 );
 }
 
-.map .leaflet-tooltip {
+.map-container .map .leaflet-tooltip {
     padding: 0;
     text-align: center;
     text-shadow: 0 0 2px var( --gray-0 );
@@ -330,31 +347,31 @@
     box-shadow: none;
 }
 
-.map .leaflet-tooltip.tooltip-airport {
+.map-container .map .leaflet-tooltip.tooltip-airport {
     padding-bottom: 58px;
 }
 
-.map .leaflet-tooltip.tooltip-navaid {
+.map-container .map .leaflet-tooltip.tooltip-navaid {
     padding-bottom: 62px;
 }
 
-.map .leaflet-tooltip.tooltip-airport .ICAO,
-.map .leaflet-tooltip.tooltip-navaid .IDENT {
+.map-container .map .leaflet-tooltip.tooltip-airport .ICAO,
+.map-container .map .leaflet-tooltip.tooltip-navaid .IDENT {
     font-size: 18px;
     font-weight: 800;
 }
 
-.map .leaflet-tooltip.tooltip-airport .name,
-.map .leaflet-tooltip.tooltip-navaid .freq {
+.map-container .map .leaflet-tooltip.tooltip-airport .name,
+.map-container .map .leaflet-tooltip.tooltip-navaid .freq {
     font-size: 13px;
     font-weight: 600;
 }
 
-.map .leaflet-tooltip.tooltip-waypoint {
+.map-container .map .leaflet-tooltip.tooltip-waypoint {
     padding-top: 34px;
 }
 
-.map .leaflet-tooltip.tooltip-waypoint .IDENT {
+.map-container .map .leaflet-tooltip.tooltip-waypoint .IDENT {
     font-size: 9px;
 }
 
@@ -372,9 +389,44 @@
     font-weight: 600;
 }
 
+/* mypos + halo */
+
+.mypos, .halo {
+    pointer-events: none !important;
+}
+
+.mypos mapicon {
+    width: 24px;
+    height: 24px;
+    background-image: url( './../resources/mypos.svg' );
+}
+
+.mypos mapicon::before, halo {
+    position: absolute;
+    width: 72px;
+    height: 72px;
+    background: var( --shade-5 );
+    border-radius: 50%;
+    animation: halo 2.5s infinite;
+    z-index: -1;
+}
+
+.mypos mapicon::before {
+    content: '';
+    top: -24px;
+    left: -24px;
+    right: -24px;
+    bottom: -24px;
+}
+
+@keyframes halo {
+      0% { opacity: 1; transform: scale( 0 ); }
+    100% { opacity: 0; transform: scale( 1 ); }
+}
+
 /* minimal UI */
 
-.map.minimal-ui .map-overlay .map-control .map-control-group:not(:last-of-type),
-.map.minimal-ui .map-overlay .map-scroll-below {
+.map-container.minimal-ui .map-overlay .map-control .map-control-group:not(:last-of-type),
+.map-container.minimal-ui .map-overlay .map-scroll-below {
     display: none;
 }

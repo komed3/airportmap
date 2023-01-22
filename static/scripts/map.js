@@ -76,27 +76,27 @@ var maps_config = {},
 
         $( '#' + uuid ).attr( 'zoom', zoom );
 
-        $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', false );
-        $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', false );
-        $( '#' + uuid + ' [map-action="navaids"]' ).hide();
-        $( '#' + uuid + ' [map-action="waypoints"]' ).hide();
+        $( '[uuid="' + uuid + '"] [map-action="zoom-in"]' ).prop( 'disabled', false );
+        $( '[uuid="' + uuid + '"] [map-action="zoom-out"]' ).prop( 'disabled', false );
+        $( '[uuid="' + uuid + '"] [map-action="navaids"]' ).hide();
+        $( '[uuid="' + uuid + '"] [map-action="waypoints"]' ).hide();
 
         if( zoom <= ( maps_config[ uuid ].minZoom || 4 ) ) {
 
-            $( '#' + uuid + ' [map-action="zoom-out"]' ).prop( 'disabled', true );
+            $( '[uuid="' + uuid + '"] [map-action="zoom-out"]' ).prop( 'disabled', true );
 
         }
 
         if( zoom >= ( maps_config[ uuid ].maxZoom || 15 ) ) {
 
-            $( '#' + uuid + ' [map-action="zoom-in"]' ).prop( 'disabled', true );
+            $( '[uuid="' + uuid + '"] [map-action="zoom-in"]' ).prop( 'disabled', true );
 
         }
 
         if( zoom >= 10 && maps_type[ uuid ] == 'airport' ) {
 
-            $( '#' + uuid + ' [map-action="navaids"]' ).show();
-            $( '#' + uuid + ' [map-action="waypoints"]' ).show();
+            $( '[uuid="' + uuid + '"] [map-action="navaids"]' ).show();
+            $( '[uuid="' + uuid + '"] [map-action="waypoints"]' ).show();
 
         }
 
@@ -395,7 +395,7 @@ var maps_config = {},
 
     var map_info = ( uuid, infobox, classes = '' ) => {
 
-        let box = $( '#' + uuid + ' .map-infobox' );
+        let box = $( '[uuid="' + uuid + '"] .map-infobox' );
 
         if( 'classes' in infobox ) {
 
@@ -601,6 +601,7 @@ var maps_config = {},
             }
 
             $( this ).attr( 'id', uuid ).removeAttr( 'map-data' );
+            $( this ).closest( '.map-container' ).attr( 'uuid', uuid );
 
             maps_config[ uuid ] = data;
 
@@ -705,7 +706,7 @@ var maps_config = {},
 
             setTimeout( function() {
 
-                $( '#' + uuid + ' [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' ).click();
+                $( '[uuid="' + uuid + '"] [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' ).click();
 
                 map_check_zoom( uuid );
 
@@ -721,7 +722,7 @@ var maps_config = {},
 
         prevent( e );
 
-        let uuid = $( this ).closest( '.map' ).attr( 'id' ),
+        let uuid = $( this ).closest( '.map-container' ).find( '.map' ).attr( 'id' ),
             map = maps[ uuid ];
 
         switch( ( $( this ).attr( 'map-action' ) || '' ).trim().toLowerCase() ) {
@@ -835,7 +836,7 @@ var maps_config = {},
 
             case 'close-infobox':
 
-                $( '#' + uuid + ' .map-infobox' ).attr( 'class', 'map-infobox' ).hide();
+                $( '[uuid="' + uuid + '"] .map-infobox' ).attr( 'class', 'map-infobox' ).hide();
 
                 map_halo( uuid );
 

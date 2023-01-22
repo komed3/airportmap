@@ -239,39 +239,6 @@ wpicon {
     background-image: url( './../resources/waypoint.svg' );
 }
 
-.mypos, .halo {
-    pointer-events: none !important;
-}
-
-.mypos mapicon {
-    width: 24px;
-    height: 24px;
-    background-image: url( './../resources/mypos.svg' );
-}
-
-.mypos mapicon::before, halo {
-    position: absolute;
-    width: 72px;
-    height: 72px;
-    background: var( --shade-5 );
-    border-radius: 50%;
-    animation: halo 2.5s infinite;
-    z-index: -1;
-}
-
-.mypos mapicon::before {
-    content: '';
-    top: -24px;
-    left: -24px;
-    right: -24px;
-    bottom: -24px;
-}
-
-@keyframes halo {
-      0% { opacity: 1; transform: scale( 0 ); }
-    100% { opacity: 0; transform: scale( 1 ); }
-}
-
 windbug, windflag {
     pointer-events: none;
     position: absolute;
@@ -293,8 +260,8 @@ windbug {
     opacity: 0.5;
 }
 
-.map.windbug windbug,
-.map.windflag windflag {
+.map-container.windbug windbug,
+.map-container.windflag windflag {
     display: block;
 }
 
