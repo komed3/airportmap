@@ -690,6 +690,7 @@ h2.secondary-headline {
 }
 
 .airportlist .list .row mapicon {
+    flex: 0 0 32px;
     width:  32px;
     height: 32px;
 }
@@ -1249,6 +1250,12 @@ h2.secondary-headline {
 
     .filter {
         gap: 20px;
+    }
+
+    .pagination {
+        flex-flow: column-reverse nowrap;
+        justify-content: center;
+        gap: 15px;
     }
 
 }
