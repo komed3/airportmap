@@ -30,6 +30,7 @@
     foreach( [
         '' => 1,
         'airports' => 1,
+        'vicinity' => 0.9,
         'weather' => 1,
         'weather/cat/VFR' => 0.9,
         'weather/cat/MVFR' => 0.9,
