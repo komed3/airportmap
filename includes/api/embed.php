@@ -37,9 +37,9 @@
     <body class="cat-<?php echo $weather['flight_cat'] ?? 'UNK'; ?>">
         <div id="wrapper">
             <?php if( !empty( $airport ) ) { ?>
-                <div class="embed airport">
+                <div class="embed airport airport-<?php echo $airport['type']; ?> restriction-<?php echo $airport['restriction']; ?>">
                     <div class="embed-header">
-                        <h1><?php echo $ICAO; ?></h1>
+                        <h1><mapicon invert></mapicon><?php echo $ICAO; ?></h1>
                         <h2><?php echo $__site_title; ?></h2>
                     </div>
                     <?php if( !empty( $weather ) ) { ?>
