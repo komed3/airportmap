@@ -32,9 +32,10 @@
 
 .weather .cat-stats {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     align-items: center;
-    gap: 60px;
+    gap: 10px 60px;
+    white-space: nowrap;
 }
 
 .weather .cat-stats .label {
@@ -133,4 +134,39 @@
 
 .weather .weather-active-sigmets .icon {
     font-size: 32px;
+}
+
+/* mobile support */
+
+@media all and ( max-width: 1200px ) {
+
+    .weather .weather-extrema {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media all and ( max-width: 900px ) {
+
+    .weather .weather-extrema {
+        grid-template-columns: 100%;
+        gap: 15px;
+    }
+
+}
+
+@media all and ( max-width: 600px ) {
+
+    .weather .weather-extrema .extrema {
+        padding: 16px 20px;
+    }
+
+    .weather .weather-extrema .extrema .info .label {
+        font-size: 16px;
+    }
+
+    .weather .weather-extrema .extrema .info .value span:first-of-type {
+        font-size: 20px;
+    }
+
 }
