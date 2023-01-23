@@ -84,7 +84,29 @@
     align-items: center;
     gap: 10px;
     margin: 0;
-    padding: 5px;
+    padding: 5px 0;
     font-size: 16px;
     font-weight: 300;
+}
+
+/* mobile support */
+
+@media all and ( max-width: 1200px ) {
+
+    .sigmets {
+        column-gap: 20px;
+    }
+
+    .sigmets .sigmet {
+        margin-bottom: 20px;
+    }
+
+}
+
+@media all and ( max-width: 900px ) {
+
+    .sigmets {
+        column-count: 1;
+    }
+
 }

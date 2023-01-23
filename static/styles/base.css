@@ -1220,6 +1220,18 @@ h2.secondary-headline {
         display: none;
     }
 
+    .filter {
+        gap: 40px;
+    }
+    
+    .filter .filter-group {
+        gap: 15px;
+    }
+    
+    .filter .filter-group label {
+        font-size: 15px;
+    }
+
 }
 
 @media all and ( max-width: 900px ) {
@@ -1233,6 +1245,20 @@ h2.secondary-headline {
 
     .pagelist {
         column-count: 1;
+    }
+
+    .filter {
+        gap: 20px;
+    }
+
+}
+
+@media all and ( max-width: 600px ) {
+
+    .filter {
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        gap: 10px;
     }
 
 }
