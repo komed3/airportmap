@@ -1013,10 +1013,15 @@ h2.secondary-headline {
 }
 
 .pagelist {
-    display: grid;
-    grid-template-columns: repeat( 3, 1fr );
-    gap: 10px 30px;
+    column-count: 3;
+    column-gap: 40px;
     margin: 60px var( --padding-normal );
+}
+
+.pagelist a {
+    display: inline-block;
+    break-inside: avoid;
+    margin: 5px 0;
 }
 
 .pagelist a:hover {
@@ -1188,6 +1193,25 @@ h2.secondary-headline {
 
     }
 
+    .pagelist {
+        column-count: 2;
+    }
+
+    .site-tabs {
+        justify-content: center;
+    }
+
+    .site-tabs a {
+        height: 36px;
+        font-size: 16px;
+        padding: 0 18px;
+        border-radius: 18px;
+    }
+
+    .site-tabs .empty {
+        display: none;
+    }
+
 }
 
 @media all and ( max-width: 900px ) {
@@ -1197,6 +1221,10 @@ h2.secondary-headline {
         --padding-narrow: 20px;
         --padding-wide: 50px;
 
+    }
+
+    .pagelist {
+        column-count: 1;
     }
 
 }

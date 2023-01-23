@@ -73,14 +73,6 @@
         padding: 40px var( --padding-normal );
     }
 
-    .welcome-tabs {
-        justify-content: center;
-    }
-
-    .welcome-tabs .empty {
-        display: none;
-    }
-
 }
 
 @media all and ( max-width: 600px ) {
