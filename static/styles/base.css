@@ -91,11 +91,13 @@ a:hover {
 
 body {
     margin: 0;
+    width: 100%;
     font-size: 18px;
     font-weight: 400;
     font-style: normal;
     color: var( --gray-5 );
     background: var( --gray-1 );
+    overflow-x: hidden;
 }
 
 button {
@@ -1258,6 +1260,20 @@ h2.secondary-headline {
         gap: 15px;
     }
 
+    .stationlist .list .row {
+        display: block;
+        padding: 20px 0;
+    }
+
+    .stationlist .list .row .cat {
+        width: 100px;
+    }
+
+    .stationlist .list .row .info .headline {
+        margin: 8px 0;
+        height: auto;
+    }
+
 }
 
 @media all and ( max-width: 600px ) {
@@ -1266,6 +1282,23 @@ h2.secondary-headline {
         flex-flow: column nowrap;
         align-items: flex-start;
         gap: 10px;
+    }
+
+    .stationlist .list .row .info .headline .name {
+        font-size: 18px;
+    }
+
+    .stationlist .list .row .info .weather {
+        gap: 8px 20px;
+        font-size: 16px;
+    }
+
+    .stationlist .list .row .info .weather div {
+        gap: 8px;
+    }
+
+    .stationlist .list .row .info .weather div .icon {
+        font-size: 22px;
     }
 
 }
