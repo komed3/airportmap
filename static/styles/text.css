@@ -68,3 +68,45 @@
 .text-content dl dd {
     margin: 0;
 }
+
+/* mobile support */
+
+@media all and ( max-width: 1600px ) {
+
+    .text-content p {
+        width: 80%;
+    }
+    
+    .text-content p.first {
+        width: 70%;
+        font-size: 24px;
+    }
+
+}
+
+@media all and ( max-width: 1200px ) {
+
+    .text-content p {
+        width: 100%;
+        font-size: 18px;
+    }
+    
+    .text-content p.first {
+        width: 80%;
+        font-size: 22px;
+    }
+
+}
+
+@media all and ( max-width: 900px ) {
+
+    .text-content p {
+        font-size: 16px;
+    }
+    
+    .text-content p.first {
+        width: 100%;
+        font-size: 20px;
+    }
+
+}
