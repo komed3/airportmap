@@ -77,6 +77,7 @@
     }
 
     function waypoint_list(
+        array $airport,
         array $waypoints
     ) {
 
@@ -91,8 +92,16 @@
                         <span class="ident">' . $waypoint['ident'] . '</span>
                         <morse>' . __morse( $waypoint['ident'] ) . '</morse>
                     </div>
-                    <div class="coords">
+                    <div class="line coords">
                         ' . __DMS_coords( $waypoint['lat'], $waypoint['lon'] ) . '
+                    </div>
+                    <div class="line dist">
+                        <i class="icon">near_me</i>
+                        <span>' . alt_in( $waypoint['distance'], 'nm' ) . '</span>
+                        <span>' . __cardinal( __HDG(
+                            $airport['lat'], $airport['lon'],
+                            $waypoint['lat'], $waypoint['lon']
+                        ) ) . '</span>
                     </div>
                 </div>
             </div>';
@@ -106,10 +115,11 @@
     }
 
     function _waypoint_list(
+        array $airport,
         array $waypoints
     ) {
 
-        echo waypoint_list( $waypoints );
+        echo waypoint_list( $airport, $waypoints );
 
     }
 

@@ -46,6 +46,6 @@
         LIMIT    0, 48
     ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) { ?>
         <h2 class="secondary-headline"><?php _i18n( 'airport-waypoints' ); ?></h2>
-        <?php _waypoint_list( $waypoints ); ?>
+        <?php _waypoint_list( $airport, $waypoints ); ?>
     <?php } ?>
 </div>

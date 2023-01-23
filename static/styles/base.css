@@ -1011,7 +1011,7 @@ h2.secondary-headline {
 }
 
 .navaidlist .navaid .info .line,
-.waypointlist .waypoint .info .coords {
+.waypointlist .waypoint .info .line {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
