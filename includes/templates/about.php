@@ -15,7 +15,7 @@
     <div class="site-image">
         <div class="credits"><?php _i18n(
             'pix-credits',
-            '<a href="https://pixabay.com/users/jfk_photography-25701175">Johannes Kirchherr</a>',
+            '<a href="https://pixabay.com/users/mmamontov-15693250">Mikhail Mamontov</a>',
             '<a href="https://pixabay.com">Pixabay</a>'
         ); ?></div>
     </div>
