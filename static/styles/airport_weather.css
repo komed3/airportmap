@@ -131,6 +131,7 @@
 .airport-weather .weather-list ul li div {
     display: flex;
     flex-flow: row wrap;
+    justify-content: flex-end;
     align-items: baseline;
     gap: 6px 12px;
 }
@@ -265,4 +266,142 @@
 .airport-weather .weather-remarks .remarks li span {
     text-transform: uppercase;
     font-weight: 300;
+}
+
+/* mobile support */
+
+@media all and ( max-width: 1500px ) {
+
+    .airport-weather {
+        gap: 20px;
+    }
+
+    .airport-weather .weather-info,
+    .airport-weather .weather-list,
+    .airport-weather .weather-skycond,
+    .airport-weather .weather-raw,
+    .airport-weather .weather-wind {
+        padding: 12px 20px;
+        border-radius: 12px;
+    }
+
+    .airport-weather .weather-info {
+        font-size: 18px;
+    }
+
+    .airport-weather .weather-info .icon {
+        flex: 0 0 60px;
+        font-size: 42px;
+    }
+
+    .airport-weather .weather-info .list .row > :first-child x {
+        font-size: 28px;
+    }
+
+    .airport-weather .weather-wind .wind-info {
+        font-size: 22px;
+    }
+
+}
+
+@media all and ( max-width: 1200px ) {
+
+    .airport-weather {
+        grid-template-columns: 100%;
+        grid-template-areas:
+            'station'
+            'info'
+            'list'
+            'skycond'
+            'raw'
+            'wind'
+            'remarks';
+    }
+
+    .airport-weather .weather-station {
+        flex-flow: row wrap;
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+
+    .airport-weather .weather-station .label,
+    .airport-weather .weather-station select {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .airport-weather .weather-wind {
+        grid-template-columns: 360px auto;
+    }
+
+}
+
+@media all and ( max-width: 900px ) {
+
+    .airport-weather .weather-wind {
+        grid-template-columns: 100%;
+        grid-template-areas: 'info' 'runways';
+    }
+
+    .airport-weather .weather-wind .wind-info .windsock {
+        width: 140px;
+        height: 140px;
+    }
+
+    .airport-weather .weather-wind .wind-info span {
+        padding: 0;
+    }
+
+    .airport-weather .weather-wind .runways .runway:not(:last-of-type) {
+        margin-bottom: 30px;
+    }
+
+    .airport-weather .weather-remarks .remarks li {
+        gap: 15px;
+        font-size: 18px;
+    }
+
+}
+
+@media all and ( max-width: 600px ) {
+
+    .airport-weather .weather-list ul li .label {
+        font-size: 16px;
+    }
+
+    .airport-weather .weather-list ul li div {
+        gap: 4px 10px;
+        letter-spacing: -0.05px;
+    }
+
+    .airport-weather .weather-skycond .vis-info {
+        flex-flow: row wrap;
+        gap: 4px 12px;
+        font-size: 16px;
+    }
+
+    .airport-weather .weather-wind .runways .secondary-headline {
+        display: none;
+    }
+
+    .airport-weather .weather-wind .runways .runway {
+        margin-bottom: 20px;
+        min-height: 0;
+        font-size: 16px;
+    }
+
+    .airport-weather .weather-wind .runways .runway .hdg {
+        display: none;
+    }
+
+    .airport-weather .weather-wind .runways .runway .info .idents {
+        font-size: 18px;
+    }
+
+    .airport-weather .weather-remarks .remarks li {
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        gap: 0;
+    }
+
 }

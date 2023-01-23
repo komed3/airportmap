@@ -410,7 +410,7 @@
     "site-welcome-headline": "Welcome to <b>Airportmap</b>",
     "site-welcome-text": "Airportmap is an open source project with information and weather data on <b>$1</b> airports, heliports and air bases worldwide.",
     "sky-unknown": "Unknown conditions",
-    "skychart-label": "<b>$1</b>&nbsp;$2",
+    "skychart-label": "<b>$1</b><l>&nbsp;$2</l>",
     "stationary": "Stationary",
     "stats-active-runways": "Active runways",
     "stats-airbase": "Air Bases",

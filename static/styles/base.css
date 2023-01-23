@@ -1189,7 +1189,7 @@ h2.secondary-headline {
 
 /* mobile support */
 
-@media all and ( max-width: 1600px ) {
+@media all and ( max-width: 1500px ) {
 
     :root {
 
@@ -1244,6 +1244,10 @@ h2.secondary-headline {
     
     .filter .filter-group label {
         font-size: 15px;
+    }
+
+    .skychart .legend .label x {
+        font-size: 24px;
     }
 
 }
@@ -1307,6 +1311,20 @@ h2.secondary-headline {
         height: auto;
     }
 
+    .skychart .layers {
+        left: 0;
+        right: 0;
+    }
+
+    .skychart .legend,
+    .skychart .labels {
+        z-index: 2;
+    }
+
+    .skychart .labels .label span l {
+        display: none;
+    }
+
 }
 
 @media all and ( max-width: 600px ) {
@@ -1341,6 +1359,51 @@ h2.secondary-headline {
 
     .stationlist .list .row .info .weather div .icon {
         font-size: 22px;
+    }
+
+    .skychart .legend {
+        top: 30px;
+    }
+
+    .skychart .legend .label {
+        font-size: 14px;
+    }
+    
+    .skychart .legend .label x {
+        font-size: 18px;
+    }
+
+    .skychart .layers {
+        top: 40px;
+    }
+
+    .skychart .layers .layer {
+        height: 40px;
+    }
+
+    .skychart .layers .layer.layer-FEW {
+        gap: 80px;
+    }
+    
+    .skychart .layers .layer.layer-SCT {
+        gap: 40px;
+    }
+    
+    .skychart .layers .layer.layer-BKN {
+        gap: 20px;
+    }
+    
+    .skychart .layers .layer .cloud {
+        width: 70px;
+        height: 40px;
+    }
+
+    .skychart .labels {
+        top: 40px;
+    }
+    
+    .skychart .labels .label {
+        height: 40px;
     }
 
 }
