@@ -25,6 +25,9 @@
                     ], [
                         'i18n' => 'footer-nav-stats',
                         'url' => 'stats'
+                    ], [
+                        'i18n' => 'footer-nav-vicinity',
+                        'url' => 'vicinity'
                     ] ], 'footer-nav', -1 ); ?>
                 </div>
                 <div class="column">
