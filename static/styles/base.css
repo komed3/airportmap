@@ -917,9 +917,9 @@ h2.secondary-headline {
 .runwaylist .runway .info .condition,
 .runwaylist .runway .info .dthr {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     align-items: center;
-    gap: 20px;
+    gap: 6px 20px;
     font-size: 15px;
     color: var( --gray-4 );
 }
@@ -983,6 +983,7 @@ h2.secondary-headline {
 
 .navaidlist .navaid navicon,
 .waypointlist .waypoint wpicon {
+    flex: 0 0 auto;
     margin: 0 20px 0 10px;
     width: 30px;
     height: 30px;
@@ -1197,6 +1198,11 @@ h2.secondary-headline {
 
     }
 
+    .navaidlist,
+    .waypointlist {
+        grid-template-columns: 1fr 1fr;
+    }
+
 }
 
 @media all and ( max-width: 1200px ) {
@@ -1263,6 +1269,28 @@ h2.secondary-headline {
         flex-flow: column-reverse nowrap;
         justify-content: center;
         gap: 15px;
+    }
+
+    .radiolist {
+        column-count: 1;
+    }
+
+    .radiolist .radio .type {
+        flex: 0 0 120px;
+    }
+
+    .navaidlist,
+    .waypointlist {
+        grid-template-columns: 100%;
+    }
+
+    .navaidlist .navaid .info .headline morse,
+    .waypointlist .waypoint .info .headline morse {
+        font-size: 13px;
+    }
+
+    .runwaylist .runway .heading {
+        display: none;
     }
 
     .stationlist .list .row {
