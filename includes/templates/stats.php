@@ -267,7 +267,7 @@
                 foreach( $c_res as $c ) {
 
                     ?><div class="chart-column">
-                        <div class="column" style="height: <?php echo min( 100, max( 10, $c['cnt'] / $c_max * 100 ) ); ?>%;">
+                        <div class="column" style="--size: <?php echo min( 100, max( 10, $c['cnt'] / $c_max * 100 ) ); ?>%;">
                             <div class="label"><?php echo __number( $c['cnt'] ); ?></div>
                             <div class="cat">
                                 <a href="<?php _base_url( 'airports/country/' . $c['code'] ); ?>">
@@ -310,7 +310,7 @@
                 foreach( $tz_res as $tz ) {
 
                     ?><div class="chart-column">
-                        <div class="column" style="height: <?php echo min( 100, max( 10, $tz['cnt'] / $tz_max * 100 ) ); ?>%;">
+                        <div class="column" style="--size: <?php echo min( 100, max( 10, $tz['cnt'] / $tz_max * 100 ) ); ?>%;">
                             <div class="label"><?php echo __number( $tz['cnt'] ); ?></div>
                             <div class="cat">
                                 <a href="<?php _base_url( 'airports/timezone/' . $tz['ident'] ); ?>">
