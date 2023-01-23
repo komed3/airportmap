@@ -109,3 +109,54 @@ body.scroll-to-top #scroll-to-top:hover {
 #scroll-to-top .icon {
     font-size: 30px;
 }
+
+/* mobile support */
+
+@media all and ( max-width: 1200px ) {
+
+    #footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: start;
+    }
+
+    #footer .column:first-of-type {
+        grid-column: span 3;
+    }
+
+}
+
+@media all and ( max-width: 900px ) {
+
+    #footer {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #footer .column:first-of-type {
+        grid-column: span 1;
+    }
+
+}
+
+@media all and ( max-width: 600px ) {
+
+    #footer {
+        grid-template-columns: 1fr;
+        gap: 0;
+        text-align: center;
+    }
+
+    #footer .column nav {
+        align-items: center;
+    }
+
+    #footer .column .credits {
+        margin-bottom: 40px;
+    }
+
+    #footer .language-selector {
+        margin: 20px auto;
+        width: 60%;
+    }
+
+}
