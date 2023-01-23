@@ -68,3 +68,35 @@
     border: 0;
     border-radius: 12px;
 }
+
+/* mobile support */
+
+@media all and ( max-width: 1200px ) {
+
+    .embed-generator {
+        grid-template-columns: 100%;
+    }
+
+    .embedcode {
+        height: 240px;
+    }
+
+}
+
+@media all and ( max-width: 600px ) {
+
+    .embedform .formline {
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .embedcode {
+        font-size: 18px;
+    }
+
+    .embediframe {
+        width: 100%;
+    }
+
+}
