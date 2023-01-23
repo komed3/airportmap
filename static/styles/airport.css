@@ -1,8 +1,9 @@
-h1.primary-headline {
+.primary-headline {
     font-size: 28px;
 }
 
 .primary-headline mapicon {
+    flex: 0 0 auto;
     width: 36px;
     height: 36px;
 }
@@ -129,4 +130,45 @@ h1.primary-headline {
 .airport-nearby .map-container {
     width: 100%;
     height: 520px;
+}
+
+/* mobile support */
+
+@media all and ( max-width: 1200px ) {
+
+    .primary-headline {
+        font-size: 24px;
+    }
+
+    .primary-headline mapicon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .airport-info {
+        display: grid;
+        grid-template-columns: 100%;
+        gap: 40px;
+    }
+
+}
+
+@media all and ( max-width: 900px ) {
+
+    .primary-headline {
+        flex-flow: row wrap;
+        justify-content: center;
+        gap: 10px;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    .primary-headline .name {
+        flex: 0 0 100%;
+    }
+
+    .primary-headline .cat {
+        display: none;
+    }
+
 }

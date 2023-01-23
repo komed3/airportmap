@@ -338,7 +338,7 @@ h1 {
     font-weight: 800;
 }
 
-h1.primary-headline {
+.primary-headline {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -350,7 +350,7 @@ h1.primary-headline {
     background: var( --primary );
 }
 
-h1.primary-headline .icon {
+.primary-headline .icon {
     font-size: 30px;
     font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 200;
 }
@@ -451,9 +451,13 @@ h2.secondary-headline {
     position: absolute;
     right: 0;
     bottom: 0;
+    max-width: 100%;
     padding: 2px 6px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-size: 12px;
     background: var( --light-6 );
+    overflow: hidden;
 }
 
 .site-tabs {
@@ -1210,6 +1214,7 @@ h2.secondary-headline {
 
     .site-tabs {
         justify-content: center;
+        gap: 8px;
     }
 
     .site-tabs a {
@@ -1282,6 +1287,15 @@ h2.secondary-headline {
         flex-flow: column nowrap;
         align-items: flex-start;
         gap: 10px;
+    }
+
+    .infolist {
+        font-size: 16px;
+    }
+    
+    .infolist li {
+        gap: 30px;
+        padding: 12px 0;
     }
 
     .stationlist .list .row .info .headline .name {
