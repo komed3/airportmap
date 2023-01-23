@@ -59,6 +59,7 @@
     "airport-typep-medium": "Airports",
     "airport-typep-seaplane": "Seaplane Bases",
     "airport-typep-small": "Airfields",
+    "airport-waypoints": "Fix points in the vicinity",
     "airport-weather": "Weather",
     "airport-weather-empty": "No weather data available at this airport.",
     "airport-weather-select": "$1 — $2",

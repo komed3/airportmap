@@ -76,4 +76,41 @@
 
     }
 
+    function waypoint_list(
+        array $waypoints
+    ) {
+
+        $list = '';
+
+        foreach( $waypoints as $waypoint ) {
+
+            $list .= '<div class="waypoint">
+                <wpicon></wpicon>
+                <div class="info">
+                    <div class="headline">
+                        <span class="ident">' . $waypoint['ident'] . '</span>
+                        <morse>' . __morse( $waypoint['ident'] ) . '</morse>
+                    </div>
+                    <div class="coords">
+                        ' . __DMS_coords( $waypoint['lat'], $waypoint['lon'] ) . '
+                    </div>
+                </div>
+            </div>';
+
+        }
+
+        return '<div class="waypointlist">
+            ' . $list . '
+        </div>';
+
+    }
+
+    function _waypoint_list(
+        array $waypoints
+    ) {
+
+        echo waypoint_list( $waypoints );
+
+    }
+
 ?>

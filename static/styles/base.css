@@ -960,30 +960,36 @@ h2.secondary-headline {
     font-size: 14px;
 }
 
-.navaidlist {
+.navaidlist,
+.waypointlist {
     display: grid;
     grid-template-columns: repeat( 3, 1fr );
     gap: 40px;
+    margin-bottom: 60px;
 }
 
-.navaidlist .navaid {
+.navaidlist .navaid,
+.waypointlist .waypoint {
     display: flex;
     flex-flow: row nowrap;
 }
 
-.navaidlist .navaid navicon {
+.navaidlist .navaid navicon,
+.waypointlist .waypoint wpicon {
     margin: 0 20px 0 10px;
     width: 30px;
     height: 30px;
 }
 
-.navaidlist .navaid .info {
+.navaidlist .navaid .info,
+.waypointlist .waypoint .info {
     display: flex;
     flex-flow: column nowrap;
     gap: 6px;
 }
 
-.navaidlist .navaid .info .headline {
+.navaidlist .navaid .info .headline,
+.waypointlist .waypoint .info .headline {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -992,7 +998,8 @@ h2.secondary-headline {
     color: var( --primary );
 }
 
-.navaidlist .navaid .info .headline .ident {
+.navaidlist .navaid .info .headline .ident,
+.waypointlist .waypoint .info .headline .ident {
     font-size: 20px;
     font-weight: 800;
 }
@@ -1003,7 +1010,8 @@ h2.secondary-headline {
     gap: 6px;
 }
 
-.navaidlist .navaid .info .line {
+.navaidlist .navaid .info .line,
+.waypointlist .waypoint .info .coords {
     display: flex;
     flex-flow: row wrap;
     align-items: center;

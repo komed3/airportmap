@@ -28,5 +28,24 @@
     ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) { ?>
         <h2 class="secondary-headline"><?php _i18n( 'airport-navaids' ); ?></h2>
         <?php _navaid_list( $airport, $navaids ); ?>
+    <?php } if( count( $waypoints = $DB->query( '
+        SELECT   *, ( 3440.29182 * acos(
+            cos( radians( ' . $airport['lat'] . ' ) ) *
+            cos( radians( lat ) ) *
+            cos(
+                radians( lon ) -
+                radians( ' . $airport['lon'] . ' )
+            ) +
+            sin( radians( ' . $airport['lat'] . ' ) ) *
+            sin( radians( lat ) )
+        ) ) AS distance
+        FROM     ' . DB_PREFIX . 'waypoint
+        WHERE    ( lat BETWEEN ' . ( $airport['lat'] - 1 ) . ' AND ' . ( $airport['lat'] + 1 ) . ' )
+        AND      ( lon BETWEEN ' . ( $airport['lon'] - 1 ) . ' AND ' . ( $airport['lon'] + 1 ) . ' )
+        ORDER BY distance ASC
+        LIMIT    0, 48
+    ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) { ?>
+        <h2 class="secondary-headline"><?php _i18n( 'airport-waypoints' ); ?></h2>
+        <?php _waypoint_list( $waypoints ); ?>
     <?php } ?>
 </div>
