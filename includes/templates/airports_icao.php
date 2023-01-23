@@ -13,11 +13,23 @@
     $ICAO = $ICAO->fetch_object();
     $plain = str_replace( '*', '', $ICAO->code );
 
+    $countries = $regions = [];
+
+    foreach( explode( '|', $ICAO->regions ) as $r ) {
+
+        ${ strlen( $r ) == 2 ? 'countries' : 'regions' }[] = $r;
+
+    }
+
+    $regions_query = ' AND ( country IN ( "' .
+        implode( '", "', $countries ) . '" ) OR region IN ( "' .
+        implode( '", "', $regions ) . '" ) ) ';
+
     $airports = $DB->query( '
         SELECT   *
         FROM     ' . DB_PREFIX . 'airport
         WHERE    ICAO LIKE "' . $plain . '%"
-        AND      LENGTH( ICAO ) = 4
+        ' . $regions_query . '
         ORDER BY tier DESC
     ' )->fetch_all( MYSQLI_ASSOC );
 
@@ -30,7 +42,7 @@
                 AVG( lon ) AS lon_avg
         FROM    ' . DB_PREFIX . 'airport
         WHERE   ICAO LIKE "' . $plain . '%"
-        AND     LENGTH( ICAO ) = 4
+        ' . $regions_query . '
     ' )->fetch_object();
 
     $count = count( $airports );
@@ -61,7 +73,8 @@
         'supress_sigmets' => true,
         'supress_day_night' => true,
         'query' => [
-            'ICAO' => $plain
+            'ICAO' => $plain,
+            '__' => $regions_query
         ],
         'fit_bounds' => [
             [ $position->lat_min, $position->lon_min ],
@@ -85,7 +98,7 @@
             WHERE    i.code LIKE "' . $ICAO->code . '%"
             AND      i.code != "' . $ICAO->code . '"
             AND      a.ICAO LIKE CONCAT( i.code, "%" )
-            AND      LENGTH( a.ICAO ) = 4
+            ' . $regions_query . '
             GROUP BY i.code
             ORDER BY i.code ASC
         ' )->fetch_all( MYSQLI_ASSOC ) );

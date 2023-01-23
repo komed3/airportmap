@@ -65,6 +65,12 @@
 
     }
 
+    if( array_key_exists( '__', $_POST ) ) {
+
+        $query .= $_POST['__'];
+
+    }
+
     api_exit( [
         'query' => $query,
         'airports' => $DB->query( '
