@@ -89,9 +89,10 @@
         'navaids' => false,
         'supress_sigmets' => true,
         'supress_day_night' => true,
-        'fit_bounds' => [
-            [ 90, -180 ],
-            [ -90, 180 ]
+        'position' => [
+            'lat' => 40.7,
+            'lon' => -74,
+            'zoom' => 5
         ]
     ], 'minimal-ui' ); ?>
     <h1 class="primary-headline">
