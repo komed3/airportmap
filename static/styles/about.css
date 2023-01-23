@@ -35,6 +35,25 @@
 .map-legend .legend-box .legend li mapicon,
 .map-legend .legend-box .legend li navicon,
 .map-legend .legend-box .legend li wxicon {
+    flex: 0 0 30px;
     width: 30px;
     height: 30px;
+}
+
+/* mobile support */
+
+@media all and ( max-width: 900px ) {
+
+    .map-legend {
+        column-count: 1;
+    }
+
+}
+
+@media all and ( max-width: 600px ) {
+
+    .map-legend {
+        font-size: 16px;
+    }
+
 }
