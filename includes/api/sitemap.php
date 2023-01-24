@@ -19,7 +19,6 @@
         $sitemap[] = '<url>
             <loc>' . SITE . $site . '</loc>
             <changefreq>' . $freq . '</changefreq>
-            <priority>' . $prior . '</priority>
             ' . str_replace( '$', $site, $sitemap_lang_tmp ) . '
         </url>';
 
@@ -112,17 +111,14 @@
 
     $index = [];
 
-    foreach( array_chunk( $sitemap, 25000 ) as $i => $chunk ) {
+    foreach( array_chunk( $sitemap, 20000 ) as $i => $chunk ) {
 
         $index[] = '<sitemap>
             <loc>' . SITE . 'sitemap-' . $i . '.xml</loc>
         </sitemap>';
 
         file_put_contents( BASE . 'sitemap-' . $i . '.xml', '<?xml version="1.0" encoding="UTF-8"?>
-        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ' .
-            'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" ' .
-            'xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" ' .
-            'xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
             ' . implode( '', $chunk ) . '
         </urlset>' );
 

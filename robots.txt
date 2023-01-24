@@ -1,7 +1,4 @@
 User-agent: *
-Allow: /
 Disallow: /includes/
 Disallow: /languages/
 Disallow: /static/
-
-Sitemap: https://airportmap.de/sitemap.xml
