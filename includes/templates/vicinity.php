@@ -27,7 +27,11 @@
             'lat' => $lat,
             'lon' => $lon,
             'zoom' => 10
-        ]
+        ],
+        'marker' => [ [
+            'lat' => $lat,
+            'lon' => $lon
+        ] ]
     ], 'minimal-ui' ); ?>
     <form class="vicinityform" data-form="vicinity" autocomplete="off">
         <span class="label"><?php _i18n( 'vicinity-label' ); ?></span>

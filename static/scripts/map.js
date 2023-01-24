@@ -708,6 +708,23 @@ var maps_config = {},
 
             }
 
+            if( 'marker' in data ) {
+
+                data.marker.forEach( ( marker ) => {
+
+                    L.marker( [ marker.lat, marker.lon ], {
+                        icon: L.divIcon( {
+                            iconSize: [ 24, 24 ],
+                            iconAnchor: [ 12, 12 ],
+                            className: 'mypos',
+                            html: '<mapicon></mapicon>'
+                        } )
+                    } ).addTo( maps[ uuid  ] );
+
+                } );
+
+            }
+
             setTimeout( function() {
 
                 $( '[uuid="' + uuid + '"] [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' ).click();
