@@ -25,6 +25,26 @@ var maps_config = {},
 
 ( function( $ ) {
 
+    var map_check_size = ( uuid ) => {
+
+        let size = maps[ uuid ].getSize();
+
+        if( size.x < 600 || size.y < 400 ) {
+
+            $( '[uuid="' + uuid + '"]' ).addClass( 'mini-map micro-map' );
+
+        } if( size.x < 900 || size.y < 600 ) {
+
+            $( '[uuid="' + uuid + '"]' ).addClass( 'mini-map' );
+
+        } else {
+
+            $( '[uuid="' + uuid + '"]' ).removeClass( 'mini-map micro-map' );
+
+        }
+
+    };
+
     var map_set_position = ( uuid ) => {
 
         let pos = maps[ uuid ].getCenter(),
@@ -634,13 +654,9 @@ var maps_config = {},
                 subdomains: 'abcd'
             } ).addTo( maps[ uuid ] );
 
-            if( $( this ).width() > 600 ) {
-
-                L.control.scale( {
-                    maxWidth: 140
-                } ).addTo( maps[ uuid ] );
-
-            }
+            L.control.scale( {
+                maxWidth: 140
+            } ).addTo( maps[ uuid ] );
 
             maps_layer[ uuid ].marker = L.layerGroup().addTo( maps[ uuid ] );
 
@@ -724,6 +740,8 @@ var maps_config = {},
                 } );
 
             }
+
+            map_check_size( uuid );
 
             setTimeout( function() {
 
@@ -872,6 +890,16 @@ var maps_config = {},
                 break;
 
         }
+
+    } );
+
+    $( window ).resize( function() {
+
+        Object.keys( maps ).forEach( ( uuid ) => {
+
+            map_check_size( uuid );
+
+        } );
 
     } );
 
