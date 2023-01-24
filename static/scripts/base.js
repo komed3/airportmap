@@ -79,6 +79,16 @@ var freq_format = ( frequency ) => {
                 location.reload();
                 break;
 
+            case 'vicinity-my':
+                navigator.geolocation.getCurrentPosition( ( position ) => {
+
+                    location.href = baseurl + '/vicinity/' +
+                        ( Math.round( position.coords.latitude * 100000 ) / 100000 ) + '/' +
+                        ( Math.round( position.coords.longitude * 100000 ) / 100000 );
+
+                } );
+                break;
+
         }
 
     } );
@@ -120,6 +130,12 @@ var freq_format = ( frequency ) => {
                 location.href = baseurl + '/embed/' +
                     ( $( this ).find( '[name="code"]' ).val() || '' ).toString().trim().toUpperCase() + '/' +
                     ( $( this ).find( '[name="lang"]' ).val() || '' ).toString().trim().toLowerCase();
+                break;
+
+            case 'vicinity':
+                location.href = baseurl + '/vicinity/' +
+                    parseFloat( $( this ).find( '[name="lat"]' ).val() || 0 ) + '/' +
+                    parseFloat( $( this ).find( '[name="lon"]' ).val() || 0 );
                 break;
 
         }

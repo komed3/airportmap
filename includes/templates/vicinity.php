@@ -39,7 +39,7 @@
             <i class="icon">near_me</i>
             <span><?php _i18n( 'vicinity-submit' ); ?></span>
         </button>
-        <button type="submit" name="vicinitymy" title="<?php _i18n( 'vicinity-my-title' ); ?>">
+        <button class="my" data-action="vicinity-my" name="vicinitymy" title="<?php _i18n( 'vicinity-my-title' ); ?>">
             <i class="icon">my_location</i>
             <span><?php _i18n( 'vicinity-my' ); ?></span>
         </button>
