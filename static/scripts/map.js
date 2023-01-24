@@ -634,9 +634,13 @@ var maps_config = {},
                 subdomains: 'abcd'
             } ).addTo( maps[ uuid ] );
 
-            L.control.scale( {
-                maxWidth: 140
-            } ).addTo( maps[ uuid ] );
+            if( $( this ).width() > 600 ) {
+
+                L.control.scale( {
+                    maxWidth: 140
+                } ).addTo( maps[ uuid ] );
+
+            }
 
             maps_layer[ uuid ].marker = L.layerGroup().addTo( maps[ uuid ] );
 

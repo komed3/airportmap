@@ -332,8 +332,12 @@
 }
 
 .map-container .map .leaflet-control-attribution {
+    max-width: 100vw;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     color: var( --gray-6 );
     background: var( --light-6 );
+    overflow: hidden;
 }
 
 .map-container .map .leaflet-tooltip {
@@ -429,4 +433,30 @@
 .map-container.minimal-ui .map-overlay .map-control .map-control-group:not(:last-of-type),
 .map-container.minimal-ui .map-overlay .map-scroll-below {
     display: none;
+}
+
+/* mobile support */
+
+@media all and ( max-width: 600px ) {
+
+    .map-container .map-overlay .map-control {
+        flex-flow: row wrap;
+    }
+
+    .map-container .map-overlay .map-control .map-control-group {
+        flex-flow: row nowrap;
+        width: auto;
+        height: 36px;
+        border-radius: 4px;
+    }
+
+    .map-container .map-overlay .map-control .map-control-group button {
+        width: 36px;
+        height: 36px;
+    }
+
+    .map-container .map-overlay .map-control .map-control-group button .icon {
+        font-size: 22px;
+    }
+
 }
