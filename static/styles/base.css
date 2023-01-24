@@ -657,9 +657,9 @@ h2.secondary-headline {
 
 .breadcrumbs {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     align-items: center;
-    gap: 12px;
+    gap: 6px 12px;
     margin: 40px var( --padding-normal );
 }
 
@@ -1192,10 +1192,8 @@ h2.secondary-headline {
 @media all and ( max-width: 1500px ) {
 
     :root {
-
         --padding-normal: 5%;
         --padding-wide: 15%;
-
     }
 
     .navaidlist,
@@ -1208,10 +1206,22 @@ h2.secondary-headline {
 @media all and ( max-width: 1200px ) {
 
     :root {
-
         --padding-normal: var( --padding-narrow );
         --padding-wide: 10%;
+    }
 
+    h1 {
+        font-size: 26px;
+    }
+
+    .primary-headline {
+        flex-flow: row wrap;
+        gap: 6px 16px;
+        padding: 20px var(--padding-normal );
+    }
+
+    h2 {
+        font-size: 22px;
     }
 
     .pagelist {
@@ -1255,10 +1265,12 @@ h2.secondary-headline {
 @media all and ( max-width: 900px ) {
 
     :root {
-
         --padding-narrow: 20px;
         --padding-wide: 50px;
+    }
 
+    .primary-headline .icon {
+        display: none;
     }
 
     .pagelist {
@@ -1404,6 +1416,11 @@ h2.secondary-headline {
     
     .skychart .labels .label {
         height: 40px;
+    }
+
+    .search .search-form .searchform .searchtext {
+        flex: 0 0 auto;
+        width: 100%;
     }
 
 }
