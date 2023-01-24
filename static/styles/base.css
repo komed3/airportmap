@@ -739,6 +739,7 @@ h2.secondary-headline {
 
 .airportlist .list .row .info .headline .code,
 .stationlist .list .row .info .headline .code {
+    white-space: nowrap;
     font-weight: 800;
     color: var( --gray-0 );
     background: var( --gray-3 );
@@ -1309,18 +1310,29 @@ h2.secondary-headline {
         display: none;
     }
 
+    .airportlist .list .row,
     .stationlist .list .row {
         display: block;
         padding: 20px 0;
+    }
+
+    .airportlist .list .row:not(:last-of-type) {
+        border-bottom: 1px solid var( --shade-1 );
     }
 
     .stationlist .list .row .cat {
         width: 100px;
     }
 
+    .airportlist .list .row .info .headline,
     .stationlist .list .row .info .headline {
         margin: 8px 0;
         height: auto;
+    }
+
+    .airportlist .list .row .nearby {
+        width: 120px;
+        padding-top: 20px;
     }
 
     .skychart .layers {
@@ -1356,6 +1368,7 @@ h2.secondary-headline {
         padding: 12px 0;
     }
 
+    .airportlist .list .row .info .headline .name,
     .stationlist .list .row .info .headline .name {
         font-size: 18px;
     }
