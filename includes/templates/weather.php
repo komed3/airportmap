@@ -25,6 +25,7 @@
     <?php _map( [
         'type' => 'weather',
         'navaids' => false,
+        'waypoints' => false,
         'supress_day_night' => true,
         'position' => [
             'lat' => 40.7,

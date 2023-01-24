@@ -49,6 +49,7 @@
     <?php _map( [
         'type' => 'airport',
         'navaids' => false,
+        'waypoints' => false,
         'supress_sigmets' => true,
         'supress_day_night' => true,
         'query' => [
