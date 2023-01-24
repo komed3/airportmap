@@ -78,6 +78,7 @@
             <link rel="canonical" href="<?php echo SITE . $__site_canonical; ?>" />
             <title><?php echo $__site_title ?? i18n( 'site-title-default' ); ?> — Airportmap</title>
             <meta name="description" content="<?php echo ( $__site_desc ?? i18n( 'site-desc-default' ) ); ?>" />
+            <meta name="robots" content="all, noimageindex" />
         <?php
 
     }
