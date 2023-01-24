@@ -6,7 +6,9 @@
     $lon = (float) ( $path[2] ?? -74 );
     $_lon = __DMS( $lon, 'lon' );
 
-    $__site_canonical = $base . 'vicinity';
+    $base = 'vicinity/' . $lat . '/' . $lon;
+
+    $__site_canonical = base_url( 'vicinity' );
 
     $__site_title = i18n( 'vicinity-title-at', $_lat, $_lon );
     $__site_desc = i18n( 'vicinity-desc' );
@@ -54,6 +56,13 @@
         <b><?php echo $_lat; ?></b>
         <b><?php echo $_lon; ?></b>
     </h1>
-    ...
+    <div class="content-normal">
+        <?php _airport_list(
+            airport_nearest( $lat, $lon, [], 5 ),
+            $path[3] ?? 1,
+            $base,
+            [ $lat, $lon ]
+        ); ?>
+    </div>
 </div>
 <?php _footer(); ?>

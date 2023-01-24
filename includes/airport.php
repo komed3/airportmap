@@ -136,9 +136,17 @@
 
         global $DB;
 
-        $query = implode( ' AND ', array_filter( array_map( function( $o ) {
-            return $o[1] ? $o[0] . ' ' . ( $o[2] ?? '=' ) . ' ' . $o[1] : null;
-        }, $options ) ) );
+        if( count( $options ) ) {
+
+            $query = implode( ' AND ', array_filter( array_map( function( $o ) {
+                return $o[1] ? $o[0] . ' ' . ( $o[2] ?? '=' ) . ' ' . $o[1] : null;
+            }, $options ) ) );
+
+        } else {
+
+            $query = '1';
+
+        }
 
         return $DB->query( '
             SELECT  *, ( 3440.29182 * acos(
