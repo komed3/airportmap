@@ -67,7 +67,7 @@
                         <h4 class="infobox-subtitle"></h4>
                     </div>
                     <div class="infobox-content"></div>
-                    <a href="" class="infobox-link">
+                    <a href="#" class="infobox-link">
                         <span class="infobox-linktext"></span>
                         <i class="icon">chevron_right</i>
                     </a>
