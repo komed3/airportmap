@@ -63,6 +63,50 @@
             $base,
             [ $lat, $lon ]
         ); ?>
+        <h2><?php _i18n( 'vicinity-navaids' ); ?></h2>
+        <?php if( count( $navaids = $DB->query( '
+            SELECT   *, ( 3440.29182 * acos(
+                cos( radians( ' . $lat . ' ) ) *
+                cos( radians( lat ) ) *
+                cos(
+                    radians( lon ) -
+                    radians( ' . $lon . ' )
+                ) +
+                sin( radians( ' . $lat . ' ) ) *
+                sin( radians( lat ) )
+            ) ) AS distance
+            FROM     ' . DB_PREFIX . 'navaid
+            WHERE    ( lat BETWEEN ' . ( $lat - 1 ) . ' AND ' . ( $lat + 1 ) . ' )
+            AND      ( lon BETWEEN ' . ( $lon - 1 ) . ' AND ' . ( $lon + 1 ) . ' )
+            ORDER BY distance ASC
+            LIMIT    0, 48
+        ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) { ?>
+            <?php _navaid_list( [ 'lat' => $lat, 'lon' => $lon ], $navaids ); ?>
+        <?php } else { ?>
+            <p><?php _i18n( 'vicinity-navaids-empty' ); ?></p>
+        <?php } ?>
+        <h2><?php _i18n( 'vicinity-waypoints' ); ?></h2>
+        <?php if( count( $waypoints = $DB->query( '
+            SELECT   *, ( 3440.29182 * acos(
+                cos( radians( ' . $lat . ' ) ) *
+                cos( radians( lat ) ) *
+                cos(
+                    radians( lon ) -
+                    radians( ' . $lon . ' )
+                ) +
+                sin( radians( ' . $lat . ' ) ) *
+                sin( radians( lat ) )
+            ) ) AS distance
+            FROM     ' . DB_PREFIX . 'waypoint
+            WHERE    ( lat BETWEEN ' . ( $lat - 1 ) . ' AND ' . ( $lat + 1 ) . ' )
+            AND      ( lon BETWEEN ' . ( $lon - 1 ) . ' AND ' . ( $lon + 1 ) . ' )
+            ORDER BY distance ASC
+            LIMIT    0, 48
+        ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) { ?>
+            <?php _waypoint_list( [ 'lat' => $lat, 'lon' => $lon ], $waypoints ); ?>
+        <?php } else { ?>
+            <p><?php _i18n( 'vicinity-waypoints-empty' ); ?></p>
+        <?php } ?>
     </div>
 </div>
 <?php _footer(); ?>
