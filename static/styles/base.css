@@ -519,8 +519,14 @@ h2.secondary-headline {
     justify-content: flex-end;
     align-items: center;
     gap: 5px 10px;
+    min-width: 0;
     text-align: right;
+}
+
+.infolist li > div > * {
     white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .infolist li:not(:last-of-type) {

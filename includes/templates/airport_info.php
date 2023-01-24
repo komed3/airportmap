@@ -18,11 +18,11 @@
         <ul class="infolist">
             <li>
                 <span class="label"><?php _i18n( 'info-name' ); ?></span>
-                <div><?php echo $airport['name']; ?></div>
+                <div><span><?php echo $airport['name']; ?></span></div>
             </li>
             <li>
                 <span class="label"><?php echo implode( '&nbsp;/ ', array_keys( $codes ) ); ?></span>
-                <div><?php echo implode( '&nbsp;/ ', $codes ); ?></div>
+                <div><span><?php echo implode( '&nbsp;/ ', $codes ); ?></span></div>
             </li>
             <li>
                 <span class="label"><?php _i18n( 'info-type' ); ?></span>
@@ -46,7 +46,7 @@
             </li><?php } ?>
             <?php if( $airport['municipality'] ) { ?><li>
                 <span class="label"><?php _i18n( 'info-municipality' ); ?></span>
-                <div><?php echo $airport['municipality']; ?></div>
+                <div><span><?php echo $airport['municipality']; ?></span></div>
             </li><?php } ?>
             <li>
                 <span class="label"><?php _i18n( 'info-coords' ); ?></span>
