@@ -17,9 +17,13 @@
     position: absolute;
     right: 0;
     bottom: 0;
+    max-width: 100%;
     padding: 2px 6px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-size: 12px;
     background: var( --light-6 );
+    overflow: hidden;
 }
 
 .error-404 h1 {
@@ -58,6 +62,7 @@
 
 .error-404 h2 {
     margin: 20px 0;
+    text-align: center;
     text-transform: uppercase;
     font-size: 32px;
     font-weight: 800;
@@ -68,4 +73,65 @@
 .error-404 .searchform .searchtext {
     flex: 0 0 600px;
     background: var( --light-6 );
+}
+
+/* mobile support */
+
+@media all and ( max-width: 1200px ) {
+
+    .error-404 h1 span {
+        flex: 0 0 52px;
+        height: 72px;
+        line-height: 72px;
+        font-size: 50px;
+    }
+
+    .error-404 h2 {
+        font-size: 26px;
+        letter-spacing: 5px;
+    }
+
+}
+
+@media all and ( max-width: 900px ) {
+
+    .error-404 h1 span {
+        flex: 0 0 46px;
+        height: 62px;
+        line-height: 62px;
+        font-size: 46px;
+    }
+
+    .error-404 h2 {
+        font-size: 24px;
+        letter-spacing: 4px;
+    }
+
+    .error-404 .searchform .searchtext {
+        flex: 0 0 400px;
+    }
+
+}
+
+@media all and ( max-width: 600px ) {
+
+    .error-404 h1 {
+        display: grid;
+        grid-template-columns: repeat( 3, 46px );
+    }
+
+    .error-404 h2 {
+        font-size: 24px;
+        letter-spacing: 4px;
+    }
+
+    .error-404 .searchform {
+        flex-flow: column nowrap;
+    }
+
+    .error-404 .searchform .searchtext {
+        flex: 0 0 auto;
+        width: 80vw;
+    }
+
 }

@@ -1,7 +1,7 @@
 {
     "404-desc": "Ein 404 Fehler ist aufgetreten. Die angeforderte Seite konnte nicht gefunden werden",
     "404-headline": "Abflug verspätet",
-    "404-teaser": "Flug404",
+    "404-teaser": "Abflug404",
     "404-title": "Fehler 404",
     "about-code": "Der Quellcode für dieses Projekt ist frei zugänglich auf <a href=\"https://github.com/komed3/airportmap\" target=\"_blank\">GitHub</a>.",
     "about-desc": "Informationen über das Open-Source-Projekt Airportmap",
