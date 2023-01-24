@@ -5,11 +5,10 @@
 
 .vicinity .vicinityform {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     align-items: center;
     gap: 12px;
-    height: 80px;
-    padding: 0 var( --padding-normal );
+    padding: 20px var( --padding-normal );
 }
 
 .vicinity .vicinityform .label {
@@ -53,4 +52,30 @@
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 600;
+}
+
+/* mobile support */
+
+@media all and ( max-width: 1200px ) {
+
+    .vicinity .vicinityform {
+        justify-content: center;
+    }
+    
+    .vicinity .vicinityform .label {
+        display: none;
+    }
+
+    .vicinity .vicinityform button.my {
+        margin-left: 0;
+    }
+
+}
+
+@media all and ( max-width: 600px ) {
+
+    .vicinity .vicinityform input[type="number"] {
+        width: 100%;
+    }
+
 }
