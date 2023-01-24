@@ -28,3 +28,21 @@
     fill: var( --indicator-yellow );
     cursor: pointer;
 }
+
+/* mobile support */
+
+@media all and ( max-width: 900px ) {
+
+    .region .icao-map svg {
+        transform: scale( 1.1 );
+    }
+
+}
+
+@media all and ( max-width: 600px ) {
+
+    .region .icao-map svg {
+        transform: scale( 1.2 );
+    }
+
+}
