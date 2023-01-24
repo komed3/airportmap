@@ -95,6 +95,7 @@
     cursor: pointer;
     transform: scale( 0 );
     transition: all 100ms ease-out;
+    z-index: 9997;
 }
 
 body.scroll-to-top #scroll-to-top {
