@@ -76,8 +76,8 @@
                 sin( radians( lat ) )
             ) ) AS distance
             FROM     ' . DB_PREFIX . 'navaid
-            WHERE    ( lat BETWEEN ' . ( $lat - 1 ) . ' AND ' . ( $lat + 1 ) . ' )
-            AND      ( lon BETWEEN ' . ( $lon - 1 ) . ' AND ' . ( $lon + 1 ) . ' )
+            WHERE    ( lat BETWEEN ' . ( $lat - 5 ) . ' AND ' . ( $lat + 5 ) . ' )
+            AND      ( lon BETWEEN ' . ( $lon - 5 ) . ' AND ' . ( $lon + 5 ) . ' )
             ORDER BY distance ASC
             LIMIT    0, 48
         ' )->fetch_all( MYSQLI_ASSOC ) ) > 0 ) { ?>
