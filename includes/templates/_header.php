@@ -32,6 +32,10 @@
                     'i18n' => 'site-nav-weather',
                     'url' => 'weather',
                     'check' => 'weather'
+                ], [
+                    'i18n' => 'site-nav-list',
+                    'url' => 'list',
+                    'check' => 'list'
                 ] ], 'site-nav' ); ?>
                 <?php load_tpl_part( '_searchform' ); ?>
             </div>
