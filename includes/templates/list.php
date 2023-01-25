@@ -1,8 +1,8 @@
 <?php
 
-    $letter = substr( strtoupper( trim( $path[1] ?? '' ) ), 0, 1 );
+    $letter = strtoupper( trim( $path[1] ?? '' ) );
 
-    if( strlen( $letter ) == 1 ) {
+    if( strlen( $letter ) > 0 ) {
 
         if( strpos( '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', $letter ) === false ) {
 

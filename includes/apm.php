@@ -45,7 +45,9 @@
 
     /* fetch path */
 
-    $path = array_values( array_filter( explode( '/', $_SERVER['REQUEST_URI'] ) ) );
+    $path = array_values( array_filter( explode( '/', $_SERVER['REQUEST_URI'] ), function( $p ) {
+        return ( $p !== null && $p !== false && $p !== '' );
+    } ) );
 
     /* load language messages */
 
