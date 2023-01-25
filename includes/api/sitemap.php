@@ -2,24 +2,16 @@
 
     require_once __DIR__ . '/api.php';
 
-    $sitemap_lang_tmp = implode( '', array_map( function( $lang ) {
-        return '<xhtml:link rel="alternate" hreflang="' . $lang . '" href="' . SITE . $lang . '/$" />';
-    }, LANGUAGES ) );
-
     $sitemap = [];
 
     function sitemap_entry(
-        string $site,
-        float $prior = 0.9,
-        string $freq = 'daily'
+        string $site
     ) {
 
         global $sitemap, $sitemap_lang_tmp;
 
         $sitemap[] = '<url>
             <loc>' . SITE . $site . '</loc>
-            <changefreq>' . $freq . '</changefreq>
-            ' . str_replace( '$', $site, $sitemap_lang_tmp ) . '
         </url>';
 
     }
@@ -27,24 +19,24 @@
     /* basic URLs */
 
     foreach( [
-        '' => 1,
-        'airports' => 1,
-        'vicinity' => 0.9,
-        'weather' => 1,
-        'weather/cat/VFR' => 0.9,
-        'weather/cat/MVFR' => 0.9,
-        'weather/cat/IFR' => 0.9,
-        'weather/cat/LIFR' => 0.9,
-        'weather/cat/UNK' => 0.9,
-        'weather/sigmets' => 1,
-        'stats' => 1,
-        'about' => 0.9,
-        'data' => 0.7,
-        'embed' => 0.7,
-        'privacy' => 0.5
-    ] as $site => $prior ) {
+        '',
+        'airports',
+        'vicinity',
+        'weather',
+        'weather/cat/VFR',
+        'weather/cat/MVFR',
+        'weather/cat/IFR',
+        'weather/cat/LIFR',
+        'weather/cat/UNK',
+        'weather/sigmets',
+        'stats',
+        'about',
+        'data',
+        'embed',
+        'privacy'
+    ] as $site ) {
 
-        sitemap_entry( $site, $prior, 'daily' );
+        sitemap_entry( $site );
 
     }
 
@@ -56,11 +48,11 @@
         ORDER BY tier DESC
     ' )->fetch_all( MYSQLI_ASSOC ), 'ICAO' ) as $airport ) {
 
-        sitemap_entry( 'airport/' . $airport . '/info', 0.9, 'monthly' );
-        sitemap_entry( 'airport/' . $airport . '/weather', 0.9, 'hourly' );
-        sitemap_entry( 'airport/' . $airport . '/nearby', 0.8, 'weekly' );
-        sitemap_entry( 'airport/' . $airport . '/radio', 0.7, 'monthly' );
-        sitemap_entry( 'airport/' . $airport . '/runways', 0.7, 'monthly' );
+        sitemap_entry( 'airport/' . $airport . '/info' );
+        sitemap_entry( 'airport/' . $airport . '/weather' );
+        sitemap_entry( 'airport/' . $airport . '/nearby' );
+        sitemap_entry( 'airport/' . $airport . '/radio' );
+        sitemap_entry( 'airport/' . $airport . '/runways' );
 
     }
 
@@ -73,13 +65,13 @@
             FROM    ' . DB_PREFIX . $type . '
         ' )->fetch_all( MYSQLI_ASSOC ), 'code' ) as $region ) {
 
-            sitemap_entry( 'airports/' . $type . '/' . $region, 0.7, 'weekly' );
+            sitemap_entry( 'airports/' . $type . '/' . $region );
 
         }
 
     }
 
-    /* types + restrictions */
+    /* types & restrictions */
 
     foreach( [ 'type', 'restriction' ] as $type ) {
 
@@ -90,7 +82,7 @@
             GROUP BY ' . $type . '
         ' )->fetch_all( MYSQLI_ASSOC ), 'col' ) as $col ) {
 
-            sitemap_entry( 'airports/' . $type . '/' . $col, 0.7, 'weekly' );
+            sitemap_entry( 'airports/' . $type . '/' . $col );
 
         }
 
@@ -103,7 +95,7 @@
         FROM    ' . DB_PREFIX . 'timezone
     ' )->fetch_all( MYSQLI_ASSOC ), 'ident' ) as $tz ) {
 
-        sitemap_entry( 'airports/timezone/' . $tz, 0.7, 'weekly' );
+        sitemap_entry( 'airports/timezone/' . $tz );
 
     }
 
@@ -111,14 +103,14 @@
 
     $index = [];
 
-    foreach( array_chunk( $sitemap, 20000 ) as $i => $chunk ) {
+    foreach( array_chunk( $sitemap, 10000 ) as $i => $chunk ) {
 
         $index[] = '<sitemap>
             <loc>' . SITE . 'sitemap-' . $i . '.xml</loc>
         </sitemap>';
 
         file_put_contents( BASE . 'sitemap-' . $i . '.xml', '<?xml version="1.0" encoding="UTF-8"?>
-        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
             ' . implode( '', $chunk ) . '
         </urlset>' );
 
