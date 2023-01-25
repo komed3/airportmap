@@ -435,9 +435,9 @@
     display: none;
 }
 
-/* mini/micro maps */
+/* micro map */
 
-.map-container.mini-map .map-overlay .map-infobox {
+.map-container.micro-map .map-overlay .map-infobox {
     position: fixed;
 }
 
