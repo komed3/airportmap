@@ -19,7 +19,7 @@
     /* basic URLs */
 
     foreach( [
-        '', 'airports', 'list', 'vicinity', 'weather',
+        '', 'airports', 'list/all', 'vicinity', 'weather',
         'weather/cat/VFR', 'weather/cat/MVFR', 'weather/cat/IFR',
         'weather/cat/LIFR', 'weather/cat/UNK', 'weather/sigmets',
         'stats', 'about', 'data', 'embed', 'privacy'

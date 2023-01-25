@@ -1,14 +1,21 @@
 <?php
 
-    $letter = strtoupper( trim( $path[1] ?? '' ) );
+    $path[1] = $path[1] ?? 'all';
+    $letter = strtoupper( trim( $path[1] ) );
 
-    if( strlen( $letter ) > 0 ) {
+    if( $path[1] == 'all' ) {
 
-        if( strpos( '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', $letter ) === false ) {
+        $query = '1';
 
-            __404();
+        $__site_canonical = 'list/all';
 
-        }
+        $__site_title = i18n( 'list-title' );
+        $__site_desc = i18n( 'list-desc' );
+
+    } else if( strlen( $letter ) == 1 && strpos(
+        '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        $letter
+    ) !== false ) {
 
         $query = ' ICAO LIKE "' . $letter . '%" ';
 
@@ -19,12 +26,7 @@
 
     } else {
 
-        $query = '1';
-
-        $__site_canonical = 'list';
-
-        $__site_title = i18n( 'list-title' );
-        $__site_desc = i18n( 'list-desc' );
+        __404();
 
     }
 
@@ -45,8 +47,8 @@
     <?php _site_nav(
         array_merge( [ [
             'i18n' => 'list-all',
-            'url' => 'list',
-            'check' => ''
+            'url' => 'list/all',
+            'check' => 'all'
         ] ], array_map( function( $l ) {
             return [
                 'text' => $l,
@@ -66,7 +68,7 @@
     <div class="content-normal">
         <?php _airport_list(
             $airports, $path[2] ?? 1,
-            $letter ? 'list/' . $letter : 'list'
+            'list/' . $path[1]
         ); ?>
     </div>
 </div>
