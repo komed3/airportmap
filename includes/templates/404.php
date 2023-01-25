@@ -2,7 +2,7 @@
 
     add_resource( '404', 'css', '404.css' );
 
-    $__site_canonical = $base . '404';
+    $__site_canonical = '404';
 
     $__site_title = i18n( '404-title' );
     $__site_desc = i18n( '404-desc' );

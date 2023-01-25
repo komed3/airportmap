@@ -3,7 +3,7 @@
     add_resource( 'text', 'css', 'text.css' );
     add_resource( 'about', 'css', 'about.css' );
 
-    $__site_canonical = $base . 'about';
+    $__site_canonical = 'about';
 
     $__site_title = i18n( 'about-title' );
     $__site_desc = i18n( 'about-desc' );

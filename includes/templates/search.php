@@ -10,7 +10,7 @@
 
     }
 
-    $__site_canonical = $base . 'search';
+    $__site_canonical = 'search';
 
     $__site_title = i18n( 'search-title', $__site_search, count( $results ) );
     $__site_desc = i18n( 'search-desc' );

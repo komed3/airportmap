@@ -35,7 +35,7 @@
     $count = count( $airports );
     $_count = __number( $count );
 
-    $__site_canonical = $base . 'airports/type/' . $type;
+    $__site_canonical = 'airports/type/' . $type;
 
     $__site_title = i18n( 'airports-type-title', $name, $type, $_count );
     $__site_desc = i18n( 'airports-type-desc', $name, $type, $_count );

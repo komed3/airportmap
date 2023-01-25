@@ -10,7 +10,7 @@
     add_resource( 'text', 'css', 'text.css' );
     add_resource( 'embedform', 'css', 'embedform.css' );
 
-    $__site_canonical = $base . 'embed';
+    $__site_canonical = 'embed';
 
     $__site_title = i18n( 'embed-title' );
     $__site_desc = i18n( 'embed-desc' );

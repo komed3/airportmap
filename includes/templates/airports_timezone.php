@@ -36,7 +36,7 @@
     $count = count( $airports );
     $_count = __number( $count );
 
-    $__site_canonical = $base . 'airports/timezone/' . $timezone->ident;
+    $__site_canonical = 'airports/timezone/' . $timezone->ident;
 
     $__site_title = i18n( 'airports-timezone-title', $timezone->name, $timezone->short, $_count, $tz_offset );
     $__site_desc = i18n( 'airports-timezone-desc', $timezone->name, $timezone->short, $_count, $tz_offset );

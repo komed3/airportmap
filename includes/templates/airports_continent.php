@@ -38,7 +38,7 @@
     $count = array_sum( array_column( $list, 'cnt' ) );
     $_count = __number( $count );
 
-    $__site_canonical = $base . 'airports/continent/' . $continent->code;
+    $__site_canonical = 'airports/continent/' . $continent->code;
 
     $__site_title = i18n( 'airports-continent-title', $continent->name, $continent->code, $_count );
     $__site_desc = i18n( 'airports-continent-desc', $continent->name, $continent->code, $_count );

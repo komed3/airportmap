@@ -33,7 +33,7 @@
 
     add_resource( 'stats', 'css', 'stats.css' );
 
-    $__site_canonical = $base . 'stats';
+    $__site_canonical = 'stats';
 
     $__site_title = i18n( 'stats-title' );
     $__site_desc = i18n( 'stats-desc' );

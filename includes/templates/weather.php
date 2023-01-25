@@ -11,7 +11,7 @@
         ORDER BY tier DESC
     ' )->fetch_all( MYSQLI_ASSOC );
 
-    $__site_canonical = $base . 'airports/weather';
+    $__site_canonical = 'airports/weather';
 
     $__site_title = i18n( 'weather-title' );
     $__site_desc = i18n( 'weather-desc' );

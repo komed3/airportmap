@@ -35,7 +35,7 @@
 
     $country = region_name( 'country', $region->country );
 
-    $__site_canonical = $base . 'airports/region/' . $region->code;
+    $__site_canonical = 'airports/region/' . $region->code;
 
     $__site_title = i18n( 'airports-region-title', $region->name ?? i18n( 'unknown' ), $region->code, $_count, $country );
     $__site_desc = i18n( 'airports-region-desc', $region->name ?? i18n( 'unknown' ), $region->code, $_count, $country );

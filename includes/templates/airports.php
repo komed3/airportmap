@@ -72,7 +72,7 @@
     $count = array_sum( array_column( $list, 'cnt' ) );
     $_count = __number( $count );
 
-    $__site_canonical = $base . 'airports';
+    $__site_canonical = 'airports';
 
     $__site_title = i18n( 'airports-title', $_count );
     $__site_desc = i18n( 'airports-desc', $_count );

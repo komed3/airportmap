@@ -56,7 +56,7 @@
 
     }
 
-    $__site_canonical = $base . 'airports/ICAO/' . $ICAO->code;
+    $__site_canonical = 'airports/ICAO/' . $ICAO->code;
 
     $__site_title = i18n( 'airports-icao-title', $ICAO->code, $ICAO->name, $_count );
     $__site_desc = i18n( 'airports-icao-desc', $ICAO->code, $ICAO->name, $_count );

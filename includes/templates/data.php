@@ -2,7 +2,7 @@
 
     add_resource( 'text', 'css', 'text.css' );
 
-    $__site_canonical = $base . 'data';
+    $__site_canonical = 'data';
 
     $__site_title = i18n( 'data-title' );
     $__site_desc = i18n( 'data-desc' );

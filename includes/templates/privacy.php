@@ -2,7 +2,7 @@
 
     add_resource( 'text', 'css', 'text.css' );
 
-    $__site_canonical = $base . 'privacy';
+    $__site_canonical = 'privacy';
 
     $__site_title = i18n( 'site-privacy' );
     $__site_desc = i18n( 'site-privacy-desc' );

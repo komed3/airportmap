@@ -35,7 +35,7 @@
     $count = count( $airports );
     $_count = __number( $count );
 
-    $__site_canonical = $base . 'airports/restriction/' . $rest;
+    $__site_canonical = 'airports/restriction/' . $rest;
 
     $__site_title = i18n( 'airports-restriction-title', $name, $rest, $_count );
     $__site_desc = i18n( 'airports-restriction-desc', $name, $rest, $_count );

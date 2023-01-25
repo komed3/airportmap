@@ -32,7 +32,7 @@
         AND     m.flight_cat ' . ( $cat == 'UNK' ? 'IS NULL' : ' = "' . $cat . '"' ) . '
     ' )->fetch_object();
 
-    $__site_canonical = $base . 'airports/weather/cat/' . $cat;
+    $__site_canonical = 'airports/weather/cat/' . $cat;
 
     $cat_name = i18n( 'cat-' . $cat );
     $cat_label = i18n( 'cat-' . $cat . '-label' );
