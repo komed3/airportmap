@@ -284,7 +284,7 @@
 
             foreach( array_slice( $airports, ( $page - 1 ) * 24, 24 ) as $airport ) {
 
-                $content .= '<div class="row airport-' . $airport['type'] . ' restrict-' . $airport['restriction'] . ' service-' . $airport['service'] . '">
+                $content .= '<div class="row airport-' . $airport['type'] . ' restriction-' . $airport['restriction'] . ' service-' . $airport['service'] . '">
                     <mapicon></mapicon>
                     <div class="info">
                         <div class="headline">
