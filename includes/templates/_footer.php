@@ -11,13 +11,13 @@
                 <div class="column">
                     <h3><?php _i18n( 'footer-headline-discover' ); ?></h3>
                     <?php _site_nav( [ [
-                        'i18n' => 'footer-nav-map',
-                        'url' => ''
-                    ], [
-                        'i18n' => 'footer-nav-search-airports',
+                        'i18n' => 'footer-nav-airports',
                         'url' => 'airports'
                     ], [
-                        'i18n' => 'footer-nav-weather-forecast',
+                        'i18n' => 'footer-nav-list',
+                        'url' => 'list'
+                    ], [
+                        'i18n' => 'footer-nav-weather',
                         'url' => 'weather'
                     ], [
                         'i18n' => 'footer-nav-sigmets',
