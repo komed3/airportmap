@@ -464,7 +464,7 @@ h2.secondary-headline {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
-    gap: 6px 12px;
+    gap: 10px;
 }
 
 .site-tabs a {
