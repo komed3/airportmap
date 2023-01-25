@@ -29,6 +29,14 @@
 
     }
 
+    /* list A-Z */
+
+    foreach( str_split( '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ' ) as $letter ) {
+
+        sitemap_entry( 'list/' . $letter );
+
+    }
+
     /* airports */
 
     foreach( array_column( $DB->query( '
