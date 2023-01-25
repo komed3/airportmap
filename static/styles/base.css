@@ -783,10 +783,11 @@ h2.secondary-headline {
 .airportlist .list .row .info .region,
 .airportlist .list .row .info .tags {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     align-items: center;
     gap: 4px 10px;
     margin: 0;
+    white-space: nowrap;
 }
 
 .airportlist .list .row .info .location,
