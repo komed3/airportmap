@@ -17,7 +17,7 @@
 
     } else $weather = null;
 
-    $__site_canonical = base_url( 'airport/' . $ICAO . '/info' );
+    $__site_canonical = 'airport/' . $ICAO . '/info';
 
     $__site_title = $airport['name'] ?? i18n( 'unknown' );
     $__site_desc = i18n( 'embed-info', $__site_title, $ICAO );
