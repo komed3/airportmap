@@ -21,6 +21,15 @@
     flex: 0 0 100%;
 }
 
+.welcome .searchform button {
+    transition: all 100ms ease-out;
+}
+
+.welcome .searchform button:hover {
+    background: var( --primary-dark );
+    transform: scale( 1.15 );
+}
+
 .welcome-stats {
     display: grid;
     grid-template-columns: repeat( 4, 1fr );
@@ -54,6 +63,12 @@
     font-weight: 600;
     color: var( --gray-0 );
     background: var( --primary );
+    transition: all 100ms ease-out;
+}
+
+.welcome-tabs a:hover {
+    background: var( --primary-dark );
+    transform: scale( 1.05 );
 }
 
 .welcome-text p {
