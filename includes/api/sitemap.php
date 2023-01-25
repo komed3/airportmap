@@ -19,21 +19,10 @@
     /* basic URLs */
 
     foreach( [
-        '',
-        'airports',
-        'vicinity',
-        'weather',
-        'weather/cat/VFR',
-        'weather/cat/MVFR',
-        'weather/cat/IFR',
-        'weather/cat/LIFR',
-        'weather/cat/UNK',
-        'weather/sigmets',
-        'stats',
-        'about',
-        'data',
-        'embed',
-        'privacy'
+        '', 'airports', 'list', 'vicinity', 'weather',
+        'weather/cat/VFR', 'weather/cat/MVFR', 'weather/cat/IFR',
+        'weather/cat/LIFR', 'weather/cat/UNK', 'weather/sigmets',
+        'stats', 'about', 'data', 'embed', 'privacy'
     ] as $site ) {
 
         sitemap_entry( $site );
