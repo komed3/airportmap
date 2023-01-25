@@ -36,10 +36,10 @@
     </a>
 </div>
 <?php _site_nav( [ null, [
-        'i18n' => 'footer-nav-search-airports',
+        'i18n' => 'footer-nav-airports',
         'url' => $base . 'airports'
     ], [
-        'i18n' => 'footer-nav-weather-forecast',
+        'i18n' => 'footer-nav-weather',
         'url' => $base . 'weather'
     ], [
         'i18n' => 'footer-nav-about',
