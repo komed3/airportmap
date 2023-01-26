@@ -1,0 +1,24 @@
+.list .select-letter {
+    display: none;
+    padding: 0 20px;
+}
+
+.list .select-letter select {
+    width: 100%;
+    height: 44px;
+    padding: 0 22px;
+    font-size: 18px;
+    border-radius: 22px;
+}
+
+@media all and ( max-width: 600px ) {
+
+    .list .site-tabs {
+        display: none;
+    }
+
+    .list .select-letter {
+        display: block;
+    }
+
+}

@@ -1,5 +1,9 @@
 <?php
 
+    $letters = str_split(
+        '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    );
+
     $path[1] = $path[1] ?? 'all';
     $letter = strtoupper( trim( $path[1] ) );
 
@@ -12,10 +16,7 @@
         $__site_title = i18n( 'list-title' );
         $__site_desc = i18n( 'list-desc' );
 
-    } else if( strlen( $letter ) == 1 && strpos(
-        '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        $letter
-    ) !== false ) {
+    } else if( strlen( $letter ) == 1 && in_array( $letter, $letters ) ) {
 
         $query = ' ICAO LIKE "' . $letter . '%" ';
 
@@ -40,26 +41,42 @@
     $count = count( $airports );
     $_count = __number( $count );
 
+    $tabs = [ [
+        'i18n' => 'list-all',
+        'url' => 'list/all',
+        'check' => 'all'
+    ] ];
+
+    $select = [ '<option value="all" ' . (
+        $path[1] == 'all' ? 'selected' : ''
+    ) . '>' . i18n( 'list-title' ) . '</option>' ];
+
+    foreach( $letters as $l ) {
+
+        $tabs[] = [
+            'text' => $l,
+            'url' => 'list/' . $l,
+            'check' => $l
+        ];
+
+        $select[] = '<option value="' . $l . '" ' . (
+            $path[1] == $l ? 'selected' : ''
+        ) . '>' . i18n( 'list-letter-title', $l ) . '</option>';
+
+    }
+
+    add_resource( 'list', 'css', 'list.css' );
+
     _header();
 
 ?>
 <div class="content-full list">
-    <?php _site_nav(
-        array_merge( [ [
-            'i18n' => 'list-all',
-            'url' => 'list/all',
-            'check' => 'all'
-        ] ], array_map( function( $l ) {
-            return [
-                'text' => $l,
-                'url' => 'list/' . $l,
-                'check' => $l
-            ];
-        }, str_split(
-            '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        ) ) ),
-        'site-tabs content-normal', 1
-    ); ?>
+    <?php _site_nav( $tabs, 'site-tabs content-normal', 1 ); ?>
+    <div class="select-letter content-normal">
+        <select data-action="select-letter">
+            <?php echo implode( '', $select ); ?>
+        </select>
+    </div>
     <h1 class="primary-headline">
         <i class="icon">tag</i>
         <span><?php echo $__site_title; ?></span>
