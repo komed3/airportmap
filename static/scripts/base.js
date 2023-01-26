@@ -104,6 +104,11 @@ var freq_format = ( frequency ) => {
                 location.reload();
                 break;
 
+            case 'select-page':
+                location.href = ( $( this ).attr( 'data-base' ) || baseurl + '/' ) +
+                    $( this ).val().toString().trim() + '#' + ( $( this ).attr( 'data-jump' ) || '' );
+                break;
+
             case 'select-letter':
                 location.href = baseurl + '/list/' + $( this ).val().toString().trim();
                 break;

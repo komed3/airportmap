@@ -600,11 +600,18 @@ h2.secondary-headline {
     font-size: 16px;
 }
 
+.pagination select {
+    width: calc( 100% - 40px );
+    display: none;
+    text-align: center;
+    text-align-last: center;
+}
+
 .pagination .pagelinks {
     display: flex;
     flex-flow: row nowrap;
     align-items: baseline;
-    gap: 6px;
+    gap: 4px;
 }
 
 .pagination .pagelinks > * {
@@ -629,7 +636,7 @@ h2.secondary-headline {
 }
 
 .pagination .results {
-    white-space: nowrap;
+    text-align: center;
     text-transform: uppercase;
     font-weight: 300;
 }
@@ -1251,6 +1258,12 @@ h2.secondary-headline {
         display: none;
     }
 
+    .pagination {
+        flex-flow: column-reverse nowrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
     .filter {
         gap: 40px;
     }
@@ -1280,18 +1293,20 @@ h2.secondary-headline {
         display: none;
     }
 
-    .pagelist {
-        column-count: 1;
+    .pagination select {
+        display: block;
+    }
+
+    .pagination .pagelinks {
+        display: none;
     }
 
     .filter {
         gap: 20px;
     }
 
-    .pagination {
-        flex-flow: column-reverse nowrap;
-        justify-content: center;
-        gap: 15px;
+    .pagelist {
+        column-count: 1;
     }
 
     .radiolist {

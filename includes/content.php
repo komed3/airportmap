@@ -168,7 +168,7 @@
 
         $maxpage = ceil( $results / $per_page );
         $baseurl = base_url( $baseurl . '/' );
-        $pagelinks = [];
+        $pagelinks = $pageselect = [];
         $latest = 0;
 
         foreach( array_filter( array_unique( [
@@ -185,6 +185,8 @@
 
                 $pagelinks[] = '<span class="dots"><span>…</span></span>';
 
+                $pageselect[] = '<option disabled>…</option>';
+
             }
 
             $pagelinks[] = $pageno == $page
@@ -194,6 +196,10 @@
                 : '<a class="link" href="' . $baseurl . $pageno . ( $jump_to ? '#' . $jump_to : '' ) . '">
                        <span>' . __number( $pageno ) . '</span>
                    </a>';
+
+            $pageselect[] = '<option value="' . $pageno . '" ' . ( $pageno == $page ? 'selected' : '' ) . '>
+                ' . __number( $pageno ) . '
+            </option>';
 
             $latest = $pageno;
 
@@ -207,6 +213,9 @@
 
         return ( $jump_to ? '<a name="' . $jump_to . '" class="anchor" tabindex="-1"></a>' : '' ) . '
         <div class="pagination">
+            <select data-action="select-page" data-base="' . $baseurl . '" data-jump="' . $jump_to . '">
+                ' . implode( '', $pageselect ) . '
+            </select>
             <div class="pagelinks">
                 ' . implode( '', $pagelinks ) . '
             </div>
