@@ -305,7 +305,7 @@
         ) {
 
             $file = stripos( $url, 'http' ) === false
-                ? RESOURCE . $dir . $url
+                ? RESOURCE . $dir . str_replace( '.css', '.min.css', $url )
                 : $url;
 
             $__static_files[ $res_id ] = [
