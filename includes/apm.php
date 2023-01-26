@@ -71,6 +71,10 @@
 
         require_once TEMPLATE . $tpl . '.php';
 
+    } else if( !empty( $airport = airport_by( 'ICAO', $path[0] ?? '' ) ) ) {
+
+        __redirect( 'airport/' . $airport['ICAO'] );
+
     } else {
 
         require_once TEMPLATE . '404.php';
