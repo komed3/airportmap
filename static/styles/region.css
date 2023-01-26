@@ -24,9 +24,8 @@
     stroke-width: 10px;
 }
 
-.region .icao-map svg path[icao]:hover {
+.region .icao-map svg a:hover path {
     fill: var( --indicator-yellow );
-    cursor: pointer;
 }
 
 /* mobile support */

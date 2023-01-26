@@ -78,7 +78,6 @@
     $__site_desc = i18n( 'airports-desc', $_count );
 
     add_resource( 'region', 'css', 'region.css' );
-    add_resource( 'icao', 'js', 'icao.js' );
 
     _header();
 
