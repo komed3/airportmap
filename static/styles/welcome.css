@@ -96,10 +96,10 @@
 
 .welcome-donate a .icon {
     position: absolute;
-    top: 2px;
+    top: 0;
     left: 12px;
     width: 80px;
-    height: 98px;
+    height: 100px;
     line-height: 100px;
     text-align: center;
     font-size: 42px;
