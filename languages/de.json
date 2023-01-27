@@ -149,7 +149,7 @@
     "dir-wnw": "west-nordwestlich",
     "dir-wsw": "west-südwestlich",
     "displaced-threshold": "Landeschwelle",
-    "displaced-threshold-runway": "Landeschwelle von <b>Piste $1</b> versetzt um <b>$2</b>",
+    "displaced-threshold-runway": "Landeschwelle von <b>Piste $1</b> ist um <b>$2</b> versetzt",
     "dp": ",",
     "embed-credits": "© $1 <a href=\"$2\" target=\"_blank\">Airportmap</a> | <a href=\"$2privacy\" target=\"_blank\">Datenschutz</a>",
     "embed-desc": "Flughafeninformationen und Wetter in deine eigene Website einbinden",
