@@ -78,6 +78,42 @@
     font-size: 20px;
 }
 
+.welcome-donate a {
+    position: relative;
+    margin: 40px auto 80px auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    color: var( --gray-0 );
+    background: var( --indicator-red );
+    width: max-content;
+    height: 100px;
+    padding: 0 40px 0 100px;
+    border-radius: 50px;
+    transition: all 250ms;
+}
+
+.welcome-donate a .icon {
+    position: absolute;
+    top: 2px;
+    left: 12px;
+    width: 80px;
+    height: 98px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 42px;
+}
+
+.welcome-donate a b {
+    font-size: 22px;
+}
+
+.welcome-donate a:hover {
+    text-decoration: none;
+    transform: scale( 1.1 );
+}
+
 /* mobile support */
 
 @media all and ( max-width: 1200px ) {

@@ -49,4 +49,11 @@
     <p><?php _i18n( 'about-goal-primary' ); ?></p>
     <p><?php _i18n( 'about-goal-secondary' ); ?></p>
 </div>
+<div class="welcome-donate">
+    <a href="https://github.com/komed3/airportmap" target="_blank">
+        <i class="icon">favorite</i>
+        <b><?php _i18n( 'welcome-donate' ); ?></b>
+        <span><?php _i18n( 'welcome-donate-thanks' ); ?></span>
+    </a>
+</div>
 <?php _footer(); ?>
