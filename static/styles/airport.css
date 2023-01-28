@@ -171,4 +171,16 @@
         display: none;
     }
 
+    .airport-warn {
+        flex-flow: column nowrap;
+        align-items: center;
+        gap: 12px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .airport-warn .info {
+        padding: 0;
+    }
+
 }

@@ -30,18 +30,18 @@ var maps_limit = 0,
 
         if( navigator.userAgentData.mobile ) {
 
-            maps_limit = 25;
+            maps_limit = 40;
 
         } else if(
             ( navigator.hardwareConcurrency || 4 ) < 2 ||
             ( navigator.deviceMemory || 2 ) < 1
         ) {
 
-            maps_limit = 50;
+            maps_limit = 60;
 
         } else {
 
-            maps_limit = 75;
+            maps_limit = 100;
 
         }
 
