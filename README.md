@@ -1,3 +1,5 @@
+![Airportmap](https://airportmap.de/static/resources/airplane-thumb.jpg)
+
 # Airportmap
 
 [Airportmap](https://airportmap.de) is an open source project with information and weather data on more than [70’000 airports](https://airportmap.de/airports), heliports and air bases worldwide.
