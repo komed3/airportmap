@@ -25,3 +25,17 @@ The always up-to-date weather data for thousands of airports comes from the US g
 The SIGMET and I-SIGMET data originate from the same source and are retrieved via [NOAA’s API](https://www.aviationweather.gov/help/webservice) at five-minute intervals.
 
 Map data is available on the [OpenStreetMap project](https://www.openstreetmap.org), the tile server is provided by [CARTO](http://basemaps.cartocdn.com), and the library used is the well-known [Leaflet](https://leafletjs.com).
+
+## Features
+
+The freeware and free-to-use web project provides a wide range of different features, as listed here:
+
+* [List of airports from A-Z](https://airportmap.de/list),
+* [Interactive map with airports, navaids and waypoints](https://airportmap.de/map),
+* [Powerful search by ICAO, IATA or airport name](https://airportmap.de/search),
+* [List of weather stations + METAR reports](https://airportmap.de/weather),
+* [Active significant weather phenomena (SIGMETs)](https://airportmap.de/weather/sigmets),
+* [Search airports by topics and categories](https://airportmap.de/airports/),
+* [Vicinity search by coordinates](https://airportmap.de/vicinity),
+* [Downloadable airport database](https://airportmap.de/data) and
+* much more …
