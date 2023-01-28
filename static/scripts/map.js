@@ -1,4 +1,5 @@
-var maps_config = {},
+var maps_limit = 0,
+    maps_config = {},
     maps = {},
     maps_type = {},
     maps_layer = {},
@@ -24,6 +25,27 @@ var maps_config = {},
     };
 
 ( function( $ ) {
+
+    var checkLimit = () => {
+
+        if( navigator.userAgentData.mobile ) {
+
+            maps_limit = 25;
+
+        } else if(
+            ( navigator.hardwareConcurrency || 4 ) < 2 ||
+            ( navigator.deviceMemory || 2 ) < 1
+        ) {
+
+            maps_limit = 50;
+
+        } else {
+
+            maps_limit = 75;
+
+        }
+
+    };
 
     var map_check_size = ( uuid ) => {
 
@@ -151,6 +173,7 @@ var maps_config = {},
 
         let data = {
             token: get_token(),
+            limit: maps_limit,
             bounds: {
                 lat: [ bounds.getNorth(), bounds.getSouth() ],
                 lon: [ bounds.getEast(), bounds.getWest() ]
@@ -598,6 +621,8 @@ var maps_config = {},
     };
 
     $( document ).ready( function() {
+
+        checkLimit();
 
         $( '[map-data]' ).each( function() {
 

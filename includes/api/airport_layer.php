@@ -78,20 +78,20 @@
             FROM     ' . DB_PREFIX . 'airport
             WHERE    ' . $query . '
             ORDER BY ' . ( $_POST['orderby'] ?? 'tier DESC' ) . '
-            LIMIT    0, ' . ( $_POST['limit'] ?? 75 )
+            LIMIT    0, ' . min( 100, $_POST['limit'] ?? 75 )
         )->fetch_all( MYSQLI_ASSOC ),
         'navaids' => ( $_POST['navaids'] ?? 0 ) == 1 ? $DB->query( '
             SELECT   _id, ident, type, frequency, lat, lon, alt
             FROM     ' . DB_PREFIX . 'navaid
             WHERE    ' . $coods_query . '
-            LIMIT    0, 50
-        ' )->fetch_all( MYSQLI_ASSOC ) : [],
+            LIMIT    0, ' . min( 50, $_POST['limit'] ?? 50 )
+        )->fetch_all( MYSQLI_ASSOC ) : [],
         'waypoints' => ( $_POST['waypoints'] ?? 0 ) == 1 ? $DB->query( '
             SELECT   _id, ident, lat, lon
             FROM     ' . DB_PREFIX . 'waypoint
             WHERE    ' . $coods_query . '
-            LIMIT    0, 50
-        ' )->fetch_all( MYSQLI_ASSOC ) : []
+            LIMIT    0, ' . min( 50, $_POST['limit'] ?? 50 )
+        )->fetch_all( MYSQLI_ASSOC ) : []
     ] );
 
 ?>

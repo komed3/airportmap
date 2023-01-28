@@ -19,7 +19,7 @@
             AND      m.reported >= DATE_SUB( NOW(), INTERVAL ' . ( $_POST['maxage'] ?? 1 ) . ' DAY )
             ' . ( $_POST['cat'] ? 'AND flight_cat ' . ( $_POST['cat'] == 'UNK' ? 'IS NULL' : ' = "' . $_POST['cat'] . '"' ) : '' ) . '
             ORDER BY ' . ( $_POST['orderby'] ?? 'a.tier DESC' ) . '
-            LIMIT    0, ' . ( $_POST['limit'] ?? 50 )
+            LIMIT    0, ' . min( 50, $_POST['limit'] ?? 50 )
         )->fetch_all( MYSQLI_ASSOC ),
         'airports' => $DB->query( '
             SELECT   ICAO, name, lat, lon, alt, type, restriction
@@ -29,7 +29,7 @@
             AND      type NOT IN ( "closed" )
             AND      ICAO NOT IN ( "' . implode( '", "', array_column( $stations, 'ICAO' ) ) . '" )
             ORDER BY ' . ( $_POST['orderby'] ?? 'tier DESC' ) . '
-            LIMIT    0, ' . ( ( $_POST['limit'] ?? 75 ) - count( $stations ) )
+            LIMIT    0, ' . min( 75, ( $_POST['limit'] ?? 75 ) - count( $stations ) )
         )->fetch_all( MYSQLI_ASSOC )
     ] );
 
