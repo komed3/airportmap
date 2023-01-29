@@ -60,6 +60,12 @@ var freq_format = ( frequency ) => {
 
         }
 
+        $( 'a[target="_blank"]' ).each( function() {
+
+            $( this ).attr( 'rel', 'noopener noreferrer' );
+
+        } );
+
     } );
 
     $( document ).on( 'click', '[data-action]', function( e ) {
