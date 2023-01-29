@@ -17,6 +17,12 @@
     $__site_desc = i18n_save( 'airport-desc-' . $path[2], $airport['ICAO'], $airport['name'] ) ??
         i18n( 'airport-desc', $airport['ICAO'], $airport['name'] );
 
+    if( $image = airport_image( $airport['ICAO'] ) ) {
+
+        $__site_img = $image['url'];
+
+    }
+
     add_resource( 'airport', 'css', 'airport.css' );
 
     _header();
@@ -70,7 +76,7 @@
 
 ?>
 <div class="content-full airport">
-    <?php if( $image = airport_image( $airport['ICAO'] ) ) { ?>
+    <?php if( $image ) { ?>
         <div class="site-image" style="background-image: url( <?php echo $image['url']; ?> );">
             <div class="credits"><?php echo $image['credits']; ?></div>
         </div>

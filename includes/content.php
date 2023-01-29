@@ -7,6 +7,8 @@
     $__site_title;
     $__site_desc;
 
+    $__site_img;
+
     $__site_classes = [ 'apm' ];
 
     $__site_search = '';
@@ -68,6 +70,24 @@
 
     }
 
+    function _opengraph() {
+
+        global $__site_canonical, $__site_title, $__site_desc, $__site_img;
+
+        ?>
+            <meta property="og:type" content="website" />
+            <meta property="og:site_name" content="Airportmap" />
+            <meta property="og:title" content="<?php echo $__site_title; ?>" />
+            <meta property="og:url" content="<?php echo $__site_canonical; ?>" />
+            <meta property="og:description" content="<?php echo ( $__site_desc ?? i18n( 'site-desc-default' ) ); ?>" />
+        <?php
+
+        if( $__site_img ) { ?>
+            <meta property="og:image" content="<?php echo $__site_img; ?>">
+        <?php }
+
+    }
+
     function _site_header() {
 
         global $__site_canonical, $__site_title, $__site_desc;
@@ -79,7 +99,11 @@
             <title><?php echo $__site_title ?? i18n( 'site-title-default' ); ?> — Airportmap</title>
             <meta name="description" content="<?php echo ( $__site_desc ?? i18n( 'site-desc-default' ) ); ?>" />
             <meta name="robots" content="all" />
+            <meta name="format-detection" content="telephone=no" />
+            <meta name="robots" content="max-image-preview:standard" />
         <?php
+
+        _opengraph();
 
     }
 
