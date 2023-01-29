@@ -149,4 +149,20 @@
         flex: 0 0 auto;
     }
 
+    .welcome-donate a {
+        align-items: center;
+        width: calc( 100% - 40px );
+        height: auto;
+        padding: 20px;
+        border-radius: 30px;
+    }
+
+    .welcome-donate a .icon {
+        position: relative;
+        left: 0;
+        width: auto;
+        height: auto;
+        line-height: 42px;
+    }
+
 }
