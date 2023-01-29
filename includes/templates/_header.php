@@ -36,6 +36,10 @@
                     'i18n' => 'site-nav-list',
                     'url' => 'list',
                     'check' => 'list'
+                ], [
+                    'i18n' => 'site-nav-traffic',
+                    'url' => 'traffic',
+                    'check' => 'traffic'
                 ] ], 'site-nav' ); ?>
                 <?php load_tpl_part( '_searchform' ); ?>
             </div>

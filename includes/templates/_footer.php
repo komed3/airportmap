@@ -23,8 +23,8 @@
                         'i18n' => 'footer-nav-sigmets',
                         'url' => 'weather/sigmets'
                     ], [
-                        'i18n' => 'footer-nav-stats',
-                        'url' => 'stats'
+                        'i18n' => 'footer-nav-traffic',
+                        'url' => 'traffic'
                     ], [
                         'i18n' => 'footer-nav-vicinity',
                         'url' => 'vicinity'
@@ -41,6 +41,9 @@
                     ], [
                         'i18n' => 'footer-nav-embed',
                         'url' => 'embed'
+                    ], [
+                        'i18n' => 'footer-nav-stats',
+                        'url' => 'stats'
                     ], [
                         'i18n' => 'footer-nav-github',
                         'external' => 'https://github.com/komed3/airportmap'

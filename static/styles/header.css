@@ -86,6 +86,11 @@
 
 @media all and ( max-width: 1200px ) {
 
+    #header .site-nav a:first-of-type,
+    #header .site-nav a:nth-child( n + 5 ) {
+        display: none;
+    }
+
     #header .searchform .searchtext {
         width: 320px;
     }
