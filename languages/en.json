@@ -479,6 +479,8 @@
     "timediff-hours": "Hrs",
     "timediff-minutes": "Min",
     "tp": "’",
+    "traffic-desc": "Real-time air traffic around the world",
+    "traffic-title": "Live Traffic",
     "unknown": "Unknown",
     "valid-from-to": "Valid from <b>$2</b> to <b>$4</b> UTC",
     "valid-until": "Valid until <b>$3 $4</b> UTC",

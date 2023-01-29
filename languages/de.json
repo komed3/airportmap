@@ -479,6 +479,8 @@
     "timediff-hours": "Std",
     "timediff-minutes": "Min",
     "tp": ".",
+    "traffic-desc": "Echtzeit-Luftverkehr in aller Welt",
+    "traffic-title": "Echtzeit-Luftverkehr",
     "unknown": "Unbekannt",
     "valid-from-to": "Gültig von <b>$2</b> bis <b>$4</b> UTC",
     "valid-until": "Gültig bis <b>$3 $4</b> UTC",

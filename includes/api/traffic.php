@@ -48,7 +48,7 @@
         INSERT INTO traffic (
             ident, callsign, type, timestamp, contact, origin,
             lat, lon, alt, alt_geo, hdg, velocity, vrate, ground,
-            squawk, spi, source, traffic
+            squawk, spi, source, tier
         ) VALUES ( ' . implode( ' ), ( ', $traffic ) . ' );
     ' );
 
