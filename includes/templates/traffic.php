@@ -5,6 +5,8 @@
     $__site_title = i18n( 'traffic-title' );
     $__site_desc = i18n( 'traffic-desc' );
 
+    add_resource( 'traffic', 'css', 'traffic.css' );
+
     _header();
 
 ?>

@@ -1,0 +1,7 @@
+.traffic .map-container .map mapicon {
+    opacity: 0.6;
+}
+
+.traffic .map-container.minimal-ui .map-overlay .map-scroll-below {
+    display: block;
+}
