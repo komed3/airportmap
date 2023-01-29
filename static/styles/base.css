@@ -125,7 +125,7 @@ morse {
     font-weight: 900;
 }
 
-mapicon, navicon, wxicon, wpicon {
+mapicon, navicon, wxicon, wpicon, tfcicon {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -139,7 +139,7 @@ mapicon[invert], navicon[invert], wxicon[invert], wpicon[invert] {
     filter: grayscale( 1 ) contrast( 10 ) invert( 1 );
 }
 
-navicon {
+navicon, tfcicon {
     width: 24px;
     height: 24px;
 }
@@ -239,6 +239,10 @@ wxicon {
 
 .cat-LIFR wxicon {
     background-image: url( './../resources/cat-LIFR.svg' );
+}
+
+.traffic tfcicon {
+    background-image: url( './../resources/plane.svg' );
 }
 
 wpicon {

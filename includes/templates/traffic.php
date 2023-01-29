@@ -16,9 +16,9 @@
         'supress_sigmets' => true,
         'supress_day_night' => false,
         'position' => [
-            'lat' => 51.2,
-            'lon' => 0,
-            'zoom' => 5
+            'lat' => 40.7,
+            'lon' => -74,
+            'zoom' => 6
         ]
     ], 'full-screen minimal-ui' ); ?>
 </div>
