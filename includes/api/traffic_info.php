@@ -51,7 +51,7 @@
                     <i class="icon">flight_takeoff</i>
                     ' . ( $state->ground
                         ? '<span>' . i18n( 'on-ground' ) . '</span>'
-                        : '<b>FL' . floor( $state->alt / 100 ) . '</b>
+                        : '<b>FL' . str_pad( floor( $state->alt / 100 ), 3, '0', STR_PAD_LEFT ) . '</b>
                            <span>' . alt_in( $state->alt, 'ft' ) . '</span>'
                     ) . '
                 </li>
