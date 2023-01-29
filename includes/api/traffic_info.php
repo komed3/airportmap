@@ -40,6 +40,10 @@
                         date( i18n( 'clock-time' ), strtotime( $state->contact ) )
                     ) . '</span>
                 </li>
+                <li>
+                    <i class="icon">cell_tower</i>
+                    <span>' . i18n( 'traffic-source-' . $state->source ) . '</span>
+                </li>
             </ul>
             <hr />
             <ul class="infobox-list">
@@ -64,7 +68,10 @@
                 <li>
                     <i class="icon">speed</i>
                     <b>' . __number( $state->velocity ) . 'kn</b>
-                    <span></span>
+                    <span>' . i18n( 'mach', __number( __mach(
+                        $state->velocity ?? 0,
+                        $state->alt ?? 0
+                    ), 2 ) ) . '</span>
                 </li>
             </ul>',
             'classes' => 't-' . $state->type . ( $state->ground ? ' ground' : '' )

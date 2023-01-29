@@ -612,6 +612,28 @@
 
     }
 
+    function __mach(
+        float $spd,
+        float $alt = 0
+    ) {
+
+        if( $alt <= 36152 )
+            $temp = 518.6 - 3.56 * ( $alt / 1000 );
+        else if( $alt <= 82345 )
+            $temp = 389.98;
+        else if( $alt <= 155348 )
+            $temp = 389.98 + 1.645 * ( $alt - 82345 ) / 1000;
+        else if( $alt <= 175346 )
+            $temp = 508.788;
+        else
+            $temp = 508.788 - 2.46888 * ( $alt - 175346 ) / 1000;
+
+        return $spd * 1.151 / (
+            15 / 22 * sqrt( 2405.2 * $temp )
+        );
+
+    }
+
     function __morse(
         string $input,
         bool $decode = false
