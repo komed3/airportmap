@@ -360,7 +360,7 @@ var maps_limit = 0,
                                 direction: 'center',
                                 opacity: 1
                             } ).on( 'click', ( e ) => {
-                                //map_traffic_info( e, uuid, tfc );
+                                map_traffic_info( e, uuid, tfc );
                             } )
                         );
 
@@ -604,6 +604,40 @@ var maps_limit = 0,
                     } );
 
                     map_info( uuid, res.response.infobox, 'sigmet-' + sigmet.hazard );
+
+                }
+
+            }
+        } );
+
+    };
+
+    var map_traffic_info = ( _e, uuid, tfc ) => {
+
+        $.ajax( {
+            url: apiurl + 'traffic_info.php',
+            type: 'post',
+            data: {
+                token: get_token(),
+                locale: $.cookie( 'locale' ),
+                ident: tfc.ident
+            },
+            success: ( raw ) => {
+
+                let res = JSON.parse( raw );
+
+                if( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
+
+                    let position = L.latLng( tfc.lat, tfc.lon );
+
+                    maps[ uuid ].flyTo(
+                        position,
+                        Math.max( 8, maps[ uuid ].getZoom() )
+                    );
+
+                    map_halo( uuid, position );
+
+                    map_info( uuid, res.response.infobox, 'traffic' );
 
                 }
 
