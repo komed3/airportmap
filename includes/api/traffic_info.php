@@ -23,9 +23,50 @@
 
         $infobox = [
             'image' => null,
-            'title' => '...',
-            'subtitle' => '...',
-            'content' => '...',
+            'title' => $state->callsign ?? i18n( 'unknown' ),
+            'subtitle' => i18n( 'squawk-code', $state->squawk ?? i18n( 'unknown' ) ),
+            'content' => '<ul class="infobox-list">
+                <li>
+                    <i class="icon">flight</i>
+                    <span>' . i18n( 'traffic-type-' . $state->type ) . '</span>
+                </li>
+                <li>
+                    <i class="icon">location_on</i>
+                    ' . __DMS_coords( $state->lat, $state->lon ) . '
+                </li>
+                <li>
+                    <i class="icon">update</i>
+                    <span>' . i18n( 'traffic-time',
+                        date( i18n( 'clock-time' ), strtotime( $state->contact ) )
+                    ) . '</span>
+                </li>
+            </ul>
+            <hr />
+            <ul class="infobox-list">
+                <li>
+                    <i class="icon">flight_takeoff</i>
+                    ' . ( $state->ground
+                        ? '<span>' . i18n( 'on-ground' ) . '</span>'
+                        : '<b>FL' . floor( $state->alt / 100 ) . '</b>
+                           <span>' . alt_in( $state->alt, 'ft' ) . '</span>'
+                    ) . '
+                </li>
+                ' . ( $state->vrate == 0 ? '' : '<li>
+                    <i class="icon">swap_vert</i>
+                    <b>VS' . ( $state->vrate < 0 ? '–' : '+' ) . round( abs( $state->vrate ) ) . '</b>
+                    <span>' . alt_in( $state->vrate, 'ft/min' ) . '</span>
+                </li>' ) . '
+                <li>
+                    <i class="icon">near_me</i>
+                    <span>' . round( $state->hdg ) . '°</span>
+                    <b>' . __cardinal( $state->hdg ) . '</b>
+                </li>
+                <li>
+                    <i class="icon">speed</i>
+                    <b>' . __number( $state->velocity ) . 'kn</b>
+                    <span></span>
+                </li>
+            </ul>',
             'classes' => 't-' . $state->type . ( $state->ground ? ' ground' : '' )
         ];
 

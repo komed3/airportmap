@@ -257,13 +257,16 @@ wxicon {
 }
 
 .traffic.t-7 tfcicon,
-.traffic.t-8 tfcicon,
 .traffic.t-15 tfcicon {
     background-image: url( './../resources/plane-special.svg' );
 }
 
 .traffic.ground tfcicon {
     background-image: url( './../resources/plane-ground.svg' );
+}
+
+.traffic.t-8 tfcicon {
+    background-image: url( './../resources/rotorcraft.svg' );
 }
 
 wpicon {
