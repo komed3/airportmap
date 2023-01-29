@@ -274,7 +274,10 @@
 .map-container .map-overlay .map-infobox.airport.cat-LIFR,
 .map-container .map-overlay .map-infobox.sigmet-CONV,
 .map-container .map-overlay .map-infobox.sigmet-FC,
-.map-container .map-overlay .map-infobox.sigmet-TC {
+.map-container .map-overlay .map-infobox.sigmet-TC,
+.map-container .map-overlay .map-infobox.traffic.t-4:not(.ground),
+.map-container .map-overlay .map-infobox.traffic.t-5:not(.ground),
+.map-container .map-overlay .map-infobox.traffic.t-6:not(.ground) {
     background: var( --indicator-pink );
 }
 
@@ -288,7 +291,11 @@
 .map-container .map-overlay .map-infobox.sigmet-GR,
 .map-container .map-overlay .map-infobox.sigmet-TDO,
 .map-container .map-overlay .map-infobox.sigmet-TS,
-.map-container .map-overlay .map-infobox.sigmet-TSGR {
+.map-container .map-overlay .map-infobox.sigmet-TSGR,
+.map-container .map-overlay .map-infobox.sigmet-TSGR,
+.map-container .map-overlay .map-infobox.traffic.t-7:not(.ground),
+.map-container .map-overlay .map-infobox.traffic.t-8:not(.ground),
+.map-container .map-overlay .map-infobox.traffic.t-15:not(.ground) {
     background: var( --indicator-red );
 }
 
@@ -299,7 +306,9 @@
 }
 
 .map-container .map-overlay .map-infobox.airport.cat-VFR,
-.map-container .map-overlay .map-infobox.sigmet-MTW {
+.map-container .map-overlay .map-infobox.sigmet-MTW,
+.map-container .map-overlay .map-infobox.traffic.t-2:not(.ground),
+.map-container .map-overlay .map-infobox.traffic.t-3:not(.ground) {
     background: var( --indicator-green );
 }
 
@@ -307,7 +316,8 @@
     background: var( --indicator-orange );
 }
 
-.map-container .map-overlay .map-infobox.airport.cat-UNK {
+.map-container .map-overlay .map-infobox.airport.cat-UNK,
+.map-container .map-overlay .map-infobox.traffic:not(.ground) {
     background: var( --gray-6 );
 }
 

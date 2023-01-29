@@ -245,9 +245,9 @@ wxicon {
     background-image: url( './../resources/plane.svg' );
 }
 
+.traffic.t-4 tfcicon,
 .traffic.t-5 tfcicon,
-.traffic.t-6 tfcicon,
-.traffic.t-4 tfcicon {
+.traffic.t-6 tfcicon {
     background-image: url( './../resources/plane-tier1.svg' );
 }
 

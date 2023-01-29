@@ -352,9 +352,12 @@ var maps_limit = 0,
                                 '<div class="info">' +
                                     '<span class="alt">' + ( tfc.alt > 10000
                                         ? 'FL' + Math.floor( tfc.alt / 100 )
-                                        : Math.round( tfc.alt ) + 'ft'
+                                        : Math.max( 0, Math.round( tfc.alt ) ) + 'ft'
                                     ) + '</span>' +
                                     '<span class="velo">' + Math.round( tfc.velocity ) + 'kn</span>' +
+                                    ( tfc.vrate != 0 ? '<span class="vrate">VS' +
+                                        ( tfc.vrate < 0 ? '–' : '+' ) +
+                                        Math.round( Math.abs( tfc.vrate ) ) + '</span>' : '' ) +
                                 '</div>', {
                                 className: 'tooltip-traffic',
                                 direction: 'center',

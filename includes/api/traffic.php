@@ -23,7 +23,7 @@
             empty( $state[13] ) ? null : $state[13] * 3.281, // ALT (GEO)
             $state[10] ?? null, // HDG (TRACK)
             empty( $state[9] ) ? null : $state[9] * 1.944, // VELOCITY
-            empty( $state[11] ) ? null : $state[11] * 1.944, // VERTICAL RATE
+            empty( $state[11] ) ? null : $state[11] * 196.9, // VERTICAL RATE
             +!!( $state[8] ?? 0 ), // ON GROUND?
             $state[14] ?? null, // SQUAWK CODE
             +!!( $state[15] ?? 0 ), // SPI

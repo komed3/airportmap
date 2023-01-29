@@ -26,7 +26,7 @@
             'title' => '...',
             'subtitle' => '...',
             'content' => '...',
-            'classes' => 't-' . $state->type
+            'classes' => 't-' . $state->type . ( $state->ground ? ' ground' : '' )
         ];
 
     }
