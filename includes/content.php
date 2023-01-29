@@ -70,24 +70,6 @@
 
     }
 
-    function _opengraph() {
-
-        global $__site_canonical, $__site_title, $__site_desc, $__site_img;
-
-        ?>
-            <meta property="og:type" content="website" />
-            <meta property="og:site_name" content="Airportmap" />
-            <meta property="og:title" content="<?php echo $__site_title; ?>" />
-            <meta property="og:url" content="<?php echo $__site_canonical; ?>" />
-            <meta property="og:description" content="<?php echo ( $__site_desc ?? i18n( 'site-desc-default' ) ); ?>" />
-        <?php
-
-        if( $__site_img ) { ?>
-            <meta property="og:image" content="<?php echo $__site_img; ?>">
-        <?php }
-
-    }
-
     function _site_header() {
 
         global $__site_canonical, $__site_title, $__site_desc;
@@ -110,6 +92,41 @@
     function _site_end() {
 
         _resources();
+
+        _rich_info();
+
+    }
+
+    function _opengraph() {
+
+        global $__site_canonical, $__site_title, $__site_desc, $__site_img;
+
+        ?>
+            <meta property="og:type" content="website" />
+            <meta property="og:site_name" content="Airportmap" />
+            <meta property="og:title" content="<?php echo $__site_title; ?>" />
+            <meta property="og:url" content="<?php echo $__site_canonical; ?>" />
+            <meta property="og:description" content="<?php echo ( $__site_desc ?? i18n( 'site-desc-default' ) ); ?>" />
+        <?php
+
+        if( $__site_img ) { ?>
+            <meta property="og:image" content="<?php echo $__site_img; ?>">
+        <?php }
+
+    }
+
+    function _rich_info() {
+
+        global $__site_canonical, $__site_title, $__site_desc, $__site_img;
+
+        ?><script type="application/ld+json"><?php echo json_encode( [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebPage',
+            'name' => $__site_title,
+            'url' => $__site_canonical,
+            'description' => $__site_desc ?? i18n( 'site-desc-default' ),
+            'image' => $__site_img
+        ] ); ?></script><?php
 
     }
 
