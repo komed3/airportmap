@@ -47,6 +47,7 @@
         <p><?php _i18n( 'about-source-weather' ); ?></p>
         <p><?php _i18n( 'about-source-sigmet' ); ?></p>
         <p><?php _i18n( 'about-source-map' ); ?></p>
+        <p><?php _i18n( 'about-source-traffic' ); ?></p>
         <hr />
         <h2 class="secondary-headline"><?php _i18n( 'map-legend' ); ?></h2>
         <div class="map-legend">
