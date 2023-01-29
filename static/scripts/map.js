@@ -332,6 +332,35 @@ var maps_limit = 0,
 
                 }
 
+                if( 'traffic' in res.response ) {
+
+                    Object.values( res.response.traffic ).forEach( ( tfc ) => {
+
+                        layer.addLayer(
+                            L.marker( L.latLng(
+                                parseFloat( tfc.lat ),
+                                parseFloat( tfc.lon )
+                            ), {
+                                icon: L.divIcon( {
+                                    iconSize: [ 24, 24 ],
+                                    iconAnchor: [ 12, 12 ],
+                                    className: 'traffic t-' + tfc.type,
+                                    html: '<tfcicon></tfcicon>'
+                                } )
+                            } ).bindTooltip(
+                                '<div class="callsign">' + tfc.callsign + '</div>', {
+                                className: 'tooltip-traffic',
+                                direction: 'center',
+                                opacity: 1
+                            } ).on( 'click', ( e ) => {
+                                //map_traffic_info( e, uuid, tfc );
+                            } )
+                        );
+
+                    } );
+
+                }
+
                 if( maps_type[ uuid ] == 'weather' ) {
 
                     maps_timeout[ uuid ].marker = setTimeout( function() {
@@ -770,7 +799,15 @@ var maps_limit = 0,
 
             setTimeout( function() {
 
-                $( '[uuid="' + uuid + '"] [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' ).click();
+                if( [ 'airport', 'weather' ].includes( maps_type[ uuid ] ) ) {
+
+                    $( '[uuid="' + uuid + '"] [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' ).click()
+
+                } else {
+
+                    map_load_marker( uuid );
+
+                }
 
                 map_check_zoom( uuid );
 
