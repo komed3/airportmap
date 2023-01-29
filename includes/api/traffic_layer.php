@@ -39,7 +39,7 @@
                 ) OR
                 ground = 1
             )
-            ORDER BY type ASC
+            ORDER BY tier DESC
             LIMIT    0, ' . min( 200, ( $_POST['limit'] ?? 200 ) * 2 )
         )->fetch_all( MYSQLI_ASSOC )
     ] );
