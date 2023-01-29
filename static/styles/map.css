@@ -351,7 +351,8 @@
     box-shadow: none;
 }
 
-.map-container .map .leaflet-tooltip.tooltip-airport {
+.map-container .map .leaflet-tooltip.tooltip-airport,
+.map-container .map .leaflet-tooltip.tooltip-traffic {
     padding-bottom: 58px;
 }
 
@@ -377,6 +378,17 @@
 
 .map-container .map .leaflet-tooltip.tooltip-waypoint .IDENT {
     font-size: 9px;
+}
+
+.map-container .map .leaflet-tooltip.tooltip-traffic .callsign {
+    margin-bottom: 2px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.map-container .map .leaflet-tooltip.tooltip-traffic .info {
+    display: flex;
+    gap: 4px;
 }
 
 .map-container .map[zoom="0"] .leaflet-tooltip.tooltip-sigmet,

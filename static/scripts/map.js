@@ -344,11 +344,18 @@ var maps_limit = 0,
                                 icon: L.divIcon( {
                                     iconSize: [ 24, 24 ],
                                     iconAnchor: [ 12, 12 ],
-                                    className: 'traffic t-' + tfc.type,
-                                    html: '<tfcicon></tfcicon>'
+                                    className: 'traffic t-' + tfc.type + ( tfc.ground ? ' ground' : '' ),
+                                    html: '<tfcicon style="transform: rotate( ' + tfc.hdg + 'deg );"></tfcicon>'
                                 } )
                             } ).bindTooltip(
-                                '<div class="callsign">' + tfc.callsign + '</div>', {
+                                '<div class="callsign">' + ( tfc.callsign || 'UNKNOWN' ) + '</div>' +
+                                '<div class="info">' +
+                                    '<span class="alt">' + ( tfc.alt > 10000
+                                        ? 'FL' + Math.floor( tfc.alt / 100 )
+                                        : Math.round( tfc.alt ) + 'ft'
+                                    ) + '</span>' +
+                                    '<span class="velo">' + Math.round( tfc.velocity ) + 'kn</span>' +
+                                '</div>', {
                                 className: 'tooltip-traffic',
                                 direction: 'center',
                                 opacity: 1
