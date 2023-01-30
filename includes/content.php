@@ -8,6 +8,7 @@
     $__site_desc;
 
     $__site_img;
+    $__site_rich = [];
 
     $__site_classes = [ 'apm' ];
 
@@ -104,8 +105,8 @@
         ?>
             <meta property="og:type" content="website" />
             <meta property="og:site_name" content="Airportmap" />
-            <meta property="og:title" content="<?php echo $__site_title; ?>" />
-            <meta property="og:url" content="<?php echo $__site_canonical; ?>" />
+            <meta property="og:title" content="<?php echo $__site_title ?? i18n( 'site-title-default' ); ?>" />
+            <meta property="og:url" content="<?php echo SITE . $__site_canonical; ?>" />
             <meta property="og:description" content="<?php echo ( $__site_desc ?? i18n( 'site-desc-default' ) ); ?>" />
         <?php
 
@@ -117,16 +118,16 @@
 
     function _rich_info() {
 
-        global $__site_canonical, $__site_title, $__site_desc, $__site_img;
+        global $__site_canonical, $__site_title, $__site_desc, $__site_img, $__site_rich;
 
-        ?><script type="application/ld+json"><?php echo json_encode( [
+        ?><script type="application/ld+json"><?php echo json_encode( array_filter( array_merge( [
             '@context' => 'https://schema.org',
             '@type' => 'WebPage',
-            'name' => $__site_title,
-            'url' => $__site_canonical,
+            'name' => $__site_title ?? i18n( 'site-title-default' ),
+            'url' => SITE . $__site_canonical,
             'description' => $__site_desc ?? i18n( 'site-desc-default' ),
             'image' => $__site_img
-        ] ); ?></script><?php
+        ], $__site_rich ) ) ); ?></script><?php
 
     }
 
