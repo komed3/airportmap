@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
         <meta name="msapplication-TileColor" content="#603cba" />
         <meta name="theme-color" content="#ffffff" />
+        <link rel="icon" href="<?php _base_url( 'favicon.ico' ); ?>" />
         <link rel="icon" type="image/png" sizes="48x48" href="<?php _base_url( 'favicon-48x48.png' ); ?>" />
         <link rel="icon" type="image/png" sizes="32x32" href="<?php _base_url( 'favicon-32x32.png' ); ?>" />
         <link rel="icon" type="image/png" sizes="16x16" href="<?php _base_url( 'favicon-16x16.png' ); ?>" />
