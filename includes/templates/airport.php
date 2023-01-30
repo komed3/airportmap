@@ -11,6 +11,12 @@
 
     $__site_canonical = $base . ( $path[2] = $path[2] ?? 'info' );
 
+    $__site_rich['identifier'] = [
+        '@type' => 'PropertyValue',
+        'propertyID' => 'icaoCode',
+        'value' => $airport['ICAO']
+    ];
+
     $__site_title = i18n_save( 'airport-title-' . $path[2], $airport['ICAO'], $airport['name'] ) ??
         i18n( 'airport-title', $airport['ICAO'], $airport['name'] );
 
