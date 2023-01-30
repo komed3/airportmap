@@ -1,14 +1,10 @@
 #footer {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: flex-start;
-    gap: 60px;
+    display: grid;
+    grid-template-columns: repeat( 4, 1fr );
+    align-items: start;
+    gap: 40px 60px;
     padding: 60px var( --padding-normal ) 120px var( --padding-normal );
     background: var( --gray-0 );
-}
-
-#footer .column {
-    flex: 1;
 }
 
 #footer .column h3 {
@@ -69,6 +65,38 @@
     font-variation-settings: 'wght' 300, 'GRAD' 0;
 }
 
+#footer .share {
+    grid-column: span 4;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+#footer .share .icon {
+    font-size: 22px;
+    font-weight: 800;
+    color: var( --gray-3 );
+}
+
+#footer .share .label {
+    margin-right: 12px;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: var( --gray-3 );
+}
+
+#footer .share a {
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+}
+
+#footer .share a:not(:hover) socicon {
+    filter: grayscale( 1 );
+}
+
 #warning {
     padding: 12px;
     text-align: center;
@@ -116,12 +144,11 @@ body.scroll-to-top #scroll-to-top:hover {
 @media all and ( max-width: 1200px ) {
 
     #footer {
-        display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        align-items: start;
     }
 
-    #footer .column:first-of-type {
+    #footer .column:first-of-type,
+    #footer .share {
         grid-column: span 3;
     }
 
@@ -135,6 +162,10 @@ body.scroll-to-top #scroll-to-top:hover {
 
     #footer .column:first-of-type {
         grid-column: span 1;
+    }
+
+    #footer .share {
+        grid-column: span 2;
     }
 
 }
@@ -156,8 +187,17 @@ body.scroll-to-top #scroll-to-top:hover {
     }
 
     #footer .language-selector {
-        margin: 20px auto;
+        margin: 20px auto 60px auto;
         width: 60%;
+    }
+
+    #footer .share {
+        grid-column: span 1;
+    }
+
+    #footer .share .icon,
+    #footer .share .label {
+        display: none;
     }
 
     #warning {

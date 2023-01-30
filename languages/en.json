@@ -405,6 +405,8 @@
     "search-title": "Search for $1",
     "searchform-placeholder": "Search for ICAO, IATA or Airport name …",
     "searchform-submit-title": "Search airports all over the world",
+    "share-it": "Share it",
+    "share-it-on": "Share it on $1",
     "sigmet-filter-change": "Changing",
     "sigmet-filter-hazard": "Hazard",
     "sigmet-hazard": "$2 $1",

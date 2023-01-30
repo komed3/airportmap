@@ -335,6 +335,39 @@
 
     }
 
+    function share_links(
+        $sites = [ 'twitter', 'facebook', 'telegram', 'tumblr', 'reddit' ]
+    ) {
+
+        global $__site_canonical, $__site_title;
+
+        $url = urlencode( SITE . $__site_canonical );
+        $text = urlencode( $__site_title );
+
+        $links = [];
+
+        foreach( $sites as $site ) {
+
+            $links[] = '<a href="#" data-action="share" data-site="' . $site . '" data-url="' . $url . '" data-text="' .
+                    $text . '" class="social ' . substr( $site, 0, 2 ) . '" target="_blank" title="' .
+                    i18n( 'share-it-on', ucfirst( $site ) ) . '">
+                <socicon></socicon>
+            </a>';
+
+        }
+
+        return implode( '', $links );
+
+    }
+
+    function _share_links(
+        $sites = [ 'twitter', 'facebook', 'telegram', 'tumblr', 'reddit' ]
+    ) {
+
+        echo share_links( $sites );
+
+    }
+
     function add_resource(
         string $resource,
         string $type,

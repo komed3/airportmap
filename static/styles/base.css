@@ -125,7 +125,7 @@ morse {
     font-weight: 900;
 }
 
-mapicon, navicon, wxicon, wpicon, tfcicon {
+mapicon, navicon, wxicon, wpicon, tfcicon, socicon {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -147,6 +147,11 @@ navicon, tfcicon {
 wxicon {
     width: 28px;
     height: 28px;
+}
+
+socicon {
+    width: 32px;
+    height: 32px;
 }
 
 .airport-large mapicon {
@@ -271,6 +276,26 @@ wxicon {
 
 wpicon {
     background-image: url( './../resources/waypoint.svg' );
+}
+
+.social.tw socicon {
+    background-image: url( './../resources/soctw.svg' );
+}
+
+.social.fa socicon {
+    background-image: url( './../resources/socfa.svg' );
+}
+
+.social.te socicon {
+    background-image: url( './../resources/socte.svg' );
+}
+
+.social.tu socicon {
+    background-image: url( './../resources/soctu.svg' );
+}
+
+.social.re socicon {
+    background-image: url( './../resources/socre.svg' );
 }
 
 windbug, windflag {

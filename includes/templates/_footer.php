@@ -73,6 +73,11 @@
                         <i class="icon">language</i>
                     </div>
                 </div>
+                <div class="share">
+                    <i class="icon">share</i>
+                    <span class="label"><?php _i18n( 'share-it' ); ?></span>
+                    <?php _share_links(); ?>
+                </div>
             </div>
             <div id="warning">
                 <span><?php _i18n( 'site-warning' ); ?></span>

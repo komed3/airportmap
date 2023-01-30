@@ -85,6 +85,21 @@ var freq_format = ( frequency ) => {
                 location.reload();
                 break;
 
+            case 'share':
+                window.open(
+                    {
+                        twitter: 'https://twitter.com/intent/tweet?text={TEXT}&url={URL}',
+                        facebook: 'https://www.facebook.com/sharer/sharer.php?u={URL}&quote={TEXT}',
+                        telegram: 'https://t.me/share/url?url={URL}&text={TEXT}',
+                        tumblr: 'https://www.tumblr.com/widgets/share/tool?canonicalUrl={URL}&caption={TEXT}',
+                        reddit: 'https://www.reddit.com/submit?url={URL}&title={TEXT}'
+                    }[ $( this ).attr( 'data-site' ) ]
+                        .replace( '{URL}', $( this ).attr( 'data-url' ) )
+                        .replace( '{TEXT}', $( this ).attr( 'data-text' ) ),
+                    '_blank'
+                );
+                break;
+
             case 'vicinity-my':
                 navigator.geolocation.getCurrentPosition( ( position ) => {
 
