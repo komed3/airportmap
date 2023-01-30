@@ -152,7 +152,7 @@
     "displaced-threshold": "Landeschwelle",
     "displaced-threshold-runway": "Landeschwelle von <b>Piste $1</b> ist um <b>$2</b> versetzt",
     "dp": ",",
-    "embed-credits": "© $1 <a href=\"$2\" target=\"_blank\">Airportmap</a> | <a href=\"$2privacy\" target=\"_blank\">Datenschutz</a>",
+    "embed-credits": "© $1 <a href=\"$2\" target=\"_blank\" rel=\"noopener noreferrer\">Airportmap</a> | <a href=\"$2privacy\" target=\"_blank\" rel=\"noopener noreferrer\">Datenschutz</a>",
     "embed-desc": "Flughafeninformationen und Wetter in deine eigene Website einbinden",
     "embed-empty": "Leider konnte der gewünschte Flughafen nicht gefunden werden. Bitte prüfe die Rechtschreibung oder benutze den Link unten, um den gewünschten Flughafen zu finden.",
     "embed-empty-link": "Suche Flughäfen",

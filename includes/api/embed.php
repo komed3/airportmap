@@ -95,7 +95,7 @@
                         </li><?php } ?>
                     </ul>
                     <div class="embed-space"></div>
-                    <a class="embed-link" href="<?php _base_url( 'airport/' . $ICAO ); ?>" target="_blank">
+                    <a class="embed-link" href="<?php _base_url( 'airport/' . $ICAO ); ?>" target="_blank" rel="noopener noreferrer">
                         <span><?php _i18n( 'view-airport' ); ?></span>
                         <i class="icon">chevron_right</i>
                     </a>
