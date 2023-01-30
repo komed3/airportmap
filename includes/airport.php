@@ -723,15 +723,46 @@
         array $regions
     ) {
 
+        global $__site_rich;
+
+        $__site_rich['breadcrumb'] = [
+            '@context' => 'https://schema.org',
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => []
+        ];
+
+        $list = [];
+        $i = 0;
+
+        foreach( $regions as $r ) {
+
+            if( isset( $r[1] ) ) {
+
+                $name = region_name( $r[0], $r[1] );
+                $link = SITE . 'airports/' . $r[0] . '/' . $r[1];
+
+            } else {
+
+                $name = i18n( 'region-' . $r[0] );
+                $link = SITE . 'airports';
+
+            }
+
+            $__site_rich['breadcrumb']['itemListElement'][] = [
+                '@type' => 'ListItem',
+                'position' => ++$i,
+                'item' => [
+                    '@id' => $link,
+                    'name' => $name
+                ]
+            ];
+
+            $list[] = '<a href="' . $link . '">' . $name . '</a>';
+
+        }
+
         return '<div class="breadcrumbs">
-            ' . implode(
-                '<div class="divider">/</div>',
-                array_map( function( $r ) {
-                    return isset( $r[1] ) ? region_link( $r[0], $r[1] ) : '<a href="' . SITE . 'airports">
-                        ' . i18n( 'region-' . $r[0] ) . '
-                    </a>';
-                }, $regions )
-            ) . '
+            ' . implode( '<div class="divider">/</div>', $list ) . '
         </div>';
 
     }
