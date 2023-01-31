@@ -38,7 +38,7 @@
                 "' . implode( '", "', $skip ) . '"
             )
             AND      LENGTH( ICAO ) = 4
-            AND      wiki IS NOT NULL
+            AND      ICAO NOT LIKE "%[^A-Z]%"
             ORDER BY tier DESC, ICAO ASC
             LIMIT    0, 1
         ' );
