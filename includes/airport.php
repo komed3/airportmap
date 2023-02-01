@@ -117,6 +117,7 @@
             OR       CONVERT( GPS USING utf8 ) LIKE "%' . $word . '%"
             OR       CONVERT( LOCAL USING utf8 ) LIKE "%' . $word . '%"
             OR       CONVERT( name USING utf8 ) LIKE "%' . $word . '%"
+            OR       CONVERT( municipality USING utf8 ) LIKE "%' . $word . '%"
             ORDER BY tier DESC
             ' . ( $limit >= 0
                 ? 'LIMIT ' . $offset . ', ' . $limit
