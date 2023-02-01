@@ -38,8 +38,8 @@
                 "' . implode( '", "', $skip ) . '"
             )
             AND      LENGTH( ICAO ) = 4
-            AND      ICAO NOT LIKE "%[^A-Z]%"
-            ORDER BY tier DESC, ICAO ASC
+            AND      CONVERT( ICAO USING utf8 ) REGEXP "[A-Z]{4}"
+            ORDER BY ICAO ASC
             LIMIT    0, 1
         ' );
 
