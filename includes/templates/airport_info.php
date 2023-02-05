@@ -42,7 +42,13 @@
             </li>
             <?php if( $tz = airport_timezone( $airport ) ) { ?><li>
                 <span class="label"><?php _i18n( 'info-timezone' ); ?></span>
-                <div><?php echo tz_link( $tz ); ?></div>
+                <div>
+                    <span><?php echo date(
+                        i18n( 'clock-time' ),
+                        time() + ( $airport['gmt_offset'] * 60 )
+                    ); ?></span>
+                    <span>(<?php echo tz_link( $tz, true ); ?>)</span>
+                </div>
             </li><?php } ?>
             <?php if( $airport['municipality'] ) { ?><li>
                 <span class="label"><?php _i18n( 'info-municipality' ); ?></span>
