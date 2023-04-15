@@ -4,7 +4,7 @@
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    height: calc( 100vh - 80px );
+    height: calc( 100dvh - 80px );
     padding: 60px var( --padding-normal );
     background-color: var( --gray-7 );
     background-image: url( './../resources/airplane-thumb.jpg' );

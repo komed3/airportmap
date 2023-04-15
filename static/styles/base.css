@@ -1252,7 +1252,7 @@ h2.secondary-headline {
 }
 
 #content {
-    min-height: 75vh;
+    min-height: 75dvh;
 }
 
 /* mobile support */
