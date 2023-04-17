@@ -744,7 +744,9 @@ var maps_limit = 0,
                 zoomControl: false
             } );
 
-            L.tileLayer( 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png', {
+            L.tileLayer( 'https://{s}.basemaps.cartocdn.com/' + {
+                light: 'light_all', dark: 'dark_all'
+            }[ $.cookie( 'theme' ) || 'light' ] + '/{z}/{x}/{y}@2x.png', {
                 minZoom: data.minZoom || 4,
                 maxZoom: data.maxZoom || 15,
                 attribution: '© <a href="https://osm.org">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a> | ' +

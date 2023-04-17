@@ -101,7 +101,7 @@ body {
     overflow-x: hidden;
 }
 
-body::before {
+body::after {
     pointer-events: none;
     content: '';
     position: absolute;
