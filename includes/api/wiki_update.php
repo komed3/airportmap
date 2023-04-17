@@ -27,37 +27,51 @@
                 'link' => $wiki[1]
             ] ];
 
-            $json = json_decode( file_get_contents(
-                'https://' . $wiki[0] . '.wikipedia.org/w/api.php?action=query&prop=langlinks&llprop=url&titles=' .
-                    $wiki[1] . '&redirects=&format=json'
-            ), true );
+            try {
 
-            $page = array_shift( $json['query']['pages'] );
+                $json = json_decode( file_get_contents(
+                    "https://" . $wiki[0] . ".wikipedia.org/w/api.php?action=query&prop=langlinks&llprop=url&titles=" .
+                        $wiki[1] . "&redirects=&format=json"
+                ), true );
 
-            if( count( $page['langlinks'] ) > 0 ) {
+                if( count( $json['query']['pages'] ) > 0 ) {
 
-                foreach( $page['langlinks'] as $link ) {
+                    $page = array_shift( $json['query']['pages'] );
 
-                    $links[] = [
-                        'lang' => $link['lang'],
-                        'link' => preg_replace( '/https:\/\/(.+)\.wikipedia\.org\/wiki\//', '', $link['url'] )
-                    ];
+                    if( count( $page['langlinks'] ) > 0 ) {
+
+                        foreach( $page['langlinks'] as $link ) {
+
+                            $links[] = [
+                                'lang' => $link['lang'],
+                                'link' => preg_replace( '/https:\/\/(.+)\.wikipedia\.org\/wiki\//', '', $link['url'] )
+                            ];
+
+                        }
+
+                    }
 
                 }
 
-            }
+                if( count( $links ) > 0 ) {
 
-            if( count( $links ) > 0 ) {
+                    echo 'INSERT INTO wiki (
+                        airport, lang, link
+                    ) VALUES ' . implode( ', ', array_map( function ( $l ) use ( $DB, $row ) {
+                        return '( "' . $row->ICAO . '", "' .
+                            $DB->real_escape_string( $l['lang'] ) . '", "' .
+                            $DB->real_escape_string( $l['link'] ) . '" )';
+                    }, $links ) ) . ';<br /><br />';
 
-                echo 'INSERT INTO wiki (
-                    airport, lang, link
-                ) VALUES ' . implode( ', ', array_map( function ( $l ) use ( $DB, $row ) {
-                    return '( "' . $row->ICAO . '", "' .
-                        $DB->real_escape_string( $l['lang'] ) . '", "' .
-                        $DB->real_escape_string( $l['link'] ) . '" )';
-                }, $links ) ) . ';<br /><br />';
+                    $i++;
 
-                $i++;
+                }
+
+            } catch ( Throwable $e ) {
+
+                file_put_contents( './wiki_error.txt', ' ' . $row->ICAO, FILE_APPEND );
+
+                echo '# [ ERROR (' . $row->ICAO . ') // ' . $e->getMessage() . ' ]<br /><br />';
 
             }
 
@@ -67,8 +81,6 @@
 
     }
 
-    api_exit( [
-        'updated' => $i
-    ] );
+    $DB->close();
 
 ?>
