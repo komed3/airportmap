@@ -2,7 +2,7 @@
 
     global $DB, $path, $base, $airport;
 
-    add_resource( 'airport-weather', 'css', 'airport_weather.css' );
+    add_resource( 'airport-weather', 'css', 'airport_weather.min.css' );
 
     if( empty( $airport ) ) {
 

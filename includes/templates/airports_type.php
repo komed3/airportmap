@@ -40,7 +40,7 @@
     $__site_title = i18n( 'airports-type-title', $name, $type, $_count );
     $__site_desc = i18n( 'airports-type-desc', $name, $type, $_count );
 
-    add_resource( 'region', 'css', 'region.css' );
+    add_resource( 'region', 'css', 'region.min.css' );
 
     _header();
 

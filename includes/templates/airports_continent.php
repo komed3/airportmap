@@ -43,7 +43,7 @@
     $__site_title = i18n( 'airports-continent-title', $continent->name, $continent->code, $_count );
     $__site_desc = i18n( 'airports-continent-desc', $continent->name, $continent->code, $_count );
 
-    add_resource( 'region', 'css', 'region.css' );
+    add_resource( 'region', 'css', 'region.min.css' );
 
     _header();
 

@@ -1,6 +1,6 @@
 <?php
 
-    add_resource( '404', 'css', '404.css' );
+    add_resource( '404', 'css', '404.min.css' );
 
     $__site_canonical = '404';
 

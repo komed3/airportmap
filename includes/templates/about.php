@@ -1,7 +1,7 @@
 <?php
 
-    add_resource( 'text', 'css', 'text.css' );
-    add_resource( 'about', 'css', 'about.css' );
+    add_resource( 'text', 'css', 'text.min.css' );
+    add_resource( 'about', 'css', 'about.min.css' );
 
     $__site_canonical = 'about';
 

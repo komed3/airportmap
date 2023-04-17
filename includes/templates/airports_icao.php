@@ -61,7 +61,7 @@
     $__site_title = i18n( 'airports-icao-title', $ICAO->code, $ICAO->name, $_count );
     $__site_desc = i18n( 'airports-icao-desc', $ICAO->code, $ICAO->name, $_count );
 
-    add_resource( 'region', 'css', 'region.css' );
+    add_resource( 'region', 'css', 'region.min.css' );
 
     _header();
 

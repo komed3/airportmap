@@ -41,7 +41,7 @@
     $__site_title = i18n( 'airports-timezone-title', $timezone->name, $timezone->short, $_count, $tz_offset );
     $__site_desc = i18n( 'airports-timezone-desc', $timezone->name, $timezone->short, $_count, $tz_offset );
 
-    add_resource( 'region', 'css', 'region.css' );
+    add_resource( 'region', 'css', 'region.min.css' );
 
     _header();
 

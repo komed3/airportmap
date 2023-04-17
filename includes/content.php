@@ -92,6 +92,12 @@
 
     function _site_end() {
 
+        if( $_COOKIE['theme'] ?? 'light' == 'dark' ) {
+
+            add_resource( 'dark', 'css', 'dark.min.css' );
+
+        }
+
         _resources();
 
         _rich_info();
@@ -388,9 +394,7 @@
             )
         ) {
 
-            $file = stripos( $url, 'http' ) === false
-                ? RESOURCE . $dir . str_replace( '.css', '.min.css', $url )
-                : $url;
+            $file = stripos( $url, 'http' ) === false ? RESOURCE . $dir . $url : $url;
 
             $__static_files[ $res_id ] = [
                 'css' => '<link rel="stylesheet" href="' . $file . '" id="' . $res_id . '" />',

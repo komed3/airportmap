@@ -31,7 +31,7 @@
 
     }
 
-    add_resource( 'stats', 'css', 'stats.css' );
+    add_resource( 'stats', 'css', 'stats.min.css' );
 
     $__site_canonical = 'stats';
 

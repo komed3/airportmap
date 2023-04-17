@@ -7,8 +7,8 @@
 
     $embed_title = airport_by( 'ICAO', $embed_code )['name'] ?? i18n( 'unknown' );
 
-    add_resource( 'text', 'css', 'text.css' );
-    add_resource( 'embedform', 'css', 'embedform.css' );
+    add_resource( 'text', 'css', 'text.min.css' );
+    add_resource( 'embedform', 'css', 'embedform.min.css' );
 
     $__site_canonical = 'embed';
 

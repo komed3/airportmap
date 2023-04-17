@@ -65,7 +65,7 @@
 
     }
 
-    add_resource( 'list', 'css', 'list.css' );
+    add_resource( 'list', 'css', 'list.min.css' );
 
     _header();
 

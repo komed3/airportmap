@@ -13,7 +13,7 @@
     $__site_title = i18n( 'vicinity-title-at', $_lat, $_lon );
     $__site_desc = i18n( 'vicinity-desc' );
 
-    add_resource( 'vicinity', 'css', 'vicinity.css' );
+    add_resource( 'vicinity', 'css', 'vicinity.min.css' );
 
     _header();
 

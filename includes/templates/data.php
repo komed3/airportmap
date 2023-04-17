@@ -1,6 +1,6 @@
 <?php
 
-    add_resource( 'text', 'css', 'text.css' );
+    add_resource( 'text', 'css', 'text.min.css' );
 
     $__site_canonical = 'data';
 

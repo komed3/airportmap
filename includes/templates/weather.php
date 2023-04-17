@@ -16,7 +16,7 @@
     $__site_title = i18n( 'weather-title' );
     $__site_desc = i18n( 'weather-desc' );
 
-    add_resource( 'weather', 'css', 'weather.css' );
+    add_resource( 'weather', 'css', 'weather.min.css' );
 
     _header();
 

@@ -22,8 +22,8 @@
     $__site_title = $airport['name'] ?? i18n( 'unknown' );
     $__site_desc = i18n( 'embed-info', $__site_title, $ICAO );
 
-    add_resource( 'base', 'css', 'base.css' );
-    add_resource( 'embed', 'css', 'embed.css' );
+    add_resource( 'base', 'css', 'base.min.css' );
+    add_resource( 'embed', 'css', 'embed.min.css' );
 
 ?>
 <!DOCTYPE html>

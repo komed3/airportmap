@@ -7,8 +7,8 @@
 
     $link = '<a href="https://opensky-network.org" target="_blank">The OpenSky Network</a>';
 
-    add_resource( 'text', 'css', 'text.css' );
-    add_resource( 'traffic', 'css', 'traffic.css' );
+    add_resource( 'text', 'css', 'text.min.css' );
+    add_resource( 'traffic', 'css', 'traffic.min.css' );
 
     _header();
 

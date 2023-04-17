@@ -40,7 +40,7 @@
     $__site_title = i18n( 'airports-region-title', $region->name ?? i18n( 'unknown' ), $region->code, $_count, $country );
     $__site_desc = i18n( 'airports-region-desc', $region->name ?? i18n( 'unknown' ), $region->code, $_count, $country );
 
-    add_resource( 'region', 'css', 'region.css' );
+    add_resource( 'region', 'css', 'region.min.css' );
 
     _header();
 

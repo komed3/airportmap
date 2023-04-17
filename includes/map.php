@@ -5,7 +5,7 @@
         string $classes = ''
     ) {
 
-        add_resource( 'map', 'css', 'map.css' );
+        add_resource( 'map', 'css', 'map.min.css' );
 
         add_resource( 'leaflet-terminator', 'js', 'L.Terminator.min.js' );
         add_resource( 'map', 'js', 'map.min.js' );

@@ -77,7 +77,7 @@
     $__site_title = i18n( 'airports-title', $_count );
     $__site_desc = i18n( 'airports-desc', $_count );
 
-    add_resource( 'region', 'css', 'region.css' );
+    add_resource( 'region', 'css', 'region.min.css' );
 
     _header();
 

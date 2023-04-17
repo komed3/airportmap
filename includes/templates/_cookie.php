@@ -1,4 +1,4 @@
-<?php add_resource( 'cookie', 'css', 'cookie.css' ); ?>
+<?php add_resource( 'cookie', 'css', 'cookie.min.css' ); ?>
 <div class="cookie" cookie>
     <i class="icon cookie-icon">cookie</i>
     <div class="cookie-content">

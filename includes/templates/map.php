@@ -1,6 +1,6 @@
 <?php
 
-    add_resource( 'welcome', 'css', 'welcome.css' );
+    add_resource( 'welcome', 'css', 'welcome.min.css' );
 
     _header();
 

@@ -12,7 +12,7 @@
     $__site_title = i18n( 'sigmets-title', __number( count( $sigmets ) ) );
     $__site_desc = i18n( 'sigmets-desc' );
 
-    add_resource( 'sigmets', 'css', 'sigmet.css' );
+    add_resource( 'sigmets', 'css', 'sigmet.min.css' );
     add_resource( 'sigmets', 'js', 'sigmet.min.js' );
 
     _header();

@@ -40,7 +40,7 @@
     $__site_title = i18n( 'airports-restriction-title', $name, $rest, $_count );
     $__site_desc = i18n( 'airports-restriction-desc', $name, $rest, $_count );
 
-    add_resource( 'region', 'css', 'region.css' );
+    add_resource( 'region', 'css', 'region.min.css' );
 
     _header();
 

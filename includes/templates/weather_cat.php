@@ -43,7 +43,7 @@
     $__site_title = i18n( 'weather-cat-title', $cat_name, $cat_label, $_count );
     $__site_desc = i18n( 'weather-cat-desc', $cat_name, $cat_label, $_count );
 
-    add_resource( 'weather', 'css', 'weather.css' );
+    add_resource( 'weather', 'css', 'weather.min.css' );
 
     _header();
 

@@ -29,7 +29,7 @@
 
     }
 
-    add_resource( 'airport', 'css', 'airport.css' );
+    add_resource( 'airport', 'css', 'airport.min.css' );
 
     _header();
 
