@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg">
-<g stroke-linejoin="round">
-<path d="m23.812 13.229a10.583 10.583 0 0 1-10.583 10.583 10.583 10.583 0 0 1-10.583-10.583 10.583 10.583 0 0 1 10.583-10.583 10.583 10.583 0 0 1 10.583 10.583z" fill="#a6f" stroke-width="2.7609" style="paint-order:fill markers stroke"/>
-<g fill="#fff" stroke-width="2.1167" style="paint-order:fill markers stroke" aria-label="L">
-<path d="m12.11 17.174h5.2624v2.3254h-8.2855v-12.54h3.0231z"/>
-</g>
-</g>
+<svg version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg">
+<path d="m23.812 13.229a10.583 10.583 0 0 1-10.583 10.583 10.583 10.583 0 0 1-10.583-10.583 10.583 10.583 0 0 1 10.583-10.583 10.583 10.583 0 0 1 10.583 10.583z" fill="#a6f"/>
+<path d="m12.11 17.174h5.2624v2.3254h-8.2855v-12.54h3.0231z" fill="#fff"/>
 </svg>

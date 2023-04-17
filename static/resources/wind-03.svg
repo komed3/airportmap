@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="400" height="400" version="1.1" viewBox="0 0 105.83 105.83" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(1.0583 0 0 1.0583 37.318 41.298)" fill="#2e313b" stroke="#000" stroke-width="2"><path d="m32.019-35.563-0.5625-1.918-13.166 3.8721-4.5532 1.3389v40.748h2v-34.252l7.7812-2.2886-0.5625-1.918-4.25 1.25-2.9688 0.87305v-2.916z" color="#000000" fill="#2e313b" stroke="none" style="-inkscape-stroke:none"/></g></svg>
+<svg version="1.1" viewBox="0 0 105.83 105.83" xmlns="http://www.w3.org/2000/svg">
+<path transform="matrix(1.0583 0 0 1.0583 37.318 41.298)" d="m32.019-35.563-0.5625-1.918-13.166 3.8721-4.5532 1.3389v40.748h2v-34.252l7.7812-2.2886-0.5625-1.918-4.25 1.25-2.9688 0.87305v-2.916z" fill="#2e313b"/>
+</svg>
