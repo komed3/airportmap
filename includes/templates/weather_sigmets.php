@@ -13,7 +13,7 @@
     $__site_desc = i18n( 'sigmets-desc' );
 
     add_resource( 'sigmets', 'css', 'sigmet.css' );
-    add_resource( 'sigmets', 'js', 'sigmet.js' );
+    add_resource( 'sigmets', 'js', 'sigmet.min.js' );
 
     _header();
 

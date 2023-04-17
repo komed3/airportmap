@@ -7,8 +7,8 @@
 
         add_resource( 'map', 'css', 'map.css' );
 
-        add_resource( 'leaflet-terminator', 'js', 'L.Terminator.js' );
-        add_resource( 'map', 'js', 'map.js' );
+        add_resource( 'leaflet-terminator', 'js', 'L.Terminator.min.js' );
+        add_resource( 'map', 'js', 'map.min.js' );
 
         ?><div class="map-container <?php echo $classes; ?>">
             <div class="map" map-data="<?php
