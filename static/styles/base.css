@@ -90,6 +90,7 @@ a:hover {
 }
 
 body {
+    position: relative;
     margin: 0;
     width: 100%;
     font-size: 18px;
@@ -98,6 +99,21 @@ body {
     color: var( --gray-5 );
     background: var( --gray-1 );
     overflow-x: hidden;
+}
+
+body::before {
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url( './../resources/noise.jpg' );
+    background-attachment: fixed;
+    mix-blend-mode: luminosity;
+    opacity: 0.025;
+    z-index: -1;
 }
 
 button {
