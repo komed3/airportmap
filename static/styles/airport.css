@@ -132,6 +132,14 @@
     height: 520px;
 }
 
+.airport-wiki .wiki-text {
+    max-width: 1200px;
+}
+
+.airport-wiki .wiki-credits {
+    font-size: 13px;
+}
+
 /* mobile support */
 
 @media all and ( max-width: 1200px ) {

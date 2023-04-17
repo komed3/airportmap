@@ -559,6 +559,7 @@
     "welcome-donate": "Jetzt spenden!",
     "welcome-donate-thanks": "Danke für deine Unterstützung",
     "wiki-credits": "© Wikipedia | CC-by-SA-3.0 | <a href=\"https://$1.wikipedia.org/wiki/$2\" target=\"_blank\">Weiterlesen …</a>",
+    "wiki-headline": "Über $1",
     "wind-calm": "<b>Windstille</b>",
     "wind-calm-gust": "<b>Windstille</b>",
     "wind-cross": "Querwind",

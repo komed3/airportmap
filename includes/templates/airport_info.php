@@ -81,10 +81,13 @@
 </div>
 <?php if( $text = airport_wiki_text( $wiki ) ) { ?>
     <div class="airport-wiki content-normal">
+        <h2 class="secondary-headline">
+            <?php _i18n( 'wiki-headline', $airport['name'] ); ?>
+        </h2>
         <div class="wiki-text">
             <?php echo $text; ?>
         </div>
-        <div class="wiki-credity">
+        <div class="wiki-credits">
             <?php _i18n( 'wiki-credits', $wiki['lang'], $wiki['link'] ); ?>
         </div>
     </div>
