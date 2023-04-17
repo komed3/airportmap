@@ -34,7 +34,8 @@
 
 .map-legend .legend-box .legend li mapicon,
 .map-legend .legend-box .legend li navicon,
-.map-legend .legend-box .legend li wxicon {
+.map-legend .legend-box .legend li wxicon,
+.map-legend .legend-box .legend li wpicon {
     flex: 0 0 30px;
     width: 30px;
     height: 30px;

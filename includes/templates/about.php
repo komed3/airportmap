@@ -93,6 +93,10 @@
                             <span><?php _i18n( 'navaid-' . $navaid ); ?></span>
                         </li>
                     <?php } ?>
+                    <li class="waypoint">
+                        <wpicon></wpicon>
+                        <span><?php _i18n( 'waypoints' ); ?></span>
+                    </li>
                 </ul>
             </div>
         </div>
