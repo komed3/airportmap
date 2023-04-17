@@ -118,6 +118,7 @@
                     'action' => 'query',
                     'format' => 'json',
                     'titles' => $wiki['link'],
+                    'redirects' => 1,
                     'prop' => 'extracts',
                     'exsentences' => 10,
                     'exintro' => 1,
