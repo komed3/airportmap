@@ -82,6 +82,63 @@
 
     }
 
+    function airport_wiki(
+        string $ICAO,
+        string $lang = ''
+    ) {
+
+        global $DB;
+
+        if( empty( $lang ) ) {
+
+            $lang = i18n_locale();
+
+        }
+
+        return ( $res = $DB->query( '
+            SELECT  *
+            FROM    ' . DB_PREFIX . 'wiki
+            WHERE   airport = "' . $ICAO . '"
+            AND     lang = "' . $lang . '"
+        ' ) )->num_rows == 1
+            ? $res->fetch_assoc()
+            : null;
+
+    }
+
+    function airport_wiki_text(
+        $wiki
+    ) {
+
+        if( is_array( $wiki ) ) {
+
+            $res = json_decode( file_get_contents( 'https://' .
+                $wiki['lang'] . '.wikipedia.org/w/api.php?' .
+                http_build_query( [
+                    'action' => 'query',
+                    'format' => 'json',
+                    'titles' => $wiki['link'],
+                    'prop' => 'extracts',
+                    'exsentences' => 10,
+                    'exintro' => 1,
+                    'exsectionformat' => 'plain'
+                ], '', '&' )
+            ), true );
+
+            if( count( $res['query']['pages'] ) > 0 ) {
+
+                return strip_tags( array_shift(
+                    $res['query']['pages']
+                )['extract'], '<p>' );
+
+            }
+
+        }
+
+        return '';
+
+    }
+
     function airport_timezone(
         array $airport
     ) {

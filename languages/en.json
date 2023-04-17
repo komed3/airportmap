@@ -558,6 +558,7 @@
     "weather-windchill": "Wind chill",
     "welcome-donate": "Donate now!",
     "welcome-donate-thanks": "Thanks for your support",
+    "wiki-credits": "© Wikipedia | CC-by-SA-3.0 | <a href=\"https://$1.wikipedia.org/wiki/$2\" target=\"_blank\">Read more …</a>",
     "wind-calm": "Wind&nbsp;<b>calm</b>",
     "wind-calm-gust": "Wind&nbsp;<b>calm</b>",
     "wind-cross": "Crosswind",

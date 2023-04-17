@@ -1,6 +1,6 @@
 <?php
 
-    global $airport;
+    global $airport, $wiki;
 
     if( empty( $airport ) ) {
 
@@ -79,3 +79,13 @@
         ]
     ], 'minimal-ui' ); ?>
 </div>
+<?php if( $text = airport_wiki_text( $wiki ) ) { ?>
+    <div class="airport-wiki content-normal">
+        <div class="wiki-text">
+            <?php echo $text; ?>
+        </div>
+        <div class="wiki-credity">
+            <?php _i18n( 'wiki-credits', $wiki['lang'], $wiki['link'] ); ?>
+        </div>
+    </div>
+<?php } ?>

@@ -66,11 +66,11 @@
 
     }
 
-    if( $airport['wiki'] ) {
+    if( $wiki = airport_wiki( $airport['ICAO'] ) ) {
 
         $tabs[] = [
             'i18n' => 'link-wiki',
-            'external' => 'https://wikipedia.org/wiki/' . $airport['wiki']
+            'external' => 'https://' . $wiki['lang'] . '.wikipedia.org/wiki/' . $wiki['link']
         ];
 
     }
