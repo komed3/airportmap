@@ -134,6 +134,7 @@
 
 .airport-wiki .wiki-text {
     max-width: 1200px;
+    line-height: 1.6;
 }
 
 .airport-wiki .wiki-credits {
@@ -189,6 +190,10 @@
 
     .airport-warn .info {
         padding: 0;
+    }
+
+    .airport-wiki .wiki-text {
+        font-size: 16px;
     }
 
 }
