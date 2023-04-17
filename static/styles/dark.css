@@ -36,6 +36,8 @@
     --light-6: rgba( 46 49 59 / 0.75 );
     --light-7: rgba( 46 49 59 / 0.90 );
 
+    --box-shadow: 0 0 16px rgba( 0 0 0 / 0.25 );
+
 }
 
 /* basic changes */
@@ -152,6 +154,10 @@ select,
 }
 
 /* other color changes */
+
+.map-container .map-overlay .map-infobox .infobox-content hr {
+    border-top-color: var( --shade-3 );
+}
 
 .sigmets .sigmet .sigmet-raw {
     border-bottom-color: var( --gray-4 );

@@ -51,6 +51,7 @@
     color: var( --gray-0 );
     background: var( --gray-6 );
     border-radius: 12px;
+    box-shadow: var( --box-shadow );
     overflow: hidden;
 }
 
@@ -130,6 +131,7 @@
 .airport-nearby .map-container {
     width: 100%;
     height: 520px;
+    box-shadow: var( --box-shadow );
 }
 
 .airport-wiki .wiki-text {

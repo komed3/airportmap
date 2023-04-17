@@ -7,6 +7,9 @@
     break-inside: avoid;
     margin-bottom: 40px;
     background: var( --gray-0 );
+    border-radius: 12px;
+    box-shadow: var( --box-shadow );
+    overflow: hidden;
 }
 
 .sigmets .sigmet .sigmet-header {

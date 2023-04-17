@@ -92,7 +92,8 @@
 
     function _site_end() {
 
-        if( $_COOKIE['theme'] ?? 'light' == 'dark' ) {
+        if( ( $_COOKIE['theme'] ?? 'light' ) == 'dark' &&
+            ( !defined( 'EMBED' ) || EMBED == false ) ) {
 
             add_resource( 'dark', 'css', 'dark.min.css' );
 

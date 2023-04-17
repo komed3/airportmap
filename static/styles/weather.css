@@ -76,6 +76,7 @@
     padding: 20px 24px;
     background: var( --gray-0 );
     border-radius: 12px;
+    box-shadow: var( --box-shadow );
 }
 
 .weather .weather-extrema .extrema .icon {
@@ -126,6 +127,7 @@
     color: var( --gray-0 );
     background: var( --indicator-red );
     border-radius: 12px;
+    box-shadow: var( --box-shadow );
 }
 
 .weather .weather-active-sigmets:hover {

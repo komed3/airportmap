@@ -1,6 +1,7 @@
 <?php
 
     define( 'NO_KEY', true );
+    define( 'EMBED', true );
 
     require_once __DIR__ . '/api.php';
 
