@@ -117,7 +117,7 @@
                 http_build_query( [
                     'action' => 'query',
                     'format' => 'json',
-                    'titles' => $wiki['link'],
+                    'titles' => urldecode( $wiki['link'] ),
                     'redirects' => 1,
                     'prop' => 'extracts',
                     'exsentences' => 10,
