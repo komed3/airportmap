@@ -96,7 +96,7 @@ body {
     font-size: 18px;
     font-weight: 400;
     font-style: normal;
-    color: var( --gray-5 );
+    color: var( --gray-6 );
     background: var( --gray-1 );
     overflow-x: hidden;
 }
@@ -869,7 +869,7 @@ h2.secondary-headline {
 .airportlist .list .row .info .location,
 .airportlist .list .row .info .region {
     font-size: 16px;
-    color: var( --gray-4 );
+    color: var( --gray-5 );
 }
 
 .airportlist .list .row .info .location {
@@ -1005,7 +1005,7 @@ h2.secondary-headline {
     align-items: center;
     gap: 6px 20px;
     font-size: 15px;
-    color: var( --gray-4 );
+    color: var( --gray-5 );
 }
 
 .runwaylist .runway .info .site > div,
@@ -1109,7 +1109,7 @@ h2.secondary-headline {
     align-items: center;
     gap: 4px 12px;
     font-size: 14px;
-    color: var( --gray-4 );
+    color: var( --gray-5 );
 }
 
 .pagelist {
