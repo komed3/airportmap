@@ -53,7 +53,7 @@
 
         $load_lang = $__i18n_locale;
 
-        if( strlen( $lang ) && is_readable( LANG . $lang . '.json' ) ) {
+        if( strlen( $lang ) && is_readable( LANG . $lang . '.min.json' ) ) {
 
             $load_lang = $lang;
 
