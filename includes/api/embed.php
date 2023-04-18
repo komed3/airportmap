@@ -39,11 +39,18 @@
         <div id="wrapper">
             <?php if( !empty( $airport ) ) { ?>
                 <div class="embed airport airport-<?php echo $airport['type']; ?> restriction-<?php echo $airport['restriction']; ?>">
+                    <?php if( !!( $_GET['image'] ?? 0 ) && ( $image = airport_image( $airport['ICAO'] ) ) ) { ?>
+                        <div class="embed-image" style="background-image: url( <?php echo $image['url']; ?> );">
+                            <div class="embed-image-credits">
+                                <?php echo $image['credits']; ?>
+                            </div>
+                        </div>
+                    <?php } ?>
                     <div class="embed-header">
                         <h1><mapicon invert></mapicon><?php echo $ICAO; ?></h1>
                         <h2><?php echo $__site_title; ?></h2>
                     </div>
-                    <?php if( !empty( $weather ) ) { ?>
+                    <?php if( $_show_weather = ( !empty( $weather ) && !!( $_GET['weather'] ?? 1 ) ) ) { ?>
                         <div class="embed-weather">
                             <?php if( $weather['flight_cat'] ) { ?>
                                 <div class="cat">
@@ -66,35 +73,37 @@
                                 <div class="wind"><?php echo wind_info( $weather ); ?></div>
                             </div>
                         </div>
+                    <?php } if( $_show_weather && !!( $_GET['stats'] ?? 1 ) ) { ?>
                         <hr />
+                    <?php } if( !!( $_GET['stats'] ?? 1 ) ) { ?>
+                        <ul class="embed-list">
+                            <li>
+                                <i class="icon">luggage</i>
+                                <span><?php _i18n( 'airport-type-' . $airport['type'] ); ?></span>
+                            </li>
+                            <li>
+                                <i class="icon">location_on</i>
+                                <span><?php echo region_name( 'country', $airport['country'] ); ?></span>
+                            </li>
+                            <li>
+                                <i class="icon">near_me</i>
+                                <?php echo __DMS_coords( $airport['lat'], $airport['lon'] ); ?>
+                            </li>
+                            <li>
+                                <i class="icon">flight_takeoff</i>
+                                <span><?php echo alt_in( (int) $airport['alt'] ); ?></span>
+                                <span>(<?php echo alt_in( (int) $airport['alt'] / 3.281, 'm&#8239;MSL' ); ?>)</span>
+                            </li>
+                            <?php if( $airport['timezone'] ) { ?><li>
+                                <i class="icon">schedule</i>
+                                <span><?php echo date(
+                                    i18n( 'clock-time' ),
+                                    time() + ( $airport['gmt_offset'] * 60 )
+                                ); ?></span>
+                                <span>(<?php echo $airport['timezone']; ?>)</span>
+                            </li><?php } ?>
+                        </ul>
                     <?php } ?>
-                    <ul class="embed-list">
-                        <li>
-                            <i class="icon">luggage</i>
-                            <span><?php _i18n( 'airport-type-' . $airport['type'] ); ?></span>
-                        </li>
-                        <li>
-                            <i class="icon">location_on</i>
-                            <span><?php echo region_name( 'country', $airport['country'] ); ?></span>
-                        </li>
-                        <li>
-                            <i class="icon">near_me</i>
-                            <?php echo __DMS_coords( $airport['lat'], $airport['lon'] ); ?>
-                        </li>
-                        <li>
-                            <i class="icon">flight_takeoff</i>
-                            <span><?php echo alt_in( (int) $airport['alt'] ); ?></span>
-                            <span>(<?php echo alt_in( (int) $airport['alt'] / 3.281, 'm&#8239;MSL' ); ?>)</span>
-                        </li>
-                        <?php if( $airport['timezone'] ) { ?><li>
-                            <i class="icon">schedule</i>
-                            <span><?php echo date(
-                                i18n( 'clock-time' ),
-                                time() + ( $airport['gmt_offset'] * 60 )
-                            ); ?></span>
-                            <span>(<?php echo $airport['timezone']; ?>)</span>
-                        </li><?php } ?>
-                    </ul>
                     <div class="embed-space"></div>
                     <a class="embed-link" href="<?php _base_url( 'airport/' . $ICAO ); ?>" target="_blank" rel="noopener noreferrer">
                         <span><?php _i18n( 'view-airport' ); ?></span>
