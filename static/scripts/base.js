@@ -85,6 +85,11 @@ var freq_format = ( frequency ) => {
                 location.reload();
                 break;
 
+            case 'theme':
+                $.cookie( 'theme', $( this ).attr( 'theme' ) );
+                location.reload();
+                break;
+
             case 'share':
                 window.open(
                     {

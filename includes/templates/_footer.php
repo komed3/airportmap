@@ -61,7 +61,7 @@
                         'i18n' => 'footer-nav-donate',
                         'external' => 'https://github.com/komed3/airportmap'
                     ] ], 'footer-nav', -1 ); ?>
-                    <h3><?php _i18n( 'footer-headline-language' ); ?></h3>
+                    <h3><?php _i18n( 'footer-headline-settings' ); ?></h3>
                     <div class="language-selector">
                         <select data-action="select-language">
                             <?php foreach( LANGUAGES as $lng ) { ?>
@@ -71,6 +71,16 @@
                             <?php } ?>
                         </select>
                         <i class="icon">language</i>
+                    </div>
+                    <div class="theme-selector theme-<?php echo $_COOKIE['theme'] ?? 'light'; ?>">
+                        <a href="#" data-action="theme" theme="light">
+                            <i class="icon">light_mode</i>
+                            <span class="label"><?php _i18n( 'theme-light' ); ?></span>
+                        </a>
+                        <a href="#" data-action="theme" theme="dark">
+                            <i class="icon">dark_mode</i>
+                            <span class="label"><?php _i18n( 'theme-dark' ); ?></span>
+                        </a>
                     </div>
                 </div>
                 <div class="share">

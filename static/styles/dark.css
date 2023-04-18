@@ -119,6 +119,7 @@ body {
 select,
 #header .searchform .searchtext,
 #footer .language-selector select,
+#footer .theme-selector a:hover,
 .site-tabs a,
 .weather .weather-extrema .extrema,
 .sigmets .sigmet,
@@ -154,6 +155,10 @@ select,
 }
 
 /* other color changes */
+
+#footer .theme-selector {
+    border-color: var( --gray-5 );
+}
 
 .map-container .map-overlay .map-infobox .infobox-content hr {
     border-top-color: var( --shade-3 );

@@ -549,6 +549,7 @@ h2.secondary-headline {
     padding: 0 20px;
     background: var( --gray-0 );
     border-radius: 20px;
+    box-shadow: var( --box-shadow );
 }
 
 .site-tabs a:hover {

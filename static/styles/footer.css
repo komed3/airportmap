@@ -65,6 +65,41 @@
     font-variation-settings: 'wght' 300, 'GRAD' 0;
 }
 
+#footer .theme-selector {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 3px;
+    width: fit-content;
+    max-width: 100%;
+    height: 40px;
+    padding: 0 3px;
+    border: 2px solid var( --gray-1 );
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#footer .theme-selector a {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 6px;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 15px;
+}
+
+#footer .theme-selector a:hover {
+    text-decoration: none;
+    background: var( --gray-1 );
+}
+
+#footer .theme-selector.theme-light a[theme="light"],
+#footer .theme-selector.theme-dark a[theme="dark"] {
+    color: var( --gray-0 );
+    background: var( --primary );
+}
+
 #footer .share {
     grid-column: span 4;
     display: flex;
@@ -187,8 +222,12 @@ body.scroll-to-top #scroll-to-top:hover {
     }
 
     #footer .language-selector {
-        margin: 20px auto 60px auto;
+        margin: 20px auto;
         width: 60%;
+    }
+
+    #footer .theme-selector {
+        margin: 20px auto 60px auto;
     }
 
     #footer .share {
