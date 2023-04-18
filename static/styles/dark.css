@@ -156,6 +156,10 @@ select,
 
 /* other color changes */
 
+.checkbox {
+    border-color: var( --gray-4 );
+}
+
 #footer .theme-selector {
     border-color: var( --gray-5 );
 }

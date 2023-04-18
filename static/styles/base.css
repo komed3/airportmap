@@ -139,6 +139,51 @@ select {
     cursor: pointer;
 }
 
+input[type="checkbox"] {
+    float: right;
+    position: absolute;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.checkbox {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var( --gray-1 );
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.checkbox i {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 22px;
+    border-radius: 15px;
+}
+
+.checkbox i.yes {
+    color: var( --gray-0 );
+    background: var( --primary );
+}
+
+.checkbox i.no {
+    color: var( --indicator-red );
+    opacity: 0.5;
+}
+
+input[type="checkbox"]:not(:checked) + .checkbox i.yes,
+input[type="checkbox"]:checked + .checkbox i.no {
+    display: none;
+}
+
 morse {
     font-family: 'SourceCodePro' !important;
     font-weight: 900;

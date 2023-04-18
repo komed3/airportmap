@@ -51,19 +51,31 @@
                 <label><?php _i18n( 'embedform-weather' ); ?></label>
                 <input type="checkbox" name="weather" value="1" <?php
                     if( $embed_options['weather'] ) { ?>checked<?php }
-                ?> />
+                ?> id="__embedform_weather" />
+                <label class="checkbox" for="__embedform_weather">
+                    <i class="icon yes">done</i>
+                    <i class="icon no">close</i>
+                </label>
             </div>
             <div class="formline">
                 <label><?php _i18n( 'embedform-stats' ); ?></label>
                 <input type="checkbox" name="stats" value="1" <?php
                     if( $embed_options['stats'] ) { ?>checked<?php }
-                ?> />
+                ?> id="__embedform_stats" />
+                <label class="checkbox" for="__embedform_stats">
+                    <i class="icon yes">done</i>
+                    <i class="icon no">close</i>
+                </label>
             </div>
             <div class="formline">
                 <label><?php _i18n( 'embedform-image' ); ?></label>
                 <input type="checkbox" name="image" value="1" <?php
                     if( $embed_options['image'] ) { ?>checked<?php }
-                ?> />
+                ?> id="__embedform_image" />
+                <label class="checkbox" for="__embedform_image">
+                    <i class="icon yes">done</i>
+                    <i class="icon no">close</i>
+                </label>
             </div>
             <div class="formsubmit">
                 <button type="submit" name="embedsubmit">
