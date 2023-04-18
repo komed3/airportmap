@@ -56,13 +56,16 @@ mapicon, navicon, wpicon, windbug, windflag,
     filter: grayscale( 1 ) contrast( 10 ) invert( 0.6 );
 }
 
+wxicon {
+    filter: brightness( 0.8 ) opacity( 0.8 ) contrast( 0.8 );
+}
+
 /* color changes */
 
 body,
 select,
 .searchform .searchtext,
 #footer .language-selector select,
-.map-container .map .leaflet-tooltip,
 .site-tabs a:hover,
 .stats .stats-grid,
 .vicinity .vicinityform input[type="number"],
@@ -72,6 +75,7 @@ select,
     color: var( --gray-0 );
 }
 
+.map-container .map .leaflet-tooltip,
 .welcome p {
     color: var( --gray-1 );
 }
