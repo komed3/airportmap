@@ -2,8 +2,16 @@
 
     $embed_code = $path[1] ?? 'KLAX';
     $embed_lang = $path[2] ?? i18n_locale();
+    $embed_options = [
+        'weather' => $path[3] ?? 1,
+        'stats' => $path[4] ?? 1,
+        'image' => $path[5] ?? 0
+    ];
 
-    $embed_url = API . 'embed.php?airport=' . $embed_code . '&lang=' . $embed_lang;
+    $embed_url = API . 'embed.php?' . http_build_query( array_merge( [
+        'airport' => $embed_code,
+        'lang' => $embed_lang
+    ], $embed_options ), '', '&' );
 
     $embed_title = airport_by( 'ICAO', $embed_code )['name'] ?? i18n( 'unknown' );
 
@@ -39,15 +47,39 @@
                     <?php } ?>
                 </select>
             </div>
+            <div class="formline">
+                <label><?php _i18n( 'embedform-weather' ); ?></label>
+                <input type="checkbox" name="weather" value="1" <?php
+                    if( $embed_options['weather'] ) { ?>checked<?php }
+                ?> />
+            </div>
+            <div class="formline">
+                <label><?php _i18n( 'embedform-stats' ); ?></label>
+                <input type="checkbox" name="stats" value="1" <?php
+                    if( $embed_options['stats'] ) { ?>checked<?php }
+                ?> />
+            </div>
+            <div class="formline">
+                <label><?php _i18n( 'embedform-image' ); ?></label>
+                <input type="checkbox" name="image" value="1" <?php
+                    if( $embed_options['image'] ) { ?>checked<?php }
+                ?> />
+            </div>
             <div class="formsubmit">
                 <button type="submit" name="embedsubmit">
                     <span><?php _i18n( 'embedform-submit' ); ?></span>
                 </button>
             </div>
         </form>
-        <textarea class="embedcode" readonly><iframe width="400" height="600" src="<?php echo $embed_url; ?>" title="<?php echo $embed_title; ?>"></iframe></textarea>
+        <textarea class="embedcode" readonly><iframe width="400" height="600" src="<?php
+            echo $embed_url;
+        ?>" title="<?php
+            echo $embed_title;
+        ?>"></iframe></textarea>
     </div>
     <p><?php _i18n( 'embed-test' ); ?></p>
-    <iframe class="embediframe" src="<?php echo $embed_url; ?>" title="<?php echo $embed_title; ?>"></iframe>
+    <iframe class="embediframe <?php
+        if( $embed_options['image'] ) { ?>image<?php }
+    ?>" src="<?php echo $embed_url; ?>" title="<?php echo $embed_title; ?>"></iframe>
 </div>
 <?php _footer(); ?>

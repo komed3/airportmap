@@ -71,6 +71,10 @@
     box-shadow: var( --box-shadow );
 }
 
+.embediframe.image {
+    height: 800px;
+}
+
 /* mobile support */
 
 @media all and ( max-width: 1200px ) {

@@ -164,7 +164,10 @@ var freq_format = ( frequency ) => {
             case 'embed':
                 location.href = baseurl + '/embed/' +
                     ( $( this ).find( '[name="code"]' ).val() || '' ).toString().trim().toUpperCase() + '/' +
-                    ( $( this ).find( '[name="lang"]' ).val() || '' ).toString().trim().toLowerCase();
+                    ( $( this ).find( '[name="lang"]' ).val() || '' ).toString().trim().toLowerCase() + '/' +
+                    +( $( this ).find( '[name="weather"]' ).is( ':checked' ) ) + '/' +
+                    +( $( this ).find( '[name="stats"]' ).is( ':checked' ) ) + '/' +
+                    +( $( this ).find( '[name="image"]' ).is( ':checked' ) );
                 break;
 
             case 'vicinity':
