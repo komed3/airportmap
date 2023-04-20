@@ -41,7 +41,7 @@
                     'i18n' => 'site-nav-traffic',
                     'url' => 'traffic',
                     'check' => 'traffic'
-                ] ], 'site-nav' ); ?>
+                ] ], 'site-nav site-tabs' ); ?>
                 <?php load_tpl_part( '_searchform' ); ?>
             </div>
             <div id="content">
