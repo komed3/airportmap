@@ -155,6 +155,7 @@
     color: var( --gray-0 );
     background: var( --primary );
     border-radius: 25px;
+    box-shadow: var( --box-shadow );
     cursor: pointer;
     transform: scale( 0 );
     transition: all 100ms ease-out;
