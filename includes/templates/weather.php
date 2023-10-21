@@ -43,7 +43,7 @@
             <a href="<?php _base_url( 'weather/cat/' . $cat ); ?>" class="cat cat-<?php echo $cat; ?>" title="<?php _i18n( 'cat-' . $cat . '-label' ); ?>">
                 <wxicon></wxicon>
                 <span><?php _i18n( 'cat-' . $cat ); ?></span>
-                <b><?php echo __number( $cat_stats[ $cat ] ); ?></b>
+                <b><?php echo __number( $cat_stats[ $cat ] ?? 0 ); ?></b>
             </a>
         <?php } ?>
     </div>
