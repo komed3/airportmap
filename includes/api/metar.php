@@ -20,7 +20,7 @@
     $delete = $insert = [];
 
     foreach( explode( PHP_EOL, file_get_contents(
-        'https://www.aviationweather.gov/adds/dataserver_current/current/metars.cache.csv'
+        'https://aviationweather.gov/data/cache/metars.cache.csv'
     ) ) as $metar ) {
 
         $data = explode( ',', $metar );
