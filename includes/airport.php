@@ -552,8 +552,8 @@
         $sec = floor( ( $sub - $min ) * 60 );
 
         return $deg . '°&#8239;' . $min . '′&#8239;' . $sec . '″&#8239;' . i18n( 'sdir-' . [
-            'lat' => $dec < 0 ? 'S' : 'N',
-            'lon' => $dec < 0 ? 'W' : 'E'
+            'lat' => $decimal < 0 ? 'S' : 'N',
+            'lon' => $decimal < 0 ? 'W' : 'E'
         ][ $type ] );
 
     }
