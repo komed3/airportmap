@@ -28,7 +28,7 @@ var maps_limit = 0,
 
     var checkLimit = () => {
 
-        if( navigator.userAgentData.mobile ) {
+        if( 'userAgentData' in navigator && 'mobile' in navigator.userAgentData ) {
 
             maps_limit = 40;
 
