@@ -132,7 +132,7 @@
             cloud_2_cover, cloud_2_base,
             cloud_3_cover, cloud_3_base,
             cloud_4_cover, cloud_4_base
-        ) VALUES ( ' . implode( ' ), ( ', $insert ) . ' );
+        ) VALUES ( ' . str_replace( '""', '"', implode( ' ), ( ', $insert ) ) . ' );
     ' );
 
     api_exit( [
