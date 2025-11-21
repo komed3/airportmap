@@ -110,12 +110,11 @@
         $wiki
     ) {
 
-        if( is_array( $wiki ) ) {
+        if ( is_array( $wiki ) ) {
 
             try {
 
-                $res = json_decode( file_get_contents( 'https://' .
-                    $wiki['lang'] . '.wikipedia.org/w/api.php?' .
+                $url = 'https://' . $wiki['lang'] . '.wikipedia.org/w/api.php?' .
                     http_build_query( [
                         'action' => 'query',
                         'format' => 'json',
@@ -125,14 +124,47 @@
                         'exsentences' => '7',
                         'exintro' => 1,
                         'explaintext' => 1
-                    ], '', '&' )
-                ), true );
+                    ], '', '&' );
 
-                if( count( $res['query']['pages'] ) > 0 ) {
+                $ch = curl_init();
 
-                    return strip_tags( array_shift(
-                        $res['query']['pages']
-                    )['extract'], '<p>' );
+                curl_setopt_array( $ch, [
+                    CURLOPT_URL => $url,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_TIMEOUT => 10,
+                    CURLOPT_USERAGENT => 'AirportmapBot/1.0 (+https://airportmap.de)',
+                    CURLOPT_HTTPHEADER => [
+                        'Accept-Encoding: gzip, deflate',
+                        'Referer: https://'. $wiki['lang'] .'.wikipedia.org/'
+                    ],
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_SSL_VERIFYPEER => true,
+                    CURLOPT_SSL_VERIFYHOST => 2
+                ] );
+
+                $response = curl_exec( $ch );
+
+                if ( $response === false ) {
+
+                    var_dump( curl_getinfo( $ch ) );
+                    var_dump( curl_error( $ch ) );
+
+                    curl_close( $ch );
+
+                    return '';
+
+                }
+
+                curl_close( $ch );
+
+                $res = json_decode( $response, true );
+
+                if ( ! empty( $res['query']['pages'] ) ) {
+
+                    $page = array_shift( $res['query']['pages'] );
+
+                    return strip_tags( $page['extract'] ?? '', '<p>' );
 
                 }
 
