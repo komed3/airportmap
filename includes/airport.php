@@ -112,27 +112,31 @@
 
         if( is_array( $wiki ) ) {
 
-            $res = json_decode( file_get_contents( 'https://' .
-                $wiki['lang'] . '.wikipedia.org/w/api.php?' .
-                http_build_query( [
-                    'action' => 'query',
-                    'format' => 'json',
-                    'titles' => urldecode( $wiki['link'] ),
-                    'redirects' => 1,
-                    'prop' => 'extracts',
-                    'exsentences' => 10,
-                    'exintro' => 1,
-                    'exsectionformat' => 'plain'
-                ], '', '&' )
-            ), true );
+            try {
 
-            if( count( $res['query']['pages'] ) > 0 ) {
+                $res = json_decode( file_get_contents( 'https://' .
+                    $wiki['lang'] . '.wikipedia.org/w/api.php?' .
+                    http_build_query( [
+                        'action' => 'query',
+                        'format' => 'json',
+                        'prop' => 'extracts',
+                        'titles' => urldecode( $wiki['link'] ),
+                        'formatversion' => '2',
+                        'exsentences' => '7',
+                        'exintro' => 1,
+                        'explaintext' => 1
+                    ], '', '&' )
+                ), true );
 
-                return strip_tags( array_shift(
-                    $res['query']['pages']
-                )['extract'], '<p>' );
+                if( count( $res['query']['pages'] ) > 0 ) {
 
-            }
+                    return strip_tags( array_shift(
+                        $res['query']['pages']
+                    )['extract'], '<p>' );
+
+                }
+
+            } catch ( Throwable $t ) { return ''; }
 
         }
 
