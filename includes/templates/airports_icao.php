@@ -98,7 +98,7 @@
                      ' . DB_PREFIX . 'airport a
             WHERE    i.code LIKE "' . $ICAO->code . '%"
             AND      i.code != "' . $ICAO->code . '"
-            AND      a.ICAO LIKE CONCAT( i.code, "%" )
+            AND      a.ICAO LIKE CONCAT( REPLACE( i.code, "*", "" ), "%" )
             ' . $regions_query . '
             GROUP BY i.code
             ORDER BY i.code ASC
