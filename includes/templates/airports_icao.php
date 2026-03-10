@@ -71,7 +71,7 @@
 
             $links[] = [
                 'page' => $row['code'],
-                'name' => $row['name'],
+                'name' => str_replace( '*', '', $row['code'] ) . ': ' . $row['name'],
                 'cnt' => $cnt
             ];
 
@@ -93,8 +93,9 @@
 
     $__site_canonical = 'airports/ICAO/' . $ICAO->code;
 
-    $__site_title = i18n( 'airports-icao-title', $ICAO->code, $ICAO->name );
-    $__site_desc = i18n( 'airports-icao-desc', $ICAO->code, $ICAO->name );
+    $plain = str_replace( '*', '', $ICAO->code );
+    $__site_title = i18n( 'airports-icao-title', $plain, $ICAO->name );
+    $__site_desc = i18n( 'airports-icao-desc', $plain, $ICAO->name );
 
     add_resource( 'region', 'css', 'region.min.css' );
 
