@@ -85,6 +85,8 @@
 
     }
 
+    if ( $count == 0 ) __404();
+
     $breadcrumbs = [ [ 'world' ] ];
 
     for( $i = 1; $i <= strlen( $ICAO->code ); $i++ ) {
