@@ -69,7 +69,7 @@
                 )
             ' )->num_rows;
 
-            $links[] = [
+            if ( $cnt > 0 ) $links[] = [
                 'page' => $row['code'],
                 'name' => str_replace( '*', '', $row['code'] ) . ': ' . $row['name'],
                 'cnt' => $cnt
