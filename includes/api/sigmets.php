@@ -41,7 +41,7 @@
             $points[] = [ $point['lon'], $point['lat'] ];
         }
 
-        $polygon = json_encode( $points, JSON_NUMERIC_CHECK );
+        $polygon = json_encode( [ $points ], JSON_NUMERIC_CHECK );
 
         $affected += $DB->query( str_replace( '"NULL"', 'NULL', '
             INSERT INTO sigmet (
