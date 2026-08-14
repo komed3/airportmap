@@ -79,7 +79,7 @@
         ]
     ], 'minimal-ui' ); ?>
 </div>
-<?php if( $text = airport_wiki_text( $wiki ) ) { ?>
+<?php /*if( $text = airport_wiki_text( $wiki ) ) { ?>
     <div class="airport-wiki content-normal">
         <h2 class="secondary-headline">
             <?php _i18n( 'wiki-headline', $airport['name'] ); ?>
@@ -91,4 +91,4 @@
             <?php _i18n( 'wiki-credits', $wiki['lang'], $wiki['link'] ); ?>
         </div>
     </div>
-<?php } ?>
+<?php }*/ ?>
