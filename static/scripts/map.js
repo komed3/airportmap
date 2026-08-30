@@ -412,6 +412,8 @@ var maps_limit = 0,
 
     var map_sigmets_update = ( uuid ) => {
 
+        return ;
+
         if( 'sigmet' in maps_layer[ uuid ] ) {
 
             let layer = maps_layer[ uuid ].sigmet;
@@ -428,12 +430,14 @@ var maps_limit = 0,
 
                     layer.clearLayers();
 
-                    Object.values( res.response.sigmets ).forEach( function( sigmet ) {
+                    Object.values( res.response?.sigmets ?? [] ).forEach( function( sigmet ) {
 
-                        JSON.parse( sigmet.polygon ).forEach( function( polygon ) {
+                        JSON.parse( sigmet.polygon ?? [] ).forEach( function( polygon ) {
 
-                            if( typeof polygon === 'object' && polygon.length > 1 &&
-                                polygon.length == polygon.filter( p => typeof p === 'object' ).length ) {
+                            if(
+                                polygon && typeof polygon === 'object' && polygon.length > 1 &&
+                                polygon.length == polygon.filter( p => typeof p === 'object' ).length
+                            ) {
 
                                 let hazard_color = map_sigmet_colors[ sigmet.hazard ] || '#1b1d23';
 
