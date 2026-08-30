@@ -22,7 +22,7 @@ The always up-to-date weather data for thousands of airports comes from the US g
 
 The SIGMET and I-SIGMET data originate from the same source and are retrieved via [NOAA’s API](https://www.aviationweather.gov/help/webservice) at five-minute intervals.
 
-Map data is available on the [OpenStreetMap project](https://www.openstreetmap.org), the tile server is provided by [CARTO](http://basemaps.cartocdn.com), and the library used is the well-known [Leaflet](https://leafletjs.com).
+Map data is available on the [OpenStreetMap project](https://www.openstreetmap.org), the tile server is provided by [Esri](https://www.esri.com) and [ArcGIS](https://www.arcgis.com), and the library used is the well-known [Leaflet](https://leafletjs.com).
 
 Live traffic data is fetched from [The OpenSky Network](https://opensky-network.org) at 15-minute intervals. This data is provided based on Matthias Schäfer, Martin Strohmeier, Vincent Lenders, Ivan Martinovic and Matthias Wilhelm: “Bringing Up OpenSky: A Large-scale ADS-B Sensor Network for Research”. In Proceedings of the 13th IEEE/ACM International Symposium on Information Processing in Sensor Networks (IPSN), pages 83—94, April 2014.
 
