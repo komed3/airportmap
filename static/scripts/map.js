@@ -744,14 +744,11 @@ var maps_limit = 0,
                 zoomControl: false
             } );
 
-            L.tileLayer( 'https://{s}.basemaps.cartocdn.com/' + {
-                light: 'light_all', dark: 'dark_all'
-            }[ $.cookie( 'theme' ) || 'light' ] + '/{z}/{x}/{y}@2x.png', {
+            L.tileLayer( 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
                 minZoom: data.minZoom || 4,
                 maxZoom: data.maxZoom || 15,
-                attribution: '© <a href="https://osm.org">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a> | ' +
+                attribution: 'Tiles © <a href="https://esri.com">Esri</a>, DeLorme, NAVTEQ | ' +
                     'Data by <a href="' + baseurl + '">airportmap.de</a>',
-                subdomains: 'abcd'
             } ).addTo( maps[ uuid ] );
 
             L.control.scale( {
