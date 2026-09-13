@@ -72,7 +72,7 @@
       // SKY CONT
       strlen( $data[ 10 ] ) ? (float) $data[ 10 ] : null, // VISIBILITY (MI)
       $vis_vert, // VERTICAL VIS. (FT)
-      $data[ 30 ] ?? null, // FLIGHT CAT
+      $data[ 30 ] ?? 'UNK', // FLIGHT CAT
       // CLOUD LAYERS
       // LAYER 1
       strlen( $data[ 22 ] ) ? $data[ 22 ] : null, // COVER
