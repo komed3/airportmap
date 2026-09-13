@@ -1,11 +1,3 @@
-self.addEventListener( 'install', ( e ) => {
-    //
-} );
-
-self.addEventListener( 'fetch', ( e ) => {
-    //
-} );
-
-self.addEventListener( 'activate', ( e ) => {
-    //
-} );
+self.addEventListener( 'install', () => {} );
+self.addEventListener( 'fetch', () => {} );
+self.addEventListener( 'activate', () => {} );
