@@ -2,12 +2,12 @@
 
   require_once __DIR__ . '/api.php';
 
-  if( ! load_requirements( 'language', 'content', 'airport', 'weather' ) )
+  if ( ! load_requirements( 'language', 'content', 'airport', 'weather' ) )
     api_exit( [ 'raw' => null, 'infobox' => null ] );
 
   i18n_load( $_POST[ 'locale' ] ?? LOCALE );
 
-  if( ! empty( $airport = airport_by( 'ICAO', $_POST[ 'airport' ] ?? '' ) ) ) {
+  if ( ! empty( $airport = airport_by( 'ICAO', $_POST[ 'airport' ] ?? '' ) ) ) {
 
     $weather = airport_weather( $airport );
 
