@@ -33,7 +33,7 @@
             MAX( lon ) AS lon_max,
             AVG( lat ) AS lat_avg,
             AVG( lon ) AS lon_avg
-    FROM  ' . DB_PREFIX . 'airport
+    FROM    ' . DB_PREFIX . 'airport
     WHERE   ICAO LIKE "' . $plain . '%"
     ' . $regions_query . '
   ' )->fetch_object();
