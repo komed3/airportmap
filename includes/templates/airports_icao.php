@@ -1,6 +1,6 @@
 <?php
 
-  if( ( $ICAO = $DB->query( '
+  if ( ( $ICAO = $DB->query( '
     SELECT  *
     FROM  ' . DB_PREFIX . 'ICAO
     WHERE   code = "' . ( $path[ 2 ] ?? '' ) . '"
@@ -11,9 +11,8 @@
 
   $countries = $regions = [];
 
-  foreach( explode( '|', $ICAO->regions ) as $r ) {
+  foreach ( explode( '|', $ICAO->regions ) as $r )
     ${ strlen( $r ) == 2 ? 'countries' : 'regions' }[] = $r;
-  }
 
   $regions_query = ' AND ( country IN ( "' .
     implode( '", "', $countries ) . '" ) OR region IN ( "' .
@@ -88,7 +87,7 @@
 
   $breadcrumbs = [ [ 'world' ] ];
 
-  for( $i = 1; $i <= strlen( $ICAO->code ); $i++ )
+  for ( $i = 1; $i <= strlen( $ICAO->code ); $i++ )
     $breadcrumbs[] = [ 'ICAO', substr( $ICAO->code, 0, $i ) ];
 
   $__site_canonical = 'airports/ICAO/' . $ICAO->code;
