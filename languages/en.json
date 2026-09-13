@@ -240,6 +240,7 @@
     "map-legend-weather": "Flight categories",
     "map-overlay-close": "Close",
     "map-overlay-day-night": "Show/hide day-night boundary",
+    "map-overlay-layers": "Select base layer",
     "map-overlay-mypos": "Show my current position",
     "map-overlay-navaids": "Show/hide navaids",
     "map-overlay-scroll": "Scroll below map",
