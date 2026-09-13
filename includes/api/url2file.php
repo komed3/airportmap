@@ -1,129 +1,105 @@
 <?php
 
-    require_once __DIR__ . '/api.php';
+  require_once __DIR__ . '/api.php';
 
-    $dir = FILES . 'images/';
-    $count = 0;
+  $dir = FILES . 'images/';
+  $count = 0;
 
-    if( ( $res = $DB->query( '
-        SELECT  _id, url
-        FROM    ' . DB_PREFIX . 'image
-        WHERE   file IS NULL
-        LIMIT   0, 25
-    ' ) )->num_rows > 0 ) {
+  if ( ( $res = $DB->query( '
+    SELECT  _id, url
+    FROM    ' . DB_PREFIX . 'image
+    WHERE   file IS NULL
+    LIMIT   0, 25
+  ' ) )->num_rows > 0 ) {
 
-        while( $row = $res->fetch_object() ) {
+    while ( $row = $res->fetch_object() ) {
 
-            /* fetch image */
+      /* fetch image */
 
-            $uuid = uniqid();
-            $fext = str_replace( 'jpg', 'jpeg', strtolower( pathinfo( $row->url )['extension'] ) );
-            $name = $uuid . '.' . $fext;
+      $uuid = uniqid();
+      $fext = str_replace( 'jpg', 'jpeg', strtolower( pathinfo( $row->url )[ 'extension' ] ) );
+      $name = $uuid . '.' . $fext;
+      $blob = api_url2file( $row->url );
 
-            $blob = api_url2file( $row->url );
+      /* create image */
 
-            /* create image */
+      $file = new Imagick();
+      $file->readImageBlob( $blob );
+      $file->stripImage();
 
-            $file = new Imagick();
-            $file->readImageBlob( $blob );
-            $file->stripImage();
+      /* image width + height */
 
-            /* image width + height */
+      $width = $file->getImageWidth();
+      $height = $file->getImageHeight();
 
-            $width = $file->getImageWidth();
-            $height = $file->getImageHeight();
+      if ( $width > 2560 ) {
 
-            if( $width > 2560 ) {
+        $height = round( 2560 / $width * $height );
+        $width = 2560;
 
-                $height = round( 2560 / $width * $height );
-                $width = 2560;
+      }
 
-            }
+      /* resize image */
 
-            /* resize image */
+      $file->thumbnailImage( $width, $height );
 
-            $file->thumbnailImage( $width, $height );
+      /* compress image */
 
-            /* compress image */
+      $file->setImageCompressionQuality( 85 );
 
-            $file->setImageCompressionQuality( 85 );
+      /* set image as based its own type */
 
-            /* set image as based its own type */
+      switch ( $fext ) {
+        case 'jpg':
+          $file->setImageFormat( 'jpeg' );
+          $file->setSamplingFactors( [ '2x2', '1x1', '1x1'] );
+          $profiles = $file->getImageProfiles( 'icc', true );
+          $file->stripImage();
 
-            switch( $fext ) {
+          if ( ! empty( $profiles ) ) $file->profileImage( 'icc', $profiles['icc'] );
 
-                case 'jpg':
+          $file->setInterlaceScheme( Imagick::INTERLACE_JPEG );
+          $file->setColorspace( Imagick::COLORSPACE_SRGB );
+          break;
 
-                    $file->setImageFormat( 'jpeg' );
-                    $file->setSamplingFactors( [ '2x2', '1x1', '1x1'] );
+        case 'png':
+          $imagick->setImageFormat( 'png' );
+          break;
 
-                    $profiles = $file->getImageProfiles( 'icc', true );
+        case 'gif':
+          $imagick->setImageFormat( 'gif' );
+          break;
+      }
 
-                    $file->stripImage();
+      /* write image */
 
-                    if( !empty( $profiles ) ) {
+      $file->writeImage( $dir . $name );
 
-                        $file->profileImage( 'icc', $profiles['icc'] );
+      /* create thumbnail image */
 
-                    }
+      $file->adaptiveResizeImage( 720, 540, true );
+      $file->setImageCompressionQuality( 75 );
 
-                    $file->setInterlaceScheme( Imagick::INTERLACE_JPEG );
-                    $file->setColorspace( Imagick::COLORSPACE_SRGB );
+      /* write thumbnail */
 
-                    break;
+      $file->writeImage( $dir . 'thumb-' . $name );
 
-                case 'png':
+      /* destroy image */
 
-                    $imagick->setImageFormat( 'png' );
+      $file->destroy();
 
-                    break;
+      /* save file in database */
 
-                case 'gif':
-
-                    $imagick->setImageFormat( 'gif' );
-
-                    break;
-
-                default:
-                    break;
-
-            }
-
-            /* write image */
-
-            $file->writeImage( $dir . $name );
-
-            /* create thumbnail image */
-
-            $file->adaptiveResizeImage( 720, 540, true );
-            $file->setImageCompressionQuality( 75 );
-
-            /* write thumbnail */
-
-            $file->writeImage( $dir . 'thumb-' . $name );
-
-            /* destroy image */
-
-            $file->destroy();
-
-            /* save file in database */
-
-            if( $DB->query( '
-                UPDATE  ' . DB_PREFIX . 'image
-                SET     file = "' . $name . '"
-                WHERE   _id = ' . $row->_id
-            ) ) {
-
-                $count++;
-
-            }
-
-        }
+      if ( $DB->query( '
+        UPDATE  ' . DB_PREFIX . 'image
+        SET     file = "' . $name . '"
+        WHERE   _id = ' . $row->_id
+      ) ) $count++;
 
     }
 
-    api_exit( [
-        'images' => $count
-    ] );
+  }
+
+  api_exit( [ 'images' => $count ] );
 
 ?>
