@@ -54,6 +54,11 @@
                             <i class="icon">remove</i>
                         </button>
                     </div>
+                    <div class="map-control-group">
+                        <button class="map-layers" map-action="layers" title="<?php _i18n( 'map-overlay-layers' ); ?>">
+                            <i class="icon">settings</i>
+                        </button>
+                    </div>
                 </div>
                 <div class="map-infobox">
                     <div class="infobox-header">
