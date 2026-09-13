@@ -591,31 +591,68 @@ var maps_limit = 0,
 
     var map_sigmet_info = ( poly, _e, uuid, sigmet ) => {
 
-        $.ajax( {
-            url: apiurl + 'sigmet_info.php',
-            type: 'post',
-            data: {
-                token: get_token(),
-                locale: $.cookie( 'locale' ),
-                sigmet: sigmet._id
-            },
-            success: ( raw ) => {
+        try {
 
-                let res = JSON.parse( raw );
-
-                if( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
-
-                    maps[ uuid ].fitBounds( poly.getBounds(), {
-                        maxZoom: maps_config[ uuid ].maxZoom || 15,
-                        padding: [ 50, 50 ]
-                    } );
-
-                    map_info( uuid, res.response.infobox, 'sigmet-' + sigmet.hazard );
-
-                }
-
+            if( !poly || !uuid || !sigmet || !sigmet._id ) {
+                console.warn( 'Invalid parameters for map_sigmet_info' );
+                return;
             }
-        } );
+
+            $.ajax( {
+                url: apiurl + 'sigmet_info.php',
+                type: 'post',
+                data: {
+                    token: get_token(),
+                    locale: $.cookie( 'locale' ),
+                    sigmet: sigmet._id
+                },
+                success: ( raw ) => {
+
+                    try {
+
+                        if( !raw || typeof raw !== 'string' ) {
+                            throw new Error( 'Invalid response format' );
+                        }
+
+                        let res = JSON.parse( raw );
+
+                        if( !res || typeof res !== 'object' || !res.response ) {
+                            throw new Error( 'Invalid response structure' );
+                        }
+
+                        if( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
+
+                            try {
+                                let bounds = poly.getBounds();
+                                if( bounds && maps[ uuid ] ) {
+                                    maps[ uuid ].fitBounds( bounds, {
+                                        maxZoom: maps_config[ uuid ].maxZoom || 15,
+                                        padding: [ 50, 50 ]
+                                    } );
+                                }
+                            } catch( err ) {
+                                console.warn( 'Error fitting bounds:', err );
+                            }
+
+                            if( maps[ uuid ] ) {
+                                map_info( uuid, res.response.infobox, 'sigmet-' + ( sigmet.hazard || '' ) );
+                            }
+
+                        }
+
+                    } catch( err ) {
+                        console.error( 'Error parsing SIGMET info response:', err );
+                    }
+
+                },
+                error: ( xhr, status, err ) => {
+                    console.warn( 'SIGMET info API error:', status, err );
+                }
+            } );
+
+        } catch( err ) {
+            console.error( 'Unexpected error in map_sigmet_info:', err );
+        }
 
     };
 
