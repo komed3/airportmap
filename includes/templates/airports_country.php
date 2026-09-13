@@ -1,6 +1,6 @@
 <?php
 
-  if( ( $country = $DB->query( '
+  if ( ( $country = $DB->query( '
     SELECT  *
     FROM    ' . DB_PREFIX . 'country
     WHERE   code = "' . ( $path[ 2 ] ?? '' ) . '"
