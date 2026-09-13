@@ -938,9 +938,16 @@ var maps_limit = 0,
 
             case 'sigmet':
 
-                $( this ).toggleClass( 'active' );
+                try {
 
-                map_sigmets( uuid );
+                    $( this ).toggleClass( 'active' );
+
+                    map_sigmets( uuid );
+
+                } catch( err ) {
+                    console.error( 'Error toggling SIGMET layer:', err );
+                    $( this ).removeClass( 'active' );
+                }
 
                 break;
 
