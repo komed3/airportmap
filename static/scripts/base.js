@@ -1,7 +1,5 @@
-const baseurl = window.location.origin,
-      resurl = baseurl + '/static/resources/',
-      apiurl = baseurl + '/includes/api/',
-      use_cookies = false;
+const baseurl = window.location.origin, resurl = baseurl + '/static/resources/', apiurl = baseurl + '/includes/api/';
+let use_cookies = false;
 
 const get_token = () => self.crypto.randomUUID();
 
