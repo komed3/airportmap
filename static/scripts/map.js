@@ -186,53 +186,35 @@ let maps_limit = 0;
     } );
   };
 
-  var map_sigmets = ( uuid ) => {
-
+  const map_sigmets = ( uuid ) => {
     try {
-
-      if( !uuid || !maps_layer[ uuid ] || !maps[ uuid ] ) {
+      if ( ! uuid || ! maps_layer[ uuid ] || ! maps[ uuid ] ) {
         console.warn( 'Invalid map uuid for sigmets' );
         return;
       }
 
       let sigmet = 0;
 
-      if( 'sigmet' in maps_layer[ uuid ] ) {
-
-        map_remove_layer( uuid, 'sigmet', true );
-
-      } else {
-
+      if ( 'sigmet' in maps_layer[ uuid ] ) map_remove_layer( uuid, 'sigmet', true );
+      else {
         try {
-
           sigmet = 1;
-
           maps_layer[ uuid ].sigmet = L.layerGroup().addTo( maps[ uuid ] );
-
           map_sigmets_update( uuid );
-
-        } catch( err ) {
+        } catch ( err ) {
           console.error( 'Error creating SIGMET layer:', err );
           sigmet = 0;
           return;
         }
-
       }
 
-      if( use_cookies ) {
-
-        try {
-          $.cookie( 'apm_sigmet', sigmet );
-        } catch( err ) {
-          console.warn( 'Error setting SIGMET cookie:', err );
-        }
-
+      if ( use_cookies ) {
+        try { $.cookie( 'apm_sigmet', sigmet ) }
+        catch ( err ) { console.warn( 'Error setting SIGMET cookie:', err ) }
       }
-
-    } catch( err ) {
+    } catch ( err ) {
       console.error( 'Unexpected error in map_sigmets:', err );
     }
-
   };
 
   var map_sigmets_update = ( uuid ) => {
