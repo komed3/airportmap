@@ -50,7 +50,7 @@
   <p><?php _i18n( 'about-goal-secondary' ); ?></p>
 </div>
 <div class="welcome-donate">
-  <a href="https://github.com/komed3/airportmap" target="_blank">
+  <a href="https://ko-fi.com/komed3" target="_blank">
     <i class="icon">favorite</i>
     <b><?php _i18n( 'welcome-donate' ); ?></b>
     <span><?php _i18n( 'welcome-donate-thanks' ); ?></span>
