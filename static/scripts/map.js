@@ -576,13 +576,10 @@ let maps_limit = 0;
       } )
     };
 
-    maps_layer[ uuid ].baseType = use_cookies
-      ? ( $.cookie( 'apm_map_layer' ) || 'esri' )
-      : 'esri';
+    maps_layer[ uuid ].baseType = use_cookies ? ( $.cookie( 'apm_map_layer' ) || 'esri' ) : 'esri';
+    if ( ! ( maps_layer[ uuid ].baseType in maps_layer[ uuid ].base ) ) maps_layer[ uuid ].baseType = 'esri';
 
-    if ( ! ( maps_layer[ uuid ].baseType in maps_layer[ uuid ].base ) )
-      maps_layer[ uuid ].baseType = 'esri';
-
+    map_base_layer_class( uuid, maps_layer[ uuid ].baseType );
     maps_layer[ uuid ].base[ maps_layer[ uuid ].baseType ].addTo( maps[ uuid ] );
   };
 
@@ -594,6 +591,7 @@ let maps_limit = 0;
     base[ type ].addTo( maps[ uuid ] );
     maps_layer[ uuid ].baseType = type;
 
+    map_base_layer_class( uuid, type );
     if ( use_cookies ) $.cookie( 'apm_map_layer', type );
   };
 
