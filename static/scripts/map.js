@@ -218,268 +218,193 @@ let maps_limit = 0;
   };
 
   var map_sigmets_update = ( uuid ) => {
-
     try {
-
-      if( !uuid || !maps_layer[ uuid ] || !( 'sigmet' in maps_layer[ uuid ] ) ) {
-        return;
-      }
+      if ( ! uuid || ! maps_layer[ uuid ] || ! ( 'sigmet' in maps_layer[ uuid ] ) ) return;
 
       let layer = maps_layer[ uuid ].sigmet;
+      if( ! layer ) return;
 
-      if( !layer ) {
-        return;
-      }
+      $.ajax( { url: apiurl + 'sigmet_layer.php', type: 'post', data: { token: get_token() }, success: raw => {
+        try {
+          if ( ! raw || typeof raw !== 'string' ) {
+            console.warn( 'Invalid SIGMET response format' );
+            return;
+          }
 
-      $.ajax( {
-        url: apiurl + 'sigmet_layer.php',
-        type: 'post',
-        data: {
-          token: get_token()
-        },
-        success: ( raw ) => {
+          let res = null;
+
+          try { res = JSON.parse( raw ) }
+          catch ( parseErr ) {
+            console.warn( 'Failed to parse SIGMET JSON:', parseErr );
+            return;
+          }
+
+          if ( ! res || typeof res !== 'object' ) {
+            console.warn( 'Invalid SIGMET response object' );
+            return;
+          }
+
+          if ( ! res.response || typeof res.response !== 'object' ) {
+            console.warn( 'Invalid SIGMET response.response' );
+            return;
+          }
+
+          layer.clearLayers();
+
+          let sigmets = res.response.sigmets;
+          if ( ! sigmets ) sigmets = {};
+
+          if ( typeof sigmets !== 'object' || Array.isArray( sigmets ) && sigmets === null ) {
+            console.warn( 'Invalid sigmets structure' );
+            return;
+          }
 
           try {
+            Object.values( sigmets ).forEach( function ( sigmet ) {
+              if ( ! sigmet || typeof sigmet !== 'object' ) return;
 
-            if( !raw || typeof raw !== 'string' ) {
-              console.warn( 'Invalid SIGMET response format' );
-              return;
-            }
-
-            let res = null;
-            try {
-              res = JSON.parse( raw );
-            } catch( parseErr ) {
-              console.warn( 'Failed to parse SIGMET JSON:', parseErr );
-              return;
-            }
-
-            if( !res || typeof res !== 'object' ) {
-              console.warn( 'Invalid SIGMET response object' );
-              return;
-            }
-
-            if( !res.response || typeof res.response !== 'object' ) {
-              console.warn( 'Invalid SIGMET response.response' );
-              return;
-            }
-
-            try {
-              layer.clearLayers();
-            } catch( err ) {
-              console.warn( 'Error clearing SIGMET layers:', err );
-            }
-
-            let sigmets = res.response.sigmets;
-            
-            if( !sigmets ) {
-              sigmets = {};
-            }
-
-            if( typeof sigmets !== 'object' || Array.isArray( sigmets ) && sigmets === null ) {
-              console.warn( 'Invalid sigmets structure' );
-              return;
-            }
-
-            try {
-
-              Object.values( sigmets ).forEach( function( sigmet ) {
-
-                if( !sigmet || typeof sigmet !== 'object' ) {
-                  return;
-                }
-
-                try {
-
-                  let polygonData = sigmet.polygon;
-
-                  if( !polygonData ) {
-                    return;
-                  }
-
-                  let polygonArray = null;
-
-                  if( typeof polygonData === 'string' ) {
-                    try {
-                      polygonArray = JSON.parse( polygonData );
-                    } catch( parseErr ) {
-                      console.warn( 'Failed to parse polygon data:', parseErr );
-                      return;
-                    }
-                  } else if( Array.isArray( polygonData ) ) {
-                    polygonArray = polygonData;
-                  }
-
-                  if( !Array.isArray( polygonArray ) || polygonArray === null || polygonArray.length === 0 ) {
-                    return;
-                  }
-
-                  polygonArray.forEach( function( polygon ) {
-
-                    try {
-
-                      // Strict polygon validation
-                      if( !polygon ) {
-                        return;
-                      }
-
-                      if( !Array.isArray( polygon ) ) {
-                        return;
-                      }
-
-                      if( polygon.length < 2 ) {
-                        return;
-                      }
-
-                      // Check all elements are valid coordinate pairs
-                      let validPolygon = true;
-                      for( let i = 0; i < polygon.length; i++ ) {
-                        let coord = polygon[ i ];
-                        if( !coord || !Array.isArray( coord ) || coord.length < 2 ) {
-                          validPolygon = false;
-                          break;
-                        }
-                        if( typeof coord[0] !== 'number' || typeof coord[1] !== 'number' ) {
-                          validPolygon = false;
-                          break;
-                        }
-                      }
-
-                      if( !validPolygon ) {
-                        return;
-                      }
-
-                      let hazard_color = '#1b1d23';
-                      if( sigmet.hazard && typeof sigmet.hazard === 'string' && map_sigmet_colors[ sigmet.hazard ] ) {
-                        hazard_color = map_sigmet_colors[ sigmet.hazard ];
-                      }
-
-                      // Create reversed copy safely
-                      let reversedPolygon = [];
-                      for( let i = polygon.length - 1; i >= 0; i-- ) {
-                        let coord = polygon[ i ];
-                        if( coord && Array.isArray( coord ) && coord.length >= 2 && typeof coord[0] === 'number' && typeof coord[1] === 'number' ) {
-                          reversedPolygon.push( [ coord[0], coord[1] ] );
-                        }
-                      }
-
-                      if( reversedPolygon.length < 2 ) {
-                        return;
-                      }
-
-                      try {
-                        let poly = L.polygon( reversedPolygon, {
-                          color: hazard_color,
-                          weight: 1,
-                          fillOpacity: 0.15,
-                          dashArray: '4 4'
-                        } );
-
-                        if( poly && sigmet.hazard && typeof sigmet.hazard === 'string' ) {
-                          try {
-                            poly.bindTooltip(
-                              '<div class="hazard" style="color: ' + hazard_color + ';">' + sigmet.hazard + '</div>', {
-                              className: 'tooltip-sigmet',
-                              direction: 'center',
-                              opacity: 1,
-                              permanent: true
-                            } );
-                          } catch( tooltipErr ) {
-                            console.warn( 'Error binding tooltip:', tooltipErr );
-                          }
-                        }
-
-                        if( poly ) {
-                          try {
-                            poly.on( 'click', ( e ) => {
-                              try {
-                                map_sigmet_info( poly, e, uuid, sigmet );
-                              } catch( clickErr ) {
-                                console.warn( 'Error in sigmet click handler:', clickErr );
-                              }
-                            } );
-                          } catch( eventErr ) {
-                            console.warn( 'Error binding click event:', eventErr );
-                          }
-                        }
-
-                        if( poly && layer ) {
-                          try {
-                            layer.addLayer( poly );
-                          } catch( addErr ) {
-                            console.warn( 'Error adding layer:', addErr );
-                          }
-                        }
-
-                      } catch( polyErr ) {
-                        console.warn( 'Error creating polygon:', polyErr );
-                      }
-
-                    } catch( polygonErr ) {
-                      console.warn( 'Error processing polygon:', polygonErr );
-                    }
-
-                  } );
-
-                } catch( sigmetErr ) {
-                  console.warn( 'Error processing sigmet item:', sigmetErr );
-                }
-
-              } );
-
-            } catch( iterErr ) {
-              console.warn( 'Error iterating sigmets:', iterErr );
-            }
-
-            // Schedule next update
-            if( maps_timeout[ uuid ] && typeof maps_timeout[ uuid ] === 'object' ) {
               try {
-                if( maps_timeout[ uuid ].sigmet && typeof maps_timeout[ uuid ].sigmet === 'number' ) {
-                  clearTimeout( maps_timeout[ uuid ].sigmet );
-                }
-                maps_timeout[ uuid ].sigmet = setTimeout( () => {
-                  try {
-                    map_sigmets_update( uuid );
-                  } catch( updateErr ) {
-                    console.error( 'Error in scheduled SIGMET update:', updateErr );
-                  }
-                }, 60000 );
-              } catch( timeoutErr ) {
-                console.warn( 'Error setting timeout:', timeoutErr );
-              }
-            }
+                let polygonData = sigmet.polygon;
+                if ( ! polygonData ) return;
 
-          } catch( err ) {
-            console.error( 'Unexpected error in SIGMET success handler:', err );
+                let polygonArray = null;
+
+                if ( typeof polygonData === 'string' ) {
+                  try { polygonArray = JSON.parse( polygonData ) }
+                  catch ( parseErr ) {
+                    console.warn( 'Failed to parse polygon data:', parseErr );
+                    return;
+                  }
+                } else if ( Array.isArray( polygonData ) ) {
+                  polygonArray = polygonData;
+                }
+
+                if ( ! Array.isArray( polygonArray ) || polygonArray === null || polygonArray.length === 0 ) return;
+
+                polygonArray.forEach( function ( polygon ) {
+                  try {
+                    // Strict polygon validation
+                    if ( ! polygon || ! Array.isArray( polygon ) || polygon.length < 2 ) return;
+
+                    // Check all elements are valid coordinate pairs
+                    let validPolygon = true;
+                    for ( let i = 0; i < polygon.length; i++ ) {
+                      let coord = polygon[ i ];
+
+                      if ( ! coord || ! Array.isArray( coord ) || coord.length < 2 ) {
+                        validPolygon = false;
+                        break;
+                      }
+
+                      if ( typeof coord[ 0 ] !== 'number' || typeof coord[ 1 ] !== 'number' ) {
+                        validPolygon = false;
+                        break;
+                      }
+                    }
+
+                    if ( ! validPolygon ) return;
+
+                    let hazard_color = '#1b1d23';
+                    if ( sigmet.hazard && typeof sigmet.hazard === 'string' && map_sigmet_colors[ sigmet.hazard ] )
+                      hazard_color = map_sigmet_colors[ sigmet.hazard ];
+
+                    // Create reversed copy safely
+                    let reversedPolygon = [];
+                    for ( let i = polygon.length - 1; i >= 0; i-- ) {
+                      let coord = polygon[ i ];
+
+                      if (
+                        coord && Array.isArray( coord ) && coord.length >= 2 &&
+                        typeof coord[ 0 ] === 'number' && typeof coord[ 1 ] === 'number'
+                      ) reversedPolygon.push( [ coord[ 0 ], coord[ 1 ] ] );
+                    }
+
+                    if ( reversedPolygon.length < 2 ) return;
+
+                    try {
+                      let poly = L.polygon( reversedPolygon, {
+                        color: hazard_color, weight: 1, fillOpacity: 0.15, dashArray: '4 4'
+                      } );
+
+                      if ( poly && sigmet.hazard && typeof sigmet.hazard === 'string' ) {
+                        try {
+                          poly.bindTooltip(
+                            '<div class="hazard" style="color: ' + hazard_color + ';">' + sigmet.hazard + '</div>', {
+                            className: 'tooltip-sigmet', direction: 'center', opacity: 1, permanent: true
+                          } );
+                        } catch ( tooltipErr ) {
+                          console.warn( 'Error binding tooltip:', tooltipErr );
+                        }
+                      }
+
+                      if ( poly ) {
+                        try {
+                          poly.on( 'click', e => {
+                            try { map_sigmet_info( poly, e, uuid, sigmet ) }
+                            catch ( clickErr ) { console.warn( 'Error in sigmet click handler:', clickErr ) }
+                          } );
+                        } catch ( eventErr ) {
+                          console.warn( 'Error binding click event:', eventErr );
+                        }
+                      }
+
+                      if ( poly && layer ) {
+                        try { layer.addLayer( poly ) }
+                        catch ( addErr ) { console.warn( 'Error adding layer:', addErr ) }
+                      }
+                    } catch ( polyErr ) {
+                      console.warn( 'Error creating polygon:', polyErr );
+                    }
+                  } catch ( polygonErr ) {
+                    console.warn( 'Error processing polygon:', polygonErr );
+                  }
+                } );
+              } catch ( sigmetErr ) {
+                console.warn( 'Error processing sigmet item:', sigmetErr );
+              }
+            } );
+          } catch ( iterErr ) {
+            console.warn( 'Error iterating sigmets:', iterErr );
           }
 
-        },
-        error: ( xhr, status, err ) => {
-          console.warn( 'SIGMET API error:', status, err );
-          // Reschedule update on error
-          if( maps_timeout[ uuid ] && typeof maps_timeout[ uuid ] === 'object' ) {
+          // Schedule next update
+          if ( maps_timeout[ uuid ] && typeof maps_timeout[ uuid ] === 'object' ) {
             try {
-              if( maps_timeout[ uuid ].sigmet && typeof maps_timeout[ uuid ].sigmet === 'number' ) {
+              if ( maps_timeout[ uuid ].sigmet && typeof maps_timeout[ uuid ].sigmet === 'number' )
                 clearTimeout( maps_timeout[ uuid ].sigmet );
-              }
+
               maps_timeout[ uuid ].sigmet = setTimeout( () => {
-                try {
-                  map_sigmets_update( uuid );
-                } catch( retryErr ) {
-                  console.error( 'Error in retry SIGMET update:', retryErr );
-                }
+                try { map_sigmets_update( uuid ) }
+                catch ( updateErr ) { console.error( 'Error in scheduled SIGMET update:', updateErr ) }
               }, 60000 );
-            } catch( timeoutErr ) {
-              console.warn( 'Error scheduling retry:', timeoutErr );
+            } catch ( timeoutErr ) {
+              console.warn( 'Error setting timeout:', timeoutErr );
             }
+          }
+        } catch ( err ) {
+          console.error( 'Unexpected error in SIGMET success handler:', err );
+        }
+      }, error: ( _, status, err ) => {
+        console.warn( 'SIGMET API error:', status, err );
+
+        // Reschedule update on error
+        if ( maps_timeout[ uuid ] && typeof maps_timeout[ uuid ] === 'object' ) {
+          try {
+            if ( maps_timeout[ uuid ].sigmet && typeof maps_timeout[ uuid ].sigmet === 'number' )
+              clearTimeout( maps_timeout[ uuid ].sigmet );
+
+            maps_timeout[ uuid ].sigmet = setTimeout( () => {
+              try { map_sigmets_update( uuid ) }
+              catch ( retryErr ) { console.error( 'Error in retry SIGMET update:', retryErr ) }
+            }, 60000 );
+          } catch ( timeoutErr ) {
+            console.warn( 'Error scheduling retry:', timeoutErr );
           }
         }
-      } );
-
-    } catch( err ) {
-      console.error( 'Unexpected error in map_sigmets_update:', err );
+      } } );
+    } catch ( err ) {
+        console.error( 'Unexpected error in map_sigmets_update:', err );
     }
-
   };
 
   var map_info = ( uuid, infobox, classes = '' ) => {
