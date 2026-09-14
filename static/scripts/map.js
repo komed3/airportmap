@@ -507,332 +507,170 @@ let maps_limit = 0;
     }
   };
 
-  var map_traffic_info = ( _e, uuid, tfc ) => {
+  const map_traffic_info = ( _, uuid, tfc ) => {
+    $.ajax( { url: apiurl + 'traffic_info.php', type: 'post', data: {
+      token: get_token(), locale: $.cookie( 'locale' ), ident: tfc.ident
+    }, success: raw => {
+      let res = JSON.parse( raw );
 
-    $.ajax( {
-      url: apiurl + 'traffic_info.php',
-      type: 'post',
-      data: {
-        token: get_token(),
-        locale: $.cookie( 'locale' ),
-        ident: tfc.ident
-      },
-      success: ( raw ) => {
+      if ( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
+        let position = L.latLng( tfc.lat, tfc.lon );
 
-        let res = JSON.parse( raw );
-
-        if( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
-
-          let position = L.latLng( tfc.lat, tfc.lon );
-
-          maps[ uuid ].flyTo(
-            position,
-            Math.max( 8, maps[ uuid ].getZoom() )
-          );
-
-          map_halo( uuid, position );
-
-          map_info( uuid, res.response.infobox, 'traffic' );
-
-        }
-
+        maps[ uuid ].flyTo( position, Math.max( 8, maps[ uuid ].getZoom() ) );
+        map_halo( uuid, position );
+        map_info( uuid, res.response.infobox, 'traffic' );
       }
-    } );
-
+    } } );
   };
 
-  var map_day_night_border = ( uuid ) => {
-
+  const map_day_night_border = ( uuid ) => {
     let day_night = 0;
 
-    if( 'terminator' in maps_layer[ uuid ] ) {
-
-      map_remove_layer( uuid, 'terminator', true );
-
-    } else {
-
+    if ( 'terminator' in maps_layer[ uuid ] ) map_remove_layer( uuid, 'terminator', true );
+    else {
       day_night = 1;
 
       maps_layer[ uuid ].terminator = L.terminator();
-
       maps_layer[ uuid ].terminator.addTo( maps[ uuid ] );
-
       maps_layer[ uuid ].terminator.bringToBack();
-
       map_day_night_update( uuid );
-
     }
 
-    if( use_cookies ) {
-
-      $.cookie( 'apm_day_night', day_night );
-
-    }
-
+    if ( use_cookies ) $.cookie( 'apm_day_night', day_night );
   };
 
-  var map_day_night_update = ( uuid ) => {
-
-    if( 'terminator' in maps_layer[ uuid ] ) {
-
+  const map_day_night_update = ( uuid ) => {
+    if ( 'terminator' in maps_layer[ uuid ] ) {
       maps_layer[ uuid ].terminator.setTime();
-
       maps_timeout[ uuid ].terminator = setTimeout( () => {
         map_day_night_update( uuid );
       }, 250 );
-
     }
-
   };
 
-  $( document ).ready( function() {
-
+  $( document ).ready( function () {
     checkLimit();
 
-    $( '[map-data]' ).each( function() {
-
+    $( '[map-data]' ).each( function () {
       let data = JSON.parse( window.atob( $( this ).attr( 'map-data' ) ) || '{}' ),
-        uuid = get_token(),
-        position = {};
+        uuid = get_token(), position = {};
 
-      if( 'position' in data ) {
-
-        position = data.position;
-
-      } else {
-        
-        position = ( pos = $.cookie( 'apm_lastpos' ) || false )
-          ? JSON.parse( pos ) : {
-            lat: 40.7,
-            lon: -74,
-            zoom: 6
-          };
-
-      }
+      if ( 'position' in data ) position = data.position;
+      else position = ( pos = $.cookie( 'apm_lastpos' ) || false ) ? JSON.parse( pos ) : { lat: 40.7, lon: -74, zoom: 6 };
 
       $( this ).attr( 'id', uuid ).removeAttr( 'map-data' );
       $( this ).closest( '.map-container' ).attr( 'uuid', uuid );
 
       maps_config[ uuid ] = data;
-
       maps_layer[ uuid ] = {};
       maps_timeout[ uuid ] = {};
-
       maps_type[ uuid ] = data.type || ( $.cookie( 'apm_map_type' ) || 'airport' );
 
       maps[ uuid ] = L.map( uuid, {
-        center: [
-          position.lat || 0,
-          position.lon || 0
-        ],
-        zoom: position.zoom || 6,
-        maxBounds: L.latLngBounds(
-          L.latLng( -90, -180 ),
-          L.latLng(  90,  180 )
-        ),
-        maxBoundsViscosity: 1,
-        preferCanvas: data.preferCanvas || true,
-        scrollWheelZoom: data.wheelZoom || true,
-        zoomControl: false
+        center: [ position.lat || 0, position.lon || 0 ], zoom: position.zoom || 6,
+        maxBounds: L.latLngBounds( L.latLng( -90, -180 ), L.latLng(  90,  180 ) ),
+        maxBoundsViscosity: 1, preferCanvas: data.preferCanvas || true,
+        scrollWheelZoom: data.wheelZoom || true, zoomControl: false
       } );
 
       L.tileLayer( 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-        minZoom: data.minZoom || 4,
-        maxZoom: data.maxZoom || 15,
+        minZoom: data.minZoom || 4, maxZoom: data.maxZoom || 15,
         attribution: 'Tiles © <a href="https://esri.com">Esri</a>, DeLorme, NAVTEQ | ' +
           'Data by <a href="' + baseurl + '">airportmap.de</a>',
       } ).addTo( maps[ uuid ] );
 
-      L.control.scale( {
-        maxWidth: 140
-      } ).addTo( maps[ uuid ] );
-
+      L.control.scale( { maxWidth: 140 } ).addTo( maps[ uuid ] );
       maps_layer[ uuid ].marker = L.layerGroup().addTo( maps[ uuid ] );
 
-      if( ( !( 'supress_day_night' in data ) || !data.supress_day_night ) &&
-        ( $.cookie( 'apm_day_night' ) || 0 ) == 1 ) {
-
+      if ( ( ! ( 'supress_day_night' in data ) || !data.supress_day_night ) && ( $.cookie( 'apm_day_night' ) || 0 ) == 1 )
         $( '[map-action="day-night"]' ).click();
 
-      }
-
-      if( ( !( 'supress_sigmets' in data ) || !data.supress_sigmets ) &&
-        ( $.cookie( 'apm_sigmet' ) || 0 ) == 1 ) {
-
+      if ( ( ! ( 'supress_sigmets' in data ) || !data.supress_sigmets ) && ( $.cookie( 'apm_sigmet' ) || 0 ) == 1 )
         $( '[map-action="sigmet"]' ).click();
 
-      }
-
-      if( ( !( 'navaids' in data ) || data.navaids ) &&
-        ( $.cookie( 'apm_navaids' ) || 0 ) == 1 ) {
-
+      if ( ( ! ( 'navaids' in data ) || data.navaids ) && ( $.cookie( 'apm_navaids' ) || 0 ) == 1 )
         $( '[map-action="navaids"]' ).click();
 
-      }
-
-      if( ( !( 'waypoints' in data ) || data.waypoints ) &&
-        ( $.cookie( 'apm_waypoints' ) || 0 ) == 1 ) {
-
+      if ( ( ! ( 'waypoints' in data ) || data.waypoints ) && ( $.cookie( 'apm_waypoints' ) || 0 ) == 1 )
         $( '[map-action="waypoints"]' ).click();
 
-      }
-
-      if( data.save_position || false ) {
-
+      if ( data.save_position || false ) {
         map_set_position( uuid );
-
-        maps[ uuid ].on( 'moveend', () => {
-
-          map_set_position( uuid );
-
-        } );
-
+        maps[ uuid ].on( 'moveend', () => map_set_position( uuid ) );
       }
 
-      maps[ uuid ].on( 'moveend', () => {
+      maps[ uuid ].on( 'moveend', () => { if ( uuid in maps_loaded ) map_load_marker( uuid ) } );
+      maps[ uuid ].on( 'zoomend', () => map_check_zoom( uuid ) );
 
-        if( uuid in maps_loaded ) {
+      if ( 'fit_bounds' in data ) maps[ uuid ].fitBounds( data.fit_bounds, { animate: false } );
 
-          map_load_marker( uuid );
-
-        }
-
+      if ( 'marker' in data ) data.marker.forEach( ( marker ) => {
+        L.marker( [ marker.lat, marker.lon ], { icon: L.divIcon( {
+          iconSize: [ 24, 24 ], iconAnchor: [ 12, 12 ],
+          className: 'mypos', html: '<mapicon></mapicon>'
+        } ) } ).addTo( maps[ uuid ] );
       } );
-
-      maps[ uuid ].on( 'zoomend', () => {
-
-        map_check_zoom( uuid );
-
-      } );
-
-      if( 'fit_bounds' in data ) {
-
-        maps[ uuid ].fitBounds( data.fit_bounds, {
-          animate: false
-        } );
-
-      }
-
-      if( 'marker' in data ) {
-
-        data.marker.forEach( ( marker ) => {
-
-          L.marker( [ marker.lat, marker.lon ], {
-            icon: L.divIcon( {
-              iconSize: [ 24, 24 ],
-              iconAnchor: [ 12, 12 ],
-              className: 'mypos',
-              html: '<mapicon></mapicon>'
-            } )
-          } ).addTo( maps[ uuid  ] );
-
-        } );
-
-      }
 
       map_check_size( uuid );
 
-      setTimeout( function() {
-
-        if( [ 'airport', 'weather' ].includes( maps_type[ uuid ] ) ) {
-
+      setTimeout( function () {
+        if ( [ 'airport', 'weather' ].includes( maps_type[ uuid ] ) )
           $( '[uuid="' + uuid + '"] [map-action="type"][map-type="' + maps_type[ uuid ] + '"]' ).click()
 
-        } else {
-
-          map_load_marker( uuid );
-
-        }
+        else map_load_marker( uuid );
 
         map_check_zoom( uuid );
-
         maps_loaded[ uuid ] = true;
-
       }, 250 );
-
     } );
-
   } );
 
-  $( document ).on( 'click', '[map-action]', function( e ) {
-
+  $( document ).on( 'click', '[map-action]', function ( e ) {
     prevent( e );
 
-    let uuid = $( this ).closest( '.map-container' ).find( '.map' ).attr( 'id' ),
-      map = maps[ uuid ];
+    let uuid = $( this ).closest( '.map-container' ).find( '.map' ).attr( 'id' ), map = maps[ uuid ];
 
-    switch( ( $( this ).attr( 'map-action' ) || '' ).trim().toLowerCase() ) {
-
+    switch ( ( $( this ).attr( 'map-action' ) || '' ).trim().toLowerCase() ) {
       case 'zoom-in':
-
         map.zoomIn();
-
         break;
 
       case 'zoom-out':
-
         map.zoomOut();
-
         break;
 
       case 'type':
-
         let type = $( this ).attr( 'map-type' );
 
         $( '[map-action="type"]' ).removeClass( 'active' );
         $( this ).addClass( 'active' );
 
-        if( use_cookies && 'save_type' in maps_config[ uuid ] &&
-          maps_config[ uuid ].save_type ) {
-
+        if ( use_cookies && 'save_type' in maps_config[ uuid ] && maps_config[ uuid ].save_type )
           $.cookie( 'apm_map_type', type );
-
-        }
 
         maps_type[ uuid ] = type;
 
         map_check_zoom( uuid );
         map_load_marker( uuid );
-
         break;
 
       case 'navaids':
-
         $( this ).toggleClass( 'active' );
-
-        if( use_cookies ) {
-
-          $.cookie( 'apm_navaids', +!!$( this ).hasClass( 'active' ) );
-
-        }
-
+        if ( use_cookies ) $.cookie( 'apm_navaids', +!! $( this ).hasClass( 'active' ) );
         map_load_marker( uuid );
-
         break;
 
       case 'waypoints':
-
         $( this ).toggleClass( 'active' );
-
-        if( use_cookies ) {
-
-          $.cookie( 'apm_waypoints', +!!$( this ).hasClass( 'active' ) );
-
-        }
-
+        if ( use_cookies ) $.cookie( 'apm_waypoints', +!! $( this ).hasClass( 'active' ) );
         map_load_marker( uuid );
-
         break;
 
       case 'sigmet':
-
         try {
-
           $( this ).toggleClass( 'active' );
-
           map_sigmets( uuid );
-
-        } catch( err ) {
+        } catch ( err ) {
           console.error( 'Error toggling SIGMET layer:', err );
           $( this ).removeClass( 'active' );
         }
@@ -840,71 +678,39 @@ let maps_limit = 0;
         break;
 
       case 'day-night':
-
         $( this ).toggleClass( 'active' );
-
         map_day_night_border( uuid );
-
         break;
 
       case 'mypos':
-
-        navigator.geolocation.getCurrentPosition( ( position ) => {
-
-          let latlon = new L.LatLng(
-            position.coords.latitude,
-            position.coords.longitude
-          );
-
+        navigator.geolocation.getCurrentPosition( ( { coords: { latitude, longitude } } ) => {
+          let latlon = new L.LatLng( latitude, longitude );
           map.setView( latlon, 8 );
 
-          if( !maps_mypos_marker[ uuid ] ) {
-
+          if ( ! maps_mypos_marker[ uuid ] ) {
             maps_mypos_marker[ uuid ] = true;
 
-            L.marker( latlon, {
-              icon: L.divIcon( {
-                iconSize: [ 24, 24 ],
-                iconAnchor: [ 12, 12 ],
-                className: 'mypos',
-                html: '<mapicon></mapicon>'
-              } )
-            } ).addTo( map );
-
+            L.marker( latlon, { icon: L.divIcon( {
+              iconSize: [ 24, 24 ], iconAnchor: [ 12, 12 ],
+                className: 'mypos', html: '<mapicon></mapicon>'
+            } ) } ).addTo( map );
           }
-
         } );
 
         break;
 
       case 'close-infobox':
-
         $( '[uuid="' + uuid + '"] .map-infobox' ).attr( 'class', 'map-infobox' ).hide();
-
         map_halo( uuid );
-
         break;
 
       case 'scroll-below':
-
-        $( 'html, body' ).animate( {
-          scrollTop: map._size.y
-        }, 'fast' );
-
+        $( 'html, body' ).animate( { scrollTop: map._size.y }, 'fast' );
         break;
-
     }
-
   } );
 
-  $( window ).resize( function() {
-
-    Object.keys( maps ).forEach( ( uuid ) => {
-
-      map_check_size( uuid );
-
-    } );
-
+  $( window ).resize( function () {
+    Object.keys( maps ).forEach( ( uuid ) => map_check_size( uuid ) );
   } );
-
 } )( jQuery );
