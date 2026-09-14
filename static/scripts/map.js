@@ -548,15 +548,93 @@ let maps_limit = 0;
     }
   };
 
+  const map_base_layers = ( uuid ) => {
+    const data = maps_config[ uuid ];
+
+    maps_layer[ uuid ].base = {
+      esri: L.tileLayer( 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        minZoom: data.minZoom ?? 4, maxZoom: data.maxZoom ?? 15,
+        attribution: 'Tiles © <a href="https://esri.com">Esri</a>, DeLorme, NAVTEQ | ' +
+          'Data by <a href="' + baseurl + '">airportmap.de</a>'
+      } ),
+
+      imagery: L.tileLayer( 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        minZoom: data.minZoom ?? 4, maxZoom: data.maxZoom ?? 15,
+        attribution: 'Tiles © Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, ' +
+          'Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community | ' +
+          'Data by <a href="' + baseurl + '">airportmap.de</a>'
+      } ),
+
+      osm: L.tileLayer( 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        minZoom: data.minZoom ?? 4, maxZoom: data.maxZoom ?? 15,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | ' +
+          'Data by <a href="' + baseurl + '">airportmap.de</a>'
+      } )
+    };
+
+    maps_layer[ uuid ].baseType = use_cookies
+      ? ( $.cookie( 'apm_map_layer' ) || 'esri' )
+      : 'esri';
+
+    if ( ! ( maps_layer[ uuid ].baseType in maps_layer[ uuid ].base ) )
+      maps_layer[ uuid ].baseType = 'esri';
+
+    maps_layer[ uuid ].base[ maps_layer[ uuid ].baseType ].addTo( maps[ uuid ] );
+  };
+
+  const map_base_layer = ( uuid, type ) => {
+    const base = maps_layer[ uuid ].base;
+    if ( ! base || ! ( type in base ) || maps_layer[ uuid ].baseType == type ) return;
+
+    maps[ uuid ].removeLayer( base[ maps_layer[ uuid ].baseType ] );
+    base[ type ].addTo( maps[ uuid ] );
+    maps_layer[ uuid ].baseType = type;
+
+    if ( use_cookies ) $.cookie( 'apm_map_layer', type );
+  };
+
+  const map_layers = ( uuid ) => {
+    const active = maps_layer[ uuid ].baseType;
+
+    map_info( uuid, {
+      title: 'Kartenlayer',
+      subtitle: '',
+      content:
+        '<div class="map-layers-list">' +
+          '<button class="map-layer' + ( active == 'esri' ? ' active' : '' ) + '" map-layer="esri">' +
+            '<span class="map-layer-preview map-layer-esri"></span>' +
+            '<span class="map-layer-info">' +
+              '<strong>Esri</strong>' +
+              '<small>Helle Basiskarte</small>' +
+            '</span>' +
+          '</button>' +
+          '<button class="map-layer' + ( active == 'imagery' ? ' active' : '' ) + '" map-layer="imagery">' +
+            '<span class="map-layer-preview map-layer-imagery"></span>' +
+            '<span class="map-layer-info">' +
+              '<strong>Esri Luftbilder</strong>' +
+              '<small>Satelliten- und Luftaufnahmen</small>' +
+            '</span>' +
+          '</button>' +
+          '<button class="map-layer' + ( active == 'osm' ? ' active' : '' ) + '" map-layer="osm">' +
+            '<span class="map-layer-preview map-layer-osm"></span>' +
+            '<span class="map-layer-info">' +
+              '<strong>OpenStreetMap</strong>' +
+              '<small>OpenStreetMap Mapnik</small>' +
+            '</span>' +
+          '</button>' +
+        '</div>'
+    }, 'layers' );
+  };
+
   $( document ).ready( function () {
     checkLimit();
 
     $( '[map-data]' ).each( function () {
-      let data = JSON.parse( window.atob( $( this ).attr( 'map-data' ) ) || '{}' ),
+      let data = JSON.parse( window.atob( $( this ).attr( 'map-data' ) ) ?? '{}' ),
         uuid = get_token(), position = {};
 
       if ( 'position' in data ) position = data.position;
-      else position = ( pos = $.cookie( 'apm_lastpos' ) || false ) ? JSON.parse( pos ) : { lat: 40.7, lon: -74, zoom: 6 };
+      else position = ( pos = $.cookie( 'apm_lastpos' ) ?? false ) ? JSON.parse( pos ) : { lat: 40.7, lon: -74, zoom: 6 };
 
       $( this ).attr( 'id', uuid ).removeAttr( 'map-data' );
       $( this ).closest( '.map-container' ).attr( 'uuid', uuid );
@@ -564,28 +642,24 @@ let maps_limit = 0;
       maps_config[ uuid ] = data;
       maps_layer[ uuid ] = {};
       maps_timeout[ uuid ] = {};
-      maps_type[ uuid ] = data.type || ( $.cookie( 'apm_map_type' ) || 'airport' );
+      maps_type[ uuid ] = data.type ?? ( $.cookie( 'apm_map_type' ) ?? 'airport' );
 
       maps[ uuid ] = L.map( uuid, {
-        center: [ position.lat || 0, position.lon || 0 ], zoom: position.zoom || 6,
+        center: [ position.lat ?? 0, position.lon ?? 0 ], zoom: position.zoom || 6,
         maxBounds: L.latLngBounds( L.latLng( -90, -180 ), L.latLng(  90,  180 ) ),
-        maxBoundsViscosity: 1, preferCanvas: data.preferCanvas || true,
-        scrollWheelZoom: data.wheelZoom || true, zoomControl: false
+        maxBoundsViscosity: 1, preferCanvas: data.preferCanvas ?? true,
+        scrollWheelZoom: data.wheelZoom ?? true, zoomControl: false
       } );
 
-      L.tileLayer( 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-        minZoom: data.minZoom || 4, maxZoom: data.maxZoom || 15,
-        attribution: 'Tiles © <a href="https://esri.com">Esri</a>, DeLorme, NAVTEQ | ' +
-          'Data by <a href="' + baseurl + '">airportmap.de</a>',
-      } ).addTo( maps[ uuid ] );
+      map_base_layers( uuid );
 
       L.control.scale( { maxWidth: 140 } ).addTo( maps[ uuid ] );
       maps_layer[ uuid ].marker = L.layerGroup().addTo( maps[ uuid ] );
 
-      if ( ( ! ( 'supress_day_night' in data ) || !data.supress_day_night ) && ( $.cookie( 'apm_day_night' ) || 0 ) == 1 )
+      if ( ( ! ( 'supress_day_night' in data ) || ! data.supress_day_night ) && ( $.cookie( 'apm_day_night' ) || 0 ) == 1 )
         $( '[map-action="day-night"]' ).click();
 
-      if ( ( ! ( 'supress_sigmets' in data ) || !data.supress_sigmets ) && ( $.cookie( 'apm_sigmet' ) || 0 ) == 1 )
+      if ( ( ! ( 'supress_sigmets' in data ) || ! data.supress_sigmets ) && ( $.cookie( 'apm_sigmet' ) || 0 ) == 1 )
         $( '[map-action="sigmet"]' ).click();
 
       if ( ( ! ( 'navaids' in data ) || data.navaids ) && ( $.cookie( 'apm_navaids' ) || 0 ) == 1 )
@@ -625,6 +699,18 @@ let maps_limit = 0;
     } );
   } );
 
+  $( document ).on( 'click', '[map-layer]', function ( e ) {
+    prevent( e );
+
+    const container = $( this ).closest( '.map-container' ),
+      uuid = container.find( '.map' ).attr( 'id' ),
+      type = $( this ).attr( 'map-layer' );
+
+    map_base_layer( uuid, type );
+    container.find( '[map-layer]' ).removeClass( 'active' );
+    $( this ).addClass( 'active' );
+  } );
+
   $( document ).on( 'click', '[map-action]', function ( e ) {
     prevent( e );
 
@@ -652,6 +738,10 @@ let maps_limit = 0;
 
         map_check_zoom( uuid );
         map_load_marker( uuid );
+        break;
+
+      case 'layers':
+        map_layers( uuid );
         break;
 
       case 'navaids':
