@@ -29,6 +29,9 @@ const freq_format = ( frequency ) => {
     if ( !! ( $.cookie( 'cookie_test' ) || 0 ) ) use_cookies = true;
 
     $( 'a[target="_blank"]' ).each( function () { $( this ).attr( 'rel', 'noopener noreferrer' ) } );
+
+    if ( $.cookie( 'theme' ) === 'dark' ) $( 'html' ).addClass( 'dark' );
+    else $( 'html' ).removeClass( 'dark' );
   } );
 
   $( document ).on( 'click', '[data-action]', function ( e ) {
