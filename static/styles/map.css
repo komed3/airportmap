@@ -321,6 +321,91 @@
   background: var( --gray-6 );
 }
 
+/* layer selection */
+
+.map-container .map-overlay .map-infobox.layers {
+  width: 340px;
+}
+
+.map-container .map-overlay .map-infobox.layers .infobox-content {
+  margin: 20px 0;
+}
+
+.map-container .map-overlay .map-infobox.layers .map-layers-list {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 6px;
+  width: 100%;
+}
+
+.map-container .map-overlay .map-infobox.layers .map-layer {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 6px;
+  text-align: left;
+  color: var( --gray-0 );
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.map-container .map-overlay .map-infobox.layers .map-layer:hover {
+  opacity: 1;
+  background: var( --shade-1 );
+}
+
+.map-container .map-overlay .map-infobox.layers .map-layer.active {
+  opacity: 1;
+  background: var( --shade-2 );
+}
+
+.map-container .map-overlay .map-infobox.layers .map-layer-preview {
+  flex: 0 0 72px;
+  width: 72px;
+  height: 48px;
+  background-color: var( --gray-6 );
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 2px;
+}
+
+.map-container .map-overlay .map-infobox.layers .map-layer-esri {
+  background-image: url( './../resources/map-layer-esri.jpg' );
+}
+
+.map-container .map-overlay .map-infobox.layers .map-layer-imagery {
+  background-image: url( './../resources/map-layer-imagery.jpg' );
+}
+
+.map-container .map-overlay .map-infobox.layers .map-layer-osm {
+  background-image: url( './../resources/map-layer-osm.jpg' );
+}
+
+.map-container .map-overlay .map-infobox.layers .map-layer-info {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 3px;
+}
+
+.map-container .map-overlay .map-infobox.layers .map-layer-info strong {
+  line-height: 1.2;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.map-container .map-overlay .map-infobox.layers .map-layer-info small {
+  line-height: 1.2;
+  font-size: 12px;
+  font-weight: 300;
+  opacity: 0.6;
+}
+
 /* leaflet map */
 
 .map-container .map {
@@ -353,9 +438,9 @@
 .map-container .map .leaflet-tooltip {
   padding: 0;
   text-align: center;
-  text-shadow: 0 0 2px var( --gray-0 );
+  text-shadow: 0 0 2px #fff;
   line-height: 1;
-  color: var( --gray-6 );
+  color: #000;
   background: transparent;
   border: 0;
   box-shadow: none;
@@ -465,6 +550,46 @@
 
 .map-container.micro-map .map .leaflet-control-scale {
   display: none;
+}
+
+/* dark mode */
+
+.dark .map-container .map .leaflet-tooltip {
+  text-shadow: 0 0 2px #fff !important;
+  color: #000 !important;
+}
+
+.dark .map-container .map .leaflet-control-attribution {
+  color: #fff !important;
+}
+
+/* imagery overlays */
+
+.map-container.imagery .map-overlay button {
+  color: var( --gray-6 );
+  background: var( --gray-2 );
+}
+
+.map-container.imagery .map-overlay button.active {
+  background: var( --gray-0 );
+}
+
+.map-container.imagery .map .leaflet-control-scale-line {
+  background: var( --light-4 );
+  border-color: var( --gray-4 );
+}
+
+.map-container.imagery .map .leaflet-tooltip {
+  text-shadow: 0 0 2px #000;
+  color: #fff;
+}
+
+.map-container.imagery .map mapicon,
+.map-container.imagery .map windbug,
+.map-container.imagery .map windflag,
+.map-container.imagery .map wpicon,
+.map-container.imagery .map navicon {
+  filter: invert( 1 ) brightness( 5 ) contrast( 10 );
 }
 
 /* mobile support */
