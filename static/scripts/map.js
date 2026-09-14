@@ -548,6 +548,10 @@ let maps_limit = 0;
     }
   };
 
+  const map_base_layer_class = ( uuid, type ) => {
+    $( '.map-container[uuid="' + uuid + '"]' ).removeClass( 'esri imagery osm' ).addClass( type );
+  };
+
   const map_base_layers = ( uuid ) => {
     const data = maps_config[ uuid ];
 
