@@ -73,7 +73,6 @@ select,
   color: var( --gray-0 );
 }
 
-.map-container .map .leaflet-tooltip,
 .welcome p {
   color: var( --gray-1 );
 }
@@ -86,11 +85,6 @@ select,
 .runwaylist .runway .info .condition,
 .runwaylist .runway .info .dthr {
   color: var( --gray-2 );
-}
-
-.map-container .map .leaflet-control-scale-line,
-.map-container .map .leaflet-control-attribution {
-  color: var( --gray-3 );
 }
 
 #footer .column h3,
@@ -172,8 +166,4 @@ select,
 
 .sigmets .sigmet .sigmet-raw {
   border-bottom-color: var( --gray-4 );
-}
-
-.map-container .map .leaflet-tooltip {
-  text-shadow: 0 0 2px var( --gray-6 );
 }
