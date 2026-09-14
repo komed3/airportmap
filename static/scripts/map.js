@@ -25,10 +25,10 @@ let maps_limit = 0;
   };
 
   const map_set_position = ( uuid ) => {
-    const { lat, lng } = maps[ uuid ].getCenter(), zoom = maps[ uuid ].getZoom();
+    const { lat, lng: lon } = maps[ uuid ].getCenter(), zoom = maps[ uuid ].getZoom();
 
     if ( use_cookies ) $.cookie( 'apm_lastpos', JSON.stringify( { lat, lon, zoom } ) );
-    location.hash = zoom + '/' + lat.toFixed( 4 ) + '/' + lng.toFixed( 4 );
+    location.hash = zoom + '/' + lat.toFixed( 4 ) + '/' + lon.toFixed( 4 );
   };
 
   const map_halo = ( uuid, position = false ) => {
@@ -403,185 +403,108 @@ let maps_limit = 0;
         }
       } } );
     } catch ( err ) {
-        console.error( 'Unexpected error in map_sigmets_update:', err );
+      console.error( 'Unexpected error in map_sigmets_update:', err );
     }
   };
 
-  var map_info = ( uuid, infobox, classes = '' ) => {
+  const map_info = ( uuid, infobox, classes = '' ) => {
+    const box = $( '[uuid="' + uuid + '"] .map-infobox' );
 
-    let box = $( '[uuid="' + uuid + '"] .map-infobox' );
-
-    if( 'classes' in infobox ) {
-
-      classes += ' ' + infobox.classes;
-
-    }
-
-    if( 'image' in infobox && infobox.image !== null ) {
-
+    if ( 'classes' in infobox ) classes += ' ' + infobox.classes;
+    if ( 'image' in infobox && infobox.image !== null ) {
       classes += ' image';
 
       box.find( '.infobox-image' ).css( 'backgroundImage', 'url( ' + infobox.image.file + ' )' ).show();
       box.find( '.infobox-image-credits' ).html( infobox.image.credits );
-
     } else {
-
       box.find( '.infobox-image' ).hide();
-
     }
 
     box.find( '.infobox-title' ).html( infobox.title );
     box.find( '.infobox-subtitle' ).html( infobox.subtitle );
     box.find( '.infobox-content' ).html( infobox.content );
 
-    if( 'link' in infobox ) {
-
+    if ( 'link' in infobox ) {
       box.find( '.infobox-link' ).attr( 'href', infobox.link ).show();
       box.find( '.infobox-linktext' ).html( infobox.linktext );
-
     } else {
-
       box.find( '.infobox-link' ).hide();
-
     }
 
     box.attr( 'class', 'map-infobox ' + classes ).show();
-
   };
 
-  var map_airport_info = ( _e, uuid, airport ) => {
+  const map_airport_info = ( _, uuid, airport ) => {
+    $.ajax( { url: apiurl + 'airport_info.php', type: 'post', data: {
+      token: get_token(), locale: $.cookie( 'locale' ), airport: airport.ICAO
+    }, success: raw => {
+      const res = JSON.parse( raw );
 
-    $.ajax( {
-      url: apiurl + 'airport_info.php',
-      type: 'post',
-      data: {
-        token: get_token(),
-        locale: $.cookie( 'locale' ),
-        airport: airport.ICAO
-      },
-      success: ( raw ) => {
+      if ( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
+        const position = L.latLng( airport.lat, airport.lon );
 
-        let res = JSON.parse( raw );
-
-        if( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
-
-          let position = L.latLng( airport.lat, airport.lon );
-
-          maps[ uuid ].flyTo(
-            position,
-            Math.max( 8, maps[ uuid ].getZoom() )
-          );
-
-          map_halo( uuid, position );
-
-          map_info( uuid, res.response.infobox, 'airport' );
-
-        }
-
+        maps[ uuid ].flyTo( position, Math.max( 8, maps[ uuid ].getZoom() ) );
+        map_halo( uuid, position );
+        map_info( uuid, res.response.infobox, 'airport' );
       }
-    } );
-
+    } } );
   };
 
-  var map_navaid_info = ( _e, uuid, navaid ) => {
+  const map_navaid_info = ( _, uuid, navaid ) => {
+    $.ajax( { url: apiurl + 'navaid_info.php', type: 'post', data: {
+      token: get_token(), locale: $.cookie( 'locale' ), navaid: navaid._id
+    }, success: raw => {
+      let res = JSON.parse( raw );
 
-    $.ajax( {
-      url: apiurl + 'navaid_info.php',
-      type: 'post',
-      data: {
-        token: get_token(),
-        locale: $.cookie( 'locale' ),
-        navaid: navaid._id
-      },
-      success: ( raw ) => {
+      if ( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
+        let position = L.latLng( navaid.lat, navaid.lon );
 
-        let res = JSON.parse( raw );
-
-        if( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
-
-          let position = L.latLng( navaid.lat, navaid.lon );
-
-          maps[ uuid ].flyTo(
-            position,
-            Math.max( 10, maps[ uuid ].getZoom() )
-          );
-
-          map_halo( uuid, position );
-
-          map_info( uuid, res.response.infobox, 'navaid navaid-' + navaid.type );
-
-        }
-
+        maps[ uuid ].flyTo( position, Math.max( 10, maps[ uuid ].getZoom() ) );
+        map_halo( uuid, position );
+        map_info( uuid, res.response.infobox, 'navaid navaid-' + navaid.type );
       }
-    } );
-
+    } } );
   };
 
-  var map_sigmet_info = ( poly, _e, uuid, sigmet ) => {
-
+  const map_sigmet_info = ( poly, _, uuid, sigmet ) => {
     try {
-
-      if( !poly || !uuid || !sigmet || !sigmet._id ) {
+      if ( ! poly || ! uuid || ! sigmet || ! sigmet._id ) {
         console.warn( 'Invalid parameters for map_sigmet_info' );
         return;
       }
 
-      $.ajax( {
-        url: apiurl + 'sigmet_info.php',
-        type: 'post',
-        data: {
-          token: get_token(),
-          locale: $.cookie( 'locale' ),
-          sigmet: sigmet._id
-        },
-        success: ( raw ) => {
+      $.ajax( { url: apiurl + 'sigmet_info.php', type: 'post', data: {
+        token: get_token(), locale: $.cookie( 'locale' ), sigmet: sigmet._id
+      }, success: raw => {
+        try {
+          if ( ! raw || typeof raw !== 'string' ) throw new Error( 'Invalid response format' );
 
-          try {
+          let res = JSON.parse( raw );
+          if ( ! res || typeof res !== 'object' || ! res.response )
+            throw new Error( 'Invalid response structure' );
 
-            if( !raw || typeof raw !== 'string' ) {
-              throw new Error( 'Invalid response format' );
+          if ( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
+            try {
+              let bounds = poly.getBounds();
+
+              if ( bounds && maps[ uuid ] ) maps[ uuid ].fitBounds( bounds, {
+                maxZoom: maps_config[ uuid ].maxZoom || 15, padding: [ 50, 50 ]
+              } );
+            } catch ( err ) {
+              console.warn( 'Error fitting bounds:', err );
             }
 
-            let res = JSON.parse( raw );
-
-            if( !res || typeof res !== 'object' || !res.response ) {
-              throw new Error( 'Invalid response structure' );
-            }
-
-            if( 'infobox' in res.response && typeof res.response.infobox == 'object' ) {
-
-              try {
-                let bounds = poly.getBounds();
-                if( bounds && maps[ uuid ] ) {
-                  maps[ uuid ].fitBounds( bounds, {
-                    maxZoom: maps_config[ uuid ].maxZoom || 15,
-                    padding: [ 50, 50 ]
-                  } );
-                }
-              } catch( err ) {
-                console.warn( 'Error fitting bounds:', err );
-              }
-
-              if( maps[ uuid ] ) {
-                map_info( uuid, res.response.infobox, 'sigmet-' + ( sigmet.hazard || '' ) );
-              }
-
-            }
-
-          } catch( err ) {
-            console.error( 'Error parsing SIGMET info response:', err );
+            if ( maps[ uuid ] ) map_info( uuid, res.response.infobox, 'sigmet-' + ( sigmet.hazard || '' ) );
           }
-
-        },
-        error: ( xhr, status, err ) => {
-          console.warn( 'SIGMET info API error:', status, err );
+        } catch( err ) {
+          console.error( 'Error parsing SIGMET info response:', err );
         }
-      } );
-
-    } catch( err ) {
+      }, error: ( _, status, err ) => {
+        console.warn( 'SIGMET info API error:', status, err );
+      } } );
+    } catch ( err ) {
       console.error( 'Unexpected error in map_sigmet_info:', err );
     }
-
   };
 
   var map_traffic_info = ( _e, uuid, tfc ) => {
