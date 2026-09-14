@@ -599,32 +599,31 @@ let maps_limit = 0;
     const active = maps_layer[ uuid ].baseType;
 
     map_info( uuid, {
-      title: 'Kartenlayer',
+      title: { de: 'Kartenlayer', en: 'Base Layer' }[ $.cookie( 'locale' ) || 'en' ],
       subtitle: '',
-      content:
-        '<div class="map-layers-list">' +
-          '<button class="map-layer' + ( active == 'esri' ? ' active' : '' ) + '" map-layer="esri">' +
-            '<span class="map-layer-preview map-layer-esri"></span>' +
-            '<span class="map-layer-info">' +
-              '<strong>Esri</strong>' +
-              '<small>Helle Basiskarte</small>' +
-            '</span>' +
-          '</button>' +
-          '<button class="map-layer' + ( active == 'imagery' ? ' active' : '' ) + '" map-layer="imagery">' +
-            '<span class="map-layer-preview map-layer-imagery"></span>' +
-            '<span class="map-layer-info">' +
-              '<strong>Esri Luftbilder</strong>' +
-              '<small>Satelliten- und Luftaufnahmen</small>' +
-            '</span>' +
-          '</button>' +
-          '<button class="map-layer' + ( active == 'osm' ? ' active' : '' ) + '" map-layer="osm">' +
-            '<span class="map-layer-preview map-layer-osm"></span>' +
-            '<span class="map-layer-info">' +
-              '<strong>OpenStreetMap</strong>' +
-              '<small>OpenStreetMap Mapnik</small>' +
-            '</span>' +
-          '</button>' +
-        '</div>'
+      content: '<div class="map-layers-list">' +
+        '<button class="map-layer' + ( active == 'esri' ? ' active' : '' ) + '" map-layer="esri">' +
+          '<span class="map-layer-preview map-layer-esri"></span>' +
+          '<span class="map-layer-info">' +
+            '<strong>Esri</strong>' +
+            '<small>World Light Gray</small>' +
+          '</span>' +
+        '</button>' +
+        '<button class="map-layer' + ( active == 'imagery' ? ' active' : '' ) + '" map-layer="imagery">' +
+          '<span class="map-layer-preview map-layer-imagery"></span>' +
+          '<span class="map-layer-info">' +
+            '<strong>Esri World Imagery</strong>' +
+            '<small>Satellite imagery</small>' +
+          '</span>' +
+        '</button>' +
+        '<button class="map-layer' + ( active == 'osm' ? ' active' : '' ) + '" map-layer="osm">' +
+          '<span class="map-layer-preview map-layer-osm"></span>' +
+          '<span class="map-layer-info">' +
+            '<strong>OpenStreetMap</strong>' +
+            '<small>Mapnik</small>' +
+          '</span>' +
+        '</button>' +
+      '</div>'
     }, 'layers' );
   };
 
